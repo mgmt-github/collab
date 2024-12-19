@@ -849,4 +849,6 @@
   'Edit Portfolio' => 'Edit Portfolio',
   'Update Portfolio' => 'Update Portfolio',
   'My Service' => 'My Service',
+  'platform' => 'Platform',
+  'Select PlatForm' => 'Select PlatForm',
 );

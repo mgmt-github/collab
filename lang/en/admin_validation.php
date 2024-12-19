@@ -1,5 +1,5 @@
 <?php
- return array (
+return array(
   'Name is required' => 'Name is required',
   'Name already exist' => 'Name already exist',
   'Slug is required' => 'Slug is required',
@@ -280,4 +280,5 @@
   'File is required' => 'File is required',
   'Your Account Is Verified By KYC' => 'Your Account Is Verified By KYC',
   'KYC Verifaction' => 'KYC Verifaction',
+  'Platform List' => 'Platform List',
 );
