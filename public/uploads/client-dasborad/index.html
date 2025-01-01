@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <title>DashBoard</title>
+      <style>
+         .dashboard-wrap
+         {
+         width: 100%;
+         }
+         .dashboard-container{
+         width: 1100px;
+         margin: 0 auto;
+         }
+         .rectangle-box {
+         border-radius: 12px;
+         border: 1px solid #F4DCAB;
+         background: #FFF5E0;
+         padding: 12px;
+         }
+         .rectangle-box:nth-child(2) {
+         border: 1px solid #E1BCFF;
+         background: #EFE6F6;
+         }
+         .rectangle-box:nth-child(3) {
+         border: 1px solid #71FCAB;
+         background: #E0F8EA;
+         }
+         .rectangle-box:nth-child(4) {
+         border: 1px solid #FFC6BA !important;
+         background: #FCEAE4 !important;
+         }
+         .inner-group {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding-bottom: 10px;
+         }
+         .inner-group-2 {
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding-top: 15px;
+         padding-bottom: 7px;
+         }
+         .dashboard-wrap h4 {
+         color: #FFA400;
+         font-size: 15.368px;
+         font-weight: 500;
+         font-family: "Poppins", serif;
+         }
+         .dashboard-wrap .inner-group img {
+         background: #d78e0a3b;
+         border-radius: 50px;
+         padding: 5px;
+         }
+         .dashboard-wrap h3 {
+         color: #080D1C;
+         font-family: "Poppins", serif;
+         font-size: 19.21px;
+         font-weight: 600;
+         margin: 0;
+         }
+         .dashboard-wrap h4:nth-child(1) {
+         color: #1E1E1E;
+         font-family: Poppins;
+         font-size: 13.447px;
+         font-style: normal;
+         font-weight: 500;
+         line-height: normal;
+         margin: 0;
+         }   
+         .inner-group-2 img {
+         background: transparent;
+         }
+         .arrow {
+         display: flex;
+         align-items: center;
+         gap:7px;
+         }
+         .arrow img {
+         width: 15px;
+         }
+         .arrow h5 {
+         color: #33A57C;
+         font-family: "Poppins", serif;
+         font-size: 13.447px;
+         font-weight: 400;
+         line-height: normal;
+         margin: 0;
+         }
+         .rectangle-box-wrap
+         {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 20px;
+         }
+         .rectangle-box:nth-child(2) img {
+         background: #D7BFE9;
+         }
+         .rectangle-box:nth-child(3) img {
+         background: #B3EBCB;
+         }
+         .rectangle-box:nth-child(4) img {
+         background: #F7C7B7;
+         }
+         .rectangle-box:nth-child(2) h4 span {
+         color: #7623B5;
+         }
+         .rectangle-box:nth-child(3) h4 span {
+         color: #33A57C;
+         }
+         .rectangle-box:nth-child(4) h4 span {
+         color: #E33C05;
+         }
+         .rectangle-box:nth-child(2) h5 {
+         color: #FF4768;
+         }
+         .rectangle-box:nth-child(3) h5 {
+         color: #33A57C;
+         }
+         .rectangle-box:nth-child(4) h5 {
+         color: #FF4768;
+         }
+         .cp-inf
+         {
+         display: flex;
+         width: 1100px;
+         margin: 0 auto;
+         gap: 20px;
+         }
+         .Compaign
+         {
+         width: 50%;
+         margin: 50px auto;
+         background-color: #ffffff;
+         border-radius: 10px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         padding: 20px;
+         height: 298px;
+         }
+         .influencer
+         {
+         width: 50%;
+         margin: 50px auto;
+         background-color: #ffffff;
+         border-radius: 10px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         padding: 20px;
+         }
+         .order-list
+         {
+         width: 1100px;
+         margin: 20px auto;
+         background-color: #ffffff;
+         border-radius: 10px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         padding: 20px;
+         height: 400px;
+         }
+         .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header a {
+    color: #6B6B6B;
+    font-family: "Poppins", serif;
+    font-size: 14px;
+    font-weight: 400;
+   
+}
+
+.header h2 {
+    color: #080D1C;
+    font-family: Poppins;
+    font-size: 21.131px;
+    font-family: "Poppins", serif;
+    font-weight: 500;
+    
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.grid img {
+    border-radius: 0px;
+    background: none;
+}
+
+.header button {
+    width: 99px;
+    height: 38px;
+    border-radius: 19.21px;
+    background: #F5F5F5;
+    border: none;
+    color: #71737C;
+    font-family: "Poppins", serif;
+    font-size: 13.447px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+}
+
+
+
+.header button:nth-child(2) {
+   
+    border-radius: none;
+ 
+}
+
+
+
+
+
+
+
+
+
+.button-group {
+  display: inline-flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+.dashboard-wrap .inner-group img {
+    background: #d78e0a3b;
+    border-radius: 50px;
+    padding: 5px;
+}
+
+
+.btn:hover {
+  background-color: #f3f3f3;
+}
+
+.btn.active {
+  background-color: #f5f5f5;
+  color: #000;
+  font-weight: bold;
+}
+
+
+.button-group button {
+    border-radius: 0px;
+    color: #2D2C2C;
+    font-weight: 400;
+    font-family: "Poppins", serif;
+font-size: 11.526px;
+font-style: normal;
+
+
+}
+
+
+
+
+
+
+
+.content-holder {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 58px;
+      }
+
+      /* Cards Styles */
+      .cards {
+        /* display: flex; */
+        /* flex-wrap: wrap; */
+        color: #222;
+        font-size: 13.898px;
+        font-weight: 400;
+        line-height: normal;
+        font-family: "Poppins", serif;
+      }
+
+      .cards h4 {
+        color: #5856D6;
+        font-family: "Poppins", serif;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: normal;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 94%;
+      }
+
+      .cards strong {
+        color: #222;
+        font-size: 14.67px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        font-family: "Inter", serif;
+      }
+
+      .cards .box {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        margin-bottom: 7px;
+        background-size: cover !important;
+        width: 100%;
+        height: 309px;
+		cursor:pointer;
+      }
+.cards .box .img-box {
+    display: block;
+    width: 100%;
+    transition: transform 0.8s ease-in-out;
+    background: transparent;
+    border-radius: 6px !important;
+    padding: 0px !important;
+  }
+
+  .cards .box:hover .img-box {
+    transform: scale(1.1);
+  }
+      .img-title {
+        align-items: end;
+        position: absolute;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        background: url(./images/overlay.svg) no-repeat;
+        padding: 11px 10px 15px;
+        width: 94%;
+        color: #fff;
+        font-size: 11.5px;
+        font-family: "Inter", serif;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+      }
+
+      .img-title ul li {
+    list-style-type: none;
+}
+
+      .img-title h5 {
+        font-family: "Inter", serif;
+        font-size: 12.8px;
+        margin-bottom: 4px;
+      }
+
+      .img-title address {
+        width: 87px;
+        margin-bottom: 0;
+        line-height: 21px;
+        font-weight: 300;
+      }
+
+      .aside.collapsed2 {
+        margin-left: 122px;
+        margin-right: 61px;
+      }
+
+      .cards .box span {
+        position: relative;
+        border-radius: 5px;
+        top: -5px;
+        border: var(--stroke-weight-1, 1px) solid var(--color-white-solid, #FFF);
+        background: var(--color-black-70, rgba(0, 0, 0, 0.70));
+        box-shadow: 0px 2px 10px 0px rgba(120, 120, 170, 0.30);
+        height: 20px;
+        font-size: 11px;
+        font-family: "Inter", serif;
+        padding: 5px 5px 0;
+      }
+
+      /* Responsive Design */
+      /* Tablets */
+      @media (max-width: 992px) {
+        .sidebar {
+          width: 200px;
+        }
+
+        .aside {
+          margin-left: 200px;
+        }
+
+        .cards .box {
+          width: calc(50% - 15px);
+        }
+      }
+ 
+    
+        .cards .box {
+          width: 100%;
+        }
+      }
+
+      .card-container {
+        width: 100%;
+      }
+
+     
+    
+      
+
+     
+
+      .cards .box img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .cards .box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+
+
+
+      .cards ul {
+    display: inline-flex;
+    gap: 15px;
+}
+
+.cards ul {
+    display: inline-flex;
+    gap: 15px;
+}
+
+.img-title button svg {
+    text-shadow: 1px 1px 1px #ccc;
+}
+
+
+
+.img-title button {
+    border-radius: 3.133px;
+    border: 0.448px solid #B7B7B7;
+    background: #b7b7b7c4;
+    width: 30px;
+    height:27px;
+}
+
+.edit-btns {
+    display: flex;
+    gap: 15px;
+}
+
+.main-content {
+    width: 1100px;
+    margin: 0 auto;
+}
+
+.img-title-2 {
+    align-items: end;
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    background: url(./images/overlay.svg) no-repeat;
+    padding: 11px 10px 15px;
+    width: 94%;
+    color: #fff;
+    font-size: 11.5px;
+    font-family: "Inter", serif;
+    background-size: cover;
+    display: block;
+    justify-content: center;
+    height: 92%;
+    flex-direction: row;
+}
+.social {
+    display: flex;
+    justify-content: end;
+}
+
+.edit-btns-2 {
+    display: flex;
+    gap: 15px;
+    position: absolute;
+    bottom: 16px;
+    justify-content: center;
+    width: 97%;
+    left: 0px;
+}
+
+.edit-btns-2 button {
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-radius: 3.133px;
+    border: 0.448px solid #B7B7B7;
+    background: rgba(255, 255, 255, 0.50);
+}
+
+.social button {
+    border: none;
+    background: transparent;
+    display: flex;
+    gap: 5px;
+}
+ 
+      </style>
+   </head>
+   <body>
+      <div class="dashboard-wrap">
+         <div class="dashboard-container">
+            <div class="rectangle-box-wrap">
+               <div class="rectangle-box">
+                  <div class="inner-group">
+                     <img src="1.png">
+                     <h4>+24%</h4>
+                  </div>
+                  <h3>62k</h3>
+                  <div class="inner-group-2">
+                     <h4>Active Order</h4>
+                     <div class="arrow">
+                        <img src="arrow-down.png">
+                        <h5>30%</h5>
+                     </div>
+                  </div>
+               </div>
+               <!--Box 1-->
+               <div class="rectangle-box">
+                  <div class="inner-group">
+                     <img src="2.png">
+                     <h4><span>-32%</span></h4>
+                  </div>
+                  <h3>32k</h3>
+                  <div class="inner-group-2">
+                     <h4>Complete Order</h4>
+                     <div class="arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                           <circle cx="7.83725" cy="7.90605" r="7.68393" fill="#FFD5DC"/>
+                           <path fill-rule="evenodd" clip-rule="evenodd" d="M7.02696 8.51839H9.74947V9.69091H5V5.00081H6.18737V7.68929L9.92335 4L10.7629 4.8291L7.02696 8.51839Z" fill="#FF4768"/>
+                        </svg>
+                        <h5>20%</h5>
+                     </div>
+                  </div>
+               </div>
+               <!--Box 2-->
+               <div class="rectangle-box">
+                  <div class="inner-group">
+                     <img src="3.png">
+                     <h4><span>+44%</span></h4>
+                  </div>
+                  <h3>22k</h3>
+                  <div class="inner-group-2">
+                     <h4>Cancel Order</h4>
+                     <div class="arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+                           <circle cx="8.38022" cy="7.90604" r="7.68393" fill="#33A57C" fill-opacity="0.2"/>
+                           <path fill-rule="evenodd" clip-rule="evenodd" d="M8.73599 5.17253H6.01348V4H10.7629V8.6901H9.57558V6.00163L5.8396 9.69091L5 8.86181L8.73599 5.17253Z" fill="#33A57C"/>
+                        </svg>
+                        <h5>60%</h5>
+                     </div>
+                  </div>
+               </div>
+               <!--Box 3-->
+               <div class="rectangle-box">
+                  <div class="inner-group">
+                     <img src="4.png">
+                     <h4><span>-15%</span></h4>
+                  </div>
+                  <h3>6k</h3>
+                  <div class="inner-group-2">
+                     <h4>Compaign</h4>
+                     <div class="arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                           <circle cx="7.96225" cy="7.90604" r="7.68393" fill="#FFD4DC"/>
+                           <path fill-rule="evenodd" clip-rule="evenodd" d="M7.02696 9.51839H9.74947V10.6909H5V6.00081H6.18737V8.68929L9.92335 5L10.7629 5.8291L7.02696 9.51839Z" fill="#FF4768"/>
+                        </svg>
+                        <h5>20%</h5>
+                     </div>
+                  </div>
+               </div>
+               <!--Box 4-->
+            </div>
+         </div>
+         <div class="cp-inf">
+            <div class="Compaign">
+                <div class="header">
+                    <h2>Campaign Progress</h2>
+                    <button>Monthly</button>
+                  
+                </div>
+            </div>
+            <div class="influencer">
+                <div class="header">
+                    <h2>Top Influencers</h2>
+                    <a href="#">View all</a>
+                </div>
+                <div class="grid">
+                    <img src="11.png">
+                    <img src="12.png">
+                    <img src="13.png">
+                    <img src="14.png">
+                    <img src="15.png">
+                    <img src="16.png">
+                    <img src="17.png">
+                    <img src="18.png">
+                </div>
+            </div>
+         </div>
+         <div class="order-list">
+            <div class="header">
+                <h2>Top Influencers</h2>
+                <div class="button-group">
+                    <button class="btn active">Monthly</button>
+                    <button class="btn">Weekly</button>
+                    <button class="btn">Today</button>
+                  </div>
+            </div>
+          
+              
+         </div>
+
+             
+
+
+
+
+ <!--Third section-->
+              <div class="order-list">
+                <div class="header">
+                    <h2>All Services</h2>
+                    <button>Add New</button>
+                </div>
+              
+                  
+             </div>
+
+
+
+
+
+
+
+
+
+             <div class="main-content">
+         
+		 
+		
+		 
+		 
+		 
+                <div class="content-holder">
+                  <div class="cards">
+                    <div class="box" style="background:url(''); no-repeat">
+                      
+                      <img src="11.png" class="img-box">
+                      <div class="img-title">
+                        <div class="edit-btns">
+                            <button type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
+                                    <path d="M8.52692 13.1016L13.4673 8.16123L12.9206 7.61457L8.52692 12.0083L6.32562 9.80699L5.77896 10.3536L8.52692 13.1016ZM9.64051 17.0348C8.67927 17.0348 7.77552 16.8524 6.92924 16.4875C6.08309 16.1227 5.34701 15.6276 4.72099 15.0022C4.09497 14.3769 3.59942 13.6414 3.23434 12.7959C2.86913 11.9506 2.68652 11.0472 2.68652 10.0858C2.68652 9.12459 2.86894 8.22083 3.23376 7.37455C3.59858 6.5284 4.09368 5.79232 4.71906 5.1663C5.34443 4.54028 6.07987 4.04473 6.92538 3.67965C7.77075 3.31444 8.67412 3.13184 9.63549 3.13184C10.5967 3.13184 11.5005 3.31425 12.3468 3.67907C13.1929 4.0439 13.929 4.53899 14.555 5.16437C15.181 5.78974 15.6766 6.52519 16.0417 7.37069C16.4069 8.21607 16.5895 9.11944 16.5895 10.0808C16.5895 11.042 16.4071 11.9458 16.0422 12.7921C15.6774 13.6382 15.1823 14.3743 14.5569 15.0003C13.9316 15.6263 13.1961 16.1219 12.3506 16.487C11.5052 16.8522 10.6019 17.0348 9.64051 17.0348Z" fill="#4AE771"/>
+                                  </svg>
+                                </button>
+    
+                                <button type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                                        <path d="M6.46254 15.4583C6.12332 15.4583 5.8401 15.3447 5.61289 15.1175C5.38567 14.8902 5.27207 14.607 5.27207 14.2678V5.14155H4.53516V4.40464H7.48279V3.83777H11.9042V4.40464H14.8519V5.14155H14.115V14.2678C14.115 14.607 14.0014 14.8902 13.7742 15.1175C13.5469 15.3447 13.2637 15.4583 12.9245 15.4583H6.46254ZM8.07803 13.2475H8.81494V6.61536H8.07803V13.2475ZM10.5721 13.2475H11.309V6.61536H10.5721V13.2475Z" fill="#D93030"/>
+                                      </svg>
+                              
+                                    </button>
+    
+                                    <button type="button">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <h4> Instagram <strong>$1200</strong>
+                    </h4>
+                    <p>Makeup Wih two Influencers</p>
+                  </div>
+                  <!--First card-->
+
+
+                  <div class="cards">
+                    <div class="box" style="background:url(''); no-repeat">
+                      
+                      <img src="11.png" class="img-box">
+                      <div class="img-title">
+                        <div class="edit-btns">
+                            
+    
+                                    <button type="button">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <h4> Instagram <strong>$1200</strong>
+                    </h4>
+                    <p>Makeup Wih two Influencers</p>
+                  </div>
+                  <!--First card-->
+
+
+
+                  <div class="cards">
+                    <div class="box" style="background:url(''); no-repeat">
+                      
+                      <img src="11.png" class="img-box">
+                      <div class="img-title">
+                        <div class="edit-btns">
+                            <button type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
+                                    <path d="M8.52692 13.1016L13.4673 8.16123L12.9206 7.61457L8.52692 12.0083L6.32562 9.80699L5.77896 10.3536L8.52692 13.1016ZM9.64051 17.0348C8.67927 17.0348 7.77552 16.8524 6.92924 16.4875C6.08309 16.1227 5.34701 15.6276 4.72099 15.0022C4.09497 14.3769 3.59942 13.6414 3.23434 12.7959C2.86913 11.9506 2.68652 11.0472 2.68652 10.0858C2.68652 9.12459 2.86894 8.22083 3.23376 7.37455C3.59858 6.5284 4.09368 5.79232 4.71906 5.1663C5.34443 4.54028 6.07987 4.04473 6.92538 3.67965C7.77075 3.31444 8.67412 3.13184 9.63549 3.13184C10.5967 3.13184 11.5005 3.31425 12.3468 3.67907C13.1929 4.0439 13.929 4.53899 14.555 5.16437C15.181 5.78974 15.6766 6.52519 16.0417 7.37069C16.4069 8.21607 16.5895 9.11944 16.5895 10.0808C16.5895 11.042 16.4071 11.9458 16.0422 12.7921C15.6774 13.6382 15.1823 14.3743 14.5569 15.0003C13.9316 15.6263 13.1961 16.1219 12.3506 16.487C11.5052 16.8522 10.6019 17.0348 9.64051 17.0348Z" fill="#4AE771"/>
+                                  </svg>
+                                </button>
+    
+                                <button type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                                        <path d="M6.46254 15.4583C6.12332 15.4583 5.8401 15.3447 5.61289 15.1175C5.38567 14.8902 5.27207 14.607 5.27207 14.2678V5.14155H4.53516V4.40464H7.48279V3.83777H11.9042V4.40464H14.8519V5.14155H14.115V14.2678C14.115 14.607 14.0014 14.8902 13.7742 15.1175C13.5469 15.3447 13.2637 15.4583 12.9245 15.4583H6.46254ZM8.07803 13.2475H8.81494V6.61536H8.07803V13.2475ZM10.5721 13.2475H11.309V6.61536H10.5721V13.2475Z" fill="#D93030"/>
+                                      </svg>
+                              
+                                    </button>
+    
+                                    <button type="button">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <h4> Instagram <strong>$1200</strong>
+                    </h4>
+                    <p>Makeup Wih two Influencers</p>
+                  </div>
+                  <!--First card-->
+                  <!--Third card-->
+
+
+                  <div class="cards">
+                    <div class="box" style="background:url(''); no-repeat">
+                      
+                      <img src="11.png" class="img-box">
+                      <div class="img-title">
+                        <div class="edit-btns">
+                            
+    
+                                    <button type="button">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <h4> Instagram <strong>$1200</strong>
+                    </h4>
+                    <p>Makeup Wih two Influencers</p>
+                  </div>
+                  <!--First card-->
+
+
+                  
+                  
+                   
+                   
+                </div>
+                
+                
+                
+                
+                
+              </div>
+          
+
+          <!--Third section-->
+
+
+
+
+
+
+
+
+
+<!--Clone-->
+
+          <div class="main-content">
+         
+		 
+		
+		 
+		 
+		 
+            <div class="content-holder">
+              <div class="cards">
+                <div class="box" style="background:url(''); no-repeat">
+                  
+                  <img src="11.png" class="img-box">
+                  <div class="img-title-2">
+                    <div class=" social">
+                        <button type="button">
+                            <img src="insta.png">
+                            </button>
+
+                            
+
+                                
+                    </div>
+                    <div class="edit-btns-2">
+                        <button>Add to Card</button>
+                    </div>
+                    
+                  </div>
+                </div>
+                <h4> Instagram <strong>$1200</strong>
+                </h4>
+                <p>Makeup Wih two Influencers</p>
+              </div>
+              <!--First card-->
+
+
+              <div class="cards">
+                <div class="box" style="background:url(''); no-repeat">
+                  
+                  <img src="11.png" class="img-box">
+                  <div class="img-title-2">
+                    <div class=" social">
+                        <button type="button">
+                            <img src="facebook.png">
+                            <img src="insta.png">
+                            </button>
+
+                            
+
+                                
+                    </div>
+                    <div class="edit-btns-2">
+                        <button>Add to Card</button>
+                    </div>
+                    
+                  </div>
+                </div>
+                <h4> Instagram <strong>$1200</strong>
+                </h4>
+                <p>Makeup Wih two Influencers</p>
+              </div>
+              <!--Second card-->
+
+
+
+              <div class="cards">
+                <div class="box" style="background:url(''); no-repeat">
+                  
+                  <img src="11.png" class="img-box">
+                  <div class="img-title-2">
+                    <div class=" social">
+                        <button type="button">
+                            <img src="facebook.png">
+                            </button>
+
+                            
+
+                                
+                    </div>
+                    <div class="edit-btns-2">
+                        <button>Add to Card</button>
+                    </div>
+                    
+                  </div>
+                </div>
+                <h4> Instagram <strong>$1200</strong>
+                </h4>
+                <p>Makeup Wih two Influencers</p>
+              </div>
+              <!--third card-->
+
+
+              <div class="cards">
+                <div class="box" style="background:url(''); no-repeat">
+                  
+                  <img src="11.png" class="img-box">
+                  <div class="img-title-2">
+                    <div class=" social">
+                        <button type="button">
+                            <img src="facebook.png">
+                            <img src="insta.png">
+                            </button>
+
+                            
+
+                                
+                    </div>
+                    <div class="edit-btns-2">
+                        <button>Add to Card</button>
+                    </div>
+                    
+                  </div>
+                </div>
+                <h4> Instagram <strong>$1200</strong>
+                </h4>
+                <p>Makeup Wih two Influencers</p>
+              </div>
+              <!--First card-->
+
+
+              
+              
+               
+               
+            </div>
+            
+            
+            
+            
+            
+          </div>
+      
+
+      <!--Fourth section-->
+
+      </div>
+
+
+   </body>
+</html>

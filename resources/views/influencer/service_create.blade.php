@@ -6,14 +6,13 @@
 <!-- Main Content -->
 <div class="main-content">
     <section class="section">
-      <div class="section-header">
-        <h1>{{__('admin.Create Service')}}</h1>
-
-      </div>
-
+     
       <form action="{{ route('influencer.service.store') }}" method="POST" enctype="multipart/form-data" id="serviceForm">
         @csrf
       <div class="section-body">
+      <div class=" head-title">
+      <h1>{{__('admin.Create Service')}}</h1>
+</div>
         <div class="row mt-sm-4">
           <div class="col-12">
             <div class="card">

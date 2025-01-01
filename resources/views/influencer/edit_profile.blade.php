@@ -6,12 +6,13 @@
 <!-- Main Content -->
 <div class="main-content">
     <section class="section">
-      <div class="section-header">
-        <h1>{{__('admin.My Profile')}}</h1>
-      </div>
+      
 
 
       <div class="section-body">
+      <div class=" head-title">
+          <h1>{{__('admin.My Profile')}}</h1>
+</div>
         <div class="row mt-5">
             <div class="col-md-3">
               <div class="card card-statistic-1">

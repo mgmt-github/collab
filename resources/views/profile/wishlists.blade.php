@@ -1,38 +1,30 @@
-@extends('layout')
+@extends('profile.master_layout')
 @section('title')
     <title>{{__('admin.Favorite List')}}</title>
 @endsection
 @section('frontend-content')
 
-<!-- Breadcrumbs -->
-<section class="inflanar-breadcrumb" style="background-image: url({{ asset($breadcrumb) }});">
-    <div class="container">
-        <div class="row">
-            <!-- Breadcrumb-Content -->
-            <div class="col-12">
-                <div class="inflanar-breadcrumb__inner">
-                    <div class="inflanar-breadcrumb__content">
-                        <h2 class="inflanar-breadcrumb__title m-0">{{__('admin.Favorite List')}}</h2>
-                        <ul class="inflanar-breadcrumb__menu list-none">
-                            <li><a href="{{ route('home') }}">{{__('admin.Home')}}</a></li>
-                            <li class="active"><a href="javascript:;">{{__('admin.Favorite List')}}</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End breadcrumbs -->
+<style>
+    .whishlist-layout {
+    border-radius: 10px;
+    background: #FFF;
+}
+.inflanar-table__head {
+    background: #f3f3f3;
+}
+.inflanar-table__sthumb img {
+    width: 51%;
+}
+
+</style>
+<div class="main-content">
+    <section class="section">
+   
+      <div class="section-body"> 
 
 <!-- Features -->
-<section class="inflaner-inner-page pd-top-90 pd-btm-120">
-    <div class="container">
-        <div class="inflanar-personals">
-            <div class="row">
-                @include('profile.sidebar')
 
-                <div class="col-lg-9 col-md-8 col-12  inflanar-personals__content mg-top-30">
+                <div class="whishlist-layout  inflanar-personals__content ">
                     <div class="inflanar-table inflanar-table__favorite p-0">
                         <table id="inflanar-table__order" class="inflanar-table__main inflanar-table__main-service">
                             <!-- sherah Table Head -->
@@ -143,14 +135,12 @@
                 </div>
 
 
-            </div>
-        </div>
-    </div>
-</section>
 <!-- End Features -->
 
 
-
+</div>
+</section>
+</div>
 <script>
 
     "use strict";

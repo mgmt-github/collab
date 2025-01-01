@@ -34,9 +34,9 @@
                                 </div>
                                 <!-- End Login header -->
 
-                                <div class="tab-content mg-top-30" id="nav-tabContent">
+                                <div class="tab-content mg-top-30 " id="nav-tabContent">
                                     <!-- Single Tab -->
-                                    <div class="tab-pane fade active show" id="in-tab9" role="tabpanel">
+                                    <div class="tab-pane fade active show login1" id="in-tab9" role="tabpanel">
                                         <div class="inflanar-signin__inner">
                                             <form method="POST" action="{{ route('user-login') }}">
                                                 @csrf
@@ -106,7 +106,7 @@
                                     <!-- End Single Tab -->
 
                                     <!-- Single Tab -->
-                                    <div class="tab-pane fade" id="in-tab10" role="tabpanel">
+                                    <div class="tab-pane fade login2" id="in-tab10" role="tabpanel">
                                         <div class="inflanar-signin__inner">
                                             <form method="POST" action="{{ route('user-login') }}">
                                                 @csrf

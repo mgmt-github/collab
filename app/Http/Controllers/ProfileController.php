@@ -389,4 +389,9 @@ class ProfileController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    public function influencer(){
+        return view('profile.influencer');
+    }
 }
+
+
