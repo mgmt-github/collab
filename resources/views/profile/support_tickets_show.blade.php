@@ -1,39 +1,24 @@
-@extends('layout')
+@extends('profile.master_layout')
 @section('title')
     <title>{{__('admin.Support Ticket')}}</title>
 @endsection
 @section('frontend-content')
 
-<!-- Breadcrumbs -->
-<section class="inflanar-breadcrumb" style="background-image: url({{ asset($breadcrumb) }});">
-    <div class="container">
-        <div class="row">
-            <!-- Breadcrumb-Content -->
-            <div class="col-12">
-                <div class="inflanar-breadcrumb__inner">
-                    <div class="inflanar-breadcrumb__content">
-                        <h2 class="inflanar-breadcrumb__title m-0">{{__('admin.Support Ticket')}}</h2>
-                        <ul class="inflanar-breadcrumb__menu list-none">
-                            <li><a href="{{ route('home') }}">{{__('admin.Home')}}</a></li>
-                            <li class="active"><a href="javascript:;">{{__('admin.Support Ticket')}}</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End breadcrumbs -->
+
+
 
 <!-- Features -->
-<section class="inflaner-inner-page pd-top-90 pd-btm-120">
-    <div class="container">
-        <div class="inflanar-personals">
-            <div class="row">
-                @include('profile.sidebar')
+<div class="main-content section-body">
+<!-- <div class=" head-title">
+        <h1>{{__('admin.Support Ticket')}}</h1>
+       
+         
+      </div> -->
+    <section class="section">
+     
+      <div class="section-body"> 
 
-                <div class="col-lg-9 col-md-8 col-12  inflanar-personals__content mg-top-30">
-                    <div class="inflanar-supports">
+                    <div class="inflanar-support">
                         <div class="inflanar-supports__detail">
                            <div class="row">
                                 <div class="col-lg-8 col-12">
@@ -128,9 +113,9 @@
                                     <div class="inflanar-supports__tickets">
                                         <h4 class="inflanar-supports__info">{{__('admin.Ticket Information')}}</h4>
                                         <div class="inflanar-table__content">
-                                            <p class="inflanar-table__desc">{{__('admin.Subject')}}: {{ html_decode($ticket->subject) }}</p>
-                                            <p class="inflanar-table__desc">{{__('admin.Ticket Id')}}: {{ $ticket->ticket_id }}</p>
-                                            <p class="inflanar-table__desc"> {{__('admin.Created')}}: {{ $ticket->created_at->format('h:m A, d-F-Y') }}</p>
+                                            <p class="inflanar-table__desc"><strong> {{__('admin.Subject')}}: </strong> {{ html_decode($ticket->subject) }}</p>
+                                            <p class="inflanar-table__desc"><strong>{{__('admin.Ticket Id')}}:</strong> {{ $ticket->ticket_id }}</p>
+                                            <p class="inflanar-table__desc"> <strong>{{__('admin.Created')}}:</strong> {{ $ticket->created_at->format('h:m A, d-F-Y') }}</p>
                                         </div>
                                         <div class="inflanar-supports__status">
                                             <h4 class="inflanar-supports__status--title">{{__('admin.Status')}}</h4>
@@ -147,13 +132,14 @@
                            </div>
                         </div>
                     </div>
-                </div>
+              
 
 
-            </div>
+           
         </div>
-    </div>
+    
 </section>
+</div>
 <!-- End Features -->
 
 @endsection

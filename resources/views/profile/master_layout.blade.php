@@ -94,6 +94,45 @@ p {
     font-family: "Poppins", serif;
     color: #6c798b;
 }
+.profile-nav {
+    left: 86% !important;
+}
+.inflanar-btn.inflanar-btn__cancel {
+    background: #EAE5F4;
+    color: #292D32;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 136%;
+    letter-spacing: -0.14px;
+}
+.inflanar-btn:hover {
+    color: #000;
+    box-shadow: 0px 0px 10px #0000001f;
+}
+a.inflanar-btn {
+    border-radius: 40px;
+    background: #EAE5F4;
+    
+    color: #292D32;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 136%;
+    letter-spacing: -0.14px;
+}
+.inflanar-support{
+    border-radius: 10px;
+    background: #FFF;
+    padding: 25px;
+}
+.inflanar-custom{
+    border-radius: 10px;
+    background: #FFF;
+    padding: 25px;
+}
 </style>
 
 </head>
@@ -102,7 +141,7 @@ p {
   <div id="app">
     <div class="main-wrapper">
       
-      <nav class="navbar navbar-expand-lg main-navbar">
+      <nav class="navbar navbar-expand-lg main-navbar profile-nav">
       
         <ul class="navbar-nav navbar-right">
             </li>

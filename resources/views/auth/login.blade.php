@@ -9,7 +9,7 @@
 <section class="inflanar-signin mg-top-70 pd-top-120 pd-btm-120">
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 sdsd">
                 <div class="inflanar-signin__body">
                     <div class="row">
                         <div class="col-lg-6 col-12">

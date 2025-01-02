@@ -1,39 +1,19 @@
-@extends('layout')
+@extends('profile.master_layout')
 @section('title')
     <title>{{__('admin.Orders')}}</title>
 @endsection
 @section('frontend-content')
 
-<!-- Breadcrumbs -->
-<section class="inflanar-breadcrumb" style="background-image: url({{ asset($breadcrumb) }});">
-    <div class="container">
-        <div class="row">
-            <!-- Breadcrumb-Content -->
-            <div class="col-12">
-                <div class="inflanar-breadcrumb__inner">
-                    <div class="inflanar-breadcrumb__content">
-                        <h2 class="inflanar-breadcrumb__title m-0">{{__('admin.Orders')}}</h2>
-                        <ul class="inflanar-breadcrumb__menu list-none">
-                            <li><a href="{{ route('home') }}">{{__('admin.Home')}}</a></li>
-                            <li class="active"><a href="javascript:;">{{__('admin.Orders')}}</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End breadcrumbs -->
 
-<!-- Features -->
-<section class="inflaner-inner-page pd-top-90 pd-btm-120">
-    <div class="container">
-        <div class="inflanar-personals">
-            <div class="row">
-                @include('profile.sidebar')
 
-                <div class="col-lg-9 col-md-8 col-12  inflanar-personals__content mg-top-30">
-                    <div class="inflanar-order-detail">
+<div class="main-content">
+    <section class="section">
+      <!-- <div class="section-header">
+        <h1>{{__('admin.Dashboard')}}</h1>
+      </div> -->
+
+      <div class="section-body"> 
+                <div class="inflanar-order-detail">
                         <div class="row">
                             <div class="col-12">
                                 <div class="inflanar-supports__head">
@@ -86,7 +66,7 @@
 
 
 
-                                <div class="row mg-top-10">
+                                <div class="row order-details">
                                     <div class="col-lg-6 col-12">
                                         <div class="inflanar-order-list mg-top-30">
                                             <div class="inflanar-profile-info__head">
@@ -293,12 +273,15 @@
                             </div>
                         </div>
                     </div>
+                
+                
                 </div>
 
             </div>
-        </div>
-    </div>
+        
+   
 </section>
+</div>
 <!-- End Features -->
 
 
@@ -379,6 +362,37 @@
   </div>
 
 
+<style>
+a.inflanar-btn {
+  
+  border-radius: 40px;
+  background: #EAE5F4;
+  padding: 10px 20px;
+  color: #292D32;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 136%;
+  letter-spacing: -0.14px;
 
+}
+.inflanar-profile-info__heading {
+    font-size: 17px;
+}
+.inflanar-order-service h2 {
+    padding: 15px 22px;
+}
+.inflanar-order-service .inflanar-order__body {
+    padding: 30px 31px;
+    margin: 0 0 22px !important;
+}
+.add_section h3 {
+    font-size: 20px;
+}
+.order-details p {
+    font-size: 14px !important;
+}
+</style>
 
 @endsection

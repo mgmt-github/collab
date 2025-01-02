@@ -106,7 +106,7 @@ line-height: normal;
       <div class="section-body"> 
 
              
-                <div class="cus-edit-profile inflanar-personals__content mg-top-30">
+                <div class="cus-edit-profile inflanar-personals__content ">
                     <div class="profile-head">
                     <div><h3>Account Information</h3>
                     <p>Update your account information</p></div>

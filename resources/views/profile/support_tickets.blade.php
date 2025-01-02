@@ -79,12 +79,25 @@ a.inflanar-btn {
     letter-spacing: -0.24px;
 }
 .inflanar-supports__head {
-    display: flex
-;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0;
     padding: 20px;
+}
+.inflanar-preview__modal .modal-dialog {
+    max-width: 600px;
+}
+.modal {
+    left: 74px !important;
+  
+    }
+    .modal-dialog.modal-dialog-centered.inflanar-preview__ticket {
+    z-index: 99999;
+}
+.modal-backdrop.show {
+    opacity: 0;
+    z-index: 0 !important;
 }
 </style>
 
