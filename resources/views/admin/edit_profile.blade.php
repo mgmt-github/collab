@@ -1,14 +1,14 @@
-@extends('admin.master_layout')
+@extends('profile.master_layout')
 @section('title')
 <title>{{__('admin.My Profile')}}</title>
 @endsection
 @section('admin-content')
       <!-- Main Content -->
       <div class="main-content">
-        <section class="section">
-          <div class="section-header">
-            <h1>{{__('admin.My Profile')}}</h1>
-          </div>
+    <section class="section">
+   
+      <div class="section-body"> 
+
           <div class="section-body">
             <div class="row">
               <div class="col-12">
@@ -109,7 +109,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
         </section>
       </div>
 @endsection

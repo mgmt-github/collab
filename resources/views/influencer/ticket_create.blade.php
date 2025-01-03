@@ -6,11 +6,11 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-          <div class="section-header">
-            <h1>{{__('admin.Create Ticket')}}</h1>
-          </div>
-
+        
           <div class="section-body">
+          <div class=" head-title">
+        <h1>{{__('admin.Create Ticket')}}</h1>
+</div>
             <a class="btn btn-primary" href="{{ route('influencer.ticket') }}"> <i class="fa fa-list" aria-hidden="true"></i> {{__('admin.Ticket List')}}</a>
             <div class="row mt-4">
                 <div class="col">

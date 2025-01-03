@@ -237,6 +237,8 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
                 Route::get('/reviews', 'reviews')->name('reviews');
                 Route::post('/store-review', 'store_review')->name('store-review');
+
+                Route::get('/influencer', 'influencer')->name('influencer');
             });
 
             Route::get('live-chat', [UserMessageController::class, 'index'])->name('live-chat');
