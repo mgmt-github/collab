@@ -10,6 +10,7 @@ use App\Models\InfluencerWithdraw;
 use Modules\Service\Entities\Service;
 use App\Models\Setting;
 use App\Models\RefundRequest;
+use App\Models\SocialPlatform;
 
 use Auth, Str, Image, File, Hash;
 
@@ -20,80 +21,81 @@ class ProfileController extends Controller
         $this->middleware('auth:web');
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
 
         $influencer = Auth::guard('web')->user();
 
-        $today_orders = Order::orderBy('id','desc')->where('influencer_id', $influencer->id)->whereDay('created_at', now()->day)->get();
+        $today_orders = Order::orderBy('id', 'desc')->where('influencer_id', $influencer->id)->whereDay('created_at', now()->day)->get();
 
         $today_total_order = $today_orders->count();
-        $today_total_awating_order = $today_orders->where('order_status','awaiting_for_influencer_approval')->count();
-        $today_approved_order = $today_orders->where('order_status','approved_by_influencer')->count();
-        $today_complete_order = $today_orders->where('order_status','complete')->count();
-        $today_declined_order = $today_orders->where('order_status','order_decliened_by_influencer')->count();
+        $today_total_awating_order = $today_orders->where('order_status', 'awaiting_for_influencer_approval')->count();
+        $today_approved_order = $today_orders->where('order_status', 'approved_by_influencer')->count();
+        $today_complete_order = $today_orders->where('order_status', 'complete')->count();
+        $today_declined_order = $today_orders->where('order_status', 'order_decliened_by_influencer')->count();
 
-        $today_total_earning = $today_orders->where('payment_status','success')->sum('total_amount');
+        $today_total_earning = $today_orders->where('payment_status', 'success')->sum('total_amount');
 
-        $today_withdraws = InfluencerWithdraw::whereDay('created_at', now()->day)->where('status',1)->where('influencer_id', $influencer->id)->get();
+        $today_withdraws = InfluencerWithdraw::whereDay('created_at', now()->day)->where('status', 1)->where('influencer_id', $influencer->id)->get();
         $today_withdraw_request = $today_withdraws->sum('total_amount');
 
         // end today
 
         // start this month
 
-        $monthly_orders = Order::orderBy('id','desc')->where('influencer_id', $influencer->id)->whereMonth('created_at', now()->month)->get();
+        $monthly_orders = Order::orderBy('id', 'desc')->where('influencer_id', $influencer->id)->whereMonth('created_at', now()->month)->get();
 
         $monthly_total_order = $monthly_orders->count();
-        $monthly_total_awating_order = $monthly_orders->where('order_status','awaiting_for_influencer_approval')->count();
-        $monthly_approved_order = $monthly_orders->where('order_status','approved_by_influencer')->count();
-        $monthly_complete_order = $monthly_orders->where('order_status','complete')->count();
-        $monthly_declined_order = $monthly_orders->where('order_status','order_decliened_by_influencer')->count();
+        $monthly_total_awating_order = $monthly_orders->where('order_status', 'awaiting_for_influencer_approval')->count();
+        $monthly_approved_order = $monthly_orders->where('order_status', 'approved_by_influencer')->count();
+        $monthly_complete_order = $monthly_orders->where('order_status', 'complete')->count();
+        $monthly_declined_order = $monthly_orders->where('order_status', 'order_decliened_by_influencer')->count();
 
-        $monthly_total_earning = $monthly_orders->where('payment_status','success')->sum('total_amount');
+        $monthly_total_earning = $monthly_orders->where('payment_status', 'success')->sum('total_amount');
 
-        $monthly_withdraws = InfluencerWithdraw::whereMonth('created_at', now()->month)->where('status',1)->where('influencer_id', $influencer->id)->get();
+        $monthly_withdraws = InfluencerWithdraw::whereMonth('created_at', now()->month)->where('status', 1)->where('influencer_id', $influencer->id)->get();
         $monthly_withdraw_request = $today_withdraws->sum('total_amount');
 
         // end monthly
 
         // start yearly
 
-        $yearly_orders = Order::orderBy('id','desc')->where('influencer_id', $influencer->id)->whereYear('created_at', now()->year)->get();
+        $yearly_orders = Order::orderBy('id', 'desc')->where('influencer_id', $influencer->id)->whereYear('created_at', now()->year)->get();
 
         $yearly_total_order = $yearly_orders->count();
-        $yearly_total_awating_order = $yearly_orders->where('order_status','awaiting_for_influencer_approval')->count();
-        $yearly_approved_order = $yearly_orders->where('order_status','approved_by_influencer')->count();
-        $yearly_complete_order = $yearly_orders->where('order_status','complete')->count();
-        $yearly_declined_order = $yearly_orders->where('order_status','order_decliened_by_influencer')->count();
+        $yearly_total_awating_order = $yearly_orders->where('order_status', 'awaiting_for_influencer_approval')->count();
+        $yearly_approved_order = $yearly_orders->where('order_status', 'approved_by_influencer')->count();
+        $yearly_complete_order = $yearly_orders->where('order_status', 'complete')->count();
+        $yearly_declined_order = $yearly_orders->where('order_status', 'order_decliened_by_influencer')->count();
 
-        $yearly_total_earning = $yearly_orders->where('payment_status','success')->sum('total_amount');
+        $yearly_total_earning = $yearly_orders->where('payment_status', 'success')->sum('total_amount');
 
-        $yearly_withdraws = InfluencerWithdraw::whereYear('created_at', now()->year)->where('status',1)->where('influencer_id', $influencer->id)->get();
+        $yearly_withdraws = InfluencerWithdraw::whereYear('created_at', now()->year)->where('status', 1)->where('influencer_id', $influencer->id)->get();
         $yearly_withdraw_request = $today_withdraws->sum('total_amount');
         // end yarly
 
 
         // start total
-        $total_orders = Order::orderBy('id','desc')->where('influencer_id', $influencer->id)->get();
+        $total_orders = Order::orderBy('id', 'desc')->where('influencer_id', $influencer->id)->get();
         $total_total_order = $total_orders->count();
-        $total_total_awating_order = $total_orders->where('order_status','awaiting_for_influencer_approval')->count();
-        $total_approved_order = $total_orders->where('order_status','approved_by_influencer')->count();
-        $total_complete_order = $total_orders->where('order_status','complete')->count();
-        $total_declined_order = $total_orders->where('order_status','order_decliened_by_influencer')->count();
+        $total_total_awating_order = $total_orders->where('order_status', 'awaiting_for_influencer_approval')->count();
+        $total_approved_order = $total_orders->where('order_status', 'approved_by_influencer')->count();
+        $total_complete_order = $total_orders->where('order_status', 'complete')->count();
+        $total_declined_order = $total_orders->where('order_status', 'order_decliened_by_influencer')->count();
 
-        $total_total_earning = $total_orders->where('payment_status','success')->sum('total_amount');
+        $total_total_earning = $total_orders->where('payment_status', 'success')->sum('total_amount');
 
-        $total_withdraws = InfluencerWithdraw::where('status',1)->where('influencer_id', $influencer->id)->get();
+        $total_withdraws = InfluencerWithdraw::where('status', 1)->where('influencer_id', $influencer->id)->get();
         $total_withdraw_request = $today_withdraws->sum('total_amount');
 
         $total_service = Service::where('influencer_id', $influencer->id)->count();
         // end total
 
-        return view('influencer.dashboard', compact('today_total_order','today_total_awating_order','today_approved_order','today_complete_order','today_declined_order','today_total_earning','today_withdraw_request','monthly_total_order','monthly_total_awating_order','monthly_approved_order','monthly_complete_order','monthly_declined_order','monthly_total_earning','monthly_withdraw_request','yearly_total_order','yearly_total_awating_order','yearly_approved_order','yearly_complete_order','yearly_declined_order','yearly_total_earning','yearly_withdraw_request','total_total_order','total_total_awating_order','total_approved_order','total_complete_order','total_declined_order','total_total_earning','total_withdraw_request','total_service'));
-
+        return view('influencer.dashboard', compact('today_total_order', 'today_total_awating_order', 'today_approved_order', 'today_complete_order', 'today_declined_order', 'today_total_earning', 'today_withdraw_request', 'monthly_total_order', 'monthly_total_awating_order', 'monthly_approved_order', 'monthly_complete_order', 'monthly_declined_order', 'monthly_total_earning', 'monthly_withdraw_request', 'yearly_total_order', 'yearly_total_awating_order', 'yearly_approved_order', 'yearly_complete_order', 'yearly_declined_order', 'yearly_total_earning', 'yearly_withdraw_request', 'total_total_order', 'total_total_awating_order', 'total_approved_order', 'total_complete_order', 'total_declined_order', 'total_total_earning', 'total_withdraw_request', 'total_service'));
     }
 
-    public function edit_profile(){
+    public function edit_profile()
+    {
 
         $influencer = Auth::guard('web')->user();
 
@@ -108,6 +110,7 @@ class ProfileController extends Controller
 
         $services = Service::where('influencer_id', $influencer->id)->get();
         $total_service = $services->count();
+        $platform = SocialPlatform::where('status', 1)->get();
 
         return view('influencer.edit_profile', [
             'user' => $influencer,
@@ -116,33 +119,37 @@ class ProfileController extends Controller
             'current_balance' => $current_balance,
             'total_service' => $total_service,
             'total_balance' => $total_balance,
+            'platform' => $platform,
         ]);
     }
 
-    public function profile_update(Request $request){
+    public function profile_update(Request $request)
+    {
         $user = Auth::guard('web')->user();
 
         $rules = [
-            'name'=>'required',
-            'email'=>'required|unique:users,email,'.$user->id,
-            'phone'=>'required',
-            'country'=>'required',
-            'designation'=>'required',
-            'address'=>'required',
-            'about_me'=>'required',
-            'total_follower'=>'required',
-            'total_following'=>'required',
-            'tags'=>'required',
-            'school_name'=>'max:250',
-            'school_year'=>'max:250',
-            'varsity_name'=>'max:250',
-            'varsity_year'=>'max:250',
+            'name' => 'required',
+            'email' => 'required|unique:users,email,' . $user->id,
+            'phone' => 'required',
+            'country' => 'required',
+            'designation' => 'required',
+            'address' => 'required',
+            'platform' => 'required',
+            'about_me' => 'required',
+            'total_follower' => 'required',
+            'total_following' => 'required',
+            'tags' => 'required',
+            'school_name' => 'max:250',
+            'school_year' => 'max:250',
+            'varsity_name' => 'max:250',
+            'varsity_year' => 'max:250',
         ];
         $customMessages = [
             'name.required' => trans('admin_validation.Name is required'),
             'email.required' => trans('admin_validation.Email is required'),
             'email.unique' => trans('admin_validation.Email already exist'),
             'phone.required' => trans('admin_validation.Phone is required'),
+            'platform.required' => trans('admin_validation.Social Platform is required'),
             'country.required' => trans('admin_validation.Country or region is required'),
             'designation.required' => trans('admin_validation.Desgination is required'),
             'address.required' => trans('admin_validation.Address is required'),
@@ -151,7 +158,7 @@ class ProfileController extends Controller
             'total_follower.required' => trans('admin_validation.Follower is required'),
             'total_following.required' => trans('admin_validation.Following is required'),
         ];
-        $this->validate($request, $rules,$customMessages);
+        $this->validate($request, $rules, $customMessages);
 
         $user->name = $request->name;
         $user->phone = $request->phone;
@@ -168,41 +175,43 @@ class ProfileController extends Controller
         $user->total_following = $request->total_following;
         $user->facebook = $request->facebook;
         $user->twitter = $request->twitter;
+        $user->platform = $request->platform;
         $user->instagram = $request->instagram;
         $user->tiktok = $request->tiktok;
         $user->save();
 
-        if($request->file('image')){
-            $old_image=$user->image;
-            $user_image=$request->image;
-            $extention=$user_image->getClientOriginalExtension();
-            $image_name= Str::slug($request->name).date('-Y-m-d-h-i-s-').rand(999,9999).'.'.$extention;
-            $image_name='uploads/custom-images/'.$image_name;
+        if ($request->file('image')) {
+            $old_image = $user->image;
+            $user_image = $request->image;
+            $extention = $user_image->getClientOriginalExtension();
+            $image_name = Str::slug($request->name) . date('-Y-m-d-h-i-s-') . rand(999, 9999) . '.' . $extention;
+            $image_name = 'uploads/custom-images/' . $image_name;
 
             Image::make($user_image)
-                ->save(public_path().'/'.$image_name);
+                ->save(public_path() . '/' . $image_name);
 
-            $user->image=$image_name;
+            $user->image = $image_name;
             $user->save();
-            if($old_image){
-                if(File::exists(public_path().'/'.$old_image))unlink(public_path().'/'.$old_image);
+            if ($old_image) {
+                if (File::exists(public_path() . '/' . $old_image)) unlink(public_path() . '/' . $old_image);
             }
         }
 
-        $notification= trans('admin_validation.Update Successfully');
-        $notification=array('messege'=>$notification,'alert-type'=>'success');
+        $notification = trans('admin_validation.Update Successfully');
+        $notification = array('messege' => $notification, 'alert-type' => 'success');
         return redirect()->back()->with($notification);
     }
 
-    public function change_password(){
+    public function change_password()
+    {
         return view('influencer.edit_password');
     }
 
     public function update_password(Request $request)
     {
         $rules = [
-            'current_password'=>'required',
-            'password'=>'required|min:4|confirmed',
+            'current_password' => 'required',
+            'password' => 'required|min:4|confirmed',
         ];
         $customMessages = [
             'current_password.required' => trans('admin_validation.Current password is required'),
@@ -210,22 +219,20 @@ class ProfileController extends Controller
             'password.min' => trans('admin_validation.Password minimum 4 character'),
             'password.confirmed' => trans('admin_validation.Confirm password does not match'),
         ];
-        $this->validate($request, $rules,$customMessages);
+        $this->validate($request, $rules, $customMessages);
 
         $user = Auth::guard('web')->user();
-        if(Hash::check($request->current_password, $user->password)){
+        if (Hash::check($request->current_password, $user->password)) {
             $user->password = Hash::make($request->password);
             $user->save();
 
             $notification = trans('admin_validation.Password change successfully');
-            $notification=array('messege'=>$notification,'alert-type'=>'success');
+            $notification = array('messege' => $notification, 'alert-type' => 'success');
             return redirect()->back()->with($notification);
-
-        }else{
+        } else {
             $notification = trans('admin_validation.Current password does not match');
-            $notification=array('messege'=>$notification,'alert-type'=>'error');
+            $notification = array('messege' => $notification, 'alert-type' => 'error');
             return redirect()->back()->with($notification);
         }
     }
-
 }

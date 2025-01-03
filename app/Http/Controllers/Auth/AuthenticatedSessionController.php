@@ -24,83 +24,95 @@ class AuthenticatedSessionController extends Controller
     {
         return view('auth.login');
     }
-
+    /**
+     * Display the login view.
+     */
+    public function brand_login(): View
+    {
+        return view('auth.brand_login');
+    }
+    /**
+     * Display the login view.
+     */
+    public function influencer_login(): View
+    {
+        return view('auth.influencer_logins');
+    }
     /**
      * Handle an incoming authentication request.
      */
     public function store(Request $request): RedirectResponse
     {
         $rules = [
-            'email'=>'required|email',
-            'password'=>'required',
-            'user_type'=>'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'user_type' => 'required',
         ];
 
         $customMessages = [
             'email.required' => trans('admin_validation.Email is required'),
             'password.required' => trans('admin_validation.Password is required'),
         ];
-        $this->validate($request, $rules,$customMessages);
+        $this->validate($request, $rules, $customMessages);
 
-        $credential=[
-            'email'=> $request->email,
-            'password'=> $request->password
+        $credential = [
+            'email' => $request->email,
+            'password' => $request->password
         ];
 
-        if($request->user_type == 'client'){
-            $user = User::where('email',$request->email)->where('is_influencer', 'no')->first();
-        }elseif($request->user_type == 'influencer'){
-            $user = User::where('email',$request->email)->where('is_influencer', 'yes')->first();
+        if ($request->user_type == 'client') {
+            $user = User::where('email', $request->email)->where('is_influencer', 'no')->first();
+        } elseif ($request->user_type == 'influencer') {
+            $user = User::where('email', $request->email)->where('is_influencer', 'yes')->first();
         }
 
-        if($user){
-            if($user->status == 'enable'){
-                if($user->is_banned == 'no'){
+        if ($user) {
+            if ($user->status == 'enable') {
+                if ($user->is_banned == 'no') {
 
-                    if($user->email_verified_at == null){
+                    if ($user->email_verified_at == null) {
                         $notification = trans('admin_validation.Please verify your email');
-                        $notification = array('messege'=>$notification,'alert-type'=>'error');
+                        $notification = array('messege' => $notification, 'alert-type' => 'error');
                         return redirect()->back()->with($notification);
                     }
 
-                    if(Hash::check($request->password,$user->password)){
-                        if(Auth::guard('web')->attempt($credential,$request->remember)){
+                    if (Hash::check($request->password, $user->password)) {
+                        if (Auth::guard('web')->attempt($credential, $request->remember)) {
 
-                            $notification= trans('admin_validation.Login Successfully');
-                            $notification=array('messege'=>$notification,'alert-type'=>'success');
+                            $notification = trans('admin_validation.Login Successfully');
+                            $notification = array('messege' => $notification, 'alert-type' => 'success');
 
-                            if($request->user_type == 'client'){
+                            if ($request->user_type == 'client') {
                                 return redirect()->intended(route('user.dashboard'))->with($notification);
-                            }elseif($request->user_type == 'influencer'){
+                            } elseif ($request->user_type == 'influencer') {
                                 return redirect()->intended(route('influencer.dashboard'))->with($notification);
                             }
                         }
-                    }else{
-                        $notification= trans('admin_validation.Invalid Password');
-                        $notification=array('messege'=>$notification,'alert-type'=>'error');
+                    } else {
+                        $notification = trans('admin_validation.Invalid Password');
+                        $notification = array('messege' => $notification, 'alert-type' => 'error');
                         return redirect()->back()->with($notification);
                     }
-                }else{
-                    $notification= trans('admin_validation.Inactive account');
-                    $notification=array('messege'=>$notification,'alert-type'=>'error');
+                } else {
+                    $notification = trans('admin_validation.Inactive account');
+                    $notification = array('messege' => $notification, 'alert-type' => 'error');
                     return redirect()->back()->with($notification);
                 }
-
-            }else{
-                $notification= trans('admin_validation.Inactive account');
-                $notification=array('messege'=>$notification,'alert-type'=>'error');
+            } else {
+                $notification = trans('admin_validation.Inactive account');
+                $notification = array('messege' => $notification, 'alert-type' => 'error');
                 return redirect()->back()->with($notification);
             }
-        }else{
-            $notification= trans('admin_validation.Invalid Email');
-            $notification=array('messege'=>$notification,'alert-type'=>'error');
+        } else {
+            $notification = trans('admin_validation.Invalid Email');
+            $notification = array('messege' => $notification, 'alert-type' => 'error');
             return redirect()->back()->with($notification);
         }
-
     }
 
 
-    public function redirect_to_google(){
+    public function redirect_to_google()
+    {
         $login_info = SocialLoginInfo::first();
 
         \Config::set('services.google.client_id', $login_info->gmail_client_id);
@@ -110,10 +122,10 @@ class AuthenticatedSessionController extends Controller
         Session::put('request_by', 'client');
 
         return Socialite::driver('google')->redirect();
-
     }
 
-    public function influencer_redirect_to_google(){
+    public function influencer_redirect_to_google()
+    {
         $login_info = SocialLoginInfo::first();
 
         \Config::set('services.google.client_id', $login_info->gmail_client_id);
@@ -123,10 +135,10 @@ class AuthenticatedSessionController extends Controller
         Session::put('request_by', 'influencer');
 
         return Socialite::driver('google')->redirect();
-
     }
 
-    public function redirect_to_facebook(){
+    public function redirect_to_facebook()
+    {
         $login_info = SocialLoginInfo::first();
 
         \Config::set('services.facebook.client_id', $login_info->facebook_client_id);
@@ -138,7 +150,8 @@ class AuthenticatedSessionController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function influencer_redirect_to_facebook(){
+    public function influencer_redirect_to_facebook()
+    {
         $login_info = SocialLoginInfo::first();
 
         \Config::set('services.facebook.client_id', $login_info->facebook_client_id);
@@ -150,7 +163,8 @@ class AuthenticatedSessionController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
-    public function google_callback(){
+    public function google_callback()
+    {
 
         $login_info = SocialLoginInfo::first();
 
@@ -159,35 +173,34 @@ class AuthenticatedSessionController extends Controller
         \Config::set('services.google.redirect', $login_info->gmail_redirect_url);
 
         $user = Socialite::driver('google')->user();
-        $user = $this->create_user($user,'google');
+        $user = $this->create_user($user, 'google');
         auth()->login($user);
 
-        $notification= trans('admin_validation.Login Successfully');
-        $notification=array('messege'=>$notification,'alert-type'=>'success');
+        $notification = trans('admin_validation.Login Successfully');
+        $notification = array('messege' => $notification, 'alert-type' => 'success');
 
-        if(Session::get('request_by') == 'client'){
+        if (Session::get('request_by') == 'client') {
             return redirect()->intended(route('user.dashboard'))->with($notification);
-        }elseif(Session::get('request_by') == 'influencer'){
+        } elseif (Session::get('request_by') == 'influencer') {
             return redirect()->intended(route('influencer.dashboard'))->with($notification);
         }
-
     }
 
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
 
-        $notification= trans('admin_validation.Logout Successfully');
-        $notification=array('messege'=>$notification,'alert-type'=>'success');
+        $notification = trans('admin_validation.Logout Successfully');
+        $notification = array('messege' => $notification, 'alert-type' => 'success');
         return redirect()->route('login')->with($notification);
-
     }
 
-    public function create_user($get_info, $provider){
+    public function create_user($get_info, $provider)
+    {
         $user = User::where('email', $get_info->email)->first();
         if (!$user) {
 
-            if(Session::get('request_by') == 'client'){
+            if (Session::get('request_by') == 'client') {
                 $user = User::create([
                     'name'     => $get_info->name,
                     'email'    => $get_info->email,
@@ -198,10 +211,10 @@ class AuthenticatedSessionController extends Controller
                     'email_verified_at' => date('Y-m-d H:i:s'),
                     'verification_token' => null,
                 ]);
-            }elseif(Session::get('request_by') == 'influencer'){
+            } elseif (Session::get('request_by') == 'influencer') {
                 $user = User::create([
                     'name'     => $get_info->name,
-                    'username' => Str::slug($get_info->name).'-'.date('Ymdhis'),
+                    'username' => Str::slug($get_info->name) . '-' . date('Ymdhis'),
                     'is_influencer' => 'yes',
                     'email'    => $get_info->email,
                     'provider' => $provider,
@@ -212,7 +225,6 @@ class AuthenticatedSessionController extends Controller
                     'verification_token' => null,
                 ]);
             }
-
         }
         return $user;
     }

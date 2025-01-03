@@ -53,7 +53,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaypalController;
 
 use App\Http\Controllers\Influencer\PortfolioController;
-
+use App\Http\Controllers\SocialPlatformController;
 // end user panel
 
 use App\Models\MultiCurrency;
@@ -68,7 +68,7 @@ use Illuminate\Support\Facades\Broadcast;
 
 
 Broadcast::routes(['middleware' => 'auth:web']);
-Broadcast::routes(['prefix' => 'influencer' ,'middleware' => 'auth:web']);
+Broadcast::routes(['prefix' => 'influencer', 'middleware' => 'auth:web']);
 
 Broadcast::routes(['prefix' => 'api', 'middleware' => 'auth:api']);
 
@@ -101,7 +101,7 @@ Route::middleware('auth:api')->post('/api/broadcasting/auth', function (Request 
 
 
 
-Route::group(['middleware' => ['XSS','DEMO']], function () {
+Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
     Route::group(['middleware' => ['HtmlSpecialchars']], function () {
 
@@ -134,7 +134,6 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
             Route::get('/language-switcher', 'language_switcher')->name('language-switcher');
 
             Route::get('/currency-switcher', 'currency_switcher')->name('currency-switcher');
-
         });
 
         Route::controller(PaymentController::class)->group(function () {
@@ -173,12 +172,11 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
 
 
             /** end payment addon */
-
         });
 
-        Route::get('/pay-via-paypal/{slug}',[PaypalController::class, 'pay_via_paypal'])->name('pay-via-paypal');
-        Route::get('/paypal-success-payment',[PaypalController::class, 'paypal_success_payment'])->name('paypal-success-payment');
-        Route::get('/paypal-faild-payment',[PaypalController::class, 'paypal_faild_payment'])->name('paypal-faild-payment');
+        Route::get('/pay-via-paypal/{slug}', [PaypalController::class, 'pay_via_paypal'])->name('pay-via-paypal');
+        Route::get('/paypal-success-payment', [PaypalController::class, 'paypal_success_payment'])->name('paypal-success-payment');
+        Route::get('/paypal-faild-payment', [PaypalController::class, 'paypal_faild_payment'])->name('paypal-faild-payment');
 
 
 
@@ -213,7 +211,7 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
 
 
 
-        Route::group(['as'=> 'user.', 'prefix' => 'user','middleware' => ['CheckClient']],function (){
+        Route::group(['as' => 'user.', 'prefix' => 'user', 'middleware' => ['CheckClient']], function () {
 
             Route::controller(ProfileController::class)->group(function () {
                 Route::get('/dashboard', 'dashboard')->name('dashboard');
@@ -246,7 +244,6 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
             Route::get('live-chat', [UserMessageController::class, 'index'])->name('live-chat');
             Route::get('load-chat-box/{id}', [UserMessageController::class, 'load_chat_box'])->name('load-chat-box');
             Route::post('send-message-to-provider', [UserMessageController::class, 'send_message_to_provider'])->name('send-message-to-provider');
-
         });
 
         Route::post('/forget-password', [UserPasswordResetLinkController::class, 'custom_forget_password'])->name('forget-password');
@@ -271,12 +268,11 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
             Route::get('influencer/login/facebook', 'influencer_redirect_to_facebook')->name('influencer-login-facebook');
             Route::get('/callback/facebook', 'facebookCallBack')->name('callback-facebook');
         });
-
     });
 
-    require __DIR__.'/auth.php';
+    require __DIR__ . '/auth.php';
 
-    Route::group(['as'=> 'admin.', 'prefix' => 'admin'],function (){
+    Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         Route::get('/', [DashboardController::class, 'dashboard']);
         Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
@@ -287,7 +283,7 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
         Route::post('store-login', [AuthenticatedSessionController::class, 'store'])->name('store-login');
 
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                    ->name('logout');
+            ->name('logout');
 
         Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
 
@@ -307,7 +303,7 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
 
         Route::controller(TicketController::class)->group(function () {
             Route::get('ticket', 'index')->name('ticket');
-            Route::get('ticket-show/{id}','show')->name('ticket-show');
+            Route::get('ticket-show/{id}', 'show')->name('ticket-show');
             Route::delete('ticket-delete/{id}', 'destroy')->name('ticket-delete');
             Route::put('ticket-closed/{id}', 'closed')->name('ticket-closed');
             Route::post('store-ticket-message', 'store_message')->name('store-ticket-message');
@@ -345,6 +341,11 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
             Route::put('approved-influencer-withdraw/{id}', 'approved_withdraw')->name('approved-influencer-withdraw');
         });
 
+
+        Route::resource('social-platform', SocialPlatformController::class);
+
+        Route::put('toggle-status/{id}', [SocialPlatformController::class, 'toggleStatus'])->name('social-platform.toggle-status');
+
         Route::controller(UserController::class)->group(function () {
             Route::get('influencer-list', 'influencer_list')->name('influencer-list');
             Route::get('pending-influencer', 'pending_influencer')->name('pending-influencer');
@@ -363,16 +364,13 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
             Route::get('client-show/{id}', 'client_show')->name('client-show');
             Route::post('send-mail-to-single-client/{id}', 'send_email_to_single_client')->name('send-mail-to-single-client');
             Route::delete('client-delete/{id}', 'client_destroy')->name('client-delete');
-
         });
 
         Route::resource('admin-list', AdminController::class);
-
-
     });
 
 
-    Route::group(['as'=> 'influencer.', 'prefix' => 'influencer','middleware' => ['auth:web','CheckInfluencer']],function (){
+    Route::group(['as' => 'influencer.', 'prefix' => 'influencer', 'middleware' => ['auth:web', 'CheckInfluencer']], function () {
 
         Route::controller(InfluencerProfileController::class)->group(function () {
 
@@ -385,13 +383,13 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
 
         Route::controller(InfluencerTicketController::class)->group(function () {
             Route::get('ticket', 'index')->name('ticket');
-            Route::get('ticket-show/{id}','show')->name('ticket-show');
+            Route::get('ticket-show/{id}', 'show')->name('ticket-show');
             Route::post('store-ticket-message', 'store_message')->name('store-ticket-message');
             Route::get('create-new-ticket', 'create_new_ticket')->name('create-new-ticket');
             Route::post('store-new-ticket', 'store_new_ticket')->name('store-new-ticket');
         });
 
-        Route::resource('appointment-schedule',AppointmentScheduleController::class);
+        Route::resource('appointment-schedule', AppointmentScheduleController::class);
 
         Route::resource('coupon', CouponController::class);
         Route::get('coupon-history', [CouponController::class, 'coupon_history'])->name('coupon-history');
@@ -412,7 +410,6 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
 
             Route::get('review-list', 'review_list')->name('review-list');
             Route::get('show-review/{id}', 'review_show')->name('show-review');
-
         });
 
         Route::controller(InfluencerOrderController::class)->group(function () {
@@ -434,11 +431,11 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
 
         Route::controller(PortfolioController::class)->group(function () {
             Route::get('portfolio-list', 'index')->name('portfolio-list');
-            Route::get('portfolio-create','create')->name('portfolio-create');
-            Route::post('portfolio-store','store')->name('portfolio-store');
-            Route::get('portfolio-edit/{id}','edit')->name('portfolio-edit');
-            Route::put('portfolio-update/{id}','update')->name('portfolio-update');
-            Route::delete('portfolio-destory/{id}','destroy')->name('portfolio-destory');
+            Route::get('portfolio-create', 'create')->name('portfolio-create');
+            Route::post('portfolio-store', 'store')->name('portfolio-store');
+            Route::get('portfolio-edit/{id}', 'edit')->name('portfolio-edit');
+            Route::put('portfolio-update/{id}', 'update')->name('portfolio-update');
+            Route::delete('portfolio-destory/{id}', 'destroy')->name('portfolio-destory');
         });
 
 
@@ -447,13 +444,11 @@ Route::group(['middleware' => ['XSS','DEMO']], function () {
         Route::post('send-message-to-buyer', [InfluencerMessageController::class, 'send_message_to_buyer'])->name('send-message-to-buyer');
 
         Route::get('find-new-buyer/{id}', [InfluencerMessageController::class, 'find_new_buyer'])->name('find-new-buyer');
-
     });
-
 });
 
 
-Route::get('/migrate-for-addon', function(){
+Route::get('/migrate-for-addon', function () {
     Artisan::call('migrate');
 
     Artisan::call('optimize:clear');
@@ -467,7 +462,7 @@ Route::get('/migrate-for-addon', function(){
 
 
 
-Route::get('/migrate', function(){
+Route::get('/migrate', function () {
     Artisan::call('migrate');
 
     $setting = Setting::first();

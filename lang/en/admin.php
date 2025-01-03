@@ -1,5 +1,5 @@
 <?php
- return array (
+return array(
   'Blog Category' => 'Blog Category',
   'Add New' => 'Add New',
   'SN' => 'SN',
@@ -903,9 +903,13 @@
   'Document Name' => 'Document Name',
   'Document' => 'Document',
   'File' => 'File',
+  'platform' => 'Platform',
+  'Select Platform' => 'Select Platform',
+  'Manage Platforms' => 'Manage Platforms',
+  'Platform List' => 'Platform List',
 
 
-  
+
   'Live Chat' => 'Live Chat',
   'Please login first' => 'Please login first',
   'No Message yet!' => 'No Message yet!',
@@ -916,5 +920,5 @@
   'Buyer List' => 'Buyer List',
   'Type message' => 'Type message',
 
-  
+
 );
