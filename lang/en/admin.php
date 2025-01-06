@@ -591,7 +591,7 @@ return array(
   'Go to login page' => 'Go to login page',
   'Welcome to Inflanar' => 'Welcome to Inflanar',
   'Log In' => 'Log In',
-  'OR' => 'OR',
+  'Or login with' => 'Or login with',
   'Sign In with Google' => 'Sign In with Google',
   'Sign In with Facebook' => 'Sign In with Facebook',
   'Don’t have an account ?' => 'Don’t have an account ?',
