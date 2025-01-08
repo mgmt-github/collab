@@ -907,6 +907,7 @@ return array(
   'Select Platform' => 'Select Platform',
   'Manage Platforms' => 'Manage Platforms',
   'Platform List' => 'Platform List',
+  'campaigns' => 'Campaigns',
 
 
 

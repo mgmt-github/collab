@@ -117,7 +117,7 @@ class DashboardController extends Controller
 
         $total_total_refund = 0;
         foreach($refund_requests as $refund_request){
-            $total_total_refund += $refund_request->order->total_amount;
+            $total_total_refund += $refund_request?->order?->total_amount;
         }
 
         $total_users = User::count();
