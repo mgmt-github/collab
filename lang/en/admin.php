@@ -346,7 +346,7 @@ return array(
   'Existing image' => 'Existing image',
   'Additional Service' => 'Additional Service',
   'Go Back' => 'Go Back',
-  'Price' => 'Price',
+  'Price' => '',
   'Feature' => 'Feature',
   'Remove' => 'Remove',
   'Service Category' => 'Service Category',

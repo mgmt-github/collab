@@ -74,7 +74,7 @@
 
                 @foreach ($orders as $order)
                     <div class="col-12">
-                        <div class="card service_card order_card">
+                        <div class="card service_card order_card ssd">
                             <div class="card-body d-flex flex-wrap justify-content-between align-items-center">
                                 <img class="service_image" src="{{ asset($order->service->thumbnail_image) }}" alt="">
                                 <div class="service_detail">
