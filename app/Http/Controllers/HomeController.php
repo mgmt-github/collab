@@ -713,4 +713,13 @@ class HomeController extends Controller
         $notification = array('messege' => $notification, 'alert-type' => 'success');
         return redirect()->back()->with($notification);
     }
+    function cart() {
+        return view('cart');
+  }
+  function checkout() {
+      return view('checkout');
+}
+function requirement() {
+    return view('requirement');
+}
 }
