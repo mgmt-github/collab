@@ -6,7 +6,7 @@
 @section('frontend-content')
 
 
-    <section class="custom-font">
+    <div class="custom-font">
         <div class="container">
             {{-- top nav  --}}
             <div class="steps">
@@ -16,8 +16,16 @@
             </div>
             {{-- top nav  --}}
 
-
+            <div class="notification-box mg-top-40">
+                <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="10"
+                        viewBox="0 0 12 10" fill="none">
+                        <path d="M10.6673 1.79167L4.25065 8.20833L1.33398 5.29167" stroke="white" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg></span>
+                <span>{{ __('admin.Congratulations! Your details have been successfully sent to the Influencer.') }}</span>
+            </div>
             <div class="order-sidebar mg-top-40">
+
                 <h3>{{ __('admin.Details') }}</h3>
 
                 <div class="order-form">
@@ -32,7 +40,6 @@
                             <input type="text" name="email" id="" placeholder="abc@example.com" />
                         </div>
                     </form>
-
                     <form class="form-row">
                         <div class="form-col">
                             <label>{{ __('admin.Phone Number') }}</label>
@@ -43,20 +50,31 @@
                             <input type="text" name="name" id="" placeholder="F 43, 41 Street Hamburg " />
                         </div>
                     </form>
-                    <form class="form-row">
-                        <div class="form-col">
-                            <label class="">{{ __('admin.Write Note') }}<span>0/5000</span></label>
-                            <input type="textarea" name="name" id="" placeholder="I want 2 Video ......" />
+                    <div class="form-group">
+                        <label for="note">
+                            <div class="note-label"><span>{{ __('admin.Write Note') }} </span><span
+                                    class="note-count">0/5000</span>
+                            </div>
+                        </label>
+                        <div class="note-row">
+                            <input id="note" rows="3" placeholder="I want 2 Video ..." />
+                            <span class="attachment"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M11.5 22C9.96667 22 8.66667 21.4667 7.6 20.4C6.53333 19.3333 6 18.0333 6 16.5V6C6 4.9 6.39167 3.95833 7.175 3.175C7.95833 2.39167 8.9 2 10 2C11.1 2 12.0417 2.39167 12.825 3.175C13.6083 3.95833 14 4.9 14 6V15.5C14 16.2 13.7583 16.7917 13.275 17.275C12.7917 17.7583 12.2 18 11.5 18C10.8 18 10.2083 17.7583 9.725 17.275C9.24167 16.7917 9 16.2 9 15.5V6H10.5V15.5C10.5 15.7833 10.5958 16.0208 10.7875 16.2125C10.9792 16.4042 11.2167 16.5 11.5 16.5C11.7833 16.5 12.0208 16.4042 12.2125 16.2125C12.4042 16.0208 12.5 15.7833 12.5 15.5V6C12.5 5.3 12.2583 4.70833 11.775 4.225C11.2917 3.74167 10.7 3.5 10 3.5C9.3 3.5 8.70833 3.74167 8.225 4.225C7.74167 4.70833 7.5 5.3 7.5 6V16.5C7.5 17.6 7.89167 18.5417 8.675 19.325C9.45833 20.1083 10.4 20.5 11.5 20.5C12.6 20.5 13.5417 20.1083 14.325 19.325C15.1083 18.5417 15.5 17.6 15.5 16.5V6H17V16.5C17 18.0333 16.4667 19.3333 15.4 20.4C14.3333 21.4667 13.0333 22 11.5 22Z"
+                                        fill="#828282" />
+                                </svg></span>
                         </div>
-                    </form>
+                    </div>
+                    <div class="place-btn">
+                        <button>{{ __('admin.Send') }}</button>
+                    </div>
                 </div>
-                <div class="place-btn">
-                    <button>{{ __('admin.Send') }}</button>
-                </div>
+
             </div>
 
         </div>
-    </section>
+    </div>
     <script>
         const paymentMethods = document.querySelectorAll(".payment-method");
         paymentMethods.forEach((method) => {
@@ -163,10 +181,40 @@
             border-radius: 100%;
         }
 
+        .note-row {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 12px;
+            height: 40px;
+            font-size: 14px;
+            display: flex;
+            font-family: 'Poppins';
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .note-label {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .note-count {
+            color: #5856D6;
+        }
+
+        .note-row input {
+            border: none;
+            resize: none
+        }
+
+        .note-row .attachment {
+            color: #6a6a6a;
+            cursor: pointer;
+        }
+
         /* order steps end  */
 
         .form-row {
-            width: 97.8%;
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
@@ -225,7 +273,7 @@
         .order-sidebar .form-col input {
             border-radius: 6.694px;
             border: 0.837px solid #cfcfcf;
-            width: 288px;
+            width: 540px;
             height: 40px;
             background: #fff;
             padding-left: 10px;
@@ -236,12 +284,12 @@
             border: 1px solid #e6e6e6;
             background: #fff;
             padding: 30px;
-            width: 57.3%;
+            width: 1226px;
         }
 
         .order-form {
             background: #fff;
-            padding: 18px;
+            padding: 15px 0px;
             margin-top: 20px;
         }
 
@@ -267,7 +315,6 @@
             width: 265.615px;
             height: 57.807px;
             color: white;
-            margin: 0 auto;
             display: block;
             margin-top: 50px;
             font-weight: 500;
@@ -276,6 +323,11 @@
             font-family: "Poppins", serif;
             font-size: 18px;
             cursor: pointer;
+        }
+
+        .place-btn {
+            display: flex;
+            justify-content: end;
         }
 
         .inputs-group:nth-last-child(1) {
@@ -296,6 +348,32 @@
             /* Replaced --dark-gray9 */
             font: 1em/1.5 "DM Sans", sans-serif;
             transition: background-color 0.25s, color 0.25s;
+        }
+
+        .notification-box {
+            display: flex;
+            width: 666px;
+            align-items: center;
+            gap: 10px;
+            background-color: #E9E9FF;
+            border-radius: 7px;
+            padding: 12px 10px;
+            color: #1F2026;
+            font-size: 16px;
+        }
+
+        .notification-box .icon {
+            border-radius: 30px;
+            background: #5856D6;
+            display: flex;
+            width: 22px;
+            height: 22px;
+            padding: 4px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
         .order-sidebar .inputs-group .card-number-input {

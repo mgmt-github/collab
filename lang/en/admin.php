@@ -21,6 +21,7 @@ return array(
   'Show Homepage' => 'Show Homepage',
   'Popular' => 'Popular',
   'Yes' => 'Yes',
+  'Congratulations! Your details have been successfully sent to the Influencer.' => 'Congratulations! Your details have been successfully sent to the Influencer.',
   'Details' => 'Details',
   'Shopping cart' => 'Shopping cart',
   'Checkout details' => 'Checkout details',
