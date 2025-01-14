@@ -35,63 +35,6 @@
 
   <script src="{{ asset('frontend/js/jquery-3.7.1.min.js') }}"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    .head-title h1 {
-    color: #080D1C;
-    font-size: 21.131px;
-    font-family: "Poppins", serif;
-    font-weight: 500;
-    margin: 0;
-    display: block;
-}
-
-.head-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 31px;
-}
-.section-body .head-title a {
-    text-decoration: none !important;
-    border-radius: 40px;
-    background-color: #E0CFFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
-    padding: 10px 20px 7px;
-    color: #292D32;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 136%;
-    letter-spacing: -0.14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-.section-body {
-    margin: 50px auto;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-.card .card-body {
-    padding-left: 0;
-    padding-right: 0;
-}
-.table-striped tbody tr:nth-child(odd) {
-    background-color: #fff !important;
-}
-
-    .main-content {
-    padding-left: 311px;
-    padding-bottom: 70px;
-     background: #F4F6F9;
-    padding-top: 100px;
-}
-    .main-sidebar {
-    width: 280px;
-}
     .fade.in {
         opacity: 1 !important;
     }
@@ -100,119 +43,6 @@
     .tox-statusbar__branding{
         display: none !important;
     }
-    li.dropdown div {
-    color: #333;
-}
-.sidebar-header {
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-.toggle-btn li a i {
-    font-size: 20px;
-    color: #333333;
-}
-.search-container {
-    position: relative;
-    width: 189px;
-    margin-left: 22px;
-    margin-bottom: 13px;
-}
-.search-container .search-icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #868686;
-}
-.search-container .search-input {
-    width: 100%;
-    padding: 10px 10px 10px 40px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid rgba(212, 212, 212, 0.54);
-    background: #F4F6F9;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
-    color: #868686;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 29.449px;
-}
-
-.main-sidebar .sidebar-brand {
-    display: inline-block;
-    width: 100%;
-    text-align: left;
-    padding-left: 24px;
-    line-height: 60px;
-    font-size: 26px;
-    font-family: 'Poppins';
-    font-weight: 700;
-    margin-bottom: 24px;
-    margin-top: 35px;
-}
-.main-sidebar .sidebar-brand a {
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-weight: 700;
-    color: #000;
-}
-.main-sidebar .sidebar-menu li.active a, .main-sidebar .sidebar-menu li.active a span, .main-sidebar .sidebar-menu li.active a svg {
-    color: #6036AE;
-    font-weight: 500;
-    background-color: #f8fafb;
-    /* fill: currentColor; */
-    stroke: currentColor;
-}
-.main-sidebar .sidebar-menu li a {
-    padding: 0 21px;
-    cursor: pointer;
-}
-.main-sidebar .sidebar-menu li a span {
-    margin-top: 0;
-    width: 100%;
-    color: #333;
-    font-family: "Poppins", serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: var(--line-height-33_6, 33.6px);
-}
-.sidebar-header form a {
-    position: relative;
-    z-index: 999;
-    padding-top: 0;
-}
-body.sidebar-mini .main-sidebar .search-container {
-    display: none;
-}
-body.sidebar-mini .toggle-btn {
-    margin: 0 !important;
-    width: 100% !important;
-}
-
-body.sidebar-mini ul.sidebar-menu li a svg {
-    margin-right: 0;
-}
- body.sidebar-mini .sidebar-header {
-    width: 26px !important;
-    margin: 0 auto;
-}
-body.sidebar-mini .main-sidebar .sidebar-menu > li.active > a {
-    background: #6036AE;
-}
-body.sidebar-mini .main-sidebar .sidebar-menu > li.active > a svg {
-    margin: 0 auto;
-    background: transparent;
-    /* stroke: currentColor; */
-    color: #fff;
-    /* fill: currentColor; */
-    filter: unset;
-}
 </style>
 
 </head>
@@ -220,7 +50,7 @@ body.sidebar-mini .main-sidebar .sidebar-menu > li.active > a svg {
 <body>
   <div id="app">
     <div class="main-wrapper">
-      
+      <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
@@ -229,6 +59,7 @@ body.sidebar-mini .main-sidebar .sidebar-menu > li.active > a svg {
           </ul>
         </form>
         <ul class="navbar-nav navbar-right">
+            <li class="dropdown dropdown-list-toggle"><a target="_blank" href="{{ route('home') }}" class="nav-link nav-link-lg"><i class="fas fa-home"></i> {{__('admin.Visit Website')}}</i></a>
             </li>
 
             @php

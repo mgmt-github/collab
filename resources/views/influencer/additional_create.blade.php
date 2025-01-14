@@ -6,13 +6,12 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-        
+          <div class="section-header">
+            <h1>{{__('admin.Additional Service')}}</h1>
+          </div>
+
           <div class="section-body">
-          <div class=" head-title">
-          <h1>{{__('admin.Additional Service')}}</h1>
-          <a href="{{ route('influencer.additional-service', $id) }}" class="btn btn-primary"><i class="fas fa-backward"></i> {{__('admin.Go Back')}}</a>
-      
-</div>
+            <a href="{{ route('influencer.additional-service', $id) }}" class="btn btn-primary"><i class="fas fa-backward"></i> {{__('admin.Go Back')}}</a>
             <div class="row mt-4">
                 <div class="col">
                   <div class="card">

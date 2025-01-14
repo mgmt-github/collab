@@ -6,16 +6,15 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-          
+          <div class="section-header">
+            <h1>{{__('admin.Additional Service')}}</h1>
+          </div>
+
           <div class="section-body row">
-          <div class=" head-title">
-          <h1>{{__('admin.Additional Service')}}</h1>
-        
-</div>
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="mb-3 service_card  1">{{__('admin.Language Translation')}}</h5>
+                  <h5 class="mb-3 service_card">{{__('admin.Language Translation')}}</h5>
                   <hr>
                   <div class="lang_list_top">
                       <ul class="lang_list">

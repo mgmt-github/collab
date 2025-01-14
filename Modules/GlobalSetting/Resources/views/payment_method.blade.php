@@ -6,13 +6,11 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-          
+          <div class="section-header">
+            <h1>{{__('admin.Payment Gateway')}}</h1>
+          </div>
 
         <div class="section-body">
-        <div class=" head-title">
-        <h1>{{__('admin.Payment Gateway')}}</h1>
-        
-</div>
             <div class="row mt-4">
                 <div class="col">
                     <div class="card">

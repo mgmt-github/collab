@@ -6,16 +6,17 @@
 <!-- Main Content -->
 <div class="main-content">
     <section class="section">
-      
+      <div class="section-header">
+        <h1>{{__('admin.Edit Portfolio')}}</h1>
+
+      </div>
+
 
 
       <form action="{{ route('influencer.portfolio-update', $portfolio->id) }}" method="POST" enctype="multipart/form-data" id="serviceForm">
         @csrf
         @method('PUT')
       <div class="section-body">
-      <div class=" head-title">
-          <h1>{{__('admin.Edit Portfolio')}}</h1>
-</div>
         <div class="row mt-sm-4">
           <div class="col-12">
             <div class="card">

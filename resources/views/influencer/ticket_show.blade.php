@@ -6,11 +6,11 @@
 <!-- Main Content -->
 <div class="main-content">
     <section class="section">
-      
+        <div class="section-header">
+            <h1>{{__('admin.Support Ticket')}}</h1>
+        </div>
+
         <div class="section-body">
-        <div class=" head-title">
-        <h1>{{__('admin.Support Ticket')}}</h1>
-</div>
             <div class="row">
                 <div class="col-md-8">
                     <div class="card">

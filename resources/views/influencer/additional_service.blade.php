@@ -4,41 +4,6 @@
 @endsection
 @section('influencer-content')
       <!-- Main Content -->
-       <style>
-.head-title h1 {
-    color: #080D1C;
-    font-size: 21.131px;
-    font-family: "Poppins", serif;
-    font-weight: 500;
-    margin: 0;
-    display: block;
-}
-
-.head-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 31px;
-}
-.section-body .head-title a {
-    text-decoration: none !important;
-    border-radius: 40px;
-    background-color: #E0CFFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
-    padding: 10px 20px 7px;
-    color: #292D32;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 136%;
-    letter-spacing: -0.14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-       </style>
       <div class="main-content">
         <section class="section">
           <div class="section-header">

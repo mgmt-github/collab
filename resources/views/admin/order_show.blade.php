@@ -6,7 +6,10 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-        
+          <div class="section-header">
+            <h1>{{__('admin.Booking Details')}}</h1>
+          </div>
+
           <div class="section-body">
           <div class=" head-title sss">
           <h1>{{__('admin.Booking Details')}}</h1>
@@ -15,7 +18,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-body 3">
+                            <div class="card-body">
                                 <h6 >{{__('admin.Schedule Date')}}</h6>
                                 <hr>
                                 <p>{{__('admin.Date')}} : {{ date('d-M-Y', strtotime($order->booking_date)) }}</p>
@@ -112,7 +115,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-body 3  ddd">
+                            <div class="card-body">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -156,7 +159,7 @@
                                         {{__('admin.Additional Service')}}
                                     </h4>
                                 </div>
-                                <div class="card-body 3">
+                                <div class="card-body">
                                     @foreach (json_decode($order->additional_services) as $index =>  $additional_service)
                                         <div class="add_section">
                                             <h3> {{ ++$index }}. {{ $additional_service->title }}</h3>
@@ -177,7 +180,7 @@
 
                         @if ($refund_request)
                             <div class="card mt-3">
-                                <div class="card-body 3">
+                                <div class="card-body">
                                     <h6>{{__('admin.Rofund Request by Client')}}</h6>
                                     <table class="table">
                                         <tr>
@@ -240,7 +243,7 @@
 
                         @if ($complete_request)
                             <div class="card mt-3">
-                                <div class="card-body 3">
+                                <div class="card-body">
                                     <h6>{{__('admin.Order Complete Request by Provider')}}</h6>
                                     <table class="table">
                                         <tr>
