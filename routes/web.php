@@ -136,6 +136,9 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
             Route::get('/language-switcher', 'language_switcher')->name('language-switcher');
 
             Route::get('/currency-switcher', 'currency_switcher')->name('currency-switcher');
+            Route::get('/cart', 'cart')->name('cart');
+            Route::get('/checkout', 'checkout')->name('checkout');
+            Route::get('/requirement', 'requirement')->name('requirement');
         });
 
         Route::controller(PaymentController::class)->group(function () {
