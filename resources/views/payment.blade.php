@@ -31,7 +31,7 @@
 			<div class="container">
 				<div class="row">
                     <div class="col-lg-9 col-12 mg-top-30">
-                        <div class="inflanar-sdetail">
+                        <div class="inflanar-sdetail 22">
                             <!-- Service Thumb -->
                             <div class="inflanar-sdetail__thumb">
                                 <img src="{{ asset($service->thumbnail_image) }}" alt="#">

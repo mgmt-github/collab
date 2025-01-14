@@ -59,7 +59,7 @@
                         <!-- Single Tab -->
                         <div class="tab-pane fade active show basic_info_tab" id="in-tab6" role="tabpanel">
 
-                            <div class="inflanar-sdetail">
+                            <div class="inflanar-sdetail 11">
                                 <!-- Service Thumb -->
                                 <div class="inflanar-sdetail__thumb">
                                     <img src="{{ asset($service->thumbnail_image) }}" alt="#">

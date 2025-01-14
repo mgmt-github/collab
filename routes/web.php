@@ -118,6 +118,8 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
             Route::get('/services', 'services')->name('services');
             Route::get('/service/{slug}', 'service_show')->name('service');
+            Route::get('/campaigns', 'campaigns')->name('campaigns');
+            Route::get('/campaign/{slug}', 'campaign_show')->name('campaign');
 
             Route::get('/blogs', 'blogs')->name('blogs');
             Route::get('/blog/{slug}', 'blog_show')->name('blog');
@@ -134,6 +136,9 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
             Route::get('/language-switcher', 'language_switcher')->name('language-switcher');
 
             Route::get('/currency-switcher', 'currency_switcher')->name('currency-switcher');
+            Route::get('/cart', 'cart')->name('cart');
+            Route::get('/checkout', 'checkout')->name('checkout');
+            Route::get('/requirement', 'requirement')->name('requirement');
         });
 
         Route::controller(PaymentController::class)->group(function () {
@@ -237,6 +242,10 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
                 Route::get('/reviews', 'reviews')->name('reviews');
                 Route::post('/store-review', 'store_review')->name('store-review');
+
+                Route::get('/influencers', 'influencers')->name('influencers');
+                Route::get('/influencer/{slug}', 'influencer')->name('influencer');
+                Route::post('/wishlist/toggle',  'toggle')->name('wishlist.toggle');
             });
 
             Route::get('live-chat', [UserMessageController::class, 'index'])->name('live-chat');

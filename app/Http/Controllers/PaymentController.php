@@ -193,7 +193,6 @@ class PaymentController extends Controller
                 $iyzico = IyzicoPayment::first();
                 $mercado = MercadoPagoPayment::first();
             }
-
             return view('subscription::payment', [
                 'service' => $service,
                 'booking_info' => $booking_info,
