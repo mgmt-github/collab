@@ -300,6 +300,7 @@
                                                                 </div>
                                                             @endif
 
+
                                                             <!-- Login Button Group -->
                                                             <div class="form-group mg-top-40">
                                                                 <button type="submit"
@@ -362,51 +363,6 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <!-- End Single Tab -->
-
-                                        <!-- Single Tab -->
-                                        <div class="tab-pane fade login2" id="in-tab10" role="tabpanel">
-                                            <div class="inflanar-signin__inner">
-                                                <form method="POST" action="{{ route('user-login') }}">
-                                                    @csrf
-                                                    <input type="hidden" name="user_type" value="influencer">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="form-group inflanar-form-input mg-top-20">
-                                                                <label>{{ __('admin.Email') }}</label>
-                                                                @if (env('APP_MODE') == 'DEMO')
-                                                                    <input class="ecom-wc__form-input" type="email"
-                                                                        name="email" value="influencer@gmail.com">
-                                                                @else
-                                                                    <input class="ecom-wc__form-input" type="email"
-                                                                        name="email">
-                                                                @endif
-
-                                                            </div>
-                                                            <div class="form-group inflanar-form-input mg-top-20">
-                                                                <label>{{ __('admin.Password') }}</label>
-                                                                @if (env('APP_MODE') == 'DEMO')
-                                                                    <input
-                                                                        class="inflanar-signin__form-input password-field"
-                                                                        type="password" name="password" value="1234">
-                                                                    <span class="toggle-password"
-                                                                        onclick="togglePassword()">
-                                                                        <i id="toggle-icon" class="fas fa-eye-slash"></i>
-                                                                    </span>
-                                                                @else
-                                                                    <input
-                                                                        class="inflanar-signin__form-input password-field"
-                                                                        type="password" name="password">
-                                                                    <span class="toggle-password"
-                                                                        onclick="togglePassword()">
-                                                                        <i id="toggle-icon" class="fas fa-eye-slash"></i>
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                            <div class="form-group mg-top-20">
-                                                                <div class="inflanar-signin__check-inline">
-                                                                    <div class="inflanar-signin__checkbox">
-                                                                        <div class="inflanar-signin__checkbox--group">
 
                                                                             <input class="inflanar-signin__form-check"
                                                                                 id="checkbox" name="remember"

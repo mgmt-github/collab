@@ -150,7 +150,7 @@
         margin-bottom: 7px;
         background-size: cover !important;
         width: 100%;
-        height: 309px;
+        height: 408px;
 		cursor:pointer;
       }
 .cards .box .img-box {
@@ -169,10 +169,10 @@
         align-items: end;
         position: absolute;
         bottom: 0;
-        background: rgba(0, 0, 0, 0.3);
-        background: url(./images/overlay.svg) no-repeat;
+        background: rgba(0, 0, 0, 0.77);
+    
         padding: 11px 10px 15px;
-        width: 94%;
+        width: 100%;
         color: #fff;
         font-size: 11.5px;
         font-family: "Inter", serif;
@@ -211,7 +211,7 @@
         background: var(--color-black-70, rgba(0, 0, 0, 0.70));
         box-shadow: 0px 2px 10px 0px rgba(120, 120, 170, 0.30);
         height: 20px;
-        font-size: 11px;
+        font-size: 12px;
         font-family: "Inter", serif;
         padding: 5px 5px 0;
       }
@@ -279,12 +279,18 @@
 
 .img-title .edit-btns a {
     border-radius: 3.133px;
-    border: 0.448px solid #B7B7B7;
-    background: #ffffffd4;
+    border: transparent !important;
+    background: transparent !important;
     width: 30px;
     height: 27px;
-    padding: 6px 0;
+    padding: 7px 0;
     text-align: center;
+    box-shadow: none !important;
+}
+.card {
+    box-shadow: none !important;}
+.badge.badge-danger {
+    background-color: #fc544b !important;
 }
 .img-title .edit-btns a i {
     color: #2046DA;
@@ -300,6 +306,7 @@
 .edit-btns {
     display: flex;
     gap: 7px;
+    align-items: center !important;
 }
 
 .main-content {
@@ -307,5 +314,18 @@
     margin: 0 auto;
 }
 
+.booking-area .edit-btns span.badge.badge-danger {
+    padding: 6px 8px;
+    height: 28px !important;
+    margin: 11px 0 0;
+}
 
+.edit-btns p {
+    margin: 0 !important;!i;!;
+    display: none;
+}
+.img-title .edit-btns a i {
+    color: #fff !important;
+    font-size: 22px;
+}
 </style>
