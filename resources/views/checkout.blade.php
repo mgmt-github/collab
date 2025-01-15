@@ -52,7 +52,7 @@
                         <div class="payment-fields">
                             <div class="inputs-group">
                                 <label class="checkbox">
-                                    <input class="checkbox__input payment-method" type="checkbox" name="payment-method"
+                                    <input class="checkbox__input payment-method" type="radio" name="payment-method"
                                         id="card-payment" />
                                     <span class="checkbox__label">{{ __('admin.Card') }}</span>
                                 </label>
@@ -60,7 +60,7 @@
                                     <img src="./public/frontend/img/visa.svg" alt="Cards" />
                                     <img src="./public/frontend/img/master-card.svg" alt="Cards" />
                                 </div>
-                                <!-- billing details Card start -->
+                                <!-- billing details  -->
                                 <div id="card-billing-details" class="billing-details hidden">
                                     <div class="form-input-single">
                                         <label>{{ __('admin.Name on card') }}<span class="required">*</span></label>
@@ -175,7 +175,7 @@
                                         </div>
                                     </form>
                                 </div>
-                                <!-- billing details Card ends -->
+                                <!-- billing details  -->
                             </div>
 
                             <div class="inputs-group">
@@ -191,14 +191,14 @@
 
                             <div class="inputs-group">
                                 <label class="checkbox">
-                                    <input class="checkbox__input payment-method" type="checkbox" name="payment-method"
+                                    <input class="checkbox__input payment-method" type="radio" name="payment-method"
                                         id="stripe-payment" />
                                     <span class="checkbox__label">{{ __('admin.Pay with Stripe') }}</span>
                                 </label>
                                 <div class="card-logos">
                                     <img src="./public/frontend/img/stripe.svg" alt="Stripe" />
                                 </div>
-                                <!-- billing details Stripe Starts -->
+                                <!-- billing details  -->
                                 <div id="stripe-billing-details" class="billing-details hidden">
                                     <div class="form-input-single">
                                         <label>{{ __('admin.Name on card') }}<span class="required">*</span></label>
@@ -244,7 +244,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- billing details Stripe Ends -->
+                                <!-- billing details  -->
                             </div>
                         </div>
                     </div>
@@ -333,32 +333,27 @@
     </section>
     <script>
         const paymentMethods = document.querySelectorAll(".payment-method");
-
         paymentMethods.forEach((method) => {
             method.addEventListener("change", (event) => {
                 const selectedId = event.target.id;
                 const isChecked = event.target.checked;
-
-                // Get the related billing details element
-                let relatedBillingDetails = null;
-                if (selectedId === "card-payment") {
-                    relatedBillingDetails = document.getElementById("card-billing-details");
-                } else if (selectedId === "stripe-payment") {
-                    relatedBillingDetails = document.getElementById("stripe-billing-details");
-                }
-
-                // Toggle visibility based on checkbox state
-                if (relatedBillingDetails) {
-                    if (isChecked) {
-                        relatedBillingDetails.classList.remove("hidden");
-                    } else {
-                        relatedBillingDetails.classList.add("hidden");
+                document.querySelectorAll(".billing-details").forEach((details) => {
+                    details.classList.add("hidden");
+                });
+                if (isChecked) {
+                    if (selectedId === "card-payment") {
+                        document
+                            .getElementById("card-billing-details")
+                            .classList.remove("hidden");
+                    } else if (selectedId === "stripe-payment") {
+                        document
+                            .getElementById("stripe-billing-details")
+                            .classList.remove("hidden");
                     }
                 }
             });
         });
     </script>
-
     <style>
         .footer-cta,
         .footer-area,
@@ -788,16 +783,16 @@
         }
 
         /* .order-sidebar .inputs-group  .checkbox:hover,
-                                                        .order-sidebar .inputs-group  .radio:hover {
-                                                            background-color: #f1f1f178;
-                                                            
-                                                        }
+                                .order-sidebar .inputs-group  .radio:hover {
+                                    background-color: #f1f1f178;
+                                    
+                                }
 
-                                                        .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
-                                                        .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
-                                                            background-color: #f1f1f1;
-                                                          
-                                                        } */
+                                .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
+                                .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
+                                    background-color: #f1f1f1;
+                                  
+                                } */
 
         .order-sidebar .inputs-group .checkbox:has(.checkbox__input:focus-visible,
             .radio__input:focus-visible):before,
