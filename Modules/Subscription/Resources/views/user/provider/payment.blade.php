@@ -4,27 +4,18 @@
 @endsection
 @section('influencer-content')
       <!-- Main Content -->
-       <style>
-.card .card-body {
-    padding-left: 0;
-    padding-right: 0;
-    padding: 20px 25px;
-}
-
-       </style>
       <div class="main-content">
         <section class="section">
-         
+          <div class="section-header">
+            <h1>{{__('admin.Payment Gateway')}}</h1>
+          </div>
+
         <div class="section-body">
-        <div class=" head-title">
-        <h1>{{__('admin.Payment Gateway')}}</h1>
-        
-</div>
             <div class="row mt-4">
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                        <div class="card-body 3">
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-3">
                                     <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
@@ -72,7 +63,7 @@
 
                                             <div class="tab-pane fade show active" id="paypalTab" role="tabpanel" aria-labelledby="paypal-tab">
                                                 <div class="card m-0">
-                                                    <div class="card-body 3">
+                                                    <div class="card-body">
                                                         @if($paypal)
                                                             <form action="{{ route('influencer.store-paypal-gateway') }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf
@@ -129,7 +120,7 @@
 
                                             <div class="tab-pane fade" id="stripeTab" role="tabpanel" aria-labelledby="stripe-tab">
                                                 <div class="card m-0">
-                                                    <div class="card-body 3">
+                                                    <div class="card-body">
                                                         @if($stripe)
                                                             <form action="{{ route('influencer.store-stripe-gateway') }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf
@@ -188,7 +179,7 @@
 
                                             <div class="tab-pane fade" id="razorpayTab" role="tabpanel" aria-labelledby="razorpay-tab">
                                                 <div class="card m-0">
-                                                    <div class="card-body 3">
+                                                    <div class="card-body">
                                                         @if($razorpay)
                                                             <form action="{{ route('influencer.store-razorpay-gateway') }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf
@@ -247,7 +238,7 @@
 
                                             <div class="tab-pane fade" id="flutterwaveTab" role="tabpanel" aria-labelledby="flutterwave-tab">
                                                 <div class="card m-0">
-                                                    <div class="card-body 3">
+                                                    <div class="card-body">
                                                         @if($flutterwave)
                                                             <form action="{{ route('influencer.store-flutterwave-gateway') }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf
@@ -306,7 +297,7 @@
 
                                             <div class="tab-pane fade" id="mollieTab" role="tabpanel" aria-labelledby="mollie-tab">
                                                 <div class="card m-0">
-                                                    <div class="card-body 3">
+                                                    <div class="card-body">
                                                         @if($mollie)
                                                             <form action="{{ route('influencer.store-mollie-gateway') }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf
@@ -354,7 +345,7 @@
 
                                             <div class="tab-pane fade" id="payStackTab" role="tabpanel" aria-labelledby="pay-stack-tab">
                                                 <div class="card m-0">
-                                                    <div class="card-body 3">
+                                                    <div class="card-body">
                                                         @if($paystack)
                                                             <form action="{{ route('influencer.store-paystack-gateway') }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf
@@ -413,7 +404,7 @@
 
                                             <div class="tab-pane fade" id="instamojoTab" role="tabpanel" aria-labelledby="instamojo-tab">
                                                 <div class="card m-0">
-                                                    <div class="card-body 3">
+                                                    <div class="card-body">
                                                         @if($instamojo)
                                                             <form action="{{ route('influencer.store-instamojo-gateway') }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf
@@ -493,7 +484,7 @@
 
                                             <div class="tab-pane fade" id="bankAccountTab" role="tabpanel" aria-labelledby="bank-account-tab">
                                                 <div class="card m-0">
-                                                    <div class="card-body 3">
+                                                    <div class="card-body">
                                                         @if($bank)
                                                             <form action="{{ route('influencer.store-bank-handcash-gateway') }}" method="POST" enctype="multipart/form-data">
                                                                 @csrf

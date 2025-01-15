@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('profile.master_layout')
 @section('title')
     <title>{{ $service->seo_title }}</title>
     @php
@@ -17,10 +17,10 @@
 @section('frontend-content')
 
     <!-- Breadcrumbs -->
-    <section class="inflanar-breadcrumb" style="background-image: url({{ asset($breadcrumb) }});">
+    <!-- <section class="inflanar-breadcrumb" style="background-image: url({{ asset($breadcrumb) }});">
         <div class="container">
             <div class="row">
-                <!-- Breadcrumb-Content -->
+                
                 <div class="col-12">
                     <div class="inflanar-breadcrumb__inner">
                         <div class="inflanar-breadcrumb__content">
@@ -34,16 +34,23 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End breadcrumbs -->
 
 
     <!-- Features -->
-    <section class="pd-top-90 pd-btm-120">
-        <div class="container">
+    <div class="main-content">
+        <section class="section">
+            <!-- <div class="section-header">
+                                                    <h1>{{ __('admin.Dashboard') }}</h1>
+                                                  </div> -->
+
+            <div class="section-body">
+    <section class="">
+       
             <div class="row">
                 <div class="col-lg-9 col-12 mg-top-30">
-                    <div class="inflanar-sdetail">
+                    <div class="inflanar-sdetail 55">
                         <!-- Service Thumb -->
                         <div class="inflanar-sdetail__thumb">
                             <img src="{{ asset($service->thumbnail_image) }}" alt="#">
@@ -283,18 +290,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+       
     </section>
     <!-- End Features -->
 
     @if ($related_services->count() > 0)
         <!-- Related Service -->
         <section class="pd-btm-120">
-            <div class="container">
+            <div class="">
                 <div class="row">
                     <div class="col-12">
                         <!-- Section TItle -->
-                        <div class="inflanar-section__head  mg-btm-10">
+                        <div class="inflanar-section__head  slider-title">
                             <div class="inflanar-section__slide">
                                 <h2 class="inflanar-section__title inflanar-section__title--medium "  data-aos="fade-in" data-aos-delay="400">{{__('admin.Related Services')}}</h2>
                                 <div class="inflanar-section__border"></div>
@@ -311,16 +318,19 @@
                     <div class="col-12">
                         <!-- Testimonial Slider -->
                         <div class="swiper mySwiper inflanar-slider-related loading">
-                            <div class="swiper-wrapper mg-top-30">
+                            <div class="swiper-wrapper ">
 
                                 @foreach ($related_services as $related_service)
                                     <div class="swiper-slide mg-btm-30">
                                         <!-- Single property-->
-                                        <div class="inflanar-service">
-                                            <!-- Property Head-->
-                                            <div class="inflanar-service__head">
-                                                <img src="{{ asset($related_service->thumbnail_image) }}" alt="#">
-                                                @auth('web')
+                                        <div class="cards">
+                            <a href="{{ route('booking-service', $related_service->slug) }}" class="card-link">
+
+                            <div class="box" style="background:url(''); no-repeat">
+                                <!-- Multiple Heart Boxes -->
+
+                                <div class="heart" >
+                                @auth('web')
                                                     <div class="inflanar-service__wishlist {{ $service->is_wishlist($related_service->id) == true ? 'active' : '' }} add_to_wishlist" data-service_id="{{ $related_service->id }}">
                                                         <a href="javascript:;" ><i class="fas fa-heart"></i></a>
                                                     </div>
@@ -329,75 +339,29 @@
                                                         <a href="javascript:;" ><i class="fas fa-heart"></i></a>
                                                     </div>
                                                 @endauth
-                                            </div>
-                                            <!-- Property Body-->
-                                            <div class="inflanar-service__body">
-                                                <div class="inflanar-service__top">
-                                                    @if ($related_service->category)
-                                                    <a href="{{ route('services', ['categories[]' => $related_service->category->slug]) }}" class="inflanar-service__cat"><img src="{{ asset('frontend/img/in-cat-label.svg') }}">{{ $related_service->category->name }}</a>
+                                </div>
+                                <img src="{{ asset($related_service->thumbnail_image) }}" class="img-box" />
+                                <div class="img-title">
+                                    <div>
+                                    @if ($related_service->category)
+                                                    <a href="{{ route('services', ['categories[]' => $related_service->category->slug]) }}" class="inflanar-service__cat">
+                                                        <!-- <img src="{{ asset('frontend/img/in-cat-label.svg') }}"> -->
+                                                        {{ $related_service->category->name }}</a>
                                                     @endif
 
                                                     <div class="inflanar-service__price">
                                                         {{ currency($related_service->price) }}
                                                     </div>
-                                                </div>
-                                                <h3 class="inflanar-service__title"><a href="{{ route('service', $related_service->slug) }}">{{ $related_service->title }}</a></h3>
-                                                <div class="inflanar-service__author">
-                                                    <div class="inflanar-service__author--info">
-                                                        @if ($related_service->influencer)
-                                                            <a href="{{ route('influencer', $related_service->influencer->username) }}"><img src="{{ $related_service->influencer->image ? asset($related_service->influencer->image) : asset($setting->default_avatar) }}">{{ $related_service->influencer->name }}</a>
-                                                        @endif
-
-                                                    </div>
-
-                                                    <div class="inflanar-service__author--rating">
-                                                        @php
-                                                            if ($related_service->total_review > 0) {
-                                                                $average = $related_service->average_rating;
-
-                                                                $int_average = intval($average);
-
-                                                                $next_value = $int_average + 1;
-                                                                $review_point = $int_average;
-                                                                $half_review=false;
-                                                                if($int_average < $average && $average < $next_value){
-                                                                    $review_point= $int_average + 0.5;
-                                                                    $half_review=true;
-                                                                }
-                                                            }
-                                                        @endphp
-                                                        <div class="inflanar-service__author--star">
-                                                            @if ($related_service->total_review > 0)
-                                                                @for ($i = 1; $i <=5; $i++)
-                                                                    @if ($i <= $review_point)
-                                                                    <span><i class="fa-solid fa-star"></i></span>
-                                                                    @elseif ($i> $review_point )
-                                                                        @if ($half_review==true)
-                                                                        <span><i class="fa-solid fa-star-half-stroke"></i></span>
-                                                                            @php
-                                                                                $half_review=false
-                                                                            @endphp
-                                                                        @else
-                                                                        <span><i class="fa-regular fa-star"></i></span>
-                                                                        @endif
-                                                                    @endif
-                                                                @endfor
-                                                            @else
-                                                                <span><i class="fa-regular fa-star"></i></span>
-                                                                <span><i class="fa-regular fa-star"></i></span>
-                                                                <span><i class="fa-regular fa-star"></i></span>
-                                                                <span><i class="fa-regular fa-star"></i></span>
-                                                                <span><i class="fa-regular fa-star"></i></span>
-                                                            @endif
-
-                                                        </div>
-                                                        <div class="inflanar-service__author--label">({{ $related_service->total_review }})</div>
-                                                    </div>
-
-                                                </div>
-                                                <a class="inflanar-btn-full inflanar-btn-full--v2 mg-top-20" href="{{ route('booking-service', $related_service->slug) }}">{{__('admin.Book Now')}}</a>
-                                            </div>
-                                        </div>
+                                    </div>
+                                    <span>Top creator</span>
+                                </div>
+                            </div>
+                            <h4> <a href="{{ route('service', $related_service->slug) }}">{{ $related_service->title }}</a>
+                             <strong>({{ $related_service->total_review }})</strong>
+                            </h4>
+                          
+                            </a>
+                        </div>
                                         <!-- End Single property-->
                                     </div>
                                 @endforeach
@@ -413,7 +377,26 @@
         </section>
         <!-- End Related Service -->
     @endif
-    <script>
+ 
+ </div>
+
+      </section>
+ </div>
+ <style>
+
+.inflanar-service__head img {
+    width: 100% !important;
+    border-radius: 4px !important;
+    height: 339px;
+    object-fit: cover;
+}
+.inflanar-service__body .inflanar-service__title a {
+    margin-bottom: 0px;
+    font-size: 16px;
+}
+ </style>
+ 
+ <script>
         (function($) {
         "use strict";
         $(document).ready(function () {
@@ -518,4 +501,244 @@
     }
 
 </script>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        .content-holder {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .inflanar-section__head.slider-title {
+    margin: 45px 0 0;
+}
+.inflanar-sdetail__tabnav a.active, .inflanar-sdetail__tabnav a:hover {
+    background: #E0CFFF !important;
+    color: #000;
+}
+.inflanar-sdetail__tabnav a {
+    background: #f1f1f1;
+}
+.inflanar-sdetail__tabnav a.active svg, .inflanar-sdetail__tabnav a:hover svg {
+    fill: #333 !important;
+}
+        /* Cards Styles */
+        .cards {
+            /* display: flex; */
+            /* flex-wrap: wrap; */
+            color: #222;
+            font-size: 13.898px;
+            font-weight: 400;
+            line-height: normal;
+            font-family: "Poppins", serif;
+        }
+
+        .cards h4 {
+            color: #5856D6;
+            font-family: "Poppins", serif;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: normal;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+           
+            width: 94%;
+        }
+        .heart i {
+    font-size: 23px;
+}
+        .cards strong {
+            color: #222;
+            font-size: 14.67px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            font-family: "Inter", serif;
+        }
+
+        .cards .box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 7px;
+            background-size: cover !important;
+            width: 100%;
+            height: 309px;
+            cursor: pointer;
+        }
+
+        .cards .box .img-box {
+            display: block;
+            width: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .cards .box:hover .img-box {
+            transform: scale(1.1);
+        }
+
+        .img-title {
+            align-items: end;
+            position: absolute;
+            bottom: 0;
+            background-color: rgb(0 0 0 / 75%);
+            /* background: url({{ asset('uploads/custom-images/overlay.svg') }}) no-repeat; */
+            padding: 11px 10px 15px;
+            width: 93%;
+            color: #fff;
+            font-size: 11.5px;
+            font-family: "Inter", serif;
+            background-size: cover;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .img-title h5 {
+            font-family: "Inter", serif;
+            font-size: 12.8px;
+            margin-bottom: 4px;
+        }
+        .cards .inflanar-service__price, .cards a.inflanar-service__cat {
+ 
+    color: #fff !important;
+     
+}
+.cards h4 a {
+    text-decoration: none !important;
+    color: #333;
+}
+        .img-title address {
+            width: 87px;
+            margin-bottom: 0;
+            line-height: 21px;
+            font-weight: 300;
+        }
+
+        .aside.collapsed2 {
+            margin-left: 122px;
+            margin-right: 61px;
+        }
+
+        .cards .box span {
+            position: relative;
+            border-radius: 5px;
+            z-index: 99;
+            top: -5px;
+            border: var(--stroke-weight-1, 1px) solid var(--color-white-solid, #FFF);
+            background: var(--color-black-70, rgba(0, 0, 0, 0.70));
+            box-shadow: 0px 2px 10px 0px rgba(120, 120, 170, 0.30);
+            /* height: 23px; */
+            font-size: 13px;
+            font-family: "Inter", serif;
+            padding: 3px 5px 2px;
+        }
+
+        /* Hide the dark heart by default */
+        .light-heart {
+            display: block;
+        }
+
+        .dark-heart {
+            display: none;
+        }
+
+        /* Heart container styling */
+        .heart {
+    cursor: pointer;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    float: right;
+    margin: 3px 4px 0 0;
+    position: absolute;
+    right: -1px;
+    z-index: 99;
+    top: 13px;
+}
+
+       
+        .cards .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .light-heart,
+        .dark-heart {
+            transition: opacity 0.3s ease;
+        }
+        .swiper.mySwiper.inflanar-slider-related {
+    position: relative;
+    top: -23px;
+}
+.inflanar-psingle__head {
+    padding: 18px 25px;
+    background: #E0CFFF !important;
+}
+.inflanar-psingle__head h4.inflanar-psingle__title {
+    color: #333;
+}
+.inflanar-psingle__title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-left: 25px;
+    color: #333;
+    margin-left: 0;
+}
+.inflanar-influencer__head {
+    background: #E0CFFF !important;}
+        @media only screen and (min-width: 1600px) {
+            .img-title h5 {
+                font-size: 19.8px;
+            }
+
+            .cards {
+                font-size: 15.898px;
+            }
+
+            .cards h4 {
+                font-size: 17px;
+                margin-top: 14px;
+            }
+
+            .cards strong {
+                font-size: 18px;
+            }
+
+            .img-title address {
+                width: 129px;
+                font-size: 16px;
+            }
+
+            .img-title {
+                font-size: 16.5px;
+            }
+
+
+            .cards p {
+                margin: 11px 0 0;
+            }
+
+            .cards .box {
+                height: 412px;
+            }
+
+            .sidebar-nav .nav-link {
+                font-size: 22px;
+            }
+
+            .sidebar {
+                width: 280px;
+            }
+
+            .aside {
+                margin-left: 334px;
+            }
+
+            .search-container {
+                width: 223px;
+            }
+        }
+    </style>
 @endsection

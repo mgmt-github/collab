@@ -6,12 +6,12 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-       
+          <div class="section-header">
+            <h1>{{__('admin.Review Details')}}</h1>
+
+          </div>
 
           <div class="section-body">
-          <div class=" head-title">
-          <h1>{{__('admin.Review Details')}}</h1>
-</div>
             <a href="{{ route('influencer.review-list') }}" class="btn btn-primary"><i class="fas fa-list"></i> {{__('admin.Review List')}}</a>
             <div class="row mt-4">
                 <div class="col">

@@ -8,8 +8,6 @@
 @section('frontend-content')
 
     <!-- Breadcrumbs -->
-
-    sdsd
     <section class="inflanar-breadcrumb" style="background-image: url({{ asset($breadcrumb) }});">
         <div class="container">
             <div class="row">

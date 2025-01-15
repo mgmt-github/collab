@@ -6,13 +6,12 @@
 <!-- Main Content -->
 <div class="main-content">
     <section class="section">
-    
-      <div class=" head-title">
-      <h1>{{__('admin.Create Appointment Schedule')}}</h1>
-          <a href="{{ route('influencer.appointment-schedule.index') }}"  class="btn btn-primary"><i class="fas fa-list"></i> {{__('admin.Schedule List')}}</a>
-        
-</div>
+      <div class="section-header">
+        <h1>{{__('admin.Create Appointment Schedule')}}</h1>
+      </div>
+
         <div class="section-body">
+            <a href="{{ route('influencer.appointment-schedule.index') }}"  class="btn btn-primary"><i class="fas fa-list"></i> {{__('admin.Schedule List')}}</a>
             <div class="row mt-sm-4">
                 <div class="col-12">
                     <div class="card ">

@@ -6,12 +6,12 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-          
+          <div class="section-header">
+            <h1>{{ $title }}</h1>
+
+          </div>
 
           <div class="section-body">
-          <div class=" head-title">
-          <h1>{{ $title }}</h1>
-</div>
             <a href="{{ route('influencer.portfolio-create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> {{__('admin.Add New')}}</a>
             <div class="row mt-4">
                 @if($portfolios->count() > 0)

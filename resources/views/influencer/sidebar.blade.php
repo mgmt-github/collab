@@ -5,31 +5,8 @@
         <a href="{{ route('influencer.dashboard') }}">{{ $setting->app_name }}</a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-        <a href="{{ route('influencer.dashboard') }}">A</a>
+        <a href="{{ route('influencer.dashboard') }}">{{ $setting->app_name }}</a>
       </div>
-      <div class="sidebar-header">
-      <div class="search-container">
-              <!-- Search icon on the left inside the input field -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M19.4844 20.154L13.2229 13.8925C12.7229 14.3182 12.1479 14.6477 11.4979 14.881C10.8479 15.1144 10.1947 15.231 9.53837 15.231C7.9367 15.231 6.58112 14.6766 5.47162 13.5678C4.36228 12.4589 3.80762 11.1042 3.80762 9.50353C3.80762 7.9027 4.36203 6.54678 5.47087 5.43578C6.5797 4.32495 7.93445 3.76953 9.53512 3.76953C11.136 3.76953 12.4919 4.3242 13.6029 5.43353C14.7137 6.54303 15.2691 7.89861 15.2691 9.50028C15.2691 10.1951 15.146 10.8675 14.8999 11.5175C14.6537 12.1675 14.3306 12.7233 13.9306 13.1848L20.1921 19.4465L19.4844 20.154ZM9.53837 14.231C10.8652 14.231 11.9854 13.7743 12.8989 12.8608C13.8124 11.9474 14.2691 10.8273 14.2691 9.50028C14.2691 8.17328 13.8124 7.05311 12.8989 6.13978C11.9854 5.22628 10.8652 4.76953 9.53837 4.76953C8.21137 4.76953 7.0912 5.22628 6.17787 6.13978C5.26437 7.05311 4.80762 8.17328 4.80762 9.50028C4.80762 10.8273 5.26437 11.9474 6.17787 12.8608C7.0912 13.7743 8.21137 14.231 9.53837 14.231Z" fill="#868686"></path>
-              </svg>
-              <!-- Search input field -->
-              <input type="text" class="search-input" placeholder="Search...">
-            </div>
-            <form class="form-inline ">
-          <ul class="navbar-nav mr-3 toggle-btn">
-            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-          </ul>
-        </form>
-        </div>
-      <!-- <form class="form-inline mr-auto">
-          <ul class="navbar-nav mr-3">
-            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-            <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
-         
-          </ul>
-        </form> -->
       <ul class="sidebar-menu">
           <li class="{{ Route::is('influencer.dashboard') ? 'active' : '' }}"><a class="nav-link" href="{{ route('influencer.dashboard') }}"><i class="fas fa-home"></i> <span>{{__('admin.Dashboard')}}</span></a></li>
 
