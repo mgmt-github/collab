@@ -722,4 +722,13 @@ class HomeController extends Controller
 function requirement() {
     return view('requirement');
 }
+function campaign() {
+    return view('campaign');
+}
+function campaign4() {
+    return view('campaign4');
+}
+function campaign2() {
+    return view('campaign2');
+}
 }

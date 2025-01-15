@@ -15,13 +15,13 @@
                 </div>
 
                 <h2>{{ __('admin.Required number of Influencer') }}</h2>
-                <div class="stepper">
+                <form class="stepper">
                     <div class="stepper-btn" id="decrement">-</div>
                     <input type="text" class="stepper-input" id="stepper-value" value="1" readonly>
                     <div class="stepper-btn" id="increment">+</div>
-                </div>
+                </form>
                 <h2>{{ __('admin.Influencer Gender') }}</h2>
-                <div class="btns-group-radio">
+                <form class="btns-group-radio">
                     <div class="campaign-btn">
                         <input type="radio" id='male' name="gender" class="radio-custom" checked />
 
@@ -37,37 +37,28 @@
 
                         <label for='other' class="radio-custom-label">{{ __('admin.Other') }}</label>
                     </div>
-                </div>
+                </form>
                 <div class="platforms mg-top-40">
                     <div class="platforms-item">
                         <img src="./public/frontend/img/facebook.png" alt="Facebook Logo" class="logo">
                         <h1>{{ __('admin.Facebook') }}</h1>
                     </div>
                     <h2 class="custom-margin">{{ __('admin.Follower range') }}</h2>
-                    <div class="dropdown-card">
-
+                    <form class="dropdown-card">
                         <select id="follower-range">
-                            <option value="" disabled selected>Range</option>
+                            <option value="" disabled selected>{{ __('admin.Range') }}</option>
                             <option value="0-100">0-100</option>
                             <option value="100-200">100-200</option>
                             <option value="200-300">200-300</option>
                             <option value="300-400">300-400</option>
                             <option value="400-500">400-500</option>
                         </select>
-                    </div>
-                    {{-- <div class="btns-group-radio">
-                        <div class="">
-                            <input type="text" placeholder="mimimum" />
-                        </div>
-                        <div class="">
-                            <input type="text" placeholder="maximum" />
-                        </div>
-                    </div> --}}
+                    </form>
                 </div>
                 <h2 class="mg-top-20">{{ __('admin.Campaign Budget') }}</h2>
                 <p>{{ __('admin.Campaign budget  represents how much remuneration influencers will get after succesfully completing this campaign') }}
                 </p>
-                <div class="input-container">
+                <form class="input-container">
                     <input type="text" class="text-input" placeholder="098">
                     <div class="dropdown">
                         <select>
@@ -77,7 +68,7 @@
                             <option value="INR">INR</option>
                         </select>
                     </div>
-                </div>
+                </form>
                 <div class="navigation-btns">
                     <div class="navigation-btns-item"><svg xmlns="http://www.w3.org/2000/svg" width="29" height="24"
                             viewBox="0 0 29 24" fill="none">
@@ -212,7 +203,7 @@
         }
 
         .campaign-btn:hover {
-            background: #dfd0fb
+            background: #F1F1F1;
         }
 
         .campaign-btn label {
@@ -469,6 +460,7 @@
         }
 
         .navigation-btns-item:hover {
-            background: #dfd0fb;
+            background: #F1EDF8;
+            transition: 500ms linear;
         }
     </style>

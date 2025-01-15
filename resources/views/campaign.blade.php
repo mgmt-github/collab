@@ -19,7 +19,7 @@
                 </div>
                 <p>{{ __('admin.General Campaigns are offer to all influencers, while invite campaigns require brand invitations for participation.') }}
                 </p>
-                <div class="btns-group-radio">
+                <form class="btns-group-radio">
                     <div class="campaign-btn custom-width">
                         <input type="radio" id='general' name="campaign-type" class="radio-custom" checked />
 
@@ -30,7 +30,7 @@
 
                         <label for="invite" class="radio-custom-label">{{ __('admin.Invite-only campaign') }}</label>
                     </div>
-                </div>
+                </form>
                 <div class="required mg-top-20">
                     <h2>{{ __('admin.Campaign Title') }}</h2> <svg xmlns="http://www.w3.org/2000/svg" width="9"
                         height="9" viewBox="0 0 9 9" fill="none">
@@ -41,9 +41,9 @@
                 </div>
                 <p>{{ __('admin.Write the campaign title so that the influences understand what you really want?') }}
                 </p>
-                <div class="campaign-title">
+                <form class="campaign-title">
                     <input type="text" placeholder="Campaign Title" />
-                </div>
+                </form>
                 <div class="required mg-top-20">
                     <h2>{{ __('admin.Platform') }}</h2> <svg xmlns="http://www.w3.org/2000/svg" width="9"
                         height="9" viewBox="0 0 9 9" fill="none">
@@ -54,7 +54,7 @@
                 </div>
                 <p>{{ __('admin.Platform means you want to promote this brand') }}
                 </p>
-                <div class="platform-btn">
+                <form class="platform-btn">
                     <div class="campaign-btn">
                         <input type="radio" id='facebook' name="platforms" class="radio-custom" checked />
 
@@ -151,11 +151,11 @@
                         <label for='user-generated'
                             class="radio-custom-label">{{ __('admin.User Generated Content') }}</label>
                     </div>
-                </div>
+                </form>
                 <h2 class="mg-top-20">{{ __('admin.Campaign Thumbail') }}</h2>
                 <p>{{ __('admin.Upload the cmpaign thumbnail') }}
                 </p>
-                <div class="campaign-thumbnail">
+                <form class="campaign-thumbnail">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="51" viewBox="0 0 50 51"
                         fill="none">
                         <path
@@ -177,7 +177,7 @@
                         <label class="browse-button" for="image-input">{{ __('admin.Browse File') }}</label>
                         <input type="file" id="image-input" class="file-input" accept="image/*">
                     </div>
-                </div>
+                </form>
                 <div class="navigation-btns">
                     <div class="navigation-btns-item">{{ __('admin.Previous') }}</div>
                     <div class="navigation-btns-item active"><span>{{ __('admin.Next') }}</span><svg
@@ -279,6 +279,10 @@
             width: 220px;
         }
 
+        .campaign-btn:hover {
+            background: #F1F1F1;
+        }
+
         .campaign-btn label {
             margin: 0px;
         }
@@ -287,13 +291,6 @@
             width: 195px;
             padding: 11px 5px;
             font-size: 14px;
-        }
-
-        .btns-group {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 20px
         }
 
         .btns-group-radio {
@@ -486,7 +483,8 @@
         }
 
         .navigation-btns-item:hover {
-            background: #dfd0fb;
+            background: #F1EDF8;
+            transition: 500ms linear;
         }
 
         .input-container {
