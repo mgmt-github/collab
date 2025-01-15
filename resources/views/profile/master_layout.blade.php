@@ -93,6 +93,8 @@ ul.navbar-nav.navbar-right li, ul.navbar-nav.navbar-right div {
 p {
     font-family: "Poppins", serif;
     color: #6c798b;
+    color: #6c798b;
+    
 }
 .profile-nav {
     left: 86% !important;
