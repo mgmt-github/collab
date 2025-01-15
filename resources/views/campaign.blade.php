@@ -10,6 +10,28 @@
         <div class="container">
             <div class="campaign-main">
                 <div class="required">
+                    <h1>{{ __('admin.Campaign Type') }}</h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 9 9" fill="none">
+                        <path
+                            d="M4.49994 7.434L2.10643 8.95154C2.0361 8.988 1.97082 9.00277 1.9106 8.99585C1.85081 8.98846 1.79257 8.96677 1.73586 8.93077C1.67872 8.89385 1.63564 8.84169 1.60663 8.77431C1.57762 8.70692 1.57498 8.63331 1.59872 8.55346L2.23567 5.70808L0.128979 3.79038C0.0696357 3.73962 0.0305131 3.67892 0.0116112 3.60831C-0.00729076 3.53769 -0.00311472 3.47008 0.0241392 3.40546C0.0513932 3.34085 0.0876586 3.28777 0.132935 3.24623C0.178652 3.20608 0.240193 3.17885 0.317559 3.16454L3.09746 2.90977L4.18147 0.215308C4.21136 0.139154 4.25444 0.0842307 4.31071 0.0505384C4.36697 0.0168461 4.43005 0 4.49994 0C4.56984 0 4.63314 0.0168461 4.68984 0.0505384C4.74655 0.0842307 4.78941 0.139154 4.81842 0.215308L5.90242 2.90977L8.68167 3.16454C8.75947 3.17839 8.82124 3.20585 8.86695 3.24692C8.91267 3.28754 8.94915 3.34038 8.97641 3.40546C9.00322 3.47008 9.00718 3.53769 8.98828 3.60831C8.96937 3.67892 8.93025 3.73962 8.87091 3.79038L6.76422 5.70808L7.40117 8.55346C7.42579 8.63238 7.42337 8.70577 7.39392 8.77362C7.36447 8.84146 7.32117 8.89362 7.26402 8.93008C7.20776 8.967 7.14951 8.98892 7.08929 8.99585C7.02951 9.00277 6.96445 8.988 6.89412 8.95154L4.49994 7.434Z"
+                            fill="#D65656" />
+                    </svg>
+                </div>
+                <p>{{ __('admin.General Campaigns are offer to all influencers, while invite campaigns require brand invitations for participation.') }}
+                </p>
+                <form class="btns-group-radio">
+                    <div class="campaign-btn custom-width">
+                        <input type="radio" id='general' name="campaign-type" class="radio-custom" checked />
+
+                        <label for='general' class="radio-custom-label">{{ __('admin.General Campaign') }}</label>
+                    </div>
+                    <div class="campaign-btn custom-width">
+                        <input type="radio" id='invite' name="campaign-type" class="radio-custom" />
+
+                        <label for="invite" class="radio-custom-label">{{ __('admin.Invite-only campaign') }}</label>
+                    </div>
+                </form>
+                <div class="required mg-top-20">
                     <h2>{{ __('admin.Campaign Title') }}</h2> <svg xmlns="http://www.w3.org/2000/svg" width="9"
                         height="9" viewBox="0 0 9 9" fill="none">
                         <path
@@ -127,7 +149,7 @@
                         <input type="radio" id='user-generated' name="platforms" class="radio-custom" />
 
                         <label for='user-generated'
-                            class="radio-custom-label">{{ __('admin.User Generated Content (UGC)') }}</label>
+                            class="radio-custom-label">{{ __('admin.User Generated Content') }}</label>
                     </div>
                 </form>
                 <h2 class="mg-top-20">{{ __('admin.Campaign Thumbail') }}</h2>
@@ -254,7 +276,7 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
-            width: 270px;
+            width: 220px;
         }
 
         .campaign-btn:hover {
