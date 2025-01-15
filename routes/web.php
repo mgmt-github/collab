@@ -120,6 +120,10 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
             Route::get('/service/{slug}', 'service_show')->name('service');
             Route::get('/campaigns', 'campaigns')->name('campaigns');
             Route::get('/campaign/{slug}', 'campaign_show')->name('campaign');
+            Route::get('/campaign', 'campaign')->name('campaign');
+            Route::get('/campaign2', 'campaign2')->name('campaign2');
+            Route::get('/campaign4', 'campaign4')->name('campaign4');
+
 
             Route::get('/blogs', 'blogs')->name('blogs');
             Route::get('/blog/{slug}', 'blog_show')->name('blog');
