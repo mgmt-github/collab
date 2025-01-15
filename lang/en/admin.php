@@ -989,7 +989,7 @@ return array(
 'Female' => 'Female',
 'Other' => 'Other',
 'Influencer Gender' => 'Influencer Gender',
-'User Generated Content' => 'User Generated Content',
+'User Generated Content (UGC)' => 'User Generated Content (UGC)',
 'Required number of Influencer' => 'Required number of Influencer',
 'Campaign budget  represents how much remuneration influencers will get after succesfully completing this campaign' => 'Campaign budget  represents how much remuneration influencers will get after succesfully completing this campaign',
 'Campaign Budget' => 'Campaign Budget',

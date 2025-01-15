@@ -186,7 +186,7 @@
             font-style: normal;
             font-weight: 400;
             line-height: normal;
-            padding: 30px 12px !important;
+            padding: 11px 12px !important;
         }
 
         .campaign-btn {
