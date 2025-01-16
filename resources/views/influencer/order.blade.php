@@ -6,11 +6,6 @@
       <!-- Main Content -->
       <div class="main-content booking-area">
         <section class="section">
-          <div class="section-header">
-            <h1>{{ $title }}</h1>
-          </div>
-
-          <div class="section-body">
          
           <div class="section-body ">
           <div class=" head-title">

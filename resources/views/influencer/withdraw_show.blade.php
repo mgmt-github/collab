@@ -6,11 +6,14 @@
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-          <div class="section-header">
-            <h1>{{__('admin.My withdraw')}}</h1>
-          </div>
+          
 
           <div class="section-body">
+          <div class=" head-title">
+        <h1>{{__('admin.My withdraw')}}</h1>
+      
+         
+      </div>
             <a href="{{ route('influencer.my-withdraw.index') }}" class="btn btn-primary"><i class="fas fa-list"></i> {{__('admin.My withdraw')}}</a>
             <div class="row mt-4">
                 <div class="col-12">

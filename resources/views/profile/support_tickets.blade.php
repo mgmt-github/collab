@@ -1,29 +1,111 @@
-@extends('layout')
+@extends('profile.master_layout')
 @section('title')
     <title>{{__('admin.Support Ticket')}}</title>
 @endsection
 @section('frontend-content')
 
-<!-- Breadcrumbs -->
-<section class="inflanar-breadcrumb" style="background-image: url({{ asset($breadcrumb) }});">
-    <div class="container">
-        <div class="row">
-            <!-- Breadcrumb-Content -->
-            <div class="col-12">
-                <div class="inflanar-breadcrumb__inner">
-                    <div class="inflanar-breadcrumb__content">
-                        <h2 class="inflanar-breadcrumb__title m-0">{{__('admin.Support Ticket')}}</h2>
-                        <ul class="inflanar-breadcrumb__menu list-none">
-                            <li><a href="{{ route('home') }}">{{__('admin.Home')}}</a></li>
-                            <li class="active"><a href="javascript:;">{{__('admin.Support Ticket')}}</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End breadcrumbs -->
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+thead.inflanar-table__head {
+    background: rgba(96, 54, 174, 0.13);
+}
+thead.inflanar-table__head th {
+    color: #292D32;
+    font-family: "Poppins", serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+tbody.inflanar-table__body, tbody.inflanar-table__body p {
+    color: #292D32;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.inflanar-table__main.inflanar-table__main-v2 .inflanar-table__body tr:nth-child(2n) {
+    border: 1px solid #F4F4F4;
+    background-color: #F7F3FF;
+}
+.support-table {
+    background: #fff;
+    
+}
+p.inflanar-table__label.inflanar-table__label--active {
+    border-radius: 100px;
+    border: 1px solid #A693CD;
+    background: #EAE5F4;
+    padding: 4px 12px;
+}
+
+.inflanar-supports {
+    padding: 0;
+}
+.inflanar-table__main {
+    border-radius: 0px !important;
+    overflow: hidden;
+}
+.inflanar-table__action {
+  
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #DCDCDC;
+    background: #FFF;
+}
+a.inflanar-btn { 
+    border-radius: 40px;
+    background: #EAE5F4;
+    padding: 10px 20px;
+    color: #292D32;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 136%; /* 19.04px */
+    letter-spacing: -0.14px;
+}
+.inflanar-supports__head h4 {
+    color: #292D32;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 136%;
+    letter-spacing: -0.24px;
+}
+.inflanar-supports__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding: 20px;
+}
+.inflanar-preview__modal .modal-dialog {
+    max-width: 600px;
+}
+.modal {
+    left: 74px !important;
+  
+    }
+    .modal-dialog.modal-dialog-centered.inflanar-preview__ticket {
+    z-index: 99999;
+}
+.modal-backdrop.show {
+    opacity: 0;
+    z-index: 0 !important;
+}
+</style>
+
+<div class="main-content">
+    <section class="section">
+     
+      <div class="section-body"> 
+
 
 <!-- Support TIcket  -->
 <div class="inflanar-preview__modal modal fade" id="open_ticket" tabindex="-1" aria-labelledby="OpenTicketmodal" aria-hidden="true" >
@@ -65,18 +147,19 @@
 
 
 <!-- Features -->
-<section class="inflaner-inner-page pd-top-90 pd-btm-120">
-    <div class="container">
-        <div class="inflanar-personals">
-            <div class="row">
-                @include('profile.sidebar')
+  
 
-                <div class="col-lg-9 col-md-8 col-12  inflanar-personals__content mg-top-30">
+                <div class="support-table  inflanar-personals__content mg-top-30">
                     <div class="inflanar-supports">
                         <div class="inflanar-supports__head">
                             <h4>{{__('admin.Support Ticket List')}}</h4>
                             <div class="inflanar-supports__buttons">
-                                <a href="#" class="inflanar-btn"  data-bs-toggle="modal" data-bs-target="#open_ticket">{{__('admin.Open Ticket')}}</a>
+                                <a href="#" class="inflanar-btn"  data-bs-toggle="modal" data-bs-target="#open_ticket">{{__('admin.Open Ticket')}}
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="Vector" d="M10.0003 1.66666C5.40866 1.66666 1.66699 5.40833 1.66699 10C1.66699 14.5917 5.40866 18.3333 10.0003 18.3333C14.592 18.3333 18.3337 14.5917 18.3337 10C18.3337 5.40833 14.592 1.66666 10.0003 1.66666ZM13.3337 10.625H10.6253V13.3333C10.6253 13.675 10.342 13.9583 10.0003 13.9583C9.65866 13.9583 9.37533 13.675 9.37533 13.3333V10.625H6.66699C6.32533 10.625 6.04199 10.3417 6.04199 10C6.04199 9.65833 6.32533 9.375 6.66699 9.375H9.37533V6.66666C9.37533 6.325 9.65866 6.04166 10.0003 6.04166C10.342 6.04166 10.6253 6.325 10.6253 6.66666V9.375H13.3337C13.6753 9.375 13.9587 9.65833 13.9587 10C13.9587 10.3417 13.6753 10.625 13.3337 10.625Z" fill="#292D32"/>
+</svg>
+
+                                </a>
                             </div>
                         </div>
                         <div class="inflanar-table p-0">
@@ -128,7 +211,11 @@
 
                                             <td class="inflanar-table__column-6 inflanar-table__data-6">
                                                 <div class="inflanar-table__status__group">
-                                                    <a href="{{ route('user.support-ticket',$ticket->ticket_id) }}" class="inflanar-table__action inflanar-table__action--view"><img src="{{ asset('frontend/img/in-table-eye-icon.svg') }}"></a>
+                                                    <a href="{{ route('user.support-ticket',$ticket->ticket_id) }}" class="inflanar-table__action inflanar-table__action--view">
+                                                        <img src="{{ asset('frontend/img/in-table-eye-icon.svg') }}">
+                                                      
+
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -146,10 +233,17 @@
                 </div>
 
 
-            </div>
-        </div>
-    </div>
-</section>
+         
 <!-- End Features -->
+
+
+
+
+      </div>
+
+
+
+</section>
+</div>
 
 @endsection

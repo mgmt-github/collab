@@ -5,10 +5,10 @@
 @section('frontend-content')
 
 <!-- Breadcrumbs -->
-<section class="inflanar-breadcrumb" style="background-image: url({{ asset($breadcrumb) }});">
+<!-- <section class="inflanar-breadcrumb" style="background-image: url({{ asset($breadcrumb) }});">
     <div class="container">
         <div class="row">
-            <!-- Breadcrumb-Content -->
+            
             <div class="col-12">
                 <div class="inflanar-breadcrumb__inner">
                     <div class="inflanar-breadcrumb__content">
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- End breadcrumbs -->
 
 <!-- Features -->
