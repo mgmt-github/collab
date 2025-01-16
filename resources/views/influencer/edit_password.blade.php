@@ -6,11 +6,11 @@
 <!-- Main Content -->
 <div class="main-content">
     <section class="section">
-      <div class="section-header">
-        <h1>{{__('admin.Change Password')}}</h1>
-
-      </div>
+      
       <div class="section-body">
+      <div class=" head-title">
+          <h1>{{__('admin.Change Password')}}</h1>
+</div>
         <div class="row mt-sm-4">
           <div class="col-12">
             <div class="card profile-widget">
