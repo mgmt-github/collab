@@ -259,13 +259,12 @@
                                 </div>
 
                                 <div>
-                                    <h4>{{ __('admin.Travel Backpack') }}</h4>
+                                    <div class="aside-inner-sec-item">
+                                        <h4>{{ __('admin.Carry on Backpack') }} </h4>
+                                        <h4>$15.00</h4>
+                                    </div>
                                     <h5>{{ __('admin.Erin John') }}</h5>
                                 </div>
-                            </div>
-
-                            <div>
-                                <h6>$15.00</h6>
                             </div>
                         </div>
 
@@ -279,13 +278,12 @@
                                 </div>
 
                                 <div>
-                                    <h4>{{ __('admin.Carry on Backpack') }}</h4>
+                                    <div class="aside-inner-sec-item">
+                                        <h4>{{ __('admin.Carry on Backpack') }} </h4>
+                                        <h4>$15.00</h4>
+                                    </div>
                                     <h5>{{ __('admin.Erin John') }}</h5>
                                 </div>
-                            </div>
-
-                            <div>
-                                <h6>$15.00</h6>
                             </div>
                         </div>
 
@@ -299,13 +297,12 @@
                                 </div>
 
                                 <div>
-                                    <h4>{{ __('admin.Beraliy Backpack') }}</h4>
+                                    <div class="aside-inner-sec-item">
+                                        <h4>{{ __('admin.Carry on Backpack') }} </h4>
+                                        <h4>$15.00</h4>
+                                    </div>
                                     <h5>{{ __('admin.Erin John') }}</h5>
                                 </div>
-                            </div>
-
-                            <div>
-                                <h6>$15.00</h6>
                             </div>
                         </div>
 
@@ -372,6 +369,12 @@
             font-family: "Poppins", serif;
             padding-bottom: 30px;
             background: linear-gradient(0deg, #f4f6f9 0%, #f4f6f9 100%), #fff;
+        }
+
+        .aside-inner-sec-item {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
         }
 
         .country-code-input {
@@ -446,7 +449,7 @@
         /* order steps end  */
         .order-wrap {
             width: 100%;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .order-container {
@@ -539,7 +542,7 @@
             border: 1px solid #e6e6e6;
             background: #fff;
             padding: 30px;
-            width: 32%;
+            width: 38%;
             max-height: 750px;
         }
 
@@ -788,16 +791,16 @@
         }
 
         /* .order-sidebar .inputs-group  .checkbox:hover,
-                                                        .order-sidebar .inputs-group  .radio:hover {
-                                                            background-color: #f1f1f178;
-                                                            
-                                                        }
+                                                                                                        .order-sidebar .inputs-group  .radio:hover {
+                                                                                                            background-color: #f1f1f178;
+                                                                                                            
+                                                                                                        }
 
-                                                        .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
-                                                        .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
-                                                            background-color: #f1f1f1;
-                                                          
-                                                        } */
+                                                                                                        .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
+                                                                                                        .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
+                                                                                                            background-color: #f1f1f1;
+                                                                                                          
+                                                                                                        } */
 
         .order-sidebar .inputs-group .checkbox:has(.checkbox__input:focus-visible,
             .radio__input:focus-visible):before,
