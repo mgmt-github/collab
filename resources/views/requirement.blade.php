@@ -214,6 +214,7 @@
             display: flex;
             font-family: 'Poppins';
             justify-content: space-between;
+            align-items: center;
             gap: 10px;
         }
 
