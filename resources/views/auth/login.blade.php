@@ -34,7 +34,6 @@
             justify-content: center;
             align-items: center;
             gap: 4px;
-            /* color: #000; */
             font-family: 'Poppins';
             font-size: 18px;
             font-style: normal;
@@ -52,6 +51,10 @@
 
         .login-page .inflanar-signin__options a {
             border-radius: 0px;
+        }
+
+        .client-link-color {
+            color: #B69A0E !important;
         }
 
         /* tab starts  */
@@ -121,12 +124,6 @@
             margin-bottom: 30px;
             margin-top: 43px;
             min-width: 100%;
-        }
-
-        .login-page .password-wrapper {
-            position: relative;
-            display: inline-block;
-            width: 100%;
         }
 
         .login-page .toggle-password {
@@ -234,7 +231,7 @@
                                     <!-- End Login header -->
 
                                     <div class="tab-content" id="nav-tabContent">
-                                        <!-- Single Tab -->
+                                        <!-- Single Tab Client-->
                                         <div class="tab-pane fade active show login1" id="in-tab9" role="tabpanel">
                                             <div class="inflanar-signin__inner">
                                                 <form method="POST" action="{{ route('user-login') }}">
@@ -287,7 +284,7 @@
                                                                     </div>
                                                                     <div class="inflanar-signin__forgot">
                                                                         <a href="{{ route('password.request') }}"
-                                                                            class="forgot-pass">{{ __('admin.Forgot Password?') }}</a>
+                                                                            class="forgot-pass client-link-color">{{ __('admin.Forgot Password?') }}</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -300,7 +297,6 @@
                                                                 </div>
                                                             @endif
 
-
                                                             <!-- Login Button Group -->
                                                             <div class="form-group mg-top-40">
                                                                 <button type="submit"
@@ -308,7 +304,8 @@
                                                             </div>
                                                             <p class="inflanar-signin__text at-center">
                                                                 {{ __('admin.Don’t have an account ?') }} <a
-                                                                    href="{{ route('register') }}">{{ __('admin.Create Account') }}</a>
+                                                                    href="{{ route('register') }}"
+                                                                    class="client-link-color">{{ __('admin.Create Account') }}</a>
                                                             </p>
 
                                                             <div class="inflanar-signin__bottom">
@@ -363,6 +360,51 @@
                                                 </form>
                                             </div>
                                         </div>
+                                        <!-- End Single Tab Client-->
+
+                                        <!-- Single Tab Influencer -->
+                                        <div class="tab-pane fade login2" id="in-tab10" role="tabpanel">
+                                            <div class="inflanar-signin__inner">
+                                                <form method="POST" action="{{ route('user-login') }}">
+                                                    @csrf
+                                                    <input type="hidden" name="user_type" value="influencer">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group inflanar-form-input mg-top-20">
+                                                                <label>{{ __('admin.Email') }}</label>
+                                                                @if (env('APP_MODE') == 'DEMO')
+                                                                    <input class="ecom-wc__form-input" type="email"
+                                                                        name="email" value="influencer@gmail.com">
+                                                                @else
+                                                                    <input class="ecom-wc__form-input" type="email"
+                                                                        name="email">
+                                                                @endif
+
+                                                            </div>
+                                                            <div class="form-group inflanar-form-input mg-top-20">
+                                                                <label>{{ __('admin.Password') }}</label>
+                                                                @if (env('APP_MODE') == 'DEMO')
+                                                                    <input
+                                                                        class="inflanar-signin__form-input password-field"
+                                                                        type="password" name="password" value="1234">
+                                                                    <span class="toggle-password"
+                                                                        onclick="togglePassword()">
+                                                                        <i id="toggle-icon" class="fas fa-eye-slash"></i>
+                                                                    </span>
+                                                                @else
+                                                                    <input
+                                                                        class="inflanar-signin__form-input password-field"
+                                                                        type="password" name="password">
+                                                                    <span class="toggle-password"
+                                                                        onclick="togglePassword()">
+                                                                        <i id="toggle-icon" class="fas fa-eye-slash"></i>
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="form-group mg-top-20">
+                                                                <div class="inflanar-signin__check-inline">
+                                                                    <div class="inflanar-signin__checkbox">
+                                                                        <div class="inflanar-signin__checkbox--group">
 
                                                                             <input class="inflanar-signin__form-check"
                                                                                 id="checkbox" name="remember"
@@ -448,7 +490,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <!-- End Single Tab -->
+                                        <!-- End Single Tab Influencer-->
                                     </div>
                                 </div>
                             </div>
