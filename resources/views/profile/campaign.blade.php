@@ -159,7 +159,9 @@
                             <div class="file-input-wrapper">
                                 <label class="browse-button" for="image-input">{{ __('admin.Browse File') }}</label>
                                 <input type="file" id="image-input" class="file-input" accept="image/*">
+                                <p id="file-name" style="color: #555; font-size: 12px"></p>
                             </div>
+
                         </form>
                         <div class="navigation-btns">
                             <div class="navigation-btns-item">{{ __('admin.Previous') }}</div>
@@ -174,6 +176,13 @@
                     </div>
                 </div>
             </div>
+            <script>
+                // Display the selected file name
+                document.getElementById("image-input").addEventListener("change", function() {
+                    const fileName = this.files[0] ? this.files[0].name : "No file selected";
+                    document.getElementById("file-name").innerText = `Selected File: ${fileName}`;
+                });
+            </script>
             <style>
                 .footer-cta,
                 .footer-area,
@@ -194,7 +203,6 @@
                     border-radius: 12px;
                     background: #FFF;
                     padding: 24px 20px;
-                    width: 1094px;
                 }
 
                 .required {
@@ -400,6 +408,7 @@
                 .file-input-wrapper {
                     display: inline-block;
                     position: relative;
+                    text-align: center;
                 }
 
                 .file-input {

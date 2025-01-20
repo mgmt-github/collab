@@ -175,7 +175,7 @@
         .custom-style {
             background: #F4F4F4;
             min-height: 100vh;
-            padding: 81px 153px 81px 153px;
+            padding: 81px 110px;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -194,6 +194,10 @@
 
         .login-page input[type="checkbox"]:checked {
             background: #ECCB28;
+        }
+
+        .login-page .influencer-checkbox:checked {
+            background: #2266CB !important;
         }
     </style>
     <section class="login-page inflanar-signin custom-style">
@@ -406,7 +410,8 @@
                                                                     <div class="inflanar-signin__checkbox">
                                                                         <div class="inflanar-signin__checkbox--group">
 
-                                                                            <input class="inflanar-signin__form-check"
+                                                                            <input
+                                                                                class="inflanar-signin__form-check influencer-checkbox"
                                                                                 id="checkbox" name="remember"
                                                                                 type="checkbox">
                                                                             <label
