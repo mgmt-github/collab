@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\CustomPagination;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ use App\Models\Order;
 use App\Models\Portfolio;
 use App\Models\RefundRequest;
 use App\Models\Review;
+use App\Models\SeoSetting;
 use App\Models\SocialPlatform;
 use App\Rules\Captcha;
 use Hash, Image, File, Str;
@@ -466,5 +468,147 @@ class ProfileController extends Controller
         // }
 
         return response()->json(['success' => true]);
+    }
+    function cart()
+    {
+        return view('profile.cart');
+    }
+    function checkout()
+    {
+        return view('profile.checkout');
+    }
+    function requirement()
+    {
+        return view('requirement');
+    }
+    public function campaigns(Request $request)
+    {
+
+        $seo_setting = SeoSetting::where('id', 8)->first();
+        $platforms = SocialPlatform::where('status', 1)->get();
+
+        $paginate_info = CustomPagination::where('id', 2)->first();
+
+        $services = Service::with('category', 'influencer')->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable']);
+
+        if ($request->categories) {
+            $filter_category = array();
+
+            foreach ($request->categories as $req_category) {
+                $find_cat = Category::where('slug', $req_category)->first();
+                if ($find_cat) {
+                    $filter_category[] = $find_cat->id;
+                }
+            }
+
+            $services = $services->whereIn('category_id', $filter_category);
+        }
+        if ($request->platforms) {
+            $services = $services->whereHas('influencer', function ($query) use ($request) {
+                // Checking if the platform id exists in the JSON field in the platforms table
+                $query->whereJsonContains('platform', $request->platforms);
+            });
+        }
+
+        if ($request->min_amount && $request->max_amount) {
+            $services = $services->where('price', '>=', $request->min_amount)->where('price', '<=', $request->max_amount);
+        }
+
+        if ($request->search) {
+            $services = $services->whereHas('translations', function ($query) use ($request) {
+                $query->where('title', 'like', '%' . $request->search . '%')
+                    ->orWhere('description', 'like', '%' . $request->search . '%');
+            })
+                ->orWhere(function ($query) use ($request) {
+                    $query->whereJsonContains('tags', ['value' => $request->search]);
+                });
+        }
+
+
+
+        $services = $services->orderBy('id', 'desc')->paginate($paginate_info->qty);
+
+        $categories = Category::where('status', 'active')->get();
+
+        $max_amount = Service::orderBy('price', 'desc')->first();
+
+        $max_amount = $max_amount ? $max_amount->price : 0;
+        $req_max_amount = $request->max_amount ? $request->max_amount : $max_amount;
+        $req_min_amount =  $request->min_amount ? $request->min_amount : 0;
+
+        return view('profile.campaigns')->with([
+            'seo_setting' => $seo_setting,
+            'services' => $services,
+            'categories' => $categories,
+            'max_amount' => $max_amount,
+            'req_max_amount' => $req_max_amount,
+            'req_min_amount' => $req_min_amount,
+            'platforms' => $platforms,
+        ]);
+    }
+
+
+    public function campaign_show($slug)
+    {
+        $service = Service::with('category', 'influencer')->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable', 'slug' => $slug])->first();
+
+        if (!$service) abort(404);
+
+        $related_services = Service::with('category', 'influencer')->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable', 'category_id' => $service->category_id])->where('id', '!=', $service->id)->get()->take(10);
+
+        $service_author = User::where(['status' => 'enable', 'is_banned' => 'no', 'is_influencer' => 'yes'])->where('email_verified_at', '!=', null)->orderBy('id', 'desc')->select('id', 'name', 'username', 'designation', 'total_follower', 'total_following', 'image', 'status', 'is_banned', 'is_influencer')->where('id', $service->influencer_id)->first();
+
+        if (!$service_author) abort(404);
+
+        $days = array(
+            'Sunday',
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday'
+        );
+
+        $schedule_list = array();
+
+        foreach ($days as $day_item) {
+            $schedule_item = AppointmentSchedule::where('user_id', $service->influencer_id)->where('day', $day_item)->orderBy('start_time', 'asc')->first();
+
+            if ($schedule_item) {
+                $start_time = strtoupper(date('h:i A', strtotime($schedule_item->start_time)));
+
+                $schedule_item = AppointmentSchedule::where('user_id', $service->influencer_id)->where('day', $day_item)->orderBy('end_time', 'desc')->first();
+                $end_time = strtoupper(date('h:i A', strtotime($schedule_item->end_time)));
+
+                $schedule = array(
+                    'day' => $day_item,
+                    'start_time' => $start_time,
+                    'end_time' => $end_time
+                );
+
+                $schedule_list[] = $schedule;
+            }
+        }
+
+        $reviews = Review::with('user')->orderBy('id', 'desc')->where('status', 1)->where('service_id', $service->id)->paginate(10);
+
+        return view('profile.campaign_show')->with([
+            'service' => $service,
+            'service_author' => $service_author,
+            'schedule_list' => $schedule_list,
+            'related_services' => $related_services,
+            'reviews' => $reviews,
+
+        ]);
+    }
+    function campaign_store()
+    {
+
+        return view('profile.campaign');
+    }
+    function campaign2()
+    {
+        return view('profile.campaign2');
     }
 }

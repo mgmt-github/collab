@@ -292,9 +292,14 @@
                     <span>{{ __('admin.Support Ticket') }}</span></a>
             </li>
 
-            <li class="{{ Route::is('influencer.live-chat') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('influencer.live-chat') }}"><i class="far fa-newspaper"></i>
-                    <span>{{ __('admin.Live Chat') }}</span></a>
+            <li class="{{ Route::is('user.cart') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.cart') }}"><i class="far fa-newspaper"></i>
+                    <span>{{ __('admin.cart') }}</span></a>
+            </li>
+
+            <li class="{{ Route::is('user.campaigns') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('user.campaigns') }}"><i class="far fa-newspaper"></i>
+                    <span>{{ __('admin.campaigns') }}</span></a>
             </li>
 
 
