@@ -259,35 +259,4 @@
 
         </section>
     </div>
-
-
-    <script>
-        (function($) {
-            "use strict";
-            $(document).ready(function() {
-                let max_amount = "{{ $max_amount }}";
-                let req_min_amount = "{{ $req_min_amount }}";
-                let req_max_amount = "{{ $req_max_amount }}";
-                // Use a different symbol for jQuery UI
-                $("#slider-range").slider({
-                    range: true,
-                    min: 0,
-                    max: max_amount,
-                    values: [req_min_amount, req_max_amount],
-                    slide: function(event, ui) {
-
-                        $("#amount").val(ui.values[0] + " - " + ui.values[1]);
-
-                        $("#min_amount").val(ui.values[0]);
-                        $("#max_amount").val(ui.values[1]);
-                    }
-                });
-
-                $("#amount").val($("#slider-range").slider("values", 0) +
-                    " - " + $("#slider-range").slider("values", 1));
-
-            });
-
-        })(jQuery);
-    </script>
 @endsection
