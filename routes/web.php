@@ -46,7 +46,7 @@ use App\Http\Controllers\Auth\RegisteredUserController as UserRegisteredUserCont
 use App\Http\Controllers\Auth\AuthenticatedSessionController as UserAuthenticatedSessionController;
 use App\Http\Controllers\Api\User\PaymentController as ApiPaymentController;
 use App\Http\Controllers\Api\User\PaypalController as ApiPaypalController;
-
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
@@ -118,11 +118,6 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
             Route::get('/services', 'services')->name('services');
             Route::get('/service/{slug}', 'service_show')->name('service');
-            Route::get('/campaigns', 'campaigns')->name('campaigns');
-            Route::get('/campaign/{slug}', 'campaign_show')->name('campaign');
-            Route::get('/campaign', 'campaign')->name('campaign');
-            Route::get('/campaign2', 'campaign2')->name('campaign2');
-            Route::get('/campaign4', 'campaign4')->name('campaign4');
 
 
             Route::get('/blogs', 'blogs')->name('blogs');
@@ -140,9 +135,6 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
             Route::get('/language-switcher', 'language_switcher')->name('language-switcher');
 
             Route::get('/currency-switcher', 'currency_switcher')->name('currency-switcher');
-            Route::get('/cart', 'cart')->name('cart');
-            Route::get('/checkout', 'checkout')->name('checkout');
-            Route::get('/requirement', 'requirement')->name('requirement');
         });
 
         Route::controller(PaymentController::class)->group(function () {
@@ -250,7 +242,20 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
                 Route::get('/influencers', 'influencers')->name('influencers');
                 Route::get('/influencer/{slug}', 'influencer')->name('influencer');
                 Route::post('/wishlist/toggle',  'toggle')->name('wishlist.toggle');
+
+                Route::get('/checkout', 'checkout')->name('checkout');
+                Route::get('/requirement', 'requirement')->name('requirement');
+
+                Route::get('/campaigns', 'campaigns')->name('campaigns');
+                Route::get('/campaign/store', 'campaign_store')->name('campaign.store');
+                Route::get('/campaign2', 'campaign2')->name('campaign2');
+                Route::get('/campaign4', 'campaign4')->name('campaign4');
+                Route::get('/campaign/{slug}', 'campaign_show')->name('campaign');
+    
             });
+            Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+            Route::get('/cart', [CartController::class, 'index'])->name('cart');
+            Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 
             Route::get('live-chat', [UserMessageController::class, 'index'])->name('live-chat');
             Route::get('load-chat-box/{id}', [UserMessageController::class, 'load_chat_box'])->name('load-chat-box');
