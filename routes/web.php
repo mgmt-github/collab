@@ -214,7 +214,7 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
         Route::group(['as' => 'user.', 'prefix' => 'user', 'middleware' => ['CheckClient']], function () {
 
-            Route::controller(ProfileController::class)->group(function () {
+            Route::controller(ProfileCocantroller::class)->group(function () {
                 Route::get('/dashboard', 'dashboard')->name('dashboard');
 
                 Route::get('/edit-profile', 'edit')->name('edit-profile');

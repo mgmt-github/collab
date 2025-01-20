@@ -560,4 +560,8 @@ class ProfileController extends Controller
     {
         return view('profile.campaign2');
     }
+    function campaign4()
+    {
+        return view('profile.campaign4');
+    }
 }
