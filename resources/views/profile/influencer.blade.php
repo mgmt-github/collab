@@ -395,10 +395,17 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
+        .col-12.mg-top-30.profile-section {
+    display: none;
+}
         section.section, .profile-section {
     border-radius: 10px;
     background: #FFF;
     PADDING: 16PX;
+}
+.influencers-sidebar__tag a:hover {
+    background-color:  #5856D6;
+
 }
         /* Cards Styles */
         .cards {
