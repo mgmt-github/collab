@@ -195,7 +195,7 @@
 
                     <li><a href="{{ route('influencers') }}">{{ __('admin.Influencers') }}</a></li>
 
-                    <li><a href="{{ route('campaigns') }}">{{ __('admin.campaigns') }}</a></li>
+                    <li><a href="{{ route('user.campaigns') }}">{{ __('admin.campaigns') }}</a></li>
                     <li><a href="{{ route('services') }}">{{ __('admin.Services') }}</a></li>
 
 
