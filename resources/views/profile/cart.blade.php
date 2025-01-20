@@ -16,7 +16,6 @@
         .custom-font {
             font-family: 'Poppins';
             background: linear-gradient(0deg, #F4F6F9 0%, #F4F6F9 100%), #FFF;
-            padding: 40px 0px;
             min-height: 100vh;
         }
 
@@ -181,11 +180,10 @@
 
         .checkout-btn {
             display: block;
-            width: 407px;
             background-color: #6036AE;
             color: #fff;
             text-align: center;
-            padding: 12px;
+            padding: 12px 30px;
             border-radius: 5px;
             justify-content: center;
             font-size: 20px;
@@ -203,7 +201,7 @@
             border-radius: 90px;
             border: 2px solid #E6E8EC;
             display: inline-flex;
-            padding: 16px 24px;
+            padding: 0 10px;
             justify-content: center;
             align-items: center;
             gap: 12px;
@@ -231,7 +229,6 @@
         }
 
         .img-card {
-            width: 254px;
             height: 246px;
             position: relative;
             border-radius: 6.16px;
@@ -276,9 +273,9 @@
         }
 
         .img-card-bottom {
-            display: flex;
-            direction: row;
-            gap: 43px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
 
         .img-overlay {
@@ -289,10 +286,6 @@
             height: 30%;
             background-color: rgb(0 0 0 / 50%);
             pointer-events: none;
-        }
-
-        .table-container {
-            width: 1226px;
         }
 
         .table-wrap {

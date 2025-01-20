@@ -245,7 +245,7 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="cvv">{{ __('admin.CVV') }} <span
+                                                <label for="cvv">{{ __('admin.CVV') }}<span
                                                         class="required">*</span></label>
                                                 <input type="text" id="cvv" placeholder="XXX" />
                                             </div>
@@ -376,9 +376,7 @@
 
         .custom-font {
             margin: 0;
-            padding: 20px 0px;
             font-family: "Poppins", serif;
-            padding-bottom: 30px;
             background: linear-gradient(0deg, #f4f6f9 0%, #f4f6f9 100%), #fff;
         }
 
@@ -399,7 +397,6 @@
             border: none;
             border-radius: 0px;
             gap: 35px;
-            margin-left: 55px;
         }
 
         .steps a,
@@ -454,11 +451,10 @@
         /* order steps end  */
         .order-wrap {
             width: 100%;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .order-container {
-            width: 1247px;
             display: flex;
             justify-content: center;
             gap: 30px;
@@ -469,14 +465,13 @@
         }
 
         .form-row {
-            width: 97.8%;
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
         }
 
         .form-row-expiry {
-            width: 97.8%;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
@@ -489,7 +484,7 @@
 
         .order-sidebar .inputs-group .form-input-single {
             margin-bottom: 20px;
-            width: 97.8%;
+            width: 100%;
         }
 
         .order-sidebar .inputs-group .form-input-single label {
@@ -528,7 +523,6 @@
         .order-sidebar .form-col input {
             border-radius: 6.694px;
             border: 0.837px solid #cfcfcf;
-            width: 288px;
             height: 40px;
             background: #fff;
             padding-left: 10px;
@@ -539,7 +533,7 @@
             border: 1px solid #e6e6e6;
             background: #fff;
             padding: 30px;
-            width: 57.3%;
+            min-width: 580px;
         }
 
         .order-aside {
@@ -547,8 +541,8 @@
             border: 1px solid #e6e6e6;
             background: #fff;
             padding: 30px;
-            width: 32%;
-            max-height: 750px;
+            min-width: 300px;
+            max-height: 800px;
         }
 
         .order-wrap h3 {
@@ -685,7 +679,7 @@
             color: white;
             margin: 0 auto;
             display: block;
-            margin-top: 50px;
+            margin-top: 20px;
             font-weight: 500;
             border: none;
             color: #fff;
@@ -796,16 +790,16 @@
         }
 
         /* .order-sidebar .inputs-group  .checkbox:hover,
-                                                                    .order-sidebar .inputs-group  .radio:hover {
-                                                                        background-color: #f1f1f178;
-                                                                        
-                                                                    }
+                                                                                                                                        .order-sidebar .inputs-group  .radio:hover {
+                                                                                                                                            background-color: #f1f1f178;
+                                                                                                                                            
+                                                                                                                                        }
 
-                                                                    .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
-                                                                    .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
-                                                                        background-color: #f1f1f1;
-                                                                      
-                                                                    } */
+                                                                                                                                        .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
+                                                                                                                                        .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
+                                                                                                                                            background-color: #f1f1f1;
+                                                                                                                                          
+                                                                                                                                        } */
 
         .order-sidebar .inputs-group .checkbox:has(.checkbox__input:focus-visible,
             .radio__input:focus-visible):before,
@@ -890,7 +884,7 @@
             box-shadow: none;
             border: none;
             background: transparent;
-            width: 80%;
+            width: 90%;
         }
 
         .order-sidebar .inputs-group .phone-input {
@@ -903,7 +897,7 @@
         }
 
         .order-sidebar .inputs-group .phone-input input {
-            width: 465px;
+            width: 350px;
         }
 
         .order-sidebar .inputs-group .phone-input label {
@@ -917,7 +911,7 @@
         }
 
         .order-sidebar .inputs-group .expiry-date select {
-            width: 185px;
+            width: 110px;
         }
 
         .order-sidebar .inputs-group .card-icons {
