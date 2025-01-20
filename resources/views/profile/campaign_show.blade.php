@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('profile.master_layout')
 @section('title')
     <title>{{ $service->seo_title }}</title>
     @php
