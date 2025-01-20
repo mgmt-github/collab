@@ -484,65 +484,14 @@ class ProfileController extends Controller
     public function campaigns(Request $request)
     {
 
-        $seo_setting = SeoSetting::where('id', 8)->first();
+        $seo_setting = SeoSetting::where('id', 10)->first();
         $platforms = SocialPlatform::where('status', 1)->get();
 
-        $paginate_info = CustomPagination::where('id', 2)->first();
-
-        $services = Service::with('category', 'influencer')->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable']);
-
-        if ($request->categories) {
-            $filter_category = array();
-
-            foreach ($request->categories as $req_category) {
-                $find_cat = Category::where('slug', $req_category)->first();
-                if ($find_cat) {
-                    $filter_category[] = $find_cat->id;
-                }
-            }
-
-            $services = $services->whereIn('category_id', $filter_category);
-        }
-        if ($request->platforms) {
-            $services = $services->whereHas('influencer', function ($query) use ($request) {
-                // Checking if the platform id exists in the JSON field in the platforms table
-                $query->whereJsonContains('platform', $request->platforms);
-            });
-        }
-
-        if ($request->min_amount && $request->max_amount) {
-            $services = $services->where('price', '>=', $request->min_amount)->where('price', '<=', $request->max_amount);
-        }
-
-        if ($request->search) {
-            $services = $services->whereHas('translations', function ($query) use ($request) {
-                $query->where('title', 'like', '%' . $request->search . '%')
-                    ->orWhere('description', 'like', '%' . $request->search . '%');
-            })
-                ->orWhere(function ($query) use ($request) {
-                    $query->whereJsonContains('tags', ['value' => $request->search]);
-                });
-        }
 
 
-
-        $services = $services->orderBy('id', 'desc')->paginate($paginate_info->qty);
-
-        $categories = Category::where('status', 'active')->get();
-
-        $max_amount = Service::orderBy('price', 'desc')->first();
-
-        $max_amount = $max_amount ? $max_amount->price : 0;
-        $req_max_amount = $request->max_amount ? $request->max_amount : $max_amount;
-        $req_min_amount =  $request->min_amount ? $request->min_amount : 0;
 
         return view('profile.campaigns')->with([
             'seo_setting' => $seo_setting,
-            'services' => $services,
-            'categories' => $categories,
-            'max_amount' => $max_amount,
-            'req_max_amount' => $req_max_amount,
-            'req_min_amount' => $req_min_amount,
             'platforms' => $platforms,
         ]);
     }
