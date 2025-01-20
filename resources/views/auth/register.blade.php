@@ -110,6 +110,14 @@
             box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
         }
 
+        .signup-page input[type="checkbox"]:checked {
+            background: #ECCB28;
+        }
+
+        .signup-page .influencer-checkbox:checked {
+            background: #2266CB !important;
+        }
+
         .signup-page .toggle-password {
             position: absolute;
             top: 70%;
@@ -362,7 +370,7 @@
                                                                     <div class="inflanar-signin__checkbox">
                                                                         <div class="inflanar-signin__checkbox--group">
                                                                             <input required
-                                                                                class="inflanar-signin__form-check"
+                                                                                class="inflanar-signin__form-check influencer-checkbox"
                                                                                 id="checkbox1" name="checkbox"
                                                                                 type="checkbox">
                                                                             <label
