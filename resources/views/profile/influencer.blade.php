@@ -19,9 +19,10 @@
 @section('frontend-content')
 
     <!-- Breadcrumbs -->
-    <div class="main-content">
+     
+    <div class="main-content DDD">
         <section class="section">
-        <div class="container">
+        <div class="">
             <div class="row align-items-center">
                 <div class="col-12">
                     <div class="influencer-profile__inner">
@@ -123,9 +124,9 @@
 
     <!-- Influencers -->
     <section class="influencers pd-top-20 pd-btm-120"  id="services-row">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-3 col-lg-4 col-12 mg-top-30">
+        <div class="">
+            <div class="">
+                <div class=" mg-top-10">
                     <!-- Single Sidebar -->
                     <div class="influencers-sidebar">
                         <!-- Single Inner Sidebar -->
@@ -189,7 +190,7 @@
                    </div>
                    <!-- End Single Inner Sidebar -->
                 </div>
-                <div class="col-xl-9 col-lg-8 col-12 mg-top-30">
+                <div class="col-12 mg-top-30 profile-section">
                     <ul class="nav profile-tabs" id="myTab" role="tablist">
                       <li class="nav-item" role="presentation">
                         <button
@@ -358,19 +359,19 @@
                                   >
                                     <path
                                       d="M7.51562 5.20312H10.9844C11.4444 5.20312 11.8855 5.0204 12.2108 4.69514C12.536 4.36988 12.7188 3.92873 12.7188 3.46875C12.7188 3.00877 12.536 2.56762 12.2108 2.24236C11.8855 1.9171 11.4444 1.73438 10.9844 1.73438H3.46875C3.00877 1.73438 2.56762 1.9171 2.24236 2.24236C1.9171 2.56762 1.73438 3.00877 1.73438 3.46875V10.9844C1.73438 11.4444 1.9171 11.8855 2.24236 12.2108C2.56762 12.536 3.00877 12.7188 3.46875 12.7188C3.92873 12.7188 4.36988 12.536 4.69514 12.2108C5.0204 11.8855 5.20312 11.4444 5.20312 10.9844V7.51562L13.5859 15.8984C13.7378 16.0503 13.918 16.1707 14.1164 16.2529C14.3148 16.3351 14.5275 16.3774 14.7422 16.3774C14.9569 16.3774 15.1696 16.3351 15.3679 16.2529C15.5663 16.1707 15.7466 16.0503 15.8984 15.8984C16.0503 15.7466 16.1707 15.5663 16.2529 15.3679C16.3351 15.1696 16.3774 14.9569 16.3774 14.7422C16.3774 14.5275 16.3351 14.3148 16.2529 14.1164C16.1707 13.918 16.0503 13.7378 15.8984 13.5859L7.51562 5.20312Z"
-                                      fill="#FE2C55"
+                                      fill="#1778f2"
                                     />
                                     <path
                                       d="M15.8984 21.102C15.7466 20.9501 15.5663 20.8297 15.3679 20.7475C15.1696 20.6653 14.9569 20.623 14.7422 20.623C14.5275 20.623 14.3148 20.6653 14.1164 20.7475C13.918 20.8297 13.7378 20.9501 13.5859 21.102L5.20312 29.4848V26.0161C5.20312 25.5561 5.0204 25.1149 4.69514 24.7897C4.36988 24.4644 3.92873 24.2817 3.46875 24.2817C3.00877 24.2817 2.56762 24.4644 2.24236 24.7897C1.9171 25.1149 1.73438 25.5561 1.73438 26.0161V33.5317C1.73438 33.9917 1.9171 34.4328 2.24236 34.7581C2.56762 35.0833 3.00877 35.2661 3.46875 35.2661H10.9844C11.4444 35.2661 11.8855 35.0833 12.2108 34.7581C12.536 34.4328 12.7188 33.9917 12.7188 33.5317C12.7188 33.0717 12.536 32.6306 12.2108 32.3053C11.8855 31.98 11.4444 31.7973 10.9844 31.7973H7.51562L15.8984 23.4145C16.0503 23.2627 16.1707 23.0824 16.2529 22.884C16.3351 22.6856 16.3774 22.473 16.3774 22.2582C16.3774 22.0435 16.3351 21.8309 16.2529 21.6325C16.1707 21.4341 16.0503 21.2538 15.8984 21.102Z"
-                                      fill="#FE2C55"
+                                      fill="#1778f2"
                                     />
                                     <path
                                       d="M33.5317 1.73438H26.0161C25.5561 1.73438 25.1149 1.9171 24.7897 2.24236C24.4644 2.56762 24.2817 3.00877 24.2817 3.46875C24.2817 3.92873 24.4644 4.36988 24.7897 4.69514C25.1149 5.0204 25.5561 5.20312 26.0161 5.20312H29.4848L21.102 13.5859C20.9501 13.7378 20.8297 13.918 20.7475 14.1164C20.6653 14.3148 20.623 14.5275 20.623 14.7422C20.623 14.9569 20.6653 15.1696 20.7475 15.3679C20.8297 15.5663 20.9501 15.7466 21.102 15.8984C21.2538 16.0503 21.4341 16.1707 21.6325 16.2529C21.8309 16.3351 22.0435 16.3774 22.2582 16.3774C22.473 16.3774 22.6856 16.3351 22.884 16.2529C23.0824 16.1707 23.2627 16.0503 23.4145 15.8984L31.7973 7.51562V10.9844C31.7973 11.4444 31.98 11.8855 32.3053 12.2108C32.6306 12.536 33.0717 12.7188 33.5317 12.7188C33.9917 12.7188 34.4328 12.536 34.7581 12.2108C35.0833 11.8855 35.2661 11.4444 35.2661 10.9844V3.46875C35.2661 3.00877 35.0833 2.56762 34.7581 2.24236C34.4328 1.9171 33.9917 1.73438 33.5317 1.73438Z"
-                                      fill="#FE2C55"
+                                      fill="#1778f2"
                                     />
                                     <path
                                       d="M33.5317 24.2817C33.0717 24.2817 32.6306 24.4644 32.3053 24.7897C31.98 25.1149 31.7973 25.5561 31.7973 26.0161V29.4848L23.4145 21.102C23.2627 20.9501 23.0824 20.8297 22.884 20.7475C22.6856 20.6653 22.473 20.623 22.2582 20.623C22.0435 20.623 21.8309 20.6653 21.6325 20.7475C21.4341 20.8297 21.2538 20.9501 21.102 21.102C20.9501 21.2538 20.8297 21.4341 20.7475 21.6325C20.6653 21.8309 20.623 22.0435 20.623 22.2582C20.623 22.473 20.6653 22.6856 20.7475 22.884C20.8297 23.0824 20.9501 23.2627 21.102 23.4145L29.4848 31.7973H26.0161C25.5561 31.7973 25.1149 31.98 24.7897 32.3053C24.4644 32.6306 24.2817 33.0717 24.2817 33.5317C24.2817 33.9917 24.4644 34.4328 24.7897 34.7581C25.1149 35.0833 25.5561 35.2661 26.0161 35.2661H33.5317C33.9917 35.2661 34.4328 35.0833 34.7581 34.7581C35.0833 34.4328 35.2661 33.9917 35.2661 33.5317V26.0161C35.2661 25.5561 35.0833 25.1149 34.7581 24.7897C34.4328 24.4644 33.9917 24.2817 33.5317 24.2817Z"
-                                      fill="#FE2C55"
+                                      fill="#1778f2"
                                     />
                                   </svg>
                                 </a>
@@ -386,5 +387,355 @@
             </div>
         </div>
     </section>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+        .content-holder {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .col-12.mg-top-30.profile-section {
+    display: none;
+}
+        section.section, .profile-section {
+    border-radius: 10px;
+    background: #FFF;
+    PADDING: 16PX;
+}
+.influencers-sidebar__tag a:hover {
+    background-color:  #5856D6;
+
+}
+        /* Cards Styles */
+        .cards {
+            /* display: flex; */
+            /* flex-wrap: wrap; */
+            color: #222;
+            font-size: 13.898px;
+            font-weight: 400;
+            line-height: normal;
+            font-family: "Poppins", serif;
+        }
+
+        .cards h4 {
+            color: #5856D6;
+            font-family: "Poppins", serif;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: normal;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 94%;
+        }
+
+        .cards strong {
+            color: #222;
+            font-size: 14.67px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            font-family: "Inter", serif;
+        }
+
+        .cards .box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 7px;
+            background-size: cover !important;
+            width: 100%;
+            height: 309px;
+            cursor: pointer;
+        }
+
+        .cards .box .img-box {
+            display: block;
+            width: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .cards .box:hover .img-box {
+            transform: scale(1.1);
+        }
+
+        .img-title {
+            align-items: end;
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            background: url({{ asset('uploads/layout-images/overlay.svg') }}) no-repeat;
+            padding: 11px 10px 15px;
+            width: 93%;
+            color: #fff;
+            font-size: 11.5px;
+            font-family: "Inter", serif;
+            background-size: cover;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .img-title h5 {
+            font-family: "Inter", serif;
+            font-size: 12.8px;
+            margin-bottom: 4px;
+        }
+
+        .img-title address {
+            width: 87px;
+            margin-bottom: 0;
+            line-height: 21px;
+            font-weight: 300;
+        }
+
+        .aside.collapsed2 {
+            margin-left: 122px;
+            margin-right: 61px;
+        }
+
+        .cards .box span {
+            position: relative;
+            border-radius: 5px;
+            z-index: 99;
+            top: -5px;
+            border: var(--stroke-weight-1, 1px) solid var(--color-white-solid, #FFF);
+            background: var(--color-black-70, rgba(0, 0, 0, 0.70));
+            box-shadow: 0px 2px 10px 0px rgba(120, 120, 170, 0.30);
+            /* height: 23px; */
+            font-size: 13px;
+            font-family: "Inter", serif;
+            padding: 3px 5px 2px;
+        }
+
+        /* Hide the dark heart by default */
+        .light-heart {
+            display: block;
+        }
+
+        .dark-heart {
+            display: none;
+        }
+
+        /* Heart container styling */
+        .heart {
+            cursor: pointer;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            float: right;
+            margin: 3px 4px 0 0;
+            position: absolute;
+            right: 2px;
+            z-index: 99;
+            top: 3px;
+        }
+
+        .cards .box img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cards .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .light-heart,
+        .dark-heart {
+            transition: opacity 0.3s ease;
+        }
+        .influencers-pinfo__reviews {
+            background: #1778f2;
+        }
+        .influencers-sidebar__contact li i {
+    font-size: 18px;
+    color: #1778f2;
+}
+.profile-tab-btn.active {
+    background-color: #1778f2;
+    color: #ffffff;
+}
+        @media only screen and (min-width: 1600px) {
+            .img-title h5 {
+                font-size: 19.8px;
+            }
+
+            .cards {
+                font-size: 15.898px;
+            }
+
+            .cards h4 {
+                font-size: 17px;
+                margin-top: 14px;
+            }
+
+            .cards strong {
+                font-size: 18px;
+            }
+
+            .img-title address {
+                width: 129px;
+                font-size: 16px;
+            }
+
+            .img-title {
+                font-size: 16.5px;
+            }
+
+
+            .cards p {
+                margin: 11px 0 0;
+            }
+
+            .cards .box {
+                height: 385px;
+            }
+
+            .sidebar-nav .nav-link {
+                font-size: 22px;
+            }
+
+            .sidebar {
+                width: 280px;
+            }
+
+            .aside {
+                margin-left: 334px;
+            }
+
+            .search-container {
+                width: 223px;
+            }
+        }
+    </style>
+    <style>
+        /* Basic styling */
+        .dropdown-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 9px;
+            width: 846px;
+            height: 56px;
+            border-radius: 100px;
+            background: var(--inflanar-mamunuiux-com-white, #FFF);
+            box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.08);
+            margin: 0 auto 76px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* Dropdown button styling */
+        .dropdown-button {
+            background-color: #fff;
+            border: none;
+            padding: 12px 10px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .dropdown-button-text {
+            display: inline-block;
+        }
+
+        /* Ensure the selected items container (multiple select) is visible */
+        .selected-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .selected-item {
+            background-color: #f1f1f1;
+            border-radius: 16px;
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        .selected-item .remove {
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* Hidden dropdown content */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 119%;
+            left: 0;
+            background-color: #fff;
+            width: 90%;
+            border: 1px solid #ccc;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        div#leftDropdown {
+            left: 13px;
+        }
+
+        /* Dropdown links */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown-content a.selected {
+            background-color: #d3f8e2;
+            color: #4d9d44;
+        }
+
+        /* Search Button */
+        .search-button {
+            width: 40px;
+            height: 40px;
+            background: #000;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        #leftDropdownButton {
+            border-right: 1px solid #C8C8C8;
+        }
+
+        div#rightDropdown a {
+            width: fit-content;
+            background-color: #f1f1f1;
+            border-radius: 16px;
+            padding: 4px 11px;
+            font-size: 14px;
+            margin-bottom: 9px;
+            text-align: left;
+            float: left;
+            margin-right: 5px;
+        }
+
+        div#rightDropdown {
+            padding: 10px 10px;
+        }
+    </style>
 @endsection
