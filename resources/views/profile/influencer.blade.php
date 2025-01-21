@@ -123,7 +123,7 @@
     </section>
 
     <!-- Influencers -->
-    <section class="influencers pd-top-20 pd-btm-120"  id="services-row">
+    <section class="influencers pd-top-20 "  id="services-row">
         <div class="">
             <div class="">
                 <div class=" mg-top-10">
@@ -387,6 +387,108 @@
             </div>
         </div>
     </section>
+
+
+    <div class="influancer-list">
+  <h4>Services</h4>
+  <div class="influancer-item">
+    <button type="button" class="active" data-filter="all">All</button>
+    <button type="button" data-filter="instagram">Instagram</button>
+    <button type="button" data-filter="facebook">Facebook</button>
+  </div>
+  <div class="influancer-body">
+    <div class="in-item" data-category="instagram">
+      <h5>1 Detailed Story on Instagram</h5>
+      <div class="cart-item">
+        <a href="#">Add to Cart</a>
+        <span>$32</span>
+      </div>
+    </div>
+    <div class="in-item" data-category="instagram">
+      <h5>1 Detailed Story on Instagram</h5>
+      <div class="cart-item">
+        <a href="#">Add to Cart</a>
+        <span>$32</span>
+      </div>
+    </div>
+    <div class="in-item" data-category="facebook">
+      <h5>1 Post on Facebook</h5>
+      <div class="cart-item">
+        <a href="#">Add to Cart</a>
+        <span>$40</span>
+      </div>
+    </div>
+    <div class="in-item" data-category="facebook">
+      <h5>1 Campaign on Facebook</h5>
+      <div class="cart-item">
+        <a href="#">Add to Cart</a>
+        <span>$50</span>
+      </div>
+    </div>
+    <div class="in-item" data-category="instagram">
+      <h5>1 Reel on Instagram</h5>
+      <div class="cart-item">
+        <a href="#">Add to Cart</a>
+        <span>$45</span>
+      </div>
+    </div>
+    <div class="in-item" data-category="facebook">
+      <h5>1 Ad on Facebook</h5>
+      <div class="cart-item">
+        <a href="#">Add to Cart</a>
+        <span>$60</span>
+      </div>
+    </div>
+
+    <div class="in-item" data-category="instagram">
+      <h5>1 Ad on Facebook</h5>
+      <div class="cart-item">
+        <a href="#">Add to Cart</a>
+        <span>$60</span>
+      </div>
+    </div>
+
+    <div class="in-item" data-category="facebook">
+      <h5>1 Ad on Facebook</h5>
+      <div class="cart-item">
+        <a href="#">Add to Cart</a>
+        <span>$60</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Select all filter buttons and influencer items
+  const filterButtons = document.querySelectorAll(".influancer-item button");
+  const items = document.querySelectorAll(".influancer-body .in-item");
+
+  // Add click event listeners to all buttons
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Remove 'active' class from all buttons
+      filterButtons.forEach((btn) => btn.classList.remove("active"));
+
+      // Add 'active' class to the clicked button
+      button.classList.add("active");
+
+      // Get the filter category
+      const filterValue = button.getAttribute("data-filter");
+
+      // Show/hide items based on the filter
+      items.forEach((item) => {
+        const category = item.getAttribute("data-category");
+
+        if (filterValue === "all" || category === filterValue) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    });
+  });
+</script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -558,6 +660,95 @@
     background-color: #1778f2;
     color: #ffffff;
 }
+.influancer-list {
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.08);
+    padding: 35px 20px;
+    margin: 30px 0 0;
+}
+.influancer-body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    row-gap: 15px;
+}
+
+.influancer-item button {
+    border-radius: 4.75px;
+    border: 1.188px solid #E4E4E4;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 0px 4.75px 0px rgba(0, 0, 0, 0.15);
+    color: #7C7C7C;
+    ppins;
+    font-size: 15.73px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30.876px; /* 196.284% */
+    font-family: "Poppins", serif;
+
+    padding: 2px 15px 0;
+}
+
+.influancer-item {
+    margin-bottom: 26px;
+}
+
+.in-item {
+    border-radius: 6.374px;
+    border: 1.035px solid #D1D1D1;
+    background: #FBFBFF;
+    height: 152.098px;
+    padding: 14px;
+    position: relative;
+}
+.influancer-item .active, .influancer-item button:focus {
+    color: #5856D6;
+    background: #E6E6F9;
+    outline: none;
+}
+.in-item h5 {
+    color: #222;
+    font-family: "Poppins", serif;
+    font-size: 16.555px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 157.118%; /* 26.011px */
+}
+
+.in-item a {
+    border-radius: 3.133px;
+    border: 0.448px solid #C1C1C1;
+    background: #E6E6F9;
+    padding: 5px 13px;
+    color: #4A48B8;
+   font-family: "Poppins", serif;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cart-item span {
+    color: #222;
+    font-family: "Poppins", serif;
+    font-size: 16.555px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    position: absolute;
+    width: 89%;
+    bottom: 10px;
+}
+
+
+
         @media only screen and (min-width: 1600px) {
             .img-title h5 {
                 font-size: 19.8px;
