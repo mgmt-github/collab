@@ -83,7 +83,7 @@
         .table-main {
             border-radius: 12px;
             background: #FFF;
-            padding: 37px;
+            padding: 37px 10px;
         }
 
         .cart-title {
@@ -112,7 +112,7 @@
         .custom-font table th,
         .custom-font table td {
             text-align: center;
-            padding: 20px 10px
+            padding: 10px;
         }
 
         .custom-font table td {
@@ -138,10 +138,10 @@
         }
 
         .quantity-input {
-            width: 40px !important;
+            flex: 1;
+            width: 30px !important;
             text-align: center;
             border: 1px solid #ddd;
-            border-radius: 4px;
         }
 
         .bottom-btn-checkout {
@@ -165,7 +165,7 @@
             font-weight: 500;
             padding-bottom: 20px;
             margin-bottom: 56px;
-            margin-right: 100px;
+            margin-right: 8%;
             gap: 120px;
             display: flex;
             justify-content: center;
@@ -190,6 +190,7 @@
             font-style: normal;
             font-weight: 500;
             line-height: normal;
+            width: 35%;
         }
 
         .checkout-btn:hover {
@@ -295,6 +296,7 @@
         .title-flex {
             display: flex;
             justify-content: space-between;
+            padding: 0 10px;
         }
 
         .title-flex span {
@@ -302,7 +304,38 @@
             font-weight: 300px;
             cursor: pointer;
         }
-    </style>.
+
+        .quantity-control {
+            display: flex;
+            border: 1px solid #DFDFDF;
+            border-radius: 5px;
+            width: 80px;
+            text-align: center;
+        }
+
+        .quantity-control button {
+            background: none;
+            border: none;
+            flex: 1;
+        }
+
+        .quantity-control button:focus {
+            outline: none;
+        }
+
+        .quantity-control button:hover {
+            background: #DFDFDF;
+        }
+
+        .remove-btn {
+            background: none;
+            border: none;
+        }
+
+        .remove-btn-form {
+            margin: 0 !important;
+        }
+    </style>
 
 
     <div class="main-content">
@@ -316,10 +349,10 @@
                 </div>
                 <!-- Tab Content -->
                 {{-- cart table  --}}
-                <div class="table-wrap">
+                <div class="table-wrap mg-top-20">
                     <div class="table-container">
                         {{-- table content start  --}}
-                        <div class="table-main mg-top-40">
+                        <div class="table-main">
                             <div class="title-flex">
                                 <div>
                                     <div class="cart-title">{{ __('admin.Shopping cart') }}</div>
@@ -329,11 +362,12 @@
                                 </div>
                                 <span>{{ __('admin.Select All') }}</span>
                             </div>
-                            <table class="mg-top-20">
+                            <table>
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>{{ __('admin.Price') }}</th>
+                                        {{-- <th>{{ __('admin.Price') }}</th> --}}
+                                        <th>Price</th>
                                         <th>{{ __('admin.Quantity') }}</th>
                                         <th>{{ __('admin.Total') }}</th>
                                         <th></th>
@@ -343,7 +377,7 @@
                                     @foreach ($cart as $id => $item)
                                         <tr data-item-id="{{ $id }}">
                                             <td class="img-story">
-                                                <input type="checkbox">
+                                                <input type="checkbox" checked />
                                                 @if (isset($item['image']))
                                                     <img src="{{ asset($item['image']) }}" alt="Item">
                                                 @endif
@@ -355,14 +389,22 @@
                                             </td>
                                             <td>${{ number_format($item['price'], 2) }}</td>
                                             <td>
-                                                <input type="number" class="quantity-input"
-                                                    data-item-id="{{ $id }}" value="{{ $item['quantity'] }}"
-                                                    min="1">
+                                                <div class="quantity-control">
+                                                    <button class="decrease-quantity"
+                                                        onclick="changeQuantity(this, -1)">-</button>
+                                                    <input type="number" class="quantity-input"
+                                                        data-item-id="{{ $id }}" value="{{ $item['quantity'] }}"
+                                                        min="1" readonly>
+                                                    <button class="increase-quantity"
+                                                        onclick="changeQuantity(this, 1)">+</button>
+                                                </div>
+
                                             </td>
                                             <td class="item-total">
                                                 ${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
                                             <td>
-                                                <form method="POST" action="{{ route('user.cart.remove', $id) }}">
+                                                <form method="POST" action="{{ route('user.cart.remove', $id) }}"
+                                                    class="remove-btn-form">
                                                     @csrf
                                                     <button type="submit" class="remove-btn">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="22"
@@ -407,7 +449,7 @@
                                 <div>
                                     <div class="img-card">
                                         <div class="img-class">
-                                            <img src="https://s3-alpha-sig.figma.com/img/3a99/63b8/02b84d84bb29593f18526952b224c0c2?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b08cDX69WDoU7M9pq756YHWbIqW~Pc40tap4hM0K7ZPIb9zyKNSDRz2Q2L8U8Xhs8WA63Iq9VEkb46HLDV7WKyaLwDYzMt7fcuIT7iWO8WYp-lwaI5ZLQVxOIVdJ0Z193Liyb1Rfnm6hv2ICyrRQ31YJqCvC5moZx54LJpWHemIimev3Bu9XmZO5RqfoPtSE-6s7YXDGTHqOyZo8X6TdnLddrO7mmVqHsscz6uN7ty~4iIAtrJY6zbB5GaZ7m4ZxyxkIlnhPxnRycIErq23vbqkz2-IfE-SLPT1Z9Mlm57VDchkcsY5LYUpy20Vw49ZpIwf90bfMcPOhPuabpYkcew__"
+                                            <img src="{{ asset('/uploads/checkout/girl-in-fields.jpg') }}"
                                                 alt="Item" />
                                             <div class="img-overlay"></div>
                                             <a href="#" class="add-cart-btn">{{ __('admin.Add to Cart') }}</a>
@@ -420,7 +462,19 @@
                                 <div>
                                     <div class="img-card">
                                         <div class="img-class">
-                                            <img src="https://s3-alpha-sig.figma.com/img/76bf/352d/53a460c54e056ba7b75db285fa7fde83?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SccbQkzgD4zXJK5KIRtovH7SLzJY3aaueMArk0lxmlT~vF7OUrcp2pqHiAVM91cZEQleHQScEESxGOIhDVdE3~U9CmX~5cuALxc2A1qDuXHpHfQ4jMEOmh3RLiT~tRv~uKS4xWanVYFIUoyQPNncti7lOJ~l-T7IAzI-OX~1-ZUF9H1M3ZCShGWKdc6-XLHGxURH3PIcbiXMFTjFCb31ljQo9jvQzd4lVVSatg355oZboJUYqnpcgWKJB0M2KWD40aIFoStxuT9A6OuDpZHs53BtL3BmF72YnE0LwP1ybGkMYgerXIBU0Q2inW5jeYGkZGXWwCXZNBKz-7nE2x600g__"
+                                            <img src="{{ asset('/uploads/checkout/flower-girl.jpg') }}" alt="Item" />
+                                            <div class="img-overlay"></div>
+                                            <a href="#" class="add-cart-btn">{{ __('admin.Add to Cart') }}</a>
+                                        </div>
+                                    </div>
+                                    <div class="img-description">
+                                        <span>{{ __('admin.Makeup Wih two Influencers') }}</span><span>$1200</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="img-card">
+                                        <div class="img-class">
+                                            <img src="{{ asset('/uploads/checkout/girl-in-fields.jpg') }}"
                                                 alt="Item" />
                                             <div class="img-overlay"></div>
                                             <a href="#" class="add-cart-btn">{{ __('admin.Add to Cart') }}</a>
@@ -433,21 +487,7 @@
                                 <div>
                                     <div class="img-card">
                                         <div class="img-class">
-                                            <img src="https://s3-alpha-sig.figma.com/img/3a99/63b8/02b84d84bb29593f18526952b224c0c2?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b08cDX69WDoU7M9pq756YHWbIqW~Pc40tap4hM0K7ZPIb9zyKNSDRz2Q2L8U8Xhs8WA63Iq9VEkb46HLDV7WKyaLwDYzMt7fcuIT7iWO8WYp-lwaI5ZLQVxOIVdJ0Z193Liyb1Rfnm6hv2ICyrRQ31YJqCvC5moZx54LJpWHemIimev3Bu9XmZO5RqfoPtSE-6s7YXDGTHqOyZo8X6TdnLddrO7mmVqHsscz6uN7ty~4iIAtrJY6zbB5GaZ7m4ZxyxkIlnhPxnRycIErq23vbqkz2-IfE-SLPT1Z9Mlm57VDchkcsY5LYUpy20Vw49ZpIwf90bfMcPOhPuabpYkcew__"
-                                                alt="Item" />
-                                            <div class="img-overlay"></div>
-                                            <a href="#" class="add-cart-btn">{{ __('admin.Add to Cart') }}</a>
-                                        </div>
-                                    </div>
-                                    <div class="img-description">
-                                        <span>{{ __('admin.Makeup Wih two Influencers') }}</span><span>$1200</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="img-card">
-                                        <div class="img-class">
-                                            <img src="https://s3-alpha-sig.figma.com/img/3a99/63b8/02b84d84bb29593f18526952b224c0c2?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b08cDX69WDoU7M9pq756YHWbIqW~Pc40tap4hM0K7ZPIb9zyKNSDRz2Q2L8U8Xhs8WA63Iq9VEkb46HLDV7WKyaLwDYzMt7fcuIT7iWO8WYp-lwaI5ZLQVxOIVdJ0Z193Liyb1Rfnm6hv2ICyrRQ31YJqCvC5moZx54LJpWHemIimev3Bu9XmZO5RqfoPtSE-6s7YXDGTHqOyZo8X6TdnLddrO7mmVqHsscz6uN7ty~4iIAtrJY6zbB5GaZ7m4ZxyxkIlnhPxnRycIErq23vbqkz2-IfE-SLPT1Z9Mlm57VDchkcsY5LYUpy20Vw49ZpIwf90bfMcPOhPuabpYkcew__"
-                                                alt="Item" />
+                                            <img src="{{ asset('/uploads/checkout/flower-girl.jpg') }}" alt="Item" />
                                             <div class="img-overlay"></div>
                                             <a href="#" class="add-cart-btn">{{ __('admin.Add to Cart') }}</a>
                                         </div>
@@ -505,4 +545,14 @@
             });
         });
     </script>
-    
+    <script>
+        function changeQuantity(button, delta) {
+            let input = $(button).siblings('.quantity-input');
+            let currentQuantity = parseInt(input.val());
+            let newQuantity = currentQuantity + delta;
+
+            if (newQuantity >= 1) {
+                input.val(newQuantity).trigger('change'); // Trigger the existing 'change' event
+            }
+        }
+    </script>
