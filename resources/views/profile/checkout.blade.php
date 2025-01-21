@@ -76,8 +76,9 @@
                                             <div class="card-number-input">
                                                 <input type="text" id="card-number" placeholder="1234 1234 1234" />
                                                 <div class="card-icons">
-                                                   <img src="{{ asset('/uploads/checkout/visa.png') }}" alt="Cards" />
-                                        <img src="{{ asset('/uploads/checkout/master.png') }}" alt="Cards" />
+                                                    <img src="{{ asset('/uploads/checkout/visa.png') }}" alt="Cards" />
+                                                    <img src="{{ asset('/uploads/checkout/master.png') }}"
+                                                        alt="Cards" />
                                                 </div>
                                             </div>
                                         </div>
@@ -186,15 +187,15 @@
                                 </div>
 
                                 <!-- <div class="inputs-group paypal">
-                                    <label class="checkbox">
-                                        <input class="checkbox__input payment-method" type="checkbox" name="dummy1" />
-                                        <span class="checkbox__label">{{ __('admin.Pay with PayPal') }}</span>
-                                    </label>
+                                        <label class="checkbox">
+                                            <input class="checkbox__input payment-method" type="checkbox" name="dummy1" />
+                                            <span class="checkbox__label">{{ __('admin.Pay with PayPal') }}</span>
+                                        </label>
 
-                                    <div class="card-logos">
-                                        <img src="./public/frontend/img/paypal.svg" alt="PayPal" />
-                                    </div>
-                                </div> -->
+                                        <div class="card-logos">
+                                            <img src="./public/frontend/img/paypal.svg" alt="PayPal" />
+                                        </div>
+                                    </div> -->
 
                                 <div class="inputs-group Stripe">
                                     <label class="checkbox">
@@ -258,82 +259,38 @@
                         <div class="order-aside">
                             <h4>{{ __('admin.Your Order') }}</h4>
                             <hr class="border" />
-                            <div class="aside-inner-sec">
-                                <div class="image-box">
-                                    <div>
-                                        <img src="{{ asset('/uploads/checkout/img1.png') }}"
-                                            alt="Item" />
+                        
+                            @foreach($cartItems as $item)
+                                <div class="aside-inner-sec">
+                                    <div class="image-box">
+                                        <div>
+                                            <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}" />
+                                        </div>
+                        
+                                        <div>
+                                            <h4>{{ $item['name'] }}</h4>
+                                            {{-- <h5>{{ $item['brand'] }}</h5> --}}
+                                        </div>
                                     </div>
-
+                        
                                     <div>
-                                        <h4>{{ __('admin.Travel Backpack') }}</h4>
-                                        <h5>{{ __('admin.Erin John') }}</h5>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h6>$15.00</h6>
-                                </div>
-                            </div>
-
-                            <hr class="border" />
-
-                            <div class="aside-inner-sec">
-                                <div class="image-box">
-                                    <div>
-                                        <img src="{{ asset('/uploads/checkout/img1.png') }}"
-                                            alt="Item" />
-                                    </div>
-
-                                    <div>
-                                        <h4>{{ __('admin.Carry on Backpack') }}</h4>
-                                        <h5>{{ __('admin.Erin John') }}</h5>
+                                        <h6>${{ number_format($item['price'], 2) }}</h6>
                                     </div>
                                 </div>
-
-                                <div>
-                                    <h6>$15.00</h6>
-                                </div>
-                            </div>
-
-                            <hr class="border" />
-
-                            <div class="aside-inner-sec">
-                                <div class="image-box">
-                                    <div>
-                                        <img src="{{ asset('/uploads/checkout/img1.png') }}"
-                                            alt="Item" />
-                                    </div>
-
-                                    <div>
-                                        <h4>{{ __('admin.Beraliy Backpack') }}</h4>
-                                        <h5>{{ __('admin.Erin John') }}</h5>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h6>$15.00</h6>
-                                </div>
-                            </div>
-
-                            <hr class="border" />
-
+                        
+                                <hr class="border" />
+                            @endforeach
+                        
                             <div class="total-amount">
                                 <h5>{{ __('admin.Subtotal') }}</h5>
-                                <h4>$1,234.00</h4>
+                                <h4>${{ number_format($totalPrice, 2) }}</h4>
                             </div>
-
-                            <hr class="border" />
-
-                            <div class="total-amount">
-                                <h5>{{ __('admin.Total') }}</h5>
-                                <h4>$1,345.00</h4>
-                            </div>
-
+                        
                             <div class="place-btn">
                                 <button>{{ __('admin.Place Order') }}</button>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -364,6 +321,24 @@
                     }
                 }
             });
+        });
+    </script>
+    <script>
+        document.querySelector(".place-btn button").addEventListener("click", () => {
+            const formData = new FormData(document.querySelector(".order-wrap"));
+            fetch("/checkout/submit", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                    },
+                    body: formData,
+                })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) alert("Order placed successfully!");
+                    else alert("Error: " + data.message);
+                })
+                .catch((error) => console.error("Error:", error));
         });
     </script>
 
@@ -790,16 +765,16 @@
         }
 
         /* .order-sidebar .inputs-group  .checkbox:hover,
-                                                                                                                                        .order-sidebar .inputs-group  .radio:hover {
-                                                                                                                                            background-color: #f1f1f178;
-                                                                                                                                            
-                                                                                                                                        }
+                                                                                                                                            .order-sidebar .inputs-group  .radio:hover {
+                                                                                                                                                background-color: #f1f1f178;
+                                                                                                                                                
+                                                                                                                                            }
 
-                                                                                                                                        .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
-                                                                                                                                        .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
-                                                                                                                                            background-color: #f1f1f1;
-                                                                                                                                          
-                                                                                                                                        } */
+                                                                                                                                            .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
+                                                                                                                                            .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
+                                                                                                                                                background-color: #f1f1f1;
+                                                                                                                                              
+                                                                                                                                            } */
 
         .order-sidebar .inputs-group .checkbox:has(.checkbox__input:focus-visible,
             .radio__input:focus-visible):before,

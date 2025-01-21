@@ -17,7 +17,7 @@ class CartController extends Controller
         $subtotal = array_reduce($cart, function ($total, $item) {
             return $total + ($item['price'] * $item['quantity']);
         }, 0);
-    
+
         return view('profile.cart', compact('cart', 'subtotal'));
     }
 
@@ -92,5 +92,34 @@ class CartController extends Controller
         Session::put('cart', $cart); // Save updated cart to session
 
         return redirect()->route('user.cart')->with('success', 'Item removed from cart!');
+    }
+
+    public function placeOrder(Request $request)
+    {
+        $validated = $request->validate([
+            'payment_method' => 'required',
+            // Add other validation rules as needed
+        ]);
+
+        // Logic to save the order
+        $order = new Order();
+        $order->user_id = auth()->id();
+        $order->total = $request->input('total');
+        $order->payment_method = $request->input('payment_method');
+        $order->save();
+
+        // Attach cart items to the order
+        foreach (session('cart', []) as $item) {
+            $order->items()->create([
+                'product_id' => $item['id'],
+                'quantity' => $item['quantity'],
+                'price' => $item['price'],
+            ]);
+        }
+
+        // Clear the cart
+        session()->forget('cart');
+
+        return redirect()->route('thank.you')->with('success', 'Order placed successfully!');
     }
 }
