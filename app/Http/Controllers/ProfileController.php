@@ -474,10 +474,14 @@ class ProfileController extends Controller
     {
         return view('profile.cart');
     }
-    function checkout()
+    public function checkout()
     {
-        return view('profile.checkout');
+        $cartItems = session()->get('cart', []); // Retrieve cart items from the session
+        $totalPrice = collect($cartItems)->sum('price'); // Calculate total price
+
+        return view('profile.checkout', compact('cartItems', 'totalPrice'));
     }
+
     function requirement()
     {
         return view('requirement');
