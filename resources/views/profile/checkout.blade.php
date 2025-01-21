@@ -6,8 +6,6 @@
 @section('frontend-content')
 
 
-
-
     <div class="main-content">
         <section class="section custom-font">
             <div class="container">
@@ -23,7 +21,6 @@
                     <div class="order-container">
                         <div class="order-sidebar">
                             <h3>{{ __('admin.Your Information') }}</h3>
-
                             <div class="order-form">
                                 <form class="form-row">
                                     <div class="form-col">
@@ -185,157 +182,102 @@
                                     </div>
                                     <!-- billing details Card ends -->
                                 </div>
+                            </div>
 
-                                <!-- <div class="inputs-group paypal">
-                                        <label class="checkbox">
-                                            <input class="checkbox__input payment-method" type="checkbox" name="dummy1" />
-                                            <span class="checkbox__label">{{ __('admin.Pay with PayPal') }}</span>
-                                        </label>
-
-                                        <div class="card-logos">
-                                            <img src="./public/frontend/img/paypal.svg" alt="PayPal" />
-                                        </div>
-                                    </div> -->
-                                        <div class="card-logos">
-                                            <img src="./public/frontend/img/paypal.svg" alt="PayPal" />
-                                        </div>
-                                    </div> -->
-
-                                <div class="inputs-group Stripe">
-                                    <label class="checkbox">
-                                        <input class="checkbox__input payment-method" type="checkbox"
-                                            name="payment-method" id="stripe-payment" />
-                                        <span class="checkbox__label">{{ __('admin.Pay with PayPal') }}</span>
-                                    </label>
-                                    <div class="card-logos">
-                                        <img src="{{ asset('/uploads/checkout/paypal.png') }}" alt="paypal" />
-                                    </div>
-                                    <!-- billing details Stripe Starts -->
-                                    <div id="stripe-billing-details" class="billing-details hidden">
-                                        <div class="form-input-single">
-                                            <label>{{ __('admin.Name on card') }}<span class="required">*</span></label>
-                                            <input type="text" name="name" id=""
-                                                placeholder="abc@example.com" />
-                                        </div>
-                                        <div class="form-input-single">
-                                            <label for="card-number">{{ __('admin.Card Number') }} <span
-                                                    class="required">*</span></label>
-                                            <div class="card-number-input">
-                                                <input type="text" id="card-number" placeholder="1234 1234 1234" />
-                                                <div class="card-icons">
-                                                    <img src="{{ asset('/uploads/checkout/visa.png') }}"
-                                                        alt="Cards" />
-                                                    <img src="{{ asset('/uploads/checkout/master.png') }}"
-                                                        alt="Cards" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-row-expiry">
-                                            <div class="form-group">
-                                                <label for="expiry-month">{{ __('admin.Expiry Date') }} <span
-                                                        class="required">*</span></label>
-                                                <div class="expiry-date">
-                                                    <select id="expiry-month" class="radius-right-expiry">
-                                                        <option value="month">{{ __('admin.Month') }}</option>
-                                                        <option value="01">01</option>
-                                                        <option value="02">02</option>
-                                                        <option value="03">03</option>
-                                                        <!-- Add remaining months -->
-                                                    </select>
-                                                    <select id="expiry-year" class="radius-left-expiry">
-                                                        <option value="2024">2024</option>
-                                                        <option value="2025">2025</option>
-                                                        <!-- Add more years -->
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="cvv">{{ __('admin.CVV') }}<span
-                                                        class="required">*</span></label>
-                                                <input type="text" id="cvv" placeholder="XXX" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- billing details Stripe Ends -->
+                            <div class="inputs-group Stripe">
+                                <label class="checkbox">
+                                    <input class="checkbox__input payment-method" type="checkbox" name="payment-method"
+                                        id="stripe-payment" />
+                                    <span class="checkbox__label">{{ __('admin.Pay with PayPal') }}</span>
+                                </label>
+                                <div class="card-logos">
+                                    <img src="{{ asset('/uploads/checkout/paypal.png') }}" alt="paypal" />
                                 </div>
+                                <!-- billing details Stripe Starts -->
+                                <div id="stripe-billing-details" class="billing-details hidden">
+                                    <div class="form-input-single">
+                                        <label>{{ __('admin.Name on card') }}<span class="required">*</span></label>
+                                        <input type="text" name="name" id=""
+                                            placeholder="abc@example.com" />
+                                    </div>
+                                    <div class="form-input-single">
+                                        <label for="card-number">{{ __('admin.Card Number') }} <span
+                                                class="required">*</span></label>
+                                        <div class="card-number-input">
+                                            <input type="text" id="card-number" placeholder="1234 1234 1234" />
+                                            <div class="card-icons">
+                                                <img src="{{ asset('/uploads/checkout/paypal.png') }}" alt="paypal" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row-expiry">
+                                        <div class="form-group">
+                                            <label for="expiry-month">{{ __('admin.Expiry Date') }} <span
+                                                    class="required">*</span></label>
+                                            <div class="expiry-date">
+                                                <select id="expiry-month" class="radius-right-expiry">
+                                                    <option value="month">{{ __('admin.Month') }}</option>
+                                                    <option value="01">01</option>
+                                                    <option value="02">02</option>
+                                                    <option value="03">03</option>
+                                                    <!-- Add remaining months -->
+                                                </select>
+                                                <select id="expiry-year" class="radius-left-expiry">
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                    <!-- Add more years -->
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="cvv">{{ __('admin.CVV') }}<span
+                                                    class="required">*</span></label>
+                                            <input type="text" id="cvv" placeholder="XXX" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- billing details Stripe Ends -->
                             </div>
                         </div>
                         <div class="order-aside">
                             <h4>{{ __('admin.Your Order') }}</h4>
                             <hr class="border" />
-                            <div class="aside-inner-sec">
-                                <div class="image-box">
-                                    <div>
-                                        <img src="{{ asset('/uploads/checkout/img1.png') }}" alt="Item" />
+                            @foreach ($cartItems as $item)
+                                <div class="aside-inner-sec">
+                                    <div class="image-box">
+                                        <div>
+                                            <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}" />
+                                        </div>
+                                        <div>
+                                            <h6>{{ $item['name'] }}</h6>
+                                            {{-- <h5>{{ $item['brand'] }}</h5> --}}
+                                        </div>
                                     </div>
-
                                     <div>
-                                        <h4>{{ __('admin.Travel Backpack') }}</h4>
-                                        <h5>{{ __('admin.Erin John') }}</h5>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h6>$15.00</h6>
-                                </div>
-                            </div>
-
-                            <hr class="border" />
-
-                            <div class="aside-inner-sec">
-                                <div class="image-box">
-                                    <div>
-                                        <img src="{{ asset('/uploads/checkout/img1.png') }}" alt="Item" />
-                                    </div>
-
-                                    <div>
-                                        <h4>{{ __('admin.Carry on Backpack') }}</h4>
-                                        <h5>{{ __('admin.Erin John') }}</h5>
+                                        <h6>${{ number_format($item['price'], 2) }}</h6>
                                     </div>
                                 </div>
 
-                                <div>
-                                    <h6>$15.00</h6>
-                                </div>
-                            </div>
-
-                            <hr class="border" />
-
-                            <div class="aside-inner-sec">
-                                <div class="image-box">
-                                    <div>
-                                        <img src="{{ asset('/uploads/checkout/img1.png') }}" alt="Item" />
-                                    </div>
-
-                                    <div>
-                                        <h4>{{ __('admin.Beraliy Backpack') }}</h4>
-                                        <h5>{{ __('admin.Erin John') }}</h5>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h6>$15.00</h6>
-                                </div>
-                            </div>
-
-                            <hr class="border" />
+                                <hr class="border" />
+                            @endforeach
 
                             <div class="total-amount">
                                 <h5>{{ __('admin.Subtotal') }}</h5>
                                 <h4>${{ number_format($totalPrice, 2) }}</h4>
                             </div>
-                        
+
                             <div class="place-btn">
                                 <button>{{ __('admin.Place Order') }}</button>
                             </div>
                         </div>
-                        
                     </div>
+
                 </div>
             </div>
-        </section>
+    </div>
+    </section>
     </div>
     <script>
         const paymentMethods = document.querySelectorAll(".payment-method");
@@ -384,17 +326,12 @@
     </script>
 
     <style>
-        .footer-cta,
-        .footer-area,
-        .inflanar-header.inflanar-header__v2 {
-            display: none;
-        }
-
         .custom-font {
             margin: 0;
             font-family: "Poppins", serif;
             background: linear-gradient(0deg, #f4f6f9 0%, #f4f6f9 100%), #fff;
         }
+
 
         .country-code-input {
             border-radius: 6.694px !important;
@@ -664,7 +601,7 @@
         .aside-inner-sec h6 {
             color: #000;
             font-family: "Poppins", serif;
-            font-size: 17.775px;
+            font-size: 14px;
             font-style: normal;
             font-weight: 400;
             line-height: 28.439px;
@@ -806,16 +743,16 @@
         }
 
         /* .order-sidebar .inputs-group  .checkbox:hover,
-                                                                                                                                            .order-sidebar .inputs-group  .radio:hover {
-                                                                                                                                                background-color: #f1f1f178;
-                                                                                                                                                
-                                                                                                                                            }
+                                                                                                                                                                                                    .order-sidebar .inputs-group  .radio:hover {
+                                                                                                                                                                                                        background-color: #f1f1f178;
+                                                                                                                                                                                                        
+                                                                                                                                                                                                    }
 
-                                                                                                                                            .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
-                                                                                                                                            .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
-                                                                                                                                                background-color: #f1f1f1;
-                                                                                                                                              
-                                                                                                                                            } */
+                                                                                                                                                                                                    .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
+                                                                                                                                                                                                    .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
+                                                                                                                                                                                                        background-color: #f1f1f1;
+                                                                                                                                                                                                      
+                                                                                                                                                                                                    } */
 
         .order-sidebar .inputs-group .checkbox:has(.checkbox__input:focus-visible,
             .radio__input:focus-visible):before,
