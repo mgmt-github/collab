@@ -420,7 +420,7 @@ class ProfileController extends Controller
 
         if (!$influencer) abort(404);
 
-        $services = Service::with('category', 'influencer')->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable'])->where('influencer_id', $influencer->id)->orderBy('id', 'desc')->get();
+        $services = Service::with('category', 'influencer', 'platform')->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable'])->where('influencer_id', $influencer->id)->orderBy('id', 'desc')->get();
 
         $total_review = Review::where('status', 1)->where('influencer_id', $influencer->id)->count();
 
@@ -431,7 +431,7 @@ class ProfileController extends Controller
         $complete_booking = Order::where('order_status', 'complete')->where('influencer_id', $influencer->id)->count();
 
         $cancel_booking = Order::where('influencer_id', $influencer->id)->where('order_status', 'order_decliened_by_influencer')->orWhere('order_status', 'order_decliened_by_client')->count();
-
+        dd($services);
         return view('profile.influencer')->with([
             'influencer' => $influencer,
             'services' => $services,
