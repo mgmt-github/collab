@@ -294,7 +294,7 @@
 
             <li class="{{ Route::is('user.cart') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.cart') }}"><i class="far fa-newspaper"></i>
-                    <span>{{ __('admin.cart') }}</span></a>
+                    <span>{{ __('admin.Cart') }}</span></a>
             </li>
 
             <li class="{{ Route::is('user.campaigns') ? 'active' : '' }}">

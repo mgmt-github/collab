@@ -8,15 +8,44 @@
 
     <div class="main-content">
         <section class="section">
-
             <div class="section-body">
                 <div class="campaign-progress-bar">
                     <div class="progress-step active" data-step="1">Basic</div>
                     <div class="progress-step" data-step="2">Content</div>
                     <div class="progress-step" data-step="3">Requirements</div>
                 </div>
-
-
+                <!-- Form Steps / Progress Bar -->
+                <div class="container">
+                    <ul class="form-stepper form-stepper-horizontal">
+                        <!-- Step 1 -->
+                        <li class="form-stepper-active text-center form-stepper-list" step="1">
+                            <a class="mx-2">
+                                <span class="form-stepper-circle">
+                                    <span>1</span>
+                                </span>
+                                <div class="label">Basic</div>
+                            </a>
+                        </li>
+                        <!-- Step 2 -->
+                        <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+                            <a class="mx-2">
+                                <span class="form-stepper-circle text-muted">
+                                    <span>2</span>
+                                </span>
+                                <div class="label text-muted">Content</div>
+                            </a>
+                        </li>
+                        <!-- Step 3 -->
+                        <li class="form-stepper-unfinished text-center form-stepper-list" step="3">
+                            <a class="mx-2">
+                                <span class="form-stepper-circle text-muted">
+                                    <span>3</span>
+                                </span>
+                                <div class="label text-muted">Requirements</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="container">
                     {{-- Section 1 Campaign Basic  --}}
                     <div id="step-1" class="campaign-main step active">
@@ -172,13 +201,14 @@
                         </form>
                         <div class="navigation-btns">
                             <div class="navigation-btns-item previous">{{ __('admin.Previous') }}</div>
-                            <div class="navigation-btns-item next active"><span>{{ __('admin.Next') }}</span><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
+                            <div step_number="2" class="navigation-btns-item btn-navigate-form-step next active">
+                                <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none">
                                     <path
                                         d="M14.6922 6.69212L20 11.9999L14.6922 17.3076L13.9845 16.5999L18.0845 12.4999L4 12.4999V11.4999L18.0845 11.4999L13.9845 7.39987L14.6922 6.69212Z"
                                         fill="black" />
-                                </svg></div>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                     {{-- Section 1 Campaign Basic Ends  --}}
@@ -281,19 +311,21 @@
                             </div>
                         </div>
                         <div class="navigation-btns">
-                            <div class="navigation-btns-item previous active"><svg xmlns="http://www.w3.org/2000/svg"
-                                    width="29" height="24" viewBox="0 0 29 24" fill="none">
+                            <div step_number="1" class="navigation-btns-item btn-navigate-form-step previous active"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="29" height="24" viewBox="0 0 29 24"
+                                    fill="none">
                                     <path
                                         d="M11.0001 17.3079L4.85156 12.0001L11.0001 6.69238L11.82 7.40013L7.07051 11.5001H23.3862V12.5001H7.07051L11.82 16.6001L11.0001 17.3079Z"
                                         fill="black" />
                                 </svg><span>{{ __('admin.Previous') }}</span></div>
-                            <div class="navigation-btns-item next active"><span>{{ __('admin.Next') }}</span><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
+                            <div step_number="3" class="navigation-btns-item btn-navigate-form-step next active">
+                                <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none">
                                     <path
                                         d="M14.6922 6.69212L20 11.9999L14.6922 17.3076L13.9845 16.5999L18.0845 12.4999L4 12.4999V11.4999L18.0845 11.4999L13.9845 7.39987L14.6922 6.69212Z"
                                         fill="black" />
-                                </svg></div>
+                                </svg>
+                            </div>
                         </div>
                     </div>
                     {{-- Section 2 Campaign Content  Ends --}}
@@ -362,8 +394,9 @@
                             </div>
                         </form>
                         <div class="navigation-btns">
-                            <div class="navigation-btns-item previous"><svg xmlns="http://www.w3.org/2000/svg"
-                                    width="29" height="24" viewBox="0 0 29 24" fill="none">
+                            <div step_number="2" class="navigation-btns-item btn-navigate-form-step previous"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="29" height="24" viewBox="0 0 29 24"
+                                    fill="none">
                                     <path
                                         d="M11.0001 17.3079L4.85156 12.0001L11.0001 6.69238L11.82 7.40013L7.07051 11.5001H23.3862V12.5001H7.07051L11.82 16.6001L11.0001 17.3079Z"
                                         fill="black" />
@@ -375,855 +408,1048 @@
 
                 </div>
             </div>
+        </section>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const steps = document.querySelectorAll(".step");
+            const nextButtons = document.querySelectorAll(".navigation-btns-item.next");
+            const prevButtons = document.querySelectorAll(".navigation-btns-item.previous");
+            const progressSteps = document.querySelectorAll(".progress-step");
+            let currentStep = 0;
 
-            <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                    const steps = document.querySelectorAll(".step");
-                    const nextButtons = document.querySelectorAll(".navigation-btns-item.next");
-                    const prevButtons = document.querySelectorAll(".navigation-btns-item.previous");
-                    const progressSteps = document.querySelectorAll(".progress-step");
-                    let currentStep = 0;
-
-                    // Function to show the current step
-                    function showStep(step) {
-                        steps.forEach((stepElement, index) => {
-                            stepElement.style.display = index === step ? "block" : "none";
-                        });
-
-                        // Update progress bar
-                        progressSteps.forEach((progressStep, index) => {
-                            if (index <= step) {
-                                progressStep.classList.add("active");
-                            } else {
-                                progressStep.classList.remove("active");
-                            }
-                        });
-                    }
-
-                    // Event listener for "Next" buttons
-                    nextButtons.forEach((button) => {
-                        button.addEventListener("click", () => {
-                            if (currentStep < steps.length - 1) {
-                                currentStep++;
-                                showStep(currentStep);
-                            }
-                        });
-                    });
-
-                    // Event listener for "Previous" buttons
-                    prevButtons.forEach((button) => {
-                        button.addEventListener("click", () => {
-                            if (currentStep > 0) {
-                                currentStep--;
-                                showStep(currentStep);
-                            }
-                        });
-                    });
-
-                    // Initialize by showing the first step
-                    showStep(currentStep);
-                });
-            </script>
-
-
-            <script>
-                // Display the selected file name
-                document.getElementById("image-input").addEventListener("change", function() {
-                    const fileName = this.files[0] ? this.files[0].name : "No file selected";
-                    document.getElementById("file-name").innerText = `Selected File: ${fileName}`;
-                });
-            </script>
-            <script>
-                const countDisplay = document.getElementById('count');
-                const decrementButton = document.getElementById('decrement');
-                const incrementButton = document.getElementById('increment');
-
-                let count = 1;
-
-                decrementButton.addEventListener('click', () => {
-                    if (count > 0) {
-                        count--;
-                        countDisplay.textContent = count;
-                    }
+            // Function to show the current step
+            function showStep(step) {
+                steps.forEach((stepElement, index) => {
+                    stepElement.style.display = index === step ? "block" : "none";
                 });
 
-                incrementButton.addEventListener('click', () => {
-                    count++;
-                    countDisplay.textContent = count;
-                });
-            </script>
-            <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
-            <script>
-                ClassicEditor.create(document.querySelector('#editor')).catch(error => {
-                    console.error(error);
-                });
-            </script>
-            <script>
-                // Toggle dropdown visibility
-                function toggleDropdown(event) {
-                    const button = event.target.closest('.dropdown-button');
-                    const dropdownContent = button.nextElementSibling;
-                    // Close other open dropdowns
-                    document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
-                        if (dropdown !== dropdownContent) {
-                            dropdown.style.display = 'none';
-                        }
-                    });
-                    // Toggle the current dropdown
-                    dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-                }
-                // Toggle multiple selection
-                function toggleMultipleSelection(event) {
-                    event.preventDefault();
-                    const option = event.target;
-                    const dropdownContent = option.closest('.dropdown-content');
-                    const dropdownButton = dropdownContent.previousElementSibling;
-                    const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
-                    const selectedValue = option.getAttribute('data-value');
-                    // Check if the value is already selected
-                    const existingItem = selectedItemsContainer.querySelector(`[data-value="${selectedValue}"]`);
-                    if (existingItem) {
-                        // Remove the selected item
-                        existingItem.remove();
-                        option.classList.remove('disabled');
+                // Update progress bar
+                progressSteps.forEach((progressStep, index) => {
+                    if (index <= step) {
+                        progressStep.classList.add("active");
                     } else {
-                        // Add the new selected item
-                        const selectedItem = document.createElement('span');
-                        selectedItem.classList.add('selected-item');
-                        selectedItem.setAttribute('data-value', selectedValue);
-                        selectedItem.textContent = selectedValue;
-                        // Add a remove button
-                        const removeButton = document.createElement('span');
-                        removeButton.classList.add('remove');
-                        removeButton.textContent = '×';
-                        removeButton.onclick = () => {
-                            selectedItem.remove();
-                            option.classList.remove('disabled');
-                        };
-                        selectedItem.appendChild(removeButton);
-                        selectedItemsContainer.appendChild(selectedItem);
-                        option.classList.add('disabled');
+                        progressStep.classList.remove("active");
                     }
-                    // Show or hide the placeholder text
-                    const buttonText = dropdownButton.querySelector('.dropdown-button-text');
-                    if (selectedItemsContainer.children.length > 0) {
-                        buttonText.style.display = 'none';
-                    } else {
-                        buttonText.style.display = 'block';
+                });
+            }
+
+            // Event listener for "Next" buttons
+            nextButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    if (currentStep < steps.length - 1) {
+                        currentStep++;
+                        showStep(currentStep);
                     }
+                });
+            });
+
+            // Event listener for "Previous" buttons
+            prevButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    if (currentStep > 0) {
+                        currentStep--;
+                        showStep(currentStep);
+                    }
+                });
+            });
+
+            // Initialize by showing the first step
+            showStep(currentStep);
+        });
+    </script>
+    <script>
+        /**
+         * Define a function to navigate betweens form steps.
+         * It accepts one parameter. That is - step number.
+         */
+        const navigateToFormStep = (stepNumber) => {
+            /**
+             * Hide all form steps.
+             */
+            document.querySelectorAll(".form-step").forEach((formStepElement) => {
+                formStepElement.classList.add("d-none");
+            });
+            /**
+             * Mark all form steps as unfinished.
+             */
+            document
+                .querySelectorAll(".form-stepper-list")
+                .forEach((formStepHeader) => {
+                    formStepHeader.classList.add("form-stepper-unfinished");
+                    formStepHeader.classList.remove(
+                        "form-stepper-active",
+                        "form-stepper-completed"
+                    );
+                });
+            /**
+             * Show the current form step (as passed to the function).
+             */
+            document
+                .querySelector("#step-" + stepNumber)
+                .classList.remove("d-none");
+            /**
+             * Select the form step circle (progress bar).
+             */
+            const formStepCircle = document.querySelector(
+                'li[step="' + stepNumber + '"]'
+            );
+            /**
+             * Mark the current form step as active.
+             */
+            formStepCircle.classList.remove(
+                "form-stepper-unfinished",
+                "form-stepper-completed"
+            );
+            formStepCircle.classList.add("form-stepper-active");
+            /**
+             * Loop through each form step circles.
+             * This loop will continue up to the current step number.
+             * Example: If the current step is 3,
+             * then the loop will perform operations for step 1 and 2.
+             */
+            for (let index = 0; index < stepNumber; index++) {
+                /**
+                 * Select the form step circle (progress bar).
+                 */
+                const formStepCircle = document.querySelector(
+                    'li[step="' + index + '"]'
+                );
+                /**
+                 * Check if the element exist. If yes, then proceed.
+                 */
+                if (formStepCircle) {
+                    /**
+                     * Mark the form step as completed.
+                     */
+                    formStepCircle.classList.remove(
+                        "form-stepper-unfinished",
+                        "form-stepper-active"
+                    );
+                    formStepCircle.classList.add("form-stepper-completed");
                 }
-                // Close dropdown when clicking outside
-                window.onclick = function(event) {
-                    if (!event.target.closest('.dropdown')) {
-                        document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
-                            dropdown.style.display = 'none';
-                        });
-                    }
+            }
+        };
+        /**
+         * Select all form navigation buttons, and loop through them.
+         */
+        document
+            .querySelectorAll(".btn-navigate-form-step")
+            .forEach((formNavigationBtn) => {
+                /**
+                 * Add a click event listener to the button.
+                 */
+                formNavigationBtn.addEventListener("click", () => {
+                    /**
+                     * Get the value of the step.
+                     */
+                    const stepNumber = parseInt(
+                        formNavigationBtn.getAttribute("step_number")
+                    );
+                    /**
+                     * Call the function to navigate to the target form step.
+                     */
+                    navigateToFormStep(stepNumber);
+                });
+            });
+    </script>
+    <script>
+        // Display the selected file name
+        document.getElementById("image-input").addEventListener("change", function() {
+            const fileName = this.files[0] ? this.files[0].name : "No file selected";
+            document.getElementById("file-name").innerText = `Selected File: ${fileName}`;
+        });
+    </script>
+    <script>
+        const countDisplay = document.getElementById('count');
+        const decrementButton = document.getElementById('decrement');
+        const incrementButton = document.getElementById('increment');
+
+        let count = 1;
+
+        decrementButton.addEventListener('click', () => {
+            if (count > 0) {
+                count--;
+                countDisplay.textContent = count;
+            }
+        });
+
+        incrementButton.addEventListener('click', () => {
+            count++;
+            countDisplay.textContent = count;
+        });
+    </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector('#editor')).catch(error => {
+            console.error(error);
+        });
+    </script>
+    <script>
+        // Toggle dropdown visibility
+        function toggleDropdown(event) {
+            const button = event.target.closest('.dropdown-button');
+            const dropdownContent = button.nextElementSibling;
+            // Close other open dropdowns
+            document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
+                if (dropdown !== dropdownContent) {
+                    dropdown.style.display = 'none';
+                }
+            });
+            // Toggle the current dropdown
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+        // Toggle multiple selection
+        function toggleMultipleSelection(event) {
+            event.preventDefault();
+            const option = event.target;
+            const dropdownContent = option.closest('.dropdown-content');
+            const dropdownButton = dropdownContent.previousElementSibling;
+            const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
+            const selectedValue = option.getAttribute('data-value');
+            // Check if the value is already selected
+            const existingItem = selectedItemsContainer.querySelector(`[data-value="${selectedValue}"]`);
+            if (existingItem) {
+                // Remove the selected item
+                existingItem.remove();
+                option.classList.remove('disabled');
+            } else {
+                // Add the new selected item
+                const selectedItem = document.createElement('span');
+                selectedItem.classList.add('selected-item');
+                selectedItem.setAttribute('data-value', selectedValue);
+                selectedItem.textContent = selectedValue;
+                // Add a remove button
+                const removeButton = document.createElement('span');
+                removeButton.classList.add('remove');
+                removeButton.textContent = '×';
+                removeButton.onclick = () => {
+                    selectedItem.remove();
+                    option.classList.remove('disabled');
                 };
-            </script>
-            <script>
-                const decrementBtn = document.getElementById('decrement');
-                const incrementBtn = document.getElementById('increment');
-                const stepperValue = document.getElementById('stepper-value');
-
-                decrementBtn.addEventListener('click', () => {
-                    let value = parseInt(stepperValue.value, 10);
-                    if (value > 0) {
-                        stepperValue.value = value - 1;
-                    }
+                selectedItem.appendChild(removeButton);
+                selectedItemsContainer.appendChild(selectedItem);
+                option.classList.add('disabled');
+            }
+            // Show or hide the placeholder text
+            const buttonText = dropdownButton.querySelector('.dropdown-button-text');
+            if (selectedItemsContainer.children.length > 0) {
+                buttonText.style.display = 'none';
+            } else {
+                buttonText.style.display = 'block';
+            }
+        }
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
+                    dropdown.style.display = 'none';
                 });
-
-                incrementBtn.addEventListener('click', () => {
-                    let value = parseInt(stepperValue.value, 10);
-                    stepperValue.value = value + 1;
-                });
-            </script>
-            <style>
-                .footer-cta,
-                .footer-area,
-                .inflanar-header.inflanar-header__v2 {
-                    display: none;
-                }
-
-                .custom-font {
-                    margin: 0;
-                    padding: 20px 0px;
-                    font-family: "Poppins", serif;
-                    padding-bottom: 30px;
-                    min-height: 100vh;
-                    background: linear-gradient(0deg, #f4f6f9 0%, #f4f6f9 100%), #fff;
-                }
-
-                .campaign-main {
-                    border-radius: 12px;
-                    background: #FFF;
-                    padding: 24px 20px;
-                }
-
-                .compaign-container {
-                    font-family: "Poppins", serif;
-                    border-radius: 12px;
-                    background: #FFF;
-                    padding: 24px 20px;
-                }
-
-                .required {
-                    display: flex;
-                    gap: 2px;
-                    justify-content: start;
-                }
-
-                .step {
-                    display: none;
-                }
-
-                .step.active {
-                    display: block;
-                }
-
-                .campaign-main h1 {
-                    color: #21272A;
-                    font-size: 18px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 20px;
-                    margin: 0;
-                }
-
-                .campaign-main h2 {
-                    color: #000;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: normal;
-                    margin: 0;
-                }
-
-                .campaign-main p {
-                    color: #747474;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 300;
-                    line-height: normal;
-                    margin: 5px 0 0 0;
-                }
-
-                .campaign-main span {
-                    color: #000;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: normal;
-                }
-
-                .campaign-title input {
-                    border-radius: 6.694px !important;
-                    border: 0.837px solid #CFCFCF !important;
-                    background: #FFF;
-                    color: #000 !important;
-                    font-size: 14.5px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: normal;
-                    padding: 11px 12px !important;
-                    margin-top: 16px;
-                }
-
-                .campaign-btn {
-                    border-radius: 6.694px;
-                    border: 0.837px solid #CFCFCF;
-                    background: #FFF;
-                    padding: 11px 12px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 10px;
-                    width: 270px;
-                }
-
-                .campaign-btn:hover {
-                    background: #F1F1F1;
-                }
-
-                .campaign-btn label {
-                    margin: 0px;
-                }
-
-                .campaign-btn.custom-width {
-                    width: 195px;
-                    padding: 11px 5px;
-                    font-size: 14px;
-                }
-
-                .btns-group-radio {
-                    display: flex;
-                    gap: 18px;
-                    padding: 0;
-                }
-
-                .platforms .btns-group-radio input {
-                    border-radius: 6.694px;
-                    border: 0.837px solid #CFCFCF;
-                    background: #FFF;
-                    padding: 8px 12px;
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-                    gap: 10px;
-                    width: 178px;
-                }
-
-                .btns-group-radio div {
-                    display: flex;
-                    justify-content: start;
-                    align-items: center;
-                    gap: 10px;
-                }
-
-                .platform-btn {
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-                    gap: 12px;
-                    padding: 24px 0 0 0;
-                    width: 50%;
-                }
-
-                /* campaign page 2 styling  */
-                .logo {
-                    width: 48px;
-                    height: 48px;
-                    border-radius: 50%;
-                }
-
-                .platforms-item {
-                    display: flex;
-                    gap: 8px;
-                    align-items: center;
-                    margin-bottom: 16px;
-                }
-
-                .platforms .campaign-btn {
-                    color: #747474;
-                    font-size: 14px;
-                    font-weight: 500;
-                    width: 148px;
-                    padding: 8px;
-                }
-
-                .compaign-container h1 {
-                    color: #21272A;
-                    font-size: 18px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 20px;
-                    margin: 0
-                }
-
-                .compaign-container h2 {
-                    color: #000;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: normal;
-                    margin: 20px 0 5px 0;
-                }
-
-                .compaign-container p {
-                    color: #747474;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 300;
-                    line-height: normal;
-                    margin: 0 0 16px 0;
-                }
-
-                /* campaign page 2 styling end  */
-                /* radio button  */
-                .checkbox-custom,
-                .radio-custom {
-                    opacity: 0;
-                    position: absolute;
-                }
-
-                .checkbox-custom,
-                .checkbox-custom-label,
-                .radio-custom,
-                .radio-custom-label {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    cursor: pointer;
-                    font-size: 14px;
-                }
-
-                .checkbox-custom-label,
-                .radio-custom-label {
-                    position: relative;
-                }
-
-                .checkbox-custom+.checkbox-custom-label:before,
-                .radio-custom+.radio-custom-label:before {
-                    content: '';
-                    background: #fff;
-                    display: inline-block;
-                    vertical-align: middle;
-                    margin-right: 10px;
-                    text-align: center;
-                }
-
-
-                .checkbox-custom+.checkbox-custom-label:before,
-                .radio-custom+.radio-custom-label:before {
-                    border-radius: 50%;
-                    text-align: center;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 2px;
-                    font-size: 8px;
-                    height: 12px;
-                    width: 12px;
-                    outline: none;
-                    background: #DEDDF7;
-                    border: none;
-                }
-
-                .checkbox-custom:checked+.checkbox-custom-label:before,
-                .radio-custom:checked+.radio-custom-label:before {
-                    content: "\f00c";
-                    font-family: 'FontAwesome';
-                    color: #fff;
-                    background: #5856D6;
-                    text-align: center;
-                }
-
-                .radio-custom:focus+.radio-custom-label {
-                    outline: none;
-                }
-
-                /* radio button ends  */
-
-                .campaign-thumbnail {
-                    border-radius: 12px;
-                    border: 1px solid #D9D9D9;
-                    background: #FFF;
-                    display: flex;
-                    width: 420px;
-                    padding: 24px 23px;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 10px;
-                    flex-shrink: 0;
-                    margin-top: 20px;
-                }
-
-                .campaign-thumbnail h1 {
-                    color: #292D32;
-                    text-align: center;
-                    font-size: 20px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-                    margin: 0;
-                }
-
-                .campaign-thumbnail p {
-                    color: #A9ACB4;
-                    text-align: center;
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-                    margin: 0;
-                }
-
-                .file-input-wrapper {
-                    display: inline-block;
-                    position: relative;
-                    text-align: center;
-                }
-
-                .file-input {
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    opacity: 0;
-                    cursor: pointer;
-                }
-
-                .browse-button {
-                    display: inline-block;
-                    padding: 10px 20px;
-                    font-size: 16px;
-                    color: #6F6F6F;
-                    border-radius: 12px;
-                    border: 3.115px solid #CBD0DC;
-                    background: #FFF;
-                    text-align: center;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                }
-
-                .browse-button:hover {
-                    background-color: #e8e8e8;
-                    border-color: #b1b1b1;
-                }
-
-                .stepper {
-                    display: flex;
-                    align-items: center;
-                    overflow: hidden;
-                    background: #fff;
-                    width: 143px;
-                    border-radius: 10px;
-                    border: 1px solid #D9D9D9;
-                    background: #FFF;
-                }
-
-                .stepper-btn {
-                    flex: 1;
-                    border: none;
-                    color: #5856D6;
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                    text-align: center;
-                    transition: background-color 0.3s ease;
-                    padding: 8px 0;
-                }
-
-                .stepper-btn:hover {
-                    background-color: #e0e0e0;
-                }
-
-                .stepper-input {
-                    flex: 1;
-                    border: 1px solid #CFCFCF;
-                    border-bottom: none !important;
-                    border-top: none !important;
-                    text-align: center;
-                    font-size: 16px;
-                    font-weight: 500;
-                    outline: none;
-                    background-color: #fff;
-                    color: #000;
-                    padding: 8px 0 !important;
-                }
-
-                .input-container {
-                    display: flex;
-                    align-items: center;
-                    border: 0.84px solid #CFCFCF;
-                    border-radius: 6px;
-                    overflow: hidden;
-                    width: 100%;
-                    margin: 16px 0;
-                }
-
-                .input-container .text-input {
-                    flex: 1;
-                    border: none;
-                    padding: 8px 10px;
-                    outline: none;
-                    font-size: 14px;
-                }
-
-                .text-input:focus {
-                    outline: none;
-                }
-
-                .input-container .dropdown-budget {
-                    display: flex;
-                    align-items: center;
-                    background-color: #f4f4f4;
-                    border-left: 1px solid #d1d1d1;
-                    cursor: pointer;
-                }
-
-                .input-container .dropdown-budget select {
-                    border: none;
-                    background: transparent;
-                    font-size: 14px;
-                    appearance: none;
-                    outline: none;
-                    cursor: pointer;
-                }
-
-                .dropdown-card {
-                    width: 143px;
-                }
-
-                .dropdown-card select {
-                    width: 200px;
-                    padding: 10px;
-                    font-size: 1rem;
-                    border: 1px solid #ddd;
-                    border-radius: 5px;
-                    color: #555;
-                    background-color: #fff;
-                    appearance: none;
-                    -webkit-appearance: none;
-                    /* Safari */
-                    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23333'/%3E%3C/svg%3E");
-                    background-repeat: no-repeat;
-                    background-position: right 10px center;
-                    background-size: 10px 6px;
-                }
-
-                .dropdown:focus {
-                    border-color: #aaa;
-                    outline: none;
-                }
-
-                .navigation-btns {
-                    display: flex;
-                    gap: 20px;
-                    justify-content: flex-end;
-                    margin-top: 10%;
-                }
-
-                .navigation-btns-item {
-                    color: #000;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-                    border-radius: 6.694px;
-                    border: 0.837px solid #CFCFCF;
-                    background: #FFF;
-                    padding: 10px;
-                    cursor: pointer;
-                    display: flex;
-                    gap: 5px;
-                    align-items: center;
-                }
-
-                .navigation-btns-item.active {
-                    border: 0.837px solid #B2A6CC;
-                    background: #E0CFFF;
-                    display: flex;
-                    gap: 10px;
-                    align-items: center;
-                    justify-content: centrer;
-                    padding: 10px 30px;
-                }
-
-                .navigation-btns-item span {
-                    color: #000;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-                }
-
-                .navigation-btns-item:hover {
-                    background: #F1EDF8;
-                    transition: 500ms linear;
-                }
-
-                .text-input:focus {
-                    outline: none;
-                }
-
-                /* editor style start  */
-                .ck-content .table {
-                    width: unset;
-                }
-
-                h1 {
-                    color: #fff;
-                }
-
-                h1 svg {
-                    position: relative;
-                    top: 20px;
-                    margin-right: 10px;
-                }
-
-                .box-con {
-                    width: 953px;
-                    margin: 0;
-                }
-
-                /* Basic styling */
-                .dropdown-social {
-                    width: 100%;
-                    margin-bottom: 10%;
-                }
-
-                .dropdown {
-                    width: 100%;
-                    margin-bottom: 21px;
-                }
-
-                .dropdown h5 {
-                    color: #21272a;
-                    font-family: Poppins;
-                    font-size: 18px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 20px;
-                    margin-left: 6px;
-                }
-
-                /* Dropdown button styling */
-                .dropdown-button {
-                    background-color: #fff;
-                    padding: 13px 10px;
-                    font-size: 16px;
-                    width: 90%;
-                    cursor: pointer;
-                    text-align: left;
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 4px;
-                    border-radius: 12px;
-                    border: 1px solid #d9d9d9;
-                }
-
-                .dropdown-button-text {
-                    display: inline-block;
-                }
-
-                /* Ensure the selected items container (multiple select) is visible */
-                .selected-items {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 4px;
-                }
-
-                .selected-item {
-                    padding: 4px 14px;
-                    display: flex;
-                    align-items: center;
-                    border-radius: 5px;
-                    justify-content: space-between;
-                    background: #efefef;
-                    width: 140px;
-                    height: 41px;
-                    flex-shrink: 0;
-                    color: #21272a;
-                    font-family: 'Poppins';
-                    font-weight: 500;
-                    order: 2;
-                }
-
-                .selected-item .remove {
-                    cursor: pointer;
-                    margin-left: 5px;
-                    font-size: 24px;
-                    color: #999;
-                    display: block;
-                }
-
-                /* Hidden dropdown content */
-                .dropdown-content {
-                    display: none;
-                    position: absolute;
-                    top: 119%;
-                    left: 0;
-                    background-color: #fff;
-                    width: 90%;
-                    border: 1px solid #ccc;
-                    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-                    z-index: 1;
-                }
-
-                div#leftDropdown {
-                    left: 13px;
-                }
-
-                /* Dropdown links */
-                .dropdown-content a {
-                    color: black;
-                    padding: 12px 16px;
-                    text-decoration: none;
-                    display: block;
-                    cursor: pointer;
-                }
-
-                .dropdown-content a:hover {
-                    background-color: #ddd;
-                    text-decoration: none;
-                }
-
-                .dropdown-content a.selected {
-                    background-color: #d3f8e2;
-                    text-decoration: none;
-                    color: #4d9d44;
-                }
-
-                /* Search Button */
-                .search-button {
-                    width: 40px;
-                    height: 40px;
-                    background: #000;
-                    padding: 8px;
-                    border-radius: 10px;
-                }
-
-                #leftDropdownButton {
-                    border-right: 1px solid #c8c8c8;
-                }
-
-                div#rightDropdown a {
-                    width: fit-content;
-                    background-color: #f1f1f1;
-                    border-radius: 16px;
-                    padding: 4px 11px;
-                    font-size: 14px;
-                    margin-bottom: 9px;
-                    text-align: left;
-                    float: left;
-                    margin-right: 5px;
-                }
-
-                div#rightDropdown {
-                    padding: 10px 10px;
-                }
-
-                .ck.ck-reset {
-                    width: 90%;
-                }
-
-                /* editor style end  */
-
-                .campaign-progress-bar {
-                    display: flex;
-                    justify-content: center;
-                    margin: 0 20px 20px 20px;
-                    position: relative;
-                    gap: 20px;
-                }
-
-                .progress-step {
-                    flex: 1;
-                    text-align: center;
-                    padding: 10px;
-                    border-bottom: 3px solid lightgray;
-                    color: gray;
-                    font-weight: bold;
-                    position: relative;
-                }
-
-                .progress-step.active {
-                    border-bottom: 3px solid #007bff;
-                    color: #007bff;
-                }
-
-                /* .progress-step::before {
-                    content: '';
-                    width: 10px;
-                    height: 10px;
-                    border-radius: 50%;
-                    background: lightgray;
-                    position: absolute;
-                    top: -15px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                }
-
-                .progress-step.active::before {
-                    background: #007bff;
-                } */
-            </style>
+            }
+        };
+    </script>
+    <script>
+        const decrementBtn = document.getElementById('decrement');
+        const incrementBtn = document.getElementById('increment');
+        const stepperValue = document.getElementById('stepper-value');
+
+        decrementBtn.addEventListener('click', () => {
+            let value = parseInt(stepperValue.value, 10);
+            if (value > 0) {
+                stepperValue.value = value - 1;
+            }
+        });
+
+        incrementBtn.addEventListener('click', () => {
+            let value = parseInt(stepperValue.value, 10);
+            stepperValue.value = value + 1;
+        });
+    </script>
+    <style>
+        .footer-cta,
+        .footer-area,
+        .inflanar-header.inflanar-header__v2,
+        .campaign-progress-bar {
+            display: none;
+        }
+
+        .custom-font {
+            margin: 0;
+            padding: 20px 0px;
+            font-family: "Poppins", serif;
+            padding-bottom: 30px;
+            min-height: 100vh;
+            background: linear-gradient(0deg, #f4f6f9 0%, #f4f6f9 100%), #fff;
+        }
+
+        .campaign-main {
+            border-radius: 12px;
+            background: #FFF;
+            padding: 24px 20px;
+        }
+
+        .compaign-container {
+            font-family: "Poppins", serif;
+            border-radius: 12px;
+            background: #FFF;
+            padding: 24px 20px;
+        }
+
+        .required {
+            display: flex;
+            gap: 2px;
+            justify-content: start;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .campaign-main h1 {
+            color: #21272A;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            margin: 0;
+        }
+
+        .campaign-main h2 {
+            color: #000;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin: 0;
+        }
+
+        .campaign-main p {
+            color: #747474;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+            margin: 5px 0 0 0;
+        }
+
+        .campaign-main span {
+            color: #000;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .campaign-title input {
+            border-radius: 6.694px !important;
+            border: 0.837px solid #CFCFCF !important;
+            background: #FFF;
+            color: #000 !important;
+            font-size: 14.5px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            padding: 11px 12px !important;
+            margin-top: 16px;
+        }
+
+        .campaign-btn {
+            border-radius: 6.694px;
+            border: 0.837px solid #CFCFCF;
+            background: #FFF;
+            padding: 11px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 270px;
+        }
+
+        .campaign-btn:hover {
+            background: #F1F1F1;
+        }
+
+        .campaign-btn label {
+            margin: 0px;
+        }
+
+        .campaign-btn.custom-width {
+            width: 195px;
+            padding: 11px 5px;
+            font-size: 14px;
+        }
+
+        .btns-group-radio {
+            display: flex;
+            gap: 18px;
+            padding: 0;
+        }
+
+        .platforms .btns-group-radio input {
+            border-radius: 6.694px;
+            border: 0.837px solid #CFCFCF;
+            background: #FFF;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 10px;
+            width: 178px;
+        }
+
+        .btns-group-radio div {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .platform-btn {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 24px 0 0 0;
+            width: 50%;
+        }
+
+        /* campaign page 2 styling  */
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+
+        .platforms-item {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .platforms .campaign-btn {
+            color: #747474;
+            font-size: 14px;
+            font-weight: 500;
+            width: 148px;
+            padding: 8px;
+        }
+
+        .compaign-container h1 {
+            color: #21272A;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            margin: 0
+        }
+
+        .compaign-container h2 {
+            color: #000;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin: 20px 0 5px 0;
+        }
+
+        .compaign-container p {
+            color: #747474;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+            margin: 0 0 16px 0;
+        }
+
+        /* campaign page 2 styling end  */
+        /* radio button  */
+        .checkbox-custom,
+        .radio-custom {
+            opacity: 0;
+            position: absolute;
+        }
+
+        .checkbox-custom,
+        .checkbox-custom-label,
+        .radio-custom,
+        .radio-custom-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .checkbox-custom-label,
+        .radio-custom-label {
+            position: relative;
+        }
+
+        .checkbox-custom+.checkbox-custom-label:before,
+        .radio-custom+.radio-custom-label:before {
+            content: '';
+            background: #fff;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+
+        .checkbox-custom+.checkbox-custom-label:before,
+        .radio-custom+.radio-custom-label:before {
+            border-radius: 50%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px;
+            font-size: 8px;
+            height: 12px;
+            width: 12px;
+            outline: none;
+            background: #DEDDF7;
+            border: none;
+        }
+
+        .checkbox-custom:checked+.checkbox-custom-label:before,
+        .radio-custom:checked+.radio-custom-label:before {
+            content: "\f00c";
+            font-family: 'FontAwesome';
+            color: #fff;
+            background: #5856D6;
+            text-align: center;
+        }
+
+        .radio-custom:focus+.radio-custom-label {
+            outline: none;
+        }
+
+        /* radio button ends  */
+
+        .campaign-thumbnail {
+            border-radius: 12px;
+            border: 1px solid #D9D9D9;
+            background: #FFF;
+            display: flex;
+            width: 420px;
+            padding: 24px 23px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            margin-top: 20px;
+        }
+
+        .campaign-thumbnail h1 {
+            color: #292D32;
+            text-align: center;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin: 0;
+        }
+
+        .campaign-thumbnail p {
+            color: #A9ACB4;
+            text-align: center;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            margin: 0;
+        }
+
+        .file-input-wrapper {
+            display: inline-block;
+            position: relative;
+            text-align: center;
+        }
+
+        .file-input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .browse-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #6F6F6F;
+            border-radius: 12px;
+            border: 3.115px solid #CBD0DC;
+            background: #FFF;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .browse-button:hover {
+            background-color: #e8e8e8;
+            border-color: #b1b1b1;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #fff;
+            width: 143px;
+            border-radius: 10px;
+            border: 1px solid #D9D9D9;
+            background: #FFF;
+        }
+
+        .stepper-btn {
+            flex: 1;
+            border: none;
+            color: #5856D6;
+            font-size: 1.5rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            padding: 8px 0;
+        }
+
+        .stepper-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .stepper-input {
+            flex: 1;
+            border: 1px solid #CFCFCF;
+            border-bottom: none !important;
+            border-top: none !important;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            outline: none;
+            background-color: #fff;
+            color: #000;
+            padding: 8px 0 !important;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            border: 0.84px solid #CFCFCF;
+            border-radius: 6px;
+            overflow: hidden;
+            width: 100%;
+            margin: 16px 0;
+        }
+
+        .input-container .text-input {
+            flex: 1;
+            border: none;
+            padding: 8px 10px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .text-input:focus {
+            outline: none;
+        }
+
+        .input-container .dropdown-budget {
+            display: flex;
+            align-items: center;
+            background-color: #f4f4f4;
+            border-left: 1px solid #d1d1d1;
+            cursor: pointer;
+        }
+
+        .input-container .dropdown-budget select {
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            appearance: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .dropdown-card {
+            width: 143px;
+        }
+
+        .dropdown-card select {
+            width: 200px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: #555;
+            background-color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+            /* Safari */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 6z' fill='%23333'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 10px 6px;
+        }
+
+        .dropdown:focus {
+            border-color: #aaa;
+            outline: none;
+        }
+
+        .navigation-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-end;
+            margin-top: 10%;
+        }
+
+        .navigation-btns-item {
+            color: #000;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            border-radius: 6.694px;
+            border: 0.837px solid #CFCFCF;
+            background: #FFF;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .navigation-btns-item.active {
+            border: 0.837px solid #B2A6CC;
+            background: #E0CFFF;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: centrer;
+            padding: 10px 30px;
+        }
+
+        .navigation-btns-item span {
+            color: #000;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+
+        .navigation-btns-item:hover {
+            background: #F1EDF8;
+            transition: 500ms linear;
+        }
+
+        .text-input:focus {
+            outline: none;
+        }
+
+        /* editor style start  */
+        .ck-content .table {
+            width: unset;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        h1 svg {
+            position: relative;
+            top: 20px;
+            margin-right: 10px;
+        }
+
+        .box-con {
+            width: 953px;
+            margin: 0;
+        }
+
+        /* Basic styling */
+        .dropdown-social {
+            width: 100%;
+            margin-bottom: 10%;
+        }
+
+        .dropdown {
+            width: 100%;
+            margin-bottom: 21px;
+        }
+
+        .dropdown h5 {
+            color: #21272a;
+            font-family: Poppins;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 20px;
+            margin-left: 6px;
+        }
+
+        /* Dropdown button styling */
+        .dropdown-button {
+            background-color: #fff;
+            padding: 13px 10px;
+            font-size: 16px;
+            width: 90%;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            border-radius: 12px;
+            border: 1px solid #d9d9d9;
+        }
+
+        .dropdown-button-text {
+            display: inline-block;
+        }
+
+        /* Ensure the selected items container (multiple select) is visible */
+        .selected-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .selected-item {
+            padding: 4px 14px;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            justify-content: space-between;
+            background: #efefef;
+            width: 140px;
+            height: 41px;
+            flex-shrink: 0;
+            color: #21272a;
+            font-family: 'Poppins';
+            font-weight: 500;
+            order: 2;
+        }
+
+        .selected-item .remove {
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 24px;
+            color: #999;
+            display: block;
+        }
+
+        /* Hidden dropdown content */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 119%;
+            left: 0;
+            background-color: #fff;
+            width: 90%;
+            border: 1px solid #ccc;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        div#leftDropdown {
+            left: 13px;
+        }
+
+        /* Dropdown links */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            text-decoration: none;
+        }
+
+        .dropdown-content a.selected {
+            background-color: #d3f8e2;
+            text-decoration: none;
+            color: #4d9d44;
+        }
+
+        /* Search Button */
+        .search-button {
+            width: 40px;
+            height: 40px;
+            background: #000;
+            padding: 8px;
+            border-radius: 10px;
+        }
+
+        #leftDropdownButton {
+            border-right: 1px solid #c8c8c8;
+        }
+
+        div#rightDropdown a {
+            width: fit-content;
+            background-color: #f1f1f1;
+            border-radius: 16px;
+            padding: 4px 11px;
+            font-size: 14px;
+            margin-bottom: 9px;
+            text-align: left;
+            float: left;
+            margin-right: 5px;
+        }
+
+        div#rightDropdown {
+            padding: 10px 10px;
+        }
+
+        .ck.ck-reset {
+            width: 90%;
+        }
+
+        /* editor style end  */
+
+        /* stepper styling  */
+        ul.form-stepper {
+            counter-reset: section;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 7rem;
+        }
+
+        ul.form-stepper .form-stepper-circle {
+            position: relative;
+        }
+
+        ul.form-stepper .form-stepper-circle span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+        }
+
+        .form-stepper-horizontal {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        ul.form-stepper>li:not(:last-of-type) {
+            margin-bottom: 0.625rem;
+            -webkit-transition: margin-bottom 0.4s;
+            -o-transition: margin-bottom 0.4s;
+            transition: margin-bottom 0.4s;
+        }
+
+        .form-stepper-horizontal>li:not(:last-of-type) {
+            margin-bottom: 0 !important;
+        }
+
+        .form-stepper-horizontal li {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: start;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+        }
+
+        .form-stepper-horizontal li:not(:last-child):after {
+            position: relative;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            height: 2px;
+            content: "";
+            top: 32%;
+        }
+
+        .form-stepper-horizontal li:after {
+            background-color: #dee2e6;
+        }
+
+        .form-stepper-horizontal li.form-stepper-completed:after {
+            background-color: #6036AE;
+        }
+
+        .form-stepper-horizontal li:last-child {
+            flex: unset;
+        }
+
+        ul.form-stepper li a .form-stepper-circle {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin-right: 0;
+            line-height: 1.7rem;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.38);
+            border-radius: 50%;
+        }
+
+        .form-stepper .form-stepper-active .form-stepper-circle {
+            background-color: #4361ee !important;
+            color: #fff;
+        }
+
+        .form-stepper .form-stepper-active .label {
+            color: #4361ee !important;
+        }
+
+        .form-stepper .form-stepper-active .form-stepper-circle:hover {
+            background-color: #4361ee !important;
+            color: #fff !important;
+        }
+
+        .form-stepper .form-stepper-unfinished .form-stepper-circle {
+            background-color: #f8f7ff;
+        }
+
+        .form-stepper .form-stepper-completed .form-stepper-circle {
+            background-color: #6036ae !important;
+            color: #fff;
+        }
+
+        .form-stepper .form-stepper-completed .label {
+            color: #6036ae !important;
+        }
+
+        .form-stepper .form-stepper-completed .form-stepper-circle:hover {
+            background-color: #6036ae !important;
+            color: #fff !important;
+        }
+
+        .form-stepper .form-stepper-active span.text-muted {
+            color: #fff !important;
+        }
+
+        .form-stepper .form-stepper-completed span.text-muted {
+            color: #fff !important;
+        }
+
+        .form-stepper .label {
+            font-size: 14px;
+            margin-top: 0.5rem;
+        }
+
+        .form-stepper a {
+            cursor: default;
+        }
+    </style>
