@@ -9,11 +9,6 @@
     <div class="main-content">
         <section class="section">
             <div class="section-body">
-                <div class="campaign-progress-bar">
-                    <div class="progress-step active" data-step="1">Basic</div>
-                    <div class="progress-step" data-step="2">Content</div>
-                    <div class="progress-step" data-step="3">Requirements</div>
-                </div>
                 <!-- Form Steps / Progress Bar -->
                 <div class="container">
                     <ul class="form-stepper form-stepper-horizontal">
@@ -51,7 +46,7 @@
                     <form id="campaignForm" method="POST" action="{{ route('user.campaign.store') }}"
                         enctype="multipart/form-data">
                         @csrf
-                        <div id="step-1" class="campaign-main step active">
+                        <div id="step-1" class="campaign-main form-step">
                             <div class="required">
                                 <h2>{{ __('admin.Campaign Title') }}</h2> <svg xmlns="http://www.w3.org/2000/svg"
                                     width="9" height="9" viewBox="0 0 9 9" fill="none">
@@ -211,18 +206,19 @@
                             </div>
                             <div class="navigation-btns">
                                 <div class="navigation-btns-item previous">{{ __('admin.Previous') }}</div>
-                                <div class="navigation-btns-item next active"><span>{{ __('admin.Next') }}</span><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
+                                <div step_number="2" class="navigation-btns-item active">
+                                    <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path
                                             d="M14.6922 6.69212L20 11.9999L14.6922 17.3076L13.9845 16.5999L18.0845 12.4999L4 12.4999V11.4999L18.0845 11.4999L13.9845 7.39987L14.6922 6.69212Z"
                                             fill="black" />
-                                    </svg></div>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                         {{-- Section 1 Campaign Basic Ends  --}}
                         {{-- Section 2 Campaign Content  --}}
-                        <div id="step-2" class="compaign-container step">
+                        <div id="step-2" class="compaign-container form-step d-none">
                             <div class="inner-content">
                                 <div class="platforms">
                                     <div class="platforms-item">
@@ -256,7 +252,7 @@
                                 <h2>{{ __('admin.Content Placement') }}</h2>
                                 <p>{{ __('admin.Select the content place where influencer will post content to promote your band') }}
                                 </p>
-                                <form class="btns-group-radio">
+                                <div class="btns-group-radio">
                                     <div class="campaign-btn">
                                         <input type="radio" id='photo' value="photo" name="placement"
                                             class="radio-custom" checked />
@@ -276,7 +272,7 @@
                                         <label for='stories'
                                             class="radio-custom-label">{{ __('admin.Stories') }}</label>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                             <h2>{{ __('admin.Description') }}</h2>
                             <p>{{ __('admin.Describe your campaign, your description will understand the influencer actually how you want to promote your brand') }}
@@ -325,24 +321,26 @@
                                 </div>
                             </div>
                             <div class="navigation-btns">
-                                <div class="navigation-btns-item previous active"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="29" height="24" viewBox="0 0 29 24" fill="none">
+                                <div step_number="1" class="navigation-btns-item active"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="29" height="24"
+                                        viewBox="0 0 29 24" fill="none">
                                         <path
                                             d="M11.0001 17.3079L4.85156 12.0001L11.0001 6.69238L11.82 7.40013L7.07051 11.5001H23.3862V12.5001H7.07051L11.82 16.6001L11.0001 17.3079Z"
                                             fill="black" />
                                     </svg><span>{{ __('admin.Previous') }}</span></div>
-                                <div class="navigation-btns-item next active"><span>{{ __('admin.Next') }}</span><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
+                                <div step_number="3" class="navigation-btns-item active">
+                                    <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path
                                             d="M14.6922 6.69212L20 11.9999L14.6922 17.3076L13.9845 16.5999L18.0845 12.4999L4 12.4999V11.4999L18.0845 11.4999L13.9845 7.39987L14.6922 6.69212Z"
                                             fill="black" />
-                                    </svg></div>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                         {{-- Section 2 Campaign Content  Ends --}}
                         {{-- Section 3 Campaign Requirement  --}}
-                        <div id="step-3" class="compaign-container step">
+                        <div id="step-3" class="compaign-container form-step d-none">
                             <h2>{{ __('admin.Category') }}</h2>
                             <div class="campaign-title">
                                 <input type="text" name="Category" placeholder="" />
@@ -410,13 +408,13 @@
                                 </div>
                             </div>
                             <div class="navigation-btns">
-                                <div class="navigation-btns-item previous"><svg xmlns="http://www.w3.org/2000/svg"
+                                <div step_number="2" class="navigation-btns-item"><svg xmlns="http://www.w3.org/2000/svg"
                                         width="29" height="24" viewBox="0 0 29 24" fill="none">
                                         <path
                                             d="M11.0001 17.3079L4.85156 12.0001L11.0001 6.69238L11.82 7.40013L7.07051 11.5001H23.3862V12.5001H7.07051L11.82 16.6001L11.0001 17.3079Z"
                                             fill="black" />
                                     </svg><span>{{ __('admin.Previous') }}</span></div>
-                                <div class="navigation-btns-item active"><span>{{ __('admin.Submit') }}</span></div>
+                                <button class="navigation-btns-item active"><span>{{ __('admin.Submit') }}</span></button>
                             </div>
                         </div>
                         {{-- Section 3 Campaign Requirement Ends --}}
@@ -426,68 +424,10 @@
         </section>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const steps = document.querySelectorAll(".step");
-            const nextButtons = document.querySelectorAll(".navigation-btns-item.next");
-            const prevButtons = document.querySelectorAll(".navigation-btns-item.previous");
-            const progressSteps = document.querySelectorAll(".progress-step");
-            let currentStep = 0;
-
-            // Function to show the current step
-            function showStep(step) {
-                steps.forEach((stepElement, index) => {
-                    stepElement.style.display = index === step ? "block" : "none";
-                });
-
-                // Update progress bar
-                progressSteps.forEach((progressStep, index) => {
-                    if (index <= step) {
-                        progressStep.classList.add("active");
-                    } else {
-                        progressStep.classList.remove("active");
-                    }
-                });
-            }
-
-            // Event listener for "Next" buttons
-            nextButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                    if (currentStep < steps.length - 1) {
-                        currentStep++;
-                        showStep(currentStep);
-                    }
-                });
-            });
-
-            // Event listener for "Previous" buttons
-            prevButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                    if (currentStep > 0) {
-                        currentStep--;
-                        showStep(currentStep);
-                    }
-                });
-            });
-
-            // Initialize by showing the first step
-            showStep(currentStep);
-        });
-    </script>
-    <script>
-        /**
-         * Define a function to navigate betweens form steps.
-         * It accepts one parameter. That is - step number.
-         */
         const navigateToFormStep = (stepNumber) => {
-            /**
-             * Hide all form steps.
-             */
             document.querySelectorAll(".form-step").forEach((formStepElement) => {
                 formStepElement.classList.add("d-none");
             });
-            /**
-             * Mark all form steps as unfinished.
-             */
             document
                 .querySelectorAll(".form-stepper-list")
                 .forEach((formStepHeader) => {
@@ -497,46 +437,22 @@
                         "form-stepper-completed"
                     );
                 });
-            /**
-             * Show the current form step (as passed to the function).
-             */
             document
                 .querySelector("#step-" + stepNumber)
                 .classList.remove("d-none");
-            /**
-             * Select the form step circle (progress bar).
-             */
             const formStepCircle = document.querySelector(
                 'li[step="' + stepNumber + '"]'
             );
-            /**
-             * Mark the current form step as active.
-             */
             formStepCircle.classList.remove(
                 "form-stepper-unfinished",
                 "form-stepper-completed"
             );
             formStepCircle.classList.add("form-stepper-active");
-            /**
-             * Loop through each form step circles.
-             * This loop will continue up to the current step number.
-             * Example: If the current step is 3,
-             * then the loop will perform operations for step 1 and 2.
-             */
             for (let index = 0; index < stepNumber; index++) {
-                /**
-                 * Select the form step circle (progress bar).
-                 */
                 const formStepCircle = document.querySelector(
                     'li[step="' + index + '"]'
                 );
-                /**
-                 * Check if the element exist. If yes, then proceed.
-                 */
                 if (formStepCircle) {
-                    /**
-                     * Mark the form step as completed.
-                     */
                     formStepCircle.classList.remove(
                         "form-stepper-unfinished",
                         "form-stepper-active"
@@ -545,25 +461,13 @@
                 }
             }
         };
-        /**
-         * Select all form navigation buttons, and loop through them.
-         */
         document
-            .querySelectorAll(".btn-navigate-form-step")
+            .querySelectorAll(".navigation-btns-item")
             .forEach((formNavigationBtn) => {
-                /**
-                 * Add a click event listener to the button.
-                 */
                 formNavigationBtn.addEventListener("click", () => {
-                    /**
-                     * Get the value of the step.
-                     */
                     const stepNumber = parseInt(
                         formNavigationBtn.getAttribute("step_number")
                     );
-                    /**
-                     * Call the function to navigate to the target form step.
-                     */
                     navigateToFormStep(stepNumber);
                 });
             });
@@ -684,8 +588,8 @@
         .footer-cta,
         .footer-area,
         .inflanar-header.inflanar-header__v2,
-        .campaign-progress-bar {
-            display: none;
+        {
+        display: none;
         }
 
         .custom-font {
