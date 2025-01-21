@@ -60,8 +60,8 @@
                                         <span class="checkbox__label">{{ __('admin.Card') }}</span>
                                     </label>
                                     <div class="card-logos">
-                                        <img src="./public/frontend/img/visa.svg" alt="Cards" />
-                                        <img src="./public/frontend/img/master-card.svg" alt="Cards" />
+                                        <img src="{{ asset('/uploads/checkout/visa.png') }}" alt="Cards" />
+                                        <img src="{{ asset('/uploads/checkout/master.png') }}" alt="Cards" />
                                     </div>
                                     <!-- billing details Card start -->
                                     <div id="card-billing-details" class="billing-details hidden">
@@ -76,14 +76,14 @@
                                             <div class="card-number-input">
                                                 <input type="text" id="card-number" placeholder="1234 1234 1234" />
                                                 <div class="card-icons">
-                                                    <img src="./public/frontend/img/visa.svg" alt="Cards" />
-                                                    <img src="./public/frontend/img/master-card.svg" alt="Cards" />
+                                                   <img src="{{ asset('/uploads/checkout/visa.png') }}" alt="Cards" />
+                                        <img src="{{ asset('/uploads/checkout/master.png') }}" alt="Cards" />
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-row-expiry">
-                                            <div class="form-group">
+                                            <div class="form-group 11">
                                                 <label for="expiry-month">{{ __('admin.Expiry Date') }} <span
                                                         class="required">*</span></label>
                                                 <div class="expiry-date">
@@ -102,7 +102,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group 22">
                                                 <label for="cvv">{{ __('admin.CVV') }}<span
                                                         class="required">*</span></label>
                                                 <input type="text" id="cvv" placeholder="XXX" />
@@ -185,7 +185,7 @@
                                     <!-- billing details Card ends -->
                                 </div>
 
-                                <div class="inputs-group">
+                                <!-- <div class="inputs-group paypal">
                                     <label class="checkbox">
                                         <input class="checkbox__input payment-method" type="checkbox" name="dummy1" />
                                         <span class="checkbox__label">{{ __('admin.Pay with PayPal') }}</span>
@@ -194,16 +194,16 @@
                                     <div class="card-logos">
                                         <img src="./public/frontend/img/paypal.svg" alt="PayPal" />
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="inputs-group">
+                                <div class="inputs-group Stripe">
                                     <label class="checkbox">
                                         <input class="checkbox__input payment-method" type="checkbox"
                                             name="payment-method" id="stripe-payment" />
-                                        <span class="checkbox__label">{{ __('admin.Pay with Stripe') }}</span>
+                                        <span class="checkbox__label">{{ __('admin.Pay with PayPal') }}</span>
                                     </label>
                                     <div class="card-logos">
-                                        <img src="./public/frontend/img/stripe.svg" alt="Stripe" />
+                                        <img src="{{ asset('/uploads/checkout/paypal.png') }}" alt="paypal" />
                                     </div>
                                     <!-- billing details Stripe Starts -->
                                     <div id="stripe-billing-details" class="billing-details hidden">
@@ -261,7 +261,7 @@
                             <div class="aside-inner-sec">
                                 <div class="image-box">
                                     <div>
-                                        <img src="https://s3-alpha-sig.figma.com/img/0936/2c37/10541d2d44297ae91b60bbf7cfdb055a?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Kdt0lBezKoeTOc~KtAkJgsGHdwwGbObz5vPxcoyDuYwTkpWOM2anRCv6N6CzBThPqnbagKiUmOyRJ5PU5x8dtW-ODWRK9LjjrvljhZoYDylp6YGYWVRIxTk1Lb0LvyvNzCdmedX41-DT0F-iTrm8e2LqhUBCrqeqlk4qNVTdeN0r2X8CH~2ZGepsWCUPDZc8x2XHHJH~ZBg7dvKKurtmSPCeMycIg9uleFU~jx4L3WYwtLYskWVwE7Cok0B3JPVO9bxiWBOyTLPjzZuNf3orIvdYZS31lVvY~ilEp~zub6y1siKTsbQJMG3dpzn8N7elb5PY50qHX5xMZqgWxJ-40Q__"
+                                        <img src="{{ asset('/uploads/checkout/img1.png') }}"
                                             alt="Item" />
                                     </div>
 
@@ -281,7 +281,7 @@
                             <div class="aside-inner-sec">
                                 <div class="image-box">
                                     <div>
-                                        <img src="https://s3-alpha-sig.figma.com/img/0936/2c37/10541d2d44297ae91b60bbf7cfdb055a?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Kdt0lBezKoeTOc~KtAkJgsGHdwwGbObz5vPxcoyDuYwTkpWOM2anRCv6N6CzBThPqnbagKiUmOyRJ5PU5x8dtW-ODWRK9LjjrvljhZoYDylp6YGYWVRIxTk1Lb0LvyvNzCdmedX41-DT0F-iTrm8e2LqhUBCrqeqlk4qNVTdeN0r2X8CH~2ZGepsWCUPDZc8x2XHHJH~ZBg7dvKKurtmSPCeMycIg9uleFU~jx4L3WYwtLYskWVwE7Cok0B3JPVO9bxiWBOyTLPjzZuNf3orIvdYZS31lVvY~ilEp~zub6y1siKTsbQJMG3dpzn8N7elb5PY50qHX5xMZqgWxJ-40Q__"
+                                        <img src="{{ asset('/uploads/checkout/img1.png') }}"
                                             alt="Item" />
                                     </div>
 
@@ -301,7 +301,7 @@
                             <div class="aside-inner-sec">
                                 <div class="image-box">
                                     <div>
-                                        <img src="https://s3-alpha-sig.figma.com/img/0936/2c37/10541d2d44297ae91b60bbf7cfdb055a?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Kdt0lBezKoeTOc~KtAkJgsGHdwwGbObz5vPxcoyDuYwTkpWOM2anRCv6N6CzBThPqnbagKiUmOyRJ5PU5x8dtW-ODWRK9LjjrvljhZoYDylp6YGYWVRIxTk1Lb0LvyvNzCdmedX41-DT0F-iTrm8e2LqhUBCrqeqlk4qNVTdeN0r2X8CH~2ZGepsWCUPDZc8x2XHHJH~ZBg7dvKKurtmSPCeMycIg9uleFU~jx4L3WYwtLYskWVwE7Cok0B3JPVO9bxiWBOyTLPjzZuNf3orIvdYZS31lVvY~ilEp~zub6y1siKTsbQJMG3dpzn8N7elb5PY50qHX5xMZqgWxJ-40Q__"
+                                        <img src="{{ asset('/uploads/checkout/img1.png') }}"
                                             alt="Item" />
                                     </div>
 

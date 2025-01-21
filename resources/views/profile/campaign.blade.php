@@ -8,12 +8,14 @@
 
     <div class="main-content">
         <section class="section">
+
             <div class="section-body">
                 <div class="campaign-progress-bar">
                     <div class="progress-step active" data-step="1">Basic</div>
                     <div class="progress-step" data-step="2">Content</div>
                     <div class="progress-step" data-step="3">Requirements</div>
                 </div>
+
 
                 <div class="container">
                     {{-- Section 1 Campaign Basic  --}}
