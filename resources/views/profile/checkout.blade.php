@@ -196,6 +196,10 @@
                                             <img src="./public/frontend/img/paypal.svg" alt="PayPal" />
                                         </div>
                                     </div> -->
+                                        <div class="card-logos">
+                                            <img src="./public/frontend/img/paypal.svg" alt="PayPal" />
+                                        </div>
+                                    </div> -->
 
                                 <div class="inputs-group Stripe">
                                     <label class="checkbox">
@@ -219,8 +223,10 @@
                                             <div class="card-number-input">
                                                 <input type="text" id="card-number" placeholder="1234 1234 1234" />
                                                 <div class="card-icons">
-                                                    <img src="./public/frontend/img/visa.svg" alt="Cards" />
-                                                    <img src="./public/frontend/img/master-card.svg" alt="Cards" />
+                                                    <img src="{{ asset('/uploads/checkout/visa.png') }}"
+                                                        alt="Cards" />
+                                                    <img src="{{ asset('/uploads/checkout/master.png') }}"
+                                                        alt="Cards" />
                                                 </div>
                                             </div>
                                         </div>
@@ -259,28 +265,63 @@
                         <div class="order-aside">
                             <h4>{{ __('admin.Your Order') }}</h4>
                             <hr class="border" />
-                        
-                            @foreach($cartItems as $item)
-                                <div class="aside-inner-sec">
-                                    <div class="image-box">
-                                        <div>
-                                            <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}" />
-                                        </div>
-                        
-                                        <div>
-                                            <h4>{{ $item['name'] }}</h4>
-                                            {{-- <h5>{{ $item['brand'] }}</h5> --}}
-                                        </div>
-                                    </div>
-                        
+                            <div class="aside-inner-sec">
+                                <div class="image-box">
                                     <div>
-                                        <h6>${{ number_format($item['price'], 2) }}</h6>
+                                        <img src="{{ asset('/uploads/checkout/img1.png') }}" alt="Item" />
+                                    </div>
+
+                                    <div>
+                                        <h4>{{ __('admin.Travel Backpack') }}</h4>
+                                        <h5>{{ __('admin.Erin John') }}</h5>
                                     </div>
                                 </div>
-                        
-                                <hr class="border" />
-                            @endforeach
-                        
+
+                                <div>
+                                    <h6>$15.00</h6>
+                                </div>
+                            </div>
+
+                            <hr class="border" />
+
+                            <div class="aside-inner-sec">
+                                <div class="image-box">
+                                    <div>
+                                        <img src="{{ asset('/uploads/checkout/img1.png') }}" alt="Item" />
+                                    </div>
+
+                                    <div>
+                                        <h4>{{ __('admin.Carry on Backpack') }}</h4>
+                                        <h5>{{ __('admin.Erin John') }}</h5>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h6>$15.00</h6>
+                                </div>
+                            </div>
+
+                            <hr class="border" />
+
+                            <div class="aside-inner-sec">
+                                <div class="image-box">
+                                    <div>
+                                        <img src="{{ asset('/uploads/checkout/img1.png') }}" alt="Item" />
+                                    </div>
+
+                                    <div>
+                                        <h4>{{ __('admin.Beraliy Backpack') }}</h4>
+                                        <h5>{{ __('admin.Erin John') }}</h5>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h6>$15.00</h6>
+                                </div>
+                            </div>
+
+                            <hr class="border" />
+
                             <div class="total-amount">
                                 <h5>{{ __('admin.Subtotal') }}</h5>
                                 <h4>${{ number_format($totalPrice, 2) }}</h4>
