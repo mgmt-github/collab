@@ -556,8 +556,15 @@ class ProfileController extends Controller
 
         ]);
     }
-    function campaign_store()
+    function campaign_store(Request $request)
     {
+
+        dd($request->all());
+        return view('profile.campaign');
+    }
+    function campaign_create()
+    {
+
 
         return view('profile.campaign');
     }
