@@ -214,7 +214,7 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
         Route::group(['as' => 'user.', 'prefix' => 'user', 'middleware' => ['CheckClient']], function () {
 
-            Route::controller(ProfileController::class)->group(function () {
+            Route::controller(ProfileCocantroller::class)->group(function () {
                 Route::get('/dashboard', 'dashboard')->name('dashboard');
 
                 Route::get('/edit-profile', 'edit')->name('edit-profile');
@@ -251,7 +251,6 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
                 Route::get('/campaign2', 'campaign2')->name('campaign2');
                 Route::get('/campaign4', 'campaign4')->name('campaign4');
                 Route::get('/campaign/{slug}', 'campaign_show')->name('campaign');
-    
             });
             Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
             Route::get('/cart', [CartController::class, 'index'])->name('cart');
@@ -447,8 +446,10 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
         Route::controller(PortfolioController::class)->group(function () {
             Route::get('portfolio-list', 'index')->name('portfolio-list');
-            Route::get('portfolio-create', 'create')->name('portfolio-create');
+            Route::get('campaigns', 'campaigns')->name('campaigns');
+            Route::get('campaigns/view/{id}', 'campaigns')->name('campaign.view');
             Route::post('portfolio-store', 'store')->name('portfolio-store');
+            Route::get('portfolio-edit/{id}', 'edit')->name('portfolio-edit');
             Route::get('portfolio-edit/{id}', 'edit')->name('portfolio-edit');
             Route::put('portfolio-update/{id}', 'update')->name('portfolio-update');
             Route::delete('portfolio-destory/{id}', 'destroy')->name('portfolio-destory');
