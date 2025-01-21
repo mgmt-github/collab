@@ -252,7 +252,7 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
                 Route::get('/campaign4', 'campaign4')->name('campaign4');
                 Route::get('/campaign/{slug}', 'campaign_show')->name('campaign');
             });
-            Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+            Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add-to-cart');
             Route::get('/cart', [CartController::class, 'index'])->name('cart');
             Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\User;
 use App\Models\Wishlist;
 use App\Models\Review;
+use App\Models\SocialPlatform;
 use Auth;
 
 class Service extends Model
@@ -15,7 +16,7 @@ class Service extends Model
 
     protected $fillable = [];
 
-    protected $appends = ['title','description','features','seo_title','seo_description','average_rating','total_review'];
+    protected $appends = ['title', 'description', 'features', 'seo_title', 'seo_description', 'average_rating', 'total_review'];
 
     protected $hidden = ['front_translate'];
 
@@ -24,19 +25,23 @@ class Service extends Model
         return \Modules\Service\Database\factories\ServiceFactory::new();
     }
 
-    public function influencer(){
-        return $this->belongsTo(User::class)->select('id','name','username','status','is_banned','is_influencer','image');
+    public function influencer()
+    {
+        return $this->belongsTo(User::class)->select('id', 'name', 'username', 'status', 'is_banned', 'is_influencer', 'image');
     }
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function translate(){
+    public function translate()
+    {
         return $this->belongsTo(ServiceTranslation::class, 'id', 'service_id')->where('lang_code', admin_lang());
     }
 
-    public function front_translate(){
+    public function front_translate()
+    {
         return $this->belongsTo(ServiceTranslation::class, 'id', 'service_id')->where('lang_code', front_lang());
     }
 
@@ -70,16 +75,17 @@ class Service extends Model
         return $this->front_translate->seo_description;
     }
 
-    public function is_wishlist($service_id){
+    public function is_wishlist($service_id)
+    {
         $user = Auth::guard('web')->user();
         $is_exist = Wishlist::where(['user_id' => $user->id, 'service_id' => $service_id])->count();
-        if($is_exist == 0) return false;
+        if ($is_exist == 0) return false;
 
         return true;
-
     }
 
-    public function active_reviews(){
+    public function active_reviews()
+    {
         return $this->hasMany(Review::class)->where('status', 1);
     }
 
@@ -93,5 +99,8 @@ class Service extends Model
         return $this->active_reviews()->count();
     }
 
-
+    public function platform()
+    {
+        return $this->belongsTo(SocialPlatform::class);
+    }
 }

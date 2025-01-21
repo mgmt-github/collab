@@ -323,7 +323,9 @@
                             <div class="title-flex">
                                 <div>
                                     <div class="cart-title">{{ __('admin.Shopping cart') }}</div>
-                                    <p class="cart-para">{{ __('admin.You have 3 items in your cart') }}</p>
+                                    <p class="cart-para">
+                                        {{ __('admin.You have') }} {{ count($cart) }} {{ __('admin.items in your cart') }}
+                                    </p>
                                 </div>
                                 <span>{{ __('admin.Select All') }}</span>
                             </div>
@@ -339,31 +341,49 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($cart as $id => $item)
-                                        <tr>
+                                        <tr data-item-id="{{ $id }}">
                                             <td class="img-story">
                                                 <input type="checkbox">
-                                                <img src="https://s3-alpha-sig.figma.com/img/0936/2c37/10541d2d44297ae91b60bbf7cfdb055a?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Kdt0lBezKoeTOc~KtAkJgsGHdwwGbObz5vPxcoyDuYwTkpWOM2anRCv6N6CzBThPqnbagKiUmOyRJ5PU5x8dtW-ODWRK9LjjrvljhZoYDylp6YGYWVRIxTk1Lb0LvyvNzCdmedX41-DT0F-iTrm8e2LqhUBCrqeqlk4qNVTdeN0r2X8CH~2ZGepsWCUPDZc8x2XHHJH~ZBg7dvKKurtmSPCeMycIg9uleFU~jx4L3WYwtLYskWVwE7Cok0B3JPVO9bxiWBOyTLPjzZuNf3orIvdYZS31lVvY~ilEp~zub6y1siKTsbQJMG3dpzn8N7elb5PY50qHX5xMZqgWxJ-40Q__"
-                                                    alt="Item">
-                                                <span
-                                                    class="span-class">{{ __('admin.1 Detailed Instagram Story') }}<br><small>{{ __('admin.Erin') }}</small></span>
+                                                @if (isset($item['image']))
+                                                    <img src="{{ asset($item['image']) }}" alt="Item">
+                                                @endif
+                                                <span class="span-class">
+                                                    {{ $item['name'] }}
+                                                    <br>
+                                                    <small>{{ __('admin.Item ID') }}: {{ $id }}</small>
+                                                </span>
                                             </td>
-                                            <td>$15.00</td>
-                                            <td><input type="number" class="quantity-input" value="3"></td>
-                                            <td>$75.00</td>
-                                            <td><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                    viewBox="0 0 22 22" fill="none">
-                                                    <path
-                                                        d="M16.8856 6.22109L16.1148 17.0124C16.0483 17.9426 15.2744 18.6633 14.3418 18.6633H6.98716C6.05464 18.6633 5.28066 17.9426 5.21422 17.0124L4.44341 6.22109M8.88704 9.77599V15.1083M12.4419 9.77599V15.1083M13.3307 6.22109V3.55491C13.3307 3.06408 12.9328 2.66618 12.4419 2.66618H8.88704C8.39621 2.66618 7.99832 3.06408 7.99832 3.55491V6.22109M3.55469 6.22109H17.7743"
-                                                        stroke="#C16A6A" stroke-width="1.77745" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg></td>
+                                            <td>${{ number_format($item['price'], 2) }}</td>
+                                            <td>
+                                                <input type="number" class="quantity-input"
+                                                    data-item-id="{{ $id }}" value="{{ $item['quantity'] }}"
+                                                    min="1">
+                                            </td>
+                                            <td class="item-total">
+                                                ${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+                                            <td>
+                                                <form method="POST" action="{{ route('user.cart.remove', $id) }}">
+                                                    @csrf
+                                                    <button type="submit" class="remove-btn">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="22"
+                                                            height="22" viewBox="0 0 22 22" fill="none">
+                                                            <path
+                                                                d="M16.8856 6.22109L16.1148 17.0124C16.0483 17.9426 15.2744 18.6633 14.3418 18.6633H6.98716C6.05464 18.6633 5.28066 17.9426 5.21422 17.0124L4.44341 6.22109M8.88704 9.77599V15.1083M12.4419 9.77599V15.1083M13.3307 6.22109V3.55491C13.3307 3.06408 12.9328 2.66618 12.4419 2.66618H8.88704C8.39621 2.66618 7.99832 3.06408 7.99832 3.55491V6.22109M3.55469 6.22109H17.7743"
+                                                                stroke="#C16A6A" stroke-width="1.77745"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
 
                                 </tbody>
                             </table>
                             <div class="subtotal-btn">
-                                <div class="subtotal">{{ __('admin.Subtotal') }}: <span>$195.00</span></div>
+                                <div class="subtotal">{{ __('admin.Subtotal') }}:
+                                    <span>${{ number_format($subtotal, 2) }}</span>
+                                </div>
                             </div>
                             <div class="bottom-btns">
                                 <div class="btn-with-icon">
@@ -377,8 +397,8 @@
                                 </div>
                                 <a href="{{ route('user.checkout') }}" class="checkout-btn">{{ __('admin.Checkout') }}</a>
                             </div>
-
                         </div>
+
                         {{-- table content ends --}}
                         {{-- images part start  --}}
                         <div class="mg-top-40">
@@ -446,3 +466,43 @@
             </div>
         </section>
     </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.quantity-input').on('change', function() {
+                let itemId = $(this).data('item-id');
+                let newQuantity = $(this).val();
+                let row = $(this).closest('tr');
+
+                // Send AJAX request
+                $.ajax({
+                    url: `/cart/update/${itemId}`,
+                    method: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        quantity: newQuantity,
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            // Update item total and subtotal
+                            row.find('.item-total').text(`$${response.item_total.toFixed(2)}`);
+                            $('.subtotal span').text(`$${response.subtotal.toFixed(2)}`);
+
+                            // Show success message
+                            alert(response.message);
+                        }
+                    },
+                    error: function(xhr) {
+                        // Handle validation errors
+                        if (xhr.status === 422) {
+                            alert(xhr.responseJSON.errors.quantity[0]);
+                        } else {
+                            alert(xhr.responseJSON.message);
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+    
