@@ -6,7 +6,7 @@
 @section('frontend-content')
 
     <div class="campaign-wrap">
-        <div class="compaign-container">
+        <div class="compaign-container dd">
             <div class="inner-content">
                 <div class="platforms">
                     <div class="platforms-item">

@@ -9,7 +9,7 @@
     <div class="main-content">
         <section class="section">
 
-            <div class="section-body">
+            <div class="section-body 22">
 
                 <div class="container">
                     <div class="campaign-main">
