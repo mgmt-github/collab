@@ -16,7 +16,7 @@
                     <a href="#" class="steps-item"><span>3</span>{{ __('admin.Requirements') }}</a>
                 </div>
                 {{-- top nav  --}}
-                <form action="{{ route('user.checkout.submit') }}" method="POST">
+                <form action="{{ route('user.checkout.submit') }}" method="POST" class="require-validation">
                     @csrf
                     <div class="order-wrap mg-top-40">
                         <div class="order-container">
@@ -189,8 +189,9 @@
                                             <div class="form-input-single">
                                                 <label for="card-number">{{ __('admin.Card Number') }} </label>
                                                 <div class="card-number-input">
-                                                    <input type="text" id="card-number"
-                                                        placeholder="1234 1234 1234" />
+                                                    <input type="text" class="card-number" name="card_number"
+                                                        placeholder="{{ __('admin.Card Number') }}">
+
                                                     <div class="card-icons">
                                                         <img src="{{ asset('/uploads/checkout/stripe.png') }}"
                                                             alt="stripe" />
@@ -198,38 +199,31 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-row-expiry">
-                                                <div class="form-group 11">
-                                                    <label for="expiry-month">{{ __('admin.Expiry Date') }}
+                                            <div class="expiry-date">
+                                                <div class="form-col">
+                                                    <label for="month">{{ __('admin.Expiry Month') }}
                                                     </label>
-                                                    <div class="expiry-date">
-                                                        <select id="expiry-month" class="radius-right-expiry">
-                                                            <option value="month">{{ __('admin.Month') }}</option>
-                                                            <option value="01">01</option>
-                                                            <option value="02">02</option>
-                                                            <option value="03">03</option>
-                                                            <!-- Add remaining months -->
-                                                        </select>
-                                                        <select id="expiry-year" class="radius-left-expiry">
-                                                            <option value="2024">2024</option>
-                                                            <option value="2025">2025</option>
-                                                            <!-- Add more years -->
-                                                        </select>
-                                                    </div>
-                                                </div>
 
-                                                <div class="form-group 22">
+                                                    <input type="text" class="card-expiry-month" name="month"
+                                                        placeholder="{{ __('admin.Expired Month') }}" />
+                                                </div>
+                                                <div class="form-col">
+                                                    <label for="year">{{ __('admin.Expiry Year') }}
+                                                    </label>
+                                                    <input type="text" class="card-expiry-year" name="year"
+                                                        placeholder="{{ __('admin.Expired Year') }}" />
+
+                                                </div>
+                                                <div class="form-col">
                                                     <label for="cvv">{{ __('admin.CVV') }}</label>
-                                                    <input type="text" id="cvv" placeholder="XXX" />
+                                                    <input type="text" class="card-cvc" name="cvc"
+                                                        placeholder="{{ __('admin.CVV') }}">
                                                 </div>
                                             </div>
-
                                         </div>
                                         <!-- billing details Stripe Ends -->
                                     </div>
                                 </div>
-
-
                             </div>
                             <div class="order-aside">
                                 <h4>{{ __('admin.Your Order') }}</h4>
@@ -269,6 +263,67 @@
             </div>
         </section>
     </div>
+    {{-- start stripe payment --}}
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script>
+        "use strict";
+        $(function() {
+            var $form = $(".require-validation");
+            $('form.require-validation').bind('submit', function(e) {
+                var $form = $(".require-validation"),
+                    inputSelector = ['input[type=email]', 'input[type=password]',
+                        'input[type=text]', 'input[type=file]',
+                        'textarea'
+                    ].join(', '),
+                    $inputs = $form.find('.required').find(inputSelector),
+                    $errorMessage = $form.find('div.error'),
+                    valid = true;
+                $errorMessage.addClass('d-none');
+
+                $('.has-error').removeClass('has-error');
+                $inputs.each(function(i, el) {
+                    var $input = $(el);
+                    if ($input.val() === '') {
+                        $input.parent().addClass('has-error');
+                        $errorMessage.removeClass('d-none');
+                        e.preventDefault();
+                    }
+                });
+
+                if (!$form.data('cc-on-file')) {
+                    e.preventDefault();
+                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                    Stripe.createToken({
+                        number: $('.card-number').val(),
+                        cvc: $('.card-cvc').val(),
+                        exp_month: $('.card-expiry-month').val(),
+                        exp_year: $('.card-expiry-year').val()
+                    }, stripeResponseHandler);
+                }
+
+            });
+
+            function stripeResponseHandler(status, response) {
+                if (response.error) {
+                    $('.error')
+                        .removeClass('d-none')
+                        .find('.alert')
+                        .text(response.error.message);
+                } else {
+                    var token = response['id'];
+                    $form.find('input[type=text]').empty();
+                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                    $form.get(0).submit();
+                }
+            }
+
+            $("#razorpayBtn").on("click", function() {
+                $(".razorpay-payment-button").click();
+            })
+
+        });
+    </script>
+    {{-- end stripe payment --}}
     <script>
         const paymentMethods = document.querySelectorAll(".payment-method");
 
@@ -732,16 +787,16 @@
         }
 
         /* .order-sidebar .inputs-group  .checkbox:hover,
-                                                                                                                                                                                                                                                                                                                .order-sidebar .inputs-group  .radio:hover {
-                                                                                                                                                                                                                                                                                                                    background-color: #f1f1f178;
-                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                        .order-sidebar .inputs-group  .radio:hover {
+                                                                                                                                                                                                                                                                                                                                                                                                                                            background-color: #f1f1f178;
+                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                                                                .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
-                                                                                                                                                                                                                                                                                                                .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
-                                                                                                                                                                                                                                                                                                                    background-color: #f1f1f1;
-                                                                                                                                                                                                                                                                                                                  
-                                                                                                                                                                                                                                                                                                                } */
+                                                                                                                                                                                                                                                                                                                                                                                                                                        .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
+                                                                                                                                                                                                                                                                                                                                                                                                                                        .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                            background-color: #f1f1f1;
+                                                                                                                                                                                                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                                                                        } */
 
         .order-sidebar .inputs-group .checkbox:has(.checkbox__input:focus-visible,
             .radio__input:focus-visible):before,
@@ -849,10 +904,10 @@
 
         .order-sidebar .inputs-group .expiry-date {
             display: flex;
-            /* gap: 10px; */
+            gap: 10px;
         }
 
-        .order-sidebar .inputs-group .expiry-date select {
+        .order-sidebar .inputs-group select {
             width: 110px;
         }
 
