@@ -304,9 +304,13 @@
                                         <h2>{{ __('admin.Campaign Tags') }}</h2>
                                         <div class="dropdown-button" onclick="toggleDropdown(event)">
                                             <div class="selected-items"></div>
-                                            <span class="dropdown-button-text">{{ __('admin.Select') }}</span>
+                                            <span
+                                                class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
                                         </div>
                                         <div class="dropdown-content">
+                                            <input type="text" class="hashtag-input"
+                                                placeholder="{{ __('admin.Type to add your own hashtag') }}"
+                                                onkeydown="addCustomHashtag(event)" />
                                             <a data-value="Facebook"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Facebook') }}</a>
                                             <a data-value="Instagram"
@@ -321,9 +325,13 @@
                                         <h2>{{ __('admin.Hash Tags') }}</h2>
                                         <div class="dropdown-button" onclick="toggleDropdown(event)">
                                             <div class="selected-items"></div>
-                                            <span class="dropdown-button-text">{{ __('admin.Select') }}</span>
+                                            <span
+                                                class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
                                         </div>
                                         <div class="dropdown-content">
+                                            <input type="text" class="hashtag-input"
+                                                placeholder="{{ __('admin.Type to add your own hashtag') }}"
+                                                onkeydown="addCustomHashtag(event)" />
                                             <a data-value="Nature"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Nature') }}</a>
                                             <a data-value="Travel"
@@ -334,6 +342,7 @@
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Foodie') }}</a>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="navigation-btns">
@@ -537,15 +546,18 @@
         function toggleDropdown(event) {
             const button = event.target.closest('.dropdown-button');
             const dropdownContent = button.nextElementSibling;
+
             // Close other open dropdowns
             document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
                 if (dropdown !== dropdownContent) {
                     dropdown.style.display = 'none';
                 }
             });
+
             // Toggle the current dropdown
             dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
         }
+
         // Toggle multiple selection
         function toggleMultipleSelection(event) {
             event.preventDefault();
@@ -554,6 +566,7 @@
             const dropdownButton = dropdownContent.previousElementSibling;
             const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
             const selectedValue = option.getAttribute('data-value');
+
             // Check if the value is already selected
             const existingItem = selectedItemsContainer.querySelector(`[data-value="${selectedValue}"]`);
             if (existingItem) {
@@ -562,23 +575,64 @@
                 option.classList.remove('disabled');
             } else {
                 // Add the new selected item
-                const selectedItem = document.createElement('span');
-                selectedItem.classList.add('selected-item');
-                selectedItem.setAttribute('data-value', selectedValue);
-                selectedItem.textContent = selectedValue;
-                // Add a remove button
-                const removeButton = document.createElement('span');
-                removeButton.classList.add('remove');
-                removeButton.textContent = '×';
-                removeButton.onclick = () => {
-                    selectedItem.remove();
-                    option.classList.remove('disabled');
-                };
-                selectedItem.appendChild(removeButton);
-                selectedItemsContainer.appendChild(selectedItem);
+                createSelectedItem(selectedItemsContainer, selectedValue);
                 option.classList.add('disabled');
             }
-            // Show or hide the placeholder text
+
+            // Update placeholder text
+            updatePlaceholderText(dropdownButton, selectedItemsContainer);
+        }
+
+        // Add custom hashtags
+        function addCustomHashtag(event) {
+            if (event.key === 'Enter' && event.target.value.trim() !== '') {
+                const input = event.target;
+                const customHashtag = input.value.trim();
+                const dropdownContent = input.closest('.dropdown-content');
+                const dropdownButton = dropdownContent.previousElementSibling;
+                const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
+
+                // Check if the custom hashtag is already added
+                if (!selectedItemsContainer.querySelector(`[data-value="${customHashtag}"]`)) {
+                    createSelectedItem(selectedItemsContainer, customHashtag);
+                }
+
+                // Clear the input field
+                input.value = '';
+
+                // Update placeholder text
+                updatePlaceholderText(dropdownButton, selectedItemsContainer);
+            }
+        }
+
+        // Create a selected item
+        function createSelectedItem(container, value) {
+            const selectedItem = document.createElement('span');
+            selectedItem.classList.add('selected-item');
+            selectedItem.setAttribute('data-value', value);
+            selectedItem.textContent = value;
+
+            // Add a remove button
+            const removeButton = document.createElement('span');
+            removeButton.classList.add('remove');
+            removeButton.textContent = '×';
+            removeButton.onclick = () => {
+                selectedItem.remove();
+                const options = document.querySelectorAll('.dropdown-content a');
+                options.forEach((option) => {
+                    if (option.getAttribute('data-value') === value) {
+                        option.classList.remove('disabled');
+                    }
+                });
+                updatePlaceholderText(container.closest('.dropdown-button'), container);
+            };
+
+            selectedItem.appendChild(removeButton);
+            container.appendChild(selectedItem);
+        }
+
+        // Update placeholder text visibility
+        function updatePlaceholderText(dropdownButton, selectedItemsContainer) {
             const buttonText = dropdownButton.querySelector('.dropdown-button-text');
             if (selectedItemsContainer.children.length > 0) {
                 buttonText.style.display = 'none';
@@ -586,6 +640,7 @@
                 buttonText.style.display = 'block';
             }
         }
+
         // Close dropdown when clicking outside
         window.onclick = function(event) {
             if (!event.target.closest('.dropdown')) {
@@ -627,6 +682,11 @@
             padding-bottom: 30px;
             min-height: 100vh;
             background: linear-gradient(0deg, #f4f6f9 0%, #f4f6f9 100%), #fff;
+        }
+
+        .hashtag-input {
+            font-family: 'Poppins';
+            padding: 8px !important;
         }
 
         .campaign-main {
@@ -837,7 +897,7 @@
         }
 
         .input-container.currency select {
-            width: 40px;
+            width: 60px;
             text-align: center;
         }
 
