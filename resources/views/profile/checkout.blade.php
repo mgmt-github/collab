@@ -31,7 +31,7 @@
 
                                         <div class="form-col">
                                             <label>{{ __('admin.Last Name') }}</label>
-                                            <input type="text" name="name" id="" placeholder="Adriana" />
+                                            <input type="text" name="lname" id="" placeholder="Adriana" />
                                         </div>
                                     </div>
 
@@ -45,7 +45,7 @@
 
                                         <div class="form-col">
                                             <label>{{ __('admin.Mobile Phone') }}</label>
-                                            <input type="number" name="name" id=""
+                                            <input type="number" name="phone" id=""
                                                 placeholder="+12 3456 7890" />
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                         <div id="card-billing-details" class="billing-details hidden">
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.Name on card') }}<span>*</span></label>
-                                                <input type="text" name="name" id=""
+                                                <input type="text" name="cname" id=""
                                                     placeholder="abc@example.com" />
                                             </div>
                                             <div class="form-input-single">
@@ -114,19 +114,19 @@
                                             <div class="form-row">
                                                 <div class="form-col">
                                                     <label>{{ __('admin.First Name') }}<span>*</span></label>
-                                                    <input type="text" name="name" id=""
+                                                    <input type="text" name="bfname" id=""
                                                         placeholder="John" />
                                                 </div>
 
                                                 <div class="form-col">
                                                     <label>{{ __('admin.Last Name') }}<span>*</span></label>
-                                                    <input type="text" name="name" id=""
+                                                    <input type="text" name="blname" id=""
                                                         placeholder="Doe" />
                                                 </div>
                                             </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.Email') }}<span>*</span></label>
-                                                <input type="email" name="name" id=""
+                                                <input type="email" name="bemail" id=""
                                                     placeholder="abc@example.com" />
                                             </div>
                                             <div class="form-row">
@@ -137,7 +137,7 @@
                                                         <div>
                                                             <label>{{ __('admin.Country Code') }}<span
                                                                     class="">*</span></label>
-                                                            <select id="country-code" class="country-code-input">
+                                                            <select id="country-code" name="bcountry_code" class="country-code-input">
                                                                 <option value="+1">+1</option>
                                                                 <option value="+44">+44</option>
                                                                 <!-- Add other country codes -->
@@ -145,7 +145,7 @@
                                                         </div>
                                                         <div>
                                                             <label>{{ __('admin.Number') }}<span>*</span></label>
-                                                            <input class="tel-input" type="tel" id="phone-number"
+                                                            <input class="tel-input" type="tel" name="bphone" id="phone-number"
                                                                 placeholder="000 000 000" />
                                                         </div>
                                                     </div>
@@ -162,24 +162,24 @@
                                             </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.Address') }}<span>*</span></label>
-                                                <input type="text" name="name" id=""
+                                                <input type="text" name="address" id=""
                                                     placeholder="F 43, 41 Street Hamburg " />
                                             </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.City') }}<span>*</span></label>
-                                                <input type="text" name="name" id=""
+                                                <input type="text" name="city" id=""
                                                     placeholder="Berlin" />
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-col">
                                                     <label>{{ __('admin.State') }}<span>*</span></label>
-                                                    <input type="text" name="name" id=""
+                                                    <input type="text" name="state" id=""
                                                         placeholder="South Whales" />
                                                 </div>
 
                                                 <div class="form-col">
                                                     <label>{{ __('admin.Postal Code') }}<span>*</span></label>
-                                                    <input type="text" name="name" id=""
+                                                    <input type="text" name="postal_code" id=""
                                                         placeholder="47010" />
                                                 </div>
                                             </div>
@@ -201,7 +201,7 @@
                                     <div id="stripe-billing-details" class="billing-details hidden">
                                         <div class="form-input-single">
                                             <label>{{ __('admin.Name on card') }}<span>*</span></label>
-                                            <input type="text" name="name" id=""
+                                            <input type="text" name="cname" id=""
                                                 placeholder="abc@example.com" />
                                         </div>
                                         <div class="form-input-single">

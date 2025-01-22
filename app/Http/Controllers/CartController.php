@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StripePayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-
+use Modules\Service\Entities\Service;
+use  Stripe;
 
 class CartController extends Controller
 {
@@ -96,30 +99,72 @@ class CartController extends Controller
 
     public function placeOrder(Request $request)
     {
-        $validated = $request->validate([
-            'payment_method' => 'required',
-            // Add other validation rules as needed
+        $cart = Session::get('cart', []);
+        dd(  $cart );
+        $rules = [
+            'address' => 'required',
+            'date' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
+            'schedule_time_slot' => 'required',
+        ];
+        $customMessages = [
+            'address.required' => trans('admin_validation.Address is required'),
+            'date.required' => trans('admin_validation.Schedule date is required'),
+            'name.required' => trans('admin_validation.Name is required'),
+            'phone.required' => trans('admin_validation.Phone is required'),
+            'schedule_time_slot.required' => trans('admin_validation.Schedule slot is required'),
+        ];
+        $this->validate($request, $rules, $customMessages);
+
+        $booking_info = (object) array(
+            'ids' => $request->ids,
+            'prices' => $request->prices,
+            'names' => $request->names,
+            'extra_total' => $request->extra_total,
+            'sub_total' => $request->sub_total,
+            'total' => $request->total,
+            'date' => $request->date,
+            'schedule_time_slot' => $request->schedule_time_slot,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'order_note' => $request->order_note,
+        );
+        $user = Auth::guard('web')->user();
+        $service = Service::where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable', 'id' => $id])->first();
+
+        $influencer_id = $service->influencer_id;
+        $client_id = $user->id;
+
+        $coupon_discount = 0.00;
+        if (Session::get('coupon_code') && Session::get('offer_percentage')) {
+            $offer_percentage = Session::get('offer_percentage');
+            $coupon_discount = ($offer_percentage / 100) * $booking_info->total;
+        }
+
+        $stripe = StripePayment::first();
+        $payable_amount = round(($booking_info->total - $coupon_discount) * $stripe->currency->currency_rate, 2);
+        Stripe\stripe::setApiKey($stripe->stripe_secret);
+
+        $result = Stripe\Charge::create([
+            "amount" => $payable_amount * 100,
+            "currency" => $stripe->currency->currency_code,
+            "source" => $request->stripeToken,
+            "description" => env('APP_NAME')
         ]);
 
-        // Logic to save the order
-        $order = new Order();
-        $order->user_id = auth()->id();
-        $order->total = $request->input('total');
-        $order->payment_method = $request->input('payment_method');
-        $order->save();
+        $order = $this->create_order($user, $service, $booking_info, $influencer_id, $client_id, 'Stripe', 'success', $result->balance_transaction);
 
-        // Attach cart items to the order
-        foreach (session('cart', []) as $item) {
-            $order->items()->create([
-                'product_id' => $item['id'],
-                'quantity' => $item['quantity'],
-                'price' => $item['price'],
-            ]);
-        }
+        $notification = trans('admin_validation.Your order has been placed. Thanks for your new order');
+        $notification = array('messege' => $notification, 'alert-type' => 'success');
+
+
 
         // Clear the cart
         session()->forget('cart');
 
-        return redirect()->route('thank.you')->with('success', 'Order placed successfully!');
+        return redirect()->route('user.orders')->with($notification);
     }
 }
