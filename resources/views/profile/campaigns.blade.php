@@ -171,85 +171,39 @@
                                 </tr>
                             </thead>
                             <tbody class="inflanar-table__body">
-                                <tr>
-                                    <td class="inflanar-table__column-1 inflanar-table__data-1">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__desc">PDT-10022024-001</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-1 inflanar-table__data-1">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__desc">Fay Doyle</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-1 inflanar-table__data-1">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__desc">Instagram</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-1 inflanar-table__data-1">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__desc">$95.66</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-5 inflanar-table__data-5">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__label">{{ __('admin.Active') }}</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-6 inflanar-table__data-6">
-                                        <div class="inflanar-table__status__group">
-                                            <a href="#"
-                                                class="inflanar-table__action inflanar-table__action--view"><img
-                                                    src="{{ asset('frontend/img/Eye.svg') }}"></a>
-                                            <a href="#"
-                                                class="inflanar-table__action inflanar-table__action--view trash-icon"><img
-                                                    src="{{ asset('frontend/img/trash.svg') }}"></a>
+                                @foreach ($campaigns as $campaign)
+                                    <tr>
+                                        <td class="inflanar-table__column-1 inflanar-table__data-1">
+                                            <div class="inflanar-table__content">
+                                                <p class="inflanar-table__desc">{{ $campaign->id }}</p>
+                                            </div>
+                                        </td>
+                                        <td class="inflanar-table__column-1 inflanar-table__data-1">
+                                            <div class="inflanar-table__content">
+                                                <p class="inflanar-table__desc">{{ $campaign->user->name }}</p>
+                                            </div>
+                                        </td>
+                                        <td class="inflanar-table__column-1 inflanar-table__data-1">
+                                            <div class="inflanar-table__content">
+                                                <p class="inflanar-table__desc">{{ $campaign->platform->name }}</p>
+                                            </div>
+                                        </td>
+                                        <td class="inflanar-table__column-1 inflanar-table__data-1">
+                                            <div class="inflanar-table__content">
+                                                <p class="inflanar-table__desc">{{ $campaign->price }}</p>
+                                            </div>
+                                        </td>
 
+                                        <td class="inflanar-table__column-6 inflanar-table__data-6">
+                                            <div class="inflanar-table__status__group">
+                                                <a href="{{ route('user.campaign.show', $campaign->id) }}"
+                                                    class="inflanar-table__action inflanar-table__action--view"><img
+                                                        src="{{ asset('frontend/img/Eye.svg') }}"></a>
 
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="inflanar-table__column-1 inflanar-table__data-1">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__desc">PDT-10022024-001</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-1 inflanar-table__data-1">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__desc">Fay Doyle</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-1 inflanar-table__data-1">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__desc">Instagram</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-1 inflanar-table__data-1">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__desc">$95.66</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-5 inflanar-table__data-5">
-                                        <div class="inflanar-table__content">
-                                            <p class="inflanar-table__label inflanar-table__label--cancel">
-                                                {{ __('admin.Awaiting') }}</p>
-                                        </div>
-                                    </td>
-                                    <td class="inflanar-table__column-6 inflanar-table__data-6">
-                                        <div class="inflanar-table__status__group">
-                                            <a href="#"
-                                                class="inflanar-table__action inflanar-table__action--view"><img
-                                                    src="{{ asset('frontend/img/Eye.svg') }}"></a>
-                                            <a href="#"
-                                                class="inflanar-table__action inflanar-table__action--view trash-icon"><img
-                                                    src="{{ asset('frontend/img/trash.svg') }}"></a>
-
-
-                                        </div>
-                                    </td>
-                                </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

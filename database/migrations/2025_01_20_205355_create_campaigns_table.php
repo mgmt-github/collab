@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('range');
             $table->string('budget');
             $table->integer('currency');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

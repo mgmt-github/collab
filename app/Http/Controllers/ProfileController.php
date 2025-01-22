@@ -17,14 +17,16 @@ use App\Models\TicketMessage;
 use App\Models\MessageDocument;
 use App\Models\Message;
 use App\Models\Order;
+use App\Models\Campaign;
 use App\Models\Portfolio;
 use App\Models\RefundRequest;
 use App\Models\Review;
 use App\Models\SeoSetting;
 use App\Models\SocialPlatform;
 use App\Rules\Captcha;
-use Hash, Image, File, Str;
+use Hash, Image, File, Str, session,Stripe;
 use Modules\Service\Entities\Category;
+use App\Models\StripePayment;
 
 class ProfileController extends Controller
 {
@@ -483,8 +485,116 @@ class ProfileController extends Controller
     }
     public function checkout_submit(Request $request)
     {
-        dd($request->all());
+
+        // Fetch cart data from the session
+        $cart = Session::get('cart', []);
+
+        if (empty($cart)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => trans('admin_validation.Cart is empty'),
+            ], 400);
+        }
+
+        // Validation rules
+        $rules = [
+            'address' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
+        ];
+        $customMessages = [
+            'address.required' => trans('admin_validation.Address is required'),
+            'name.required' => trans('admin_validation.Name is required'),
+            'phone.required' => trans('admin_validation.Phone is required'),
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+
+        // Prepare booking info
+        $booking_info = (object) array(
+            'ids' => $request->ids,
+            'prices' => $request->prices,
+            'names' => $request->names,
+            'extra_total' => $request->extra_total,
+            'sub_total' => $request->sub_total,
+            'total' => $request->total,
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'order_note' => $request->order_note,
+        );
+
+        $user = Auth::guard('web')->user();
+        $service_ids = array_keys($cart);
+
+        // Ensure the services exist and are valid
+        $services = Service::whereIn('id', $service_ids)
+            ->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable'])
+            ->get();
+
+        if ($services->isEmpty()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => trans('admin_validation.Invalid service selected'),
+            ], 400);
+        }
+
+        // Process coupon discount
+        $coupon_discount = 0.00;
+        if (Session::get('coupon_code') && Session::get('offer_percentage')) {
+            $offer_percentage = Session::get('offer_percentage');
+            $coupon_discount = ($offer_percentage / 100) * $booking_info->total;
+        }
+
+        // Calculate payable amount
+        $stripe = StripePayment::first();
+        $payable_amount = round(($booking_info->total - $coupon_discount) * $stripe->currency->currency_rate, 2);
+
+        Stripe\Stripe::setApiKey($stripe->stripe_secret);
+
+        try {
+            $result = Stripe\Charge::create([
+                "amount" => $payable_amount * 100,
+                "currency" => $stripe->currency->currency_code,
+                "source" => $request->stripeToken,
+                "description" => env('APP_NAME')
+            ]);
+
+            // Create orders for all items in the cart
+            foreach ($cart as $service_id => $cart_item) {
+                $service = $services->where('id', $service_id)->first();
+
+                if ($service) {
+                    $this->create_order(
+                        $user,
+                        $service,
+                        $booking_info,
+                        $service->influencer_id,
+                        $user->id,
+                        'Stripe',
+                        'success',
+                        $result->balance_transaction
+                    );
+                }
+            }
+
+            // Clear the cart
+            session()->forget('cart');
+
+            return response()->json([
+                'status' => 'success',
+                'message' => trans('admin_validation.Your order has been placed. Thanks for your new order'),
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => trans('admin_validation.Payment failed. Please try again'),
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
+
 
     function requirement()
     {
@@ -495,6 +605,7 @@ class ProfileController extends Controller
 
         $seo_setting = SeoSetting::where('id', 10)->first();
         $platforms = SocialPlatform::where('status', 1)->get();
+        $campaigns = Campaign::where('user_id', Auth()->id())->get();
 
 
 
@@ -502,6 +613,7 @@ class ProfileController extends Controller
         return view('profile.campaigns')->with([
             'seo_setting' => $seo_setting,
             'platforms' => $platforms,
+            'campaigns' => $campaigns,
         ]);
     }
 

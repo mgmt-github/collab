@@ -31,7 +31,7 @@
 
                                         <div class="form-col">
                                             <label>{{ __('admin.Last Name') }}</label>
-                                            <input type="text" name="name" id="" placeholder="Adriana" />
+                                            <input type="text" name="lname" id="" placeholder="Adriana" />
                                         </div>
                                     </div>
 
@@ -45,7 +45,7 @@
 
                                         <div class="form-col">
                                             <label>{{ __('admin.Mobile Phone') }}</label>
-                                            <input type="number" name="name" id=""
+                                            <input type="number" name="phone" id=""
                                                 placeholder="+12 3456 7890" />
                                         </div>
                                     </div>
@@ -69,7 +69,7 @@
                                         <div id="card-billing-details" class="billing-details hidden">
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.Name on card') }}</label>
-                                                <input type="text" name="name" id=""
+                                                <input type="text" name="cname" id=""
                                                     placeholder="abc@example.com" />
                                             </div>
                                             <div class="form-input-single">
@@ -115,26 +115,42 @@
                                             <div class="form-row">
                                                 <div class="form-col">
                                                     <label>{{ __('admin.First Name') }}</label>
-                                                    <input type="text" name="name" id=""
+                                                    <input type="text" name="bfname" id=""
                                                         placeholder="John" />
                                                 </div>
 
                                                 <div class="form-col">
                                                     <label>{{ __('admin.Last Name') }}</label>
-                                                    <input type="text" name="name" id=""
+                                                    <input type="text" name="blname" id=""
                                                         placeholder="Doe" />
                                                 </div>
                                             </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.Email') }}</label>
-                                                <input type="email" name="name" id=""
+                                                <input type="email" name="bemail" id=""
                                                     placeholder="abc@example.com" />
                                             </div>
-
-                                            <div class="form-input-single">
-                                                <label for="phone-number">{{ __('admin.Phone') }}
-                                                </label>
-                                                <input type="tel" id="phone-number" placeholder="000 000 000" />
+                                            <div class="form-row">
+                                                <div class="form-group">
+                                                    <label for="country-code">{{ __('admin.Phone') }}
+                                                        </label>
+                                                    <div class="phone-input">
+                                                        <div>
+                                                            <label>{{ __('admin.Country Code') }}<span
+                                                                    class="">*</span></label>
+                                                            <select id="country-code" name="bcountry_code" class="country-code-input">
+                                                                <option value="+1">+1</option>
+                                                                <option value="+44">+44</option>
+                                                                <!-- Add other country codes -->
+                                                            </select>
+                                                        </div>
+                                                        <div>
+                                                            <label>{{ __('admin.Number') }}</label>
+                                                            <input class="tel-input" type="tel" name="bphone" id="phone-number"
+                                                                placeholder="000 000 000" />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="form-input-single">
@@ -144,39 +160,47 @@
                                             </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.Address') }}</label>
-                                                <input type="text" name="name" id=""
+                                                <input type="text" name="address" id=""
                                                     placeholder="F 43, 41 Street Hamburg " />
                                             </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.City') }}</label>
-                                                <input type="text" name="name" id=""
+                                                <input type="text" name="city" id=""
                                                     placeholder="Berlin" />
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-col">
                                                     <label>{{ __('admin.State') }}</label>
-                                                    <input type="text" name="name" id=""
+                                                    <input type="text" name="state" id=""
                                                         placeholder="South Whales" />
                                                 </div>
 
                                                 <div class="form-col">
                                                     <label>{{ __('admin.Postal Code') }}</label>
-                                                    <input type="text" name="name" id=""
+                                                    <input type="text" name="postal_code" id=""
                                                         placeholder="47010" />
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- billing details Card ends -->
                                     </div>
-                                    {{-- stripe payment  --}}
-                                    <div class="inputs-group Stripe">
-                                        <label class="checkbox">
-                                            <input class="checkbox__input payment-method" type="checkbox"
-                                                name="payment-method" id="stripe-payment" />
-                                            <span class="checkbox__label">{{ __('admin.Pay with Stripe') }}</span>
-                                        </label>
-                                        <div class="card-logos">
-                                            <img src="{{ asset('/uploads/checkout/stripe.png') }}" alt="stripe" />
+                                </div>
+
+                                <div class="inputs-group Stripe">
+                                    <label class="checkbox">
+                                        <input class="checkbox__input payment-method" type="checkbox"
+                                            name="payment-method" id="stripe-payment" />
+                                        <span class="checkbox__label">{{ __('admin.Pay with PayPal') }}</span>
+                                    </label>
+                                    <div class="card-logos">
+                                        <img src="{{ asset('/uploads/checkout/paypal.png') }}" alt="paypal" />
+                                    </div>
+                                    <!-- billing details Stripe Starts -->
+                                    <div id="stripe-billing-details" class="billing-details hidden">
+                                        <div class="form-input-single">
+                                            <label>{{ __('admin.Name on card') }}</label>
+                                            <input type="text" name="cname" id=""
+                                                placeholder="abc@example.com" />
                                         </div>
                                         <!-- billing details Stripe Starts -->
                                         <div id="stripe-billing-details" class="billing-details hidden">
