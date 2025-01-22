@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
   <link rel="stylesheet" href="{{ asset('backend/css/bootstrap4-toggle.min.css') }}">
   <link rel="stylesheet" href="{{ asset('backend/css/dev.css') }}">
-  <link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }}">
+  <!-- <link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }}"> -->
   <link rel="stylesheet" href="{{ asset('backend/css/tagify.css') }}">
   <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-tagsinput.css') }}">
   <link rel="stylesheet" href="{{ asset('backend/css/fontawesome-iconpicker.min.css') }}">
@@ -41,7 +41,7 @@
 		<!-- Swiper Slider CSS -->
 		<link rel="stylesheet" href="{{ asset('frontend/css/swiper-slider.min.css') }}">
 		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="{{ asset('frontend/css/select2-min.css') }}">
+		<!-- <link rel="stylesheet" href="{{ asset('frontend/css/select2-min.css') }}"> -->
 		<!-- Data Tables -->
 		<link rel="stylesheet" href="{{ asset('frontend/css/datatables.min.css') }}">
 		<!-- Video Popup -->
@@ -241,7 +241,7 @@ a.inflanar-btn {
     <script src="{{ asset('backend/js/moment.min.js') }}"></script>
   <script src="{{ asset('backend/js/stisla.js') }}"></script>
   <script src="{{ asset('backend/js/scripts.js') }}"></script>
-  <script src="{{ asset('backend/js/select2.min.js') }}"></script>
+  <!-- <script src="{{ asset('backend/js/select2.min.js') }}"></script> -->
   <script src="{{ asset('backend/js/tagify.js') }}"></script>
   <script src="{{ asset('toastr/toastr.min.js') }}"></script>
   <script src="{{ asset('backend/js/bootstrap4-toggle.min.js') }}"></script>
@@ -260,7 +260,7 @@ a.inflanar-btn {
 		<!-- Full Calendar JS -->
 		<script src="{{ asset('frontend/js/fullcalendar.min.js') }}"></script>
 		<!-- Select2 JS-->
-		<script src="{{ asset('frontend/js/select2-js.min.js') }}"></script>
+		<!-- <script src="{{ asset('frontend/js/select2-js.min.js') }}"></script> -->
 		<!-- Video Popup JS -->
 		<script src="{{ asset('frontend/js/video-popup.min.js') }}"></script>
 		<!-- Swiper SLider JS -->
@@ -328,7 +328,7 @@ a.inflanar-btn {
             ]
         });
         $('#dataTable').DataTable();
-        $('.select2').select2();
+        // $('.select2').select2();
         $('.tags').tagify();
         $('.custom-icon-picker').iconpicker({
             templates: {
