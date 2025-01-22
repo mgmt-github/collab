@@ -54,6 +54,7 @@
                                 <h4>{{ __('admin.Payment Method') }}</h4>
 
                                 <div class="payment-fields">
+                                    {{-- card payment  --}}
                                     <div class="inputs-group">
                                         <label class="checkbox">
                                             <input class="checkbox__input payment-method" type="checkbox"
@@ -67,13 +68,13 @@
                                         <!-- billing details Card start -->
                                         <div id="card-billing-details" class="billing-details hidden">
                                             <div class="form-input-single">
-                                                <label>{{ __('admin.Name on card') }}<span>*</span></label>
+                                                <label>{{ __('admin.Name on card') }}</label>
                                                 <input type="text" name="name" id=""
                                                     placeholder="abc@example.com" />
                                             </div>
                                             <div class="form-input-single">
                                                 <label for="card-number">{{ __('admin.Card Number') }}
-                                                    <span>*</span></label>
+                                                </label>
                                                 <div class="card-number-input">
                                                     <input type="text" id="card-number" placeholder="1234 1234 1234" />
                                                     <div class="card-icons">
@@ -88,7 +89,7 @@
                                             <div class="form-row-expiry">
                                                 <div class="form-group 11">
                                                     <label for="expiry-month">{{ __('admin.Expiry Date') }}
-                                                        <span>*</span></label>
+                                                    </label>
                                                     <div class="expiry-date">
                                                         <select id="expiry-month" class="radius-right-expiry">
                                                             <option value="month">{{ __('admin.Month') }}</option>
@@ -106,79 +107,60 @@
                                                 </div>
 
                                                 <div class="form-group 22">
-                                                    <label for="cvv">{{ __('admin.CVV') }}<span>*</span></label>
+                                                    <label for="cvv">{{ __('admin.CVV') }}</label>
                                                     <input type="text" id="cvv" placeholder="XXX" />
                                                 </div>
                                             </div>
                                             <div class="form__label">{{ __('admin.Billing Information') }}</div>
                                             <div class="form-row">
                                                 <div class="form-col">
-                                                    <label>{{ __('admin.First Name') }}<span>*</span></label>
+                                                    <label>{{ __('admin.First Name') }}</label>
                                                     <input type="text" name="name" id=""
                                                         placeholder="John" />
                                                 </div>
 
                                                 <div class="form-col">
-                                                    <label>{{ __('admin.Last Name') }}<span>*</span></label>
+                                                    <label>{{ __('admin.Last Name') }}</label>
                                                     <input type="text" name="name" id=""
                                                         placeholder="Doe" />
                                                 </div>
                                             </div>
                                             <div class="form-input-single">
-                                                <label>{{ __('admin.Email') }}<span>*</span></label>
+                                                <label>{{ __('admin.Email') }}</label>
                                                 <input type="email" name="name" id=""
                                                     placeholder="abc@example.com" />
                                             </div>
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="country-code">{{ __('admin.Phone') }}
-                                                        <span>*</span></label>
-                                                    <div class="phone-input">
-                                                        <div>
-                                                            <label>{{ __('admin.Country Code') }}<span
-                                                                    class="">*</span></label>
-                                                            <select id="country-code" class="country-code-input">
-                                                                <option value="+1">+1</option>
-                                                                <option value="+44">+44</option>
-                                                                <!-- Add other country codes -->
-                                                            </select>
-                                                        </div>
-                                                        <div>
-                                                            <label>{{ __('admin.Number') }}<span>*</span></label>
-                                                            <input class="tel-input" type="tel" id="phone-number"
-                                                                placeholder="000 000 000" />
-                                                        </div>
-                                                    </div>
-                                                </div>
+
+                                            <div class="form-input-single">
+                                                <label for="phone-number">{{ __('admin.Phone') }}
+                                                </label>
+                                                <input type="tel" id="phone-number" placeholder="000 000 000" />
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="country">{{ __('admin.Country') }} <span>*</span></label>
-                                                <select id="country" class="country-input">
-                                                    <option value="United States">{{ __('admin.United States') }}</option>
-                                                    <option value="Canada">{{ __('admin.Canada') }}</option>
-                                                    <!-- Add more countries -->
-                                                </select>
+                                            <div class="form-input-single">
+                                                <label for="country">{{ __('admin.Country') }} </label>
+                                                <input type="text" id="country" placeholder="United States" />
+
                                             </div>
                                             <div class="form-input-single">
-                                                <label>{{ __('admin.Address') }}<span>*</span></label>
+                                                <label>{{ __('admin.Address') }}</label>
                                                 <input type="text" name="name" id=""
                                                     placeholder="F 43, 41 Street Hamburg " />
                                             </div>
                                             <div class="form-input-single">
-                                                <label>{{ __('admin.City') }}<span>*</span></label>
+                                                <label>{{ __('admin.City') }}</label>
                                                 <input type="text" name="name" id=""
                                                     placeholder="Berlin" />
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-col">
-                                                    <label>{{ __('admin.State') }}<span>*</span></label>
+                                                    <label>{{ __('admin.State') }}</label>
                                                     <input type="text" name="name" id=""
                                                         placeholder="South Whales" />
                                                 </div>
 
                                                 <div class="form-col">
-                                                    <label>{{ __('admin.Postal Code') }}<span>*</span></label>
+                                                    <label>{{ __('admin.Postal Code') }}</label>
                                                     <input type="text" name="name" id=""
                                                         placeholder="47010" />
                                                 </div>
@@ -186,63 +168,68 @@
                                         </div>
                                         <!-- billing details Card ends -->
                                     </div>
-                                </div>
-
-                                <div class="inputs-group Stripe">
-                                    <label class="checkbox">
-                                        <input class="checkbox__input payment-method" type="checkbox"
-                                            name="payment-method" id="stripe-payment" />
-                                        <span class="checkbox__label">{{ __('admin.Pay with PayPal') }}</span>
-                                    </label>
-                                    <div class="card-logos">
-                                        <img src="{{ asset('/uploads/checkout/paypal.png') }}" alt="paypal" />
-                                    </div>
-                                    <!-- billing details Stripe Starts -->
-                                    <div id="stripe-billing-details" class="billing-details hidden">
-                                        <div class="form-input-single">
-                                            <label>{{ __('admin.Name on card') }}<span>*</span></label>
-                                            <input type="text" name="name" id=""
-                                                placeholder="abc@example.com" />
+                                    {{-- stripe payment  --}}
+                                    <div class="inputs-group Stripe">
+                                        <label class="checkbox">
+                                            <input class="checkbox__input payment-method" type="checkbox"
+                                                name="payment-method" id="stripe-payment" />
+                                            <span class="checkbox__label">{{ __('admin.Pay with Stripe') }}</span>
+                                        </label>
+                                        <div class="card-logos">
+                                            <img src="{{ asset('/uploads/checkout/stripe.png') }}" alt="stripe" />
                                         </div>
-                                        <div class="form-input-single">
-                                            <label for="card-number">{{ __('admin.Card Number') }} <span>*</span></label>
-                                            <div class="card-number-input">
-                                                <input type="text" id="card-number" placeholder="1234 1234 1234" />
-                                                <div class="card-icons">
-                                                    <img src="{{ asset('/uploads/checkout/paypal.png') }}"
-                                                        alt="paypal" />
-                                                </div>
+                                        <!-- billing details Stripe Starts -->
+                                        <div id="stripe-billing-details" class="billing-details hidden">
+
+                                            <div class="form-input-single">
+                                                <label>{{ __('admin.Name on card') }}</label>
+                                                <input type="text" name="name" id=""
+                                                    placeholder="abc@example.com" />
                                             </div>
-                                        </div>
-
-                                        <div class="form-row-expiry">
-                                            <div class="form-group">
-                                                <label for="expiry-month">{{ __('admin.Expiry Date') }}
-                                                    <span>*</span></label>
-                                                <div class="expiry-date">
-                                                    <select id="expiry-month" class="radius-right-expiry">
-                                                        <option value="month">{{ __('admin.Month') }}</option>
-                                                        <option value="01">01</option>
-                                                        <option value="02">02</option>
-                                                        <option value="03">03</option>
-                                                        <!-- Add remaining months -->
-                                                    </select>
-                                                    <select id="expiry-year" class="radius-left-expiry">
-                                                        <option value="2024">2024</option>
-                                                        <option value="2025">2025</option>
-                                                        <!-- Add more years -->
-                                                    </select>
+                                            <div class="form-input-single">
+                                                <label for="card-number">{{ __('admin.Card Number') }} </label>
+                                                <div class="card-number-input">
+                                                    <input type="text" id="card-number"
+                                                        placeholder="1234 1234 1234" />
+                                                    <div class="card-icons">
+                                                        <img src="{{ asset('/uploads/checkout/stripe.png') }}"
+                                                            alt="stripe" />
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="cvv">{{ __('admin.CVV') }}<span>*</span></label>
-                                                <input type="text" id="cvv" placeholder="XXX" />
+                                            <div class="form-row-expiry">
+                                                <div class="form-group 11">
+                                                    <label for="expiry-month">{{ __('admin.Expiry Date') }}
+                                                    </label>
+                                                    <div class="expiry-date">
+                                                        <select id="expiry-month" class="radius-right-expiry">
+                                                            <option value="month">{{ __('admin.Month') }}</option>
+                                                            <option value="01">01</option>
+                                                            <option value="02">02</option>
+                                                            <option value="03">03</option>
+                                                            <!-- Add remaining months -->
+                                                        </select>
+                                                        <select id="expiry-year" class="radius-left-expiry">
+                                                            <option value="2024">2024</option>
+                                                            <option value="2025">2025</option>
+                                                            <!-- Add more years -->
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group 22">
+                                                    <label for="cvv">{{ __('admin.CVV') }}</label>
+                                                    <input type="text" id="cvv" placeholder="XXX" />
+                                                </div>
                                             </div>
+
                                         </div>
+                                        <!-- billing details Stripe Ends -->
                                     </div>
-                                    <!-- billing details Stripe Ends -->
                                 </div>
+
+
                             </div>
                             <div class="order-aside">
                                 <h4>{{ __('admin.Your Order') }}</h4>
@@ -327,7 +314,6 @@
                 .catch((error) => console.error("Error:", error));
         });
     </script>
-
     <style>
         .custom-font {
             margin: 0;
@@ -746,16 +732,16 @@
         }
 
         /* .order-sidebar .inputs-group  .checkbox:hover,
-                                                                                                                                                                                                                    .order-sidebar .inputs-group  .radio:hover {
-                                                                                                                                                                                                                        background-color: #f1f1f178;
-                                                                                                                                                                                                                        
-                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                .order-sidebar .inputs-group  .radio:hover {
+                                                                                                                                                                                                                                                                                                                    background-color: #f1f1f178;
+                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                    .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
-                                                                                                                                                                                                                    .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
-                                                                                                                                                                                                                        background-color: #f1f1f1;
-                                                                                                                                                                                                                      
-                                                                                                                                                                                                                    } */
+                                                                                                                                                                                                                                                                                                                .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
+                                                                                                                                                                                                                                                                                                                .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
+                                                                                                                                                                                                                                                                                                                    background-color: #f1f1f1;
+                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                } */
 
         .order-sidebar .inputs-group .checkbox:has(.checkbox__input:focus-visible,
             .radio__input:focus-visible):before,

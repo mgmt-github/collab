@@ -412,7 +412,7 @@
                                             d="M11.0001 17.3079L4.85156 12.0001L11.0001 6.69238L11.82 7.40013L7.07051 11.5001H23.3862V12.5001H7.07051L11.82 16.6001L11.0001 17.3079Z"
                                             fill="black" />
                                     </svg><span>{{ __('admin.Previous') }}</span></div>
-                                <button class="navigation-btns-item active"><span>{{ __('admin.Submit') }}</span></button>
+                                <div class="navigation-btns-item active"><span>{{ __('admin.Submit') }}</span></div>
                             </div>
                         </div>
                         {{-- Section 3 Campaign Requirement Ends --}}
