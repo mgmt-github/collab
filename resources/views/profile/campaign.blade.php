@@ -286,35 +286,35 @@
                                 <div class="dropdown-social">
                                     <div class="dropdown">
                                         <h2>{{ __('admin.Campaign Tags') }}</h2>
-                                        <button class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="dropdown-button" onclick="toggleDropdown(event)">
                                             <div class="selected-items"></div>
                                             <span class="dropdown-button-text">{{ __('admin.Select') }}</span>
-                                        </button>
+                                        </div>
                                         <div class="dropdown-content">
-                                            <a href="#" data-value="Facebook"
+                                            <a  data-value="Facebook"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Facebook') }}</a>
-                                            <a href="#" data-value="Instagram"
+                                            <a  data-value="Instagram"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Instagram') }}</a>
-                                            <a href="#" data-value="LinkedIn"
+                                            <a  data-value="LinkedIn"
                                                 onclick="toggleMultipleSelection(event)">{{ __('LinkedIn') }}</a>
-                                            <a href="#" data-value="TikTok"
+                                            <a  data-value="TikTok"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Tiktok') }}</a>
                                         </div>
                                     </div>
                                     <div class="dropdown">
                                         <h2>{{ __('admin.Hash Tags') }}</h2>
-                                        <button class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="dropdown-button" onclick="toggleDropdown(event)">
                                             <div class="selected-items"></div>
                                             <span class="dropdown-button-text">{{ __('admin.Select') }}</span>
-                                        </button>
+                                        </div>
                                         <div class="dropdown-content">
-                                            <a href="#" data-value="Nature"
+                                            <a  data-value="Nature"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Nature') }}</a>
-                                            <a href="#" data-value="Travel"
+                                            <a  data-value="Travel"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Travel') }}</a>
-                                            <a href="#" data-value="Photography"
+                                            <a  data-value="Photography"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Photography') }}</a>
-                                            <a href="#" data-value="Foodie"
+                                            <a  data-value="Foodie"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Foodie') }}</a>
                                         </div>
                                     </div>
@@ -382,22 +382,20 @@
                                     <h1>{{ __('admin.Facebook') }}</h1>
                                 </div>
                                 <h2 class="custom-margin">{{ __('admin.Follower range') }}</h2>
-                                <form class="dropdown-card">
-                                    <select id="follower-range" name="range">
-                                        <option value="" disabled selected>{{ __('admin.Range') }}</option>
+                                <select id="follower-rang" name="range">
+                                        
                                         <option value="0-100">0-100</option>
                                         <option value="100-200">100-200</option>
                                         <option value="200-300">200-300</option>
                                         <option value="300-400">300-400</option>
                                         <option value="400-500">400-500</option>
                                     </select>
-                                </form>
                             </div>
                             <h2 class="mg-top-20">{{ __('admin.Campaign Budget') }}</h2>
                             <p>{{ __('admin.Campaign budget  represents how much remuneration influencers will get after succesfully completing this campaign') }}
                             </p>
-                            <div class="input-container">
-                                <input type="text" class="text-input" name="price" placeholder="098">
+                            <div class="input-container currency">
+                                <input type="text" class="text-input" name="price" placeholder="100">
                                 <div class="dropdown-budget">
                                     <select name="symbol">
                                         <option value="USD">USD</option>
@@ -707,7 +705,11 @@
             gap: 18px;
             padding: 0;
         }
-
+        .dropdown-budget select {
+    width: 43px;
+    margin: 0 auto;
+    text-align: center;
+}
         .platforms .btns-group-radio input {
             border-radius: 6.694px;
             border: 0.837px solid #CFCFCF;
@@ -774,7 +776,34 @@
             line-height: normal;
             margin: 20px 0 5px 0;
         }
+        select#follower-rang {
+    border-radius: 6.694px;
+    border: 0.837px solid #CFCFCF !important;!i;!;
+    background: #FFF;
+    padding: 11px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 270px;
+}
 
+select#follower-rang:focus {
+    outline: none !important;
+}
+
+.input-container.currency {
+    width: 270px;
+}
+
+.input-container.currency .dropdown-budget {
+    height: 50px;
+    padding: 0 4px;
+}
+.input-container.currency select {
+    width: 40px;
+    text-align: center;
+}
         .compaign-container p {
             color: #747474;
             font-size: 14px;
