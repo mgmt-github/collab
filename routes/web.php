@@ -244,11 +244,12 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
                 Route::post('/wishlist/toggle',  'toggle')->name('wishlist.toggle');
 
                 Route::get('/checkout', 'checkout')->name('checkout');
+                Route::post('/checkout/submit', 'checkout_submit')->name('checkout.submit');
                 Route::get('/requirement', 'requirement')->name('requirement');
 
                 Route::get('/campaigns', 'campaigns')->name('campaigns');
-                Route::get('/campaign/submit', 'campaign_store')->name('campaign.submit');
-                Route::get('/campaign/store', 'campaign_create')->name('campaign.store');
+                Route::post('/campaign/submit', 'campaign_store')->name('campaign.submit');
+                Route::get('/campaign/create', 'campaign_create')->name('campaign.store');
                 Route::get('/campaign2', 'campaign2')->name('campaign2');
                 Route::get('/campaign4', 'campaign4')->name('campaign4');
                 Route::get('/campaign/{slug}', 'campaign_show')->name('campaign');
