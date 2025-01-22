@@ -322,7 +322,7 @@
                     <span>{{ __('admin.My Profile') }}</span></a>
             </li>
 
-            <li class="icon-svg">
+            {{-- <li class="icon-svg">
                 <a class="nav-link {{ Route::is('user.change-password') ? 'active' : '' }}"
                     href="{{ route('user.change-password') }}">
                     <svg width="16" height="20" viewBox="0 0 16 20" fill="none"
@@ -333,7 +333,7 @@
                     </svg>
                     <span class="inflanar-psidebar__title">{{ __('admin.Change Password') }}</span>
                 </a>
-            </li>
+            </li> --}}
 
 
             <li class="icon-svg">
