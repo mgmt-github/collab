@@ -43,7 +43,7 @@
                 </div>
                 <div class="container">
                     {{-- Section 1 Campaign Basic  --}}
-                    <form id="campaignForm" method="POST" action="{{ route('user.campaign.store') }}"
+                    <form id="campaignForm" method="POST" action="{{ route('user.campaign.submit') }}"
                         enctype="multipart/form-data">
                         @csrf
                         <div id="step-1" class="campaign-main form-step">

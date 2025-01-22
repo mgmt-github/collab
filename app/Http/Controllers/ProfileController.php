@@ -481,6 +481,10 @@ class ProfileController extends Controller
 
         return view('profile.checkout', compact('cartItems', 'totalPrice'));
     }
+    public function checkout_submit(Request $request)
+    {
+        dd($request->all());
+    }
 
     function requirement()
     {
