@@ -7,8 +7,8 @@
                 <div class="main-content">
                     <section class="section">
                         <!-- <div class="section-header">
-                                                        <h1>{{ __('admin.Dashboard') }}</h1>
-                                                      </div> -->
+                                                                                                <h1>{{ __('admin.Dashboard') }}</h1>
+                                                                                              </div> -->
 
                         <div class="section-body">
                             <div class="dropdown-container">
@@ -59,7 +59,8 @@
                                             <div class="box" style="background:url(''); no-repeat">
                                                 <!-- Multiple Heart Boxes -->
 
-                                                <div class="heart" onclick="toggleHeart(this, {{ $influencer->id }})">
+                                                <div class="heart"
+                                                    onclick="toggleHeart(this, {{ $influencer->id }}, event)">
                                                     <svg class="light-heart" xmlns="http://www.w3.org/2000/svg"
                                                         width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                         <path
@@ -228,7 +229,7 @@
                         margin: 3px 4px 0 0;
                         position: absolute;
                         right: 2px;
-                        z-index: 99;
+                        z-index: 1;
                         top: 3px;
                     }
 
@@ -374,7 +375,7 @@
                         width: 90%;
                         border: 1px solid #ccc;
                         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-                        z-index: 1;
+                        z-index: 2;
                     }
 
                     div#leftDropdown {
@@ -429,12 +430,15 @@
                     }
                 </style>
                 <script>
-                    // Function to toggle between light and dark hearts for a specific heart box
-                    function toggleHeart(box, influencerId) {
+                    function toggleHeart(box, influencerId, event) {
+                        event.preventDefault(); // Prevent the default link behavior
+                        event.stopPropagation(); // Stop event propagation to parent elements
+
                         const lightHeart = box.querySelector('.light-heart');
                         const darkHeart = box.querySelector('.dark-heart');
                         const csrfToken = '{{ csrf_token() }}';
                         const route = "{{ route('user.wishlist.toggle') }}";
+
                         // Toggle visibility
                         const isWishlist = lightHeart.style.display === "none";
                         lightHeart.style.display = isWishlist ? "block" : "none";
@@ -467,7 +471,6 @@
                             });
                     }
                 </script>
-
                 <script>
                     // Toggle dropdown visibility
                     function toggleDropdown(dropdownId) {
