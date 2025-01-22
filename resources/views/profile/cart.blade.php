@@ -229,66 +229,6 @@
             line-height: normal;
         }
 
-        .img-card {
-            height: 246px;
-            position: relative;
-            border-radius: 6.16px;
-            overflow: hidden;
-        }
-
-        .img-class {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 6.16px;
-
-        }
-
-        .add-cart-btn {
-            position: absolute;
-            bottom: 20px;
-            left: 30%;
-            border-radius: 3.133px;
-            border: 1px solid #FFF;
-            color: #FFF;
-            padding: 5px 11px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .add-cart-btn:hover {
-            border: 1px solid #FFF;
-            color: #FFF;
-            transition: all 0.3s ease;
-        }
-
-        .img-description {
-            display: flex;
-            justify-content: space-between;
-            padding-top: 5px;
-            color: var(--color-grey-13, #222);
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-        }
-
-        .img-card-bottom {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .img-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30%;
-            background-color: rgb(0 0 0 / 50%);
-            pointer-events: none;
-        }
-
         .table-wrap {
             width: 100%;
         }
@@ -335,6 +275,89 @@
         .remove-btn-form {
             margin: 0 !important;
         }
+
+        .influancer-body {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            row-gap: 15px;
+        }
+
+        .in-item {
+            border-radius: 6.374px;
+            border: 1.035px solid #D1D1D1;
+            background: #FBFBFF;
+            height: 152.098px;
+            padding: 14px;
+            position: relative;
+        }
+
+        .in-item h5 {
+            color: #222;
+            font-family: "Poppins", serif;
+            font-size: 16.555px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 157.118%;
+            /* 26.011px */
+        }
+
+        .in-item a {
+            border-radius: 3.133px;
+            border: 0.448px solid #C1C1C1;
+            background: #E6E6F9;
+            padding: 5px 13px;
+            color: #4A48B8;
+            font-family: "Poppins", serif;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+
+        .cart-item span {
+            color: #222;
+            font-family: "Poppins", serif;
+            font-size: 16.555px;
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            position: absolute;
+            width: 89%;
+            bottom: 10px;
+        }
+
+        .cart-item button {
+            border-radius: 3px;
+            border: 0.448px solid #C1C1C1;
+            background: #E6E6F9;
+            color: #4A48B8;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 30.876px;
+            font-family: "Poppins", serif;
+            padding: 0 5px 0;
+        }
+
+        .heart {
+            cursor: pointer;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            float: right;
+            margin: 3px 4px 0 0;
+            position: absolute;
+            right: 2px;
+            z-index: 99;
+            top: 3px;
+        }
     </style>
 
 
@@ -360,7 +383,6 @@
                                         {{ __('admin.You have') }} {{ count($cart) }} {{ __('admin.items in your cart') }}
                                     </p>
                                 </div>
-                                <span>{{ __('admin.Select All') }}</span>
                             </div>
                             <table>
                                 <thead>
@@ -377,7 +399,7 @@
                                     @foreach ($cart as $id => $item)
                                         <tr data-item-id="{{ $id }}">
                                             <td class="img-story">
-                                                <input type="checkbox" checked />
+
                                                 @if (isset($item['image']))
                                                     <img src="{{ asset($item['image']) }}" alt="Item">
                                                 @endif
@@ -445,55 +467,63 @@
                         {{-- images part start  --}}
                         <div class="mg-top-40">
                             <span class="image-title">{{ __('admin.Similar Creators With these Package') }}</span>
-                            <div class="img-card-bottom mg-top-20">
-                                <div>
-                                    <div class="img-card">
-                                        <div class="img-class">
-                                            <img src="{{ asset('/uploads/checkout/girl-in-fields.jpg') }}"
-                                                alt="Item" />
-                                            <div class="img-overlay"></div>
-                                            <a href="#" class="add-cart-btn">{{ __('admin.Add to Cart') }}</a>
-                                        </div>
+                            <div class="influancer-body mg-top-20">
+                                <div class="in-item">
+                                    <h5>{{ __('admin.Makeup Wih two Influencers') }}</h5>
+                                    <div class="heart">
+                                        <svg class="light-heart" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M12.2994 20.9191C17.3662 17.4932 22.433 13.6808 22.433 8.614C22.433 7.3169 21.9386 6.02052 20.9491 5.03105C19.9596 4.0423 18.6633 3.5472 17.3662 3.5472C16.0698 3.5472 14.7727 4.0423 13.7839 5.03105L12.2994 6.51562L10.8155 5.03105C9.82604 4.0423 8.52967 3.5472 7.23257 3.5472C5.93619 3.5472 4.63909 4.0423 3.65034 5.03105C2.66087 6.02052 2.16577 7.3169 2.16577 8.614C2.16577 13.6808 7.23257 17.4932 12.2994 20.9191Z"
+                                                stroke="#010101" stroke-width="1.44766" />
+                                        </svg>
+                                        <svg class="dark-heart" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M12.2994 20.4845C17.3662 17.0586 22.433 13.2462 22.433 8.17944C22.433 6.88234 21.9386 5.58596 20.9491 4.59649C19.9596 3.60774 18.6633 3.11264 17.3662 3.11264C16.0698 3.11264 14.7727 3.60774 13.7839 4.59649L12.2994 6.08106L10.8155 4.59649C9.82604 3.60774 8.52967 3.11264 7.23257 3.11264C5.93619 3.11264 4.63909 3.60774 3.65034 4.59649C2.66087 5.58596 2.16577 6.88234 2.16577 8.17944C2.16577 13.2462 7.23257 17.0586 12.2994 20.4845Z"
+                                                fill="#FF0000" />
+                                        </svg>
                                     </div>
-                                    <div class="img-description">
-                                        <span>{{ __('admin.Makeup Wih two Influencers') }}</span><span>$1200</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="img-card">
-                                        <div class="img-class">
-                                            <img src="{{ asset('/uploads/checkout/flower-girl.jpg') }}" alt="Item" />
-                                            <div class="img-overlay"></div>
-                                            <a href="#" class="add-cart-btn">{{ __('admin.Add to Cart') }}</a>
-                                        </div>
-                                    </div>
-                                    <div class="img-description">
-                                        <span>{{ __('admin.Makeup Wih two Influencers') }}</span><span>$1200</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="img-card">
-                                        <div class="img-class">
-                                            <img src="{{ asset('/uploads/checkout/girl-in-fields.jpg') }}"
-                                                alt="Item" />
-                                            <div class="img-overlay"></div>
-                                            <a href="#" class="add-cart-btn">{{ __('admin.Add to Cart') }}</a>
-                                        </div>
-                                    </div>
-                                    <div class="img-description">
-                                        <span>{{ __('admin.Makeup Wih two Influencers') }}</span><span>$1200</span>
+                                    <div class="cart-item">
+                                        <form method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id">
+                                            <input type="hidden" name="image">
+                                            <input type="hidden" name="name">
+                                            <input type="hidden" name="price">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit">Add to Cart</button>
+                                        </form>
+                                        <span>$1200</span>
                                     </div>
                                 </div>
-                                <div>
-                                    <div class="img-card">
-                                        <div class="img-class">
-                                            <img src="{{ asset('/uploads/checkout/flower-girl.jpg') }}" alt="Item" />
-                                            <div class="img-overlay"></div>
-                                            <a href="#" class="add-cart-btn">{{ __('admin.Add to Cart') }}</a>
-                                        </div>
+                                <div class="in-item">
+                                    <h5>{{ __('admin.Makeup Wih two Influencers') }}</h5>
+                                    <div class="heart">
+                                        <svg class="light-heart" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M12.2994 20.9191C17.3662 17.4932 22.433 13.6808 22.433 8.614C22.433 7.3169 21.9386 6.02052 20.9491 5.03105C19.9596 4.0423 18.6633 3.5472 17.3662 3.5472C16.0698 3.5472 14.7727 4.0423 13.7839 5.03105L12.2994 6.51562L10.8155 5.03105C9.82604 4.0423 8.52967 3.5472 7.23257 3.5472C5.93619 3.5472 4.63909 4.0423 3.65034 5.03105C2.66087 6.02052 2.16577 7.3169 2.16577 8.614C2.16577 13.6808 7.23257 17.4932 12.2994 20.9191Z"
+                                                stroke="#010101" stroke-width="1.44766" />
+                                        </svg>
+                                        <svg class="dark-heart" xmlns="http://www.w3.org/2000/svg" width="24"
+                                            height="24" viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M12.2994 20.4845C17.3662 17.0586 22.433 13.2462 22.433 8.17944C22.433 6.88234 21.9386 5.58596 20.9491 4.59649C19.9596 3.60774 18.6633 3.11264 17.3662 3.11264C16.0698 3.11264 14.7727 3.60774 13.7839 4.59649L12.2994 6.08106L10.8155 4.59649C9.82604 3.60774 8.52967 3.11264 7.23257 3.11264C5.93619 3.11264 4.63909 3.60774 3.65034 4.59649C2.66087 5.58596 2.16577 6.88234 2.16577 8.17944C2.16577 13.2462 7.23257 17.0586 12.2994 20.4845Z"
+                                                fill="#FF0000" />
+                                        </svg>
                                     </div>
-                                    <div class="img-description">
-                                        <span>{{ __('admin.Makeup Wih two Influencers') }}</span><span>$1200</span>
+                                    <div class="cart-item">
+                                        <form method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id">
+                                            <input type="hidden" name="image">
+                                            <input type="hidden" name="name">
+                                            <input type="hidden" name="price">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit">Add to Cart</button>
+                                        </form>
+                                        <span>$1200</span>
                                     </div>
                                 </div>
                             </div>
@@ -506,8 +536,6 @@
             </div>
         </section>
     </div>
-
-
     <script>
         $(document).ready(function() {
             $('.quantity-input').on('change', function() {
@@ -552,7 +580,7 @@
             let newQuantity = currentQuantity + delta;
 
             if (newQuantity >= 1) {
-                input.val(newQuantity).trigger('change'); // Trigger the existing 'change' event
+                input.val(newQuantity).trigger('change');
             }
         }
     </script>

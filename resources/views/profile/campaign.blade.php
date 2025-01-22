@@ -42,10 +42,11 @@
                     </ul>
                 </div>
                 <div class="container">
-                    {{-- Section 1 Campaign Basic  --}}
+
                     <form id="campaignForm" method="POST" action="{{ route('user.campaign.submit') }}"
                         enctype="multipart/form-data">
                         @csrf
+                        {{-- Section 1 Campaign Basic  --}}
                         <div id="step-1" class="campaign-main form-step">
                             <div class="required">
                                 <h2>{{ __('admin.Campaign Title') }}</h2> <svg xmlns="http://www.w3.org/2000/svg"
@@ -226,6 +227,21 @@
                                             class="logo">
                                         <h1>{{ __('admin.Facebook') }}</h1>
                                     </div>
+                                    <div class="platforms-item">
+                                        <img src="{{ asset('/uploads/campaign-img/tiktok.svg') }}" alt="Tiktok Logo"
+                                            class="logo">
+                                        <h1>{{ __('admin.Tiktok') }}</h1>
+                                    </div>
+                                    <div class="platforms-item">
+                                        <img src="{{ asset('/uploads/campaign-img/youtube.svg') }}" alt="youtube Logo"
+                                            class="logo">
+                                        <h1>{{ __('admin.Youtube') }}</h1>
+                                    </div>
+                                    <div class="platforms-item">
+                                        <img src="{{ asset('/uploads/campaign-img/snapchat.svg') }}" alt="snapchat Logo"
+                                            class="logo">
+                                        <h1>{{ __('admin.Snapchat') }}</h1>
+                                    </div>
                                 </div>
                                 <h2>{{ __('admin.Select your content type') }}</h2>
                                 <p>{{ __('admin.Select the ways in which your brand wil be promoted on Facebook') }}</p>
@@ -291,13 +307,13 @@
                                             <span class="dropdown-button-text">{{ __('admin.Select') }}</span>
                                         </div>
                                         <div class="dropdown-content">
-                                            <a  data-value="Facebook"
+                                            <a data-value="Facebook"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Facebook') }}</a>
-                                            <a  data-value="Instagram"
+                                            <a data-value="Instagram"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Instagram') }}</a>
-                                            <a  data-value="LinkedIn"
+                                            <a data-value="LinkedIn"
                                                 onclick="toggleMultipleSelection(event)">{{ __('LinkedIn') }}</a>
-                                            <a  data-value="TikTok"
+                                            <a data-value="TikTok"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Tiktok') }}</a>
                                         </div>
                                     </div>
@@ -308,13 +324,13 @@
                                             <span class="dropdown-button-text">{{ __('admin.Select') }}</span>
                                         </div>
                                         <div class="dropdown-content">
-                                            <a  data-value="Nature"
+                                            <a data-value="Nature"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Nature') }}</a>
-                                            <a  data-value="Travel"
+                                            <a data-value="Travel"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Travel') }}</a>
-                                            <a  data-value="Photography"
+                                            <a data-value="Photography"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Photography') }}</a>
-                                            <a  data-value="Foodie"
+                                            <a data-value="Foodie"
                                                 onclick="toggleMultipleSelection(event)">{{ __('admin.Foodie') }}</a>
                                         </div>
                                     </div>
@@ -376,20 +392,34 @@
                             </div>
                             <div class="platforms mg-top-40">
                                 <div class="platforms-item">
-
                                     <img src="{{ asset('/uploads/campaign-img/facebook.png') }}" alt="Facebook Logo"
                                         class="logo">
                                     <h1>{{ __('admin.Facebook') }}</h1>
                                 </div>
+                                <div class="platforms-item">
+                                    <img src="{{ asset('/uploads/campaign-img/tiktok.svg') }}" alt="Tiktok Logo"
+                                        class="logo">
+                                    <h1>{{ __('admin.Tiktok') }}</h1>
+                                </div>
+                                <div class="platforms-item">
+                                    <img src="{{ asset('/uploads/campaign-img/youtube.svg') }}" alt="youtube Logo"
+                                        class="logo">
+                                    <h1>{{ __('admin.Youtube') }}</h1>
+                                </div>
+                                <div class="platforms-item">
+                                    <img src="{{ asset('/uploads/campaign-img/snapchat.svg') }}" alt="snapchat Logo"
+                                        class="logo">
+                                    <h1>{{ __('admin.Snapchat') }}</h1>
+                                </div>
                                 <h2 class="custom-margin">{{ __('admin.Follower range') }}</h2>
                                 <select id="follower-rang" name="range">
-                                        
-                                        <option value="0-100">0-100</option>
-                                        <option value="100-200">100-200</option>
-                                        <option value="200-300">200-300</option>
-                                        <option value="300-400">300-400</option>
-                                        <option value="400-500">400-500</option>
-                                    </select>
+
+                                    <option value="0-100">0-100</option>
+                                    <option value="100-200">100-200</option>
+                                    <option value="200-300">200-300</option>
+                                    <option value="300-400">300-400</option>
+                                    <option value="400-500">400-500</option>
+                                </select>
                             </div>
                             <h2 class="mg-top-20">{{ __('admin.Campaign Budget') }}</h2>
                             <p>{{ __('admin.Campaign budget  represents how much remuneration influencers will get after succesfully completing this campaign') }}
@@ -705,11 +735,13 @@
             gap: 18px;
             padding: 0;
         }
+
         .dropdown-budget select {
-    width: 43px;
-    margin: 0 auto;
-    text-align: center;
-}
+            width: 43px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
         .platforms .btns-group-radio input {
             border-radius: 6.694px;
             border: 0.837px solid #CFCFCF;
@@ -776,34 +808,39 @@
             line-height: normal;
             margin: 20px 0 5px 0;
         }
+
         select#follower-rang {
-    border-radius: 6.694px;
-    border: 0.837px solid #CFCFCF !important;!i;!;
-    background: #FFF;
-    padding: 11px 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    width: 270px;
-}
+            border-radius: 6.694px;
+            border: 0.837px solid #CFCFCF !important;
+            !i;
+            !;
+            background: #FFF;
+            padding: 11px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 270px;
+        }
 
-select#follower-rang:focus {
-    outline: none !important;
-}
+        select#follower-rang:focus {
+            outline: none !important;
+        }
 
-.input-container.currency {
-    width: 270px;
-}
+        .input-container.currency {
+            width: 270px;
+        }
 
-.input-container.currency .dropdown-budget {
-    height: 50px;
-    padding: 0 4px;
-}
-.input-container.currency select {
-    width: 40px;
-    text-align: center;
-}
+        .input-container.currency .dropdown-budget {
+            height: 50px;
+            padding: 0 4px;
+        }
+
+        .input-container.currency select {
+            width: 40px;
+            text-align: center;
+        }
+
         .compaign-container p {
             color: #747474;
             font-size: 14px;

@@ -405,6 +405,20 @@
                 @foreach ($services as $service)
                     <div class="in-item" data-category="{{ strtolower($service->platform->name) }}">
                         <h5>{{ $service->translate->title }}</h5>
+                        <div class="heart" onclick="toggleHeart(this, {{ $influencer->id }}, event)">
+                            <svg class="light-heart" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M12.2994 20.9191C17.3662 17.4932 22.433 13.6808 22.433 8.614C22.433 7.3169 21.9386 6.02052 20.9491 5.03105C19.9596 4.0423 18.6633 3.5472 17.3662 3.5472C16.0698 3.5472 14.7727 4.0423 13.7839 5.03105L12.2994 6.51562L10.8155 5.03105C9.82604 4.0423 8.52967 3.5472 7.23257 3.5472C5.93619 3.5472 4.63909 4.0423 3.65034 5.03105C2.66087 6.02052 2.16577 7.3169 2.16577 8.614C2.16577 13.6808 7.23257 17.4932 12.2994 20.9191Z"
+                                    stroke="#010101" stroke-width="1.44766" />
+                            </svg>
+                            <svg class="dark-heart" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none">
+                                <path
+                                    d="M12.2994 20.4845C17.3662 17.0586 22.433 13.2462 22.433 8.17944C22.433 6.88234 21.9386 5.58596 20.9491 4.59649C19.9596 3.60774 18.6633 3.11264 17.3662 3.11264C16.0698 3.11264 14.7727 3.60774 13.7839 4.59649L12.2994 6.08106L10.8155 4.59649C9.82604 3.60774 8.52967 3.11264 7.23257 3.11264C5.93619 3.11264 4.63909 3.60774 3.65034 4.59649C2.66087 5.58596 2.16577 6.88234 2.16577 8.17944C2.16577 13.2462 7.23257 17.0586 12.2994 20.4845Z"
+                                    fill="#FF0000" />
+                            </svg>
+                        </div>
                         <div class="cart-item">
                             <form method="POST" action="{{ route('user.cart.add-to-cart') }}">
                                 @csrf
@@ -451,6 +465,48 @@
                     });
                 });
             });
+        </script>
+        <script>
+            function toggleHeart(box, influencerId, event) {
+                event.preventDefault(); // Prevent the default link behavior
+                event.stopPropagation(); // Stop event propagation to parent elements
+
+                const lightHeart = box.querySelector('.light-heart');
+                const darkHeart = box.querySelector('.dark-heart');
+                const csrfToken = '{{ csrf_token() }}';
+                const route = "{{ route('user.wishlist.toggle') }}";
+
+                // Toggle visibility
+                const isWishlist = lightHeart.style.display === "none";
+                lightHeart.style.display = isWishlist ? "block" : "none";
+                darkHeart.style.display = isWishlist ? "none" : "block";
+
+                // Send AJAX request to update wishlist
+                fetch(route, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                        },
+                        body: JSON.stringify({
+                            influencer_id: influencerId,
+                            action: isWishlist ? 'remove' : 'add'
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.success) {
+                            // Revert toggle if the operation fails
+                            lightHeart.style.display = isWishlist ? "none" : "block";
+                            darkHeart.style.display = isWishlist ? "block" : "none";
+                            alert('Failed to update wishlist');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Failed to update wishlist');
+                    });
+            }
         </script>
 
         <style>
@@ -661,7 +717,6 @@
                 line-height: 30.876px;
                 /* 196.284% */
                 font-family: "Poppins", serif;
-
                 padding: 2px 15px 0;
             }
 
@@ -726,6 +781,18 @@
                 bottom: 10px;
             }
 
+            .cart-item button {
+                border-radius: 3px;
+                border: 0.448px solid #C1C1C1;
+                background: #E6E6F9;
+                color: #4A48B8;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 30.876px;
+                font-family: "Poppins", serif;
+                padding: 0 5px 0;
+            }
 
 
             @media only screen and (min-width: 1600px) {
