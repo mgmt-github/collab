@@ -4,8 +4,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 @endsection
 @section('frontend-content')
-
-
     <div class="main-content">
         <section class="section">
             <div class="section-body">
@@ -30,37 +28,14 @@
                                 <div class="label text-muted">Content</div>
                             </a>
                         </li>
-                        <!-- Step 3 -->
-                        <li class="form-stepper-unfinished text-center form-stepper-list" step="3">
-                            <a class="mx-2">
-                                <span class="form-stepper-circle text-muted">
-                                    <span>3</span>
-                                </span>
-                                <div class="label text-muted">Requirements</div>
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 <div class="container">
-
                     <form id="campaignForm" method="POST" action="{{ route('user.campaign.submit') }}"
                         enctype="multipart/form-data">
                         @csrf
                         {{-- Section 1 Campaign Basic  --}}
                         <div id="step-1" class="campaign-main form-step">
-                            <div class="required">
-                                <h2>{{ __('admin.Campaign Title') }}</h2> <svg xmlns="http://www.w3.org/2000/svg"
-                                    width="9" height="9" viewBox="0 0 9 9" fill="none">
-                                    <path
-                                        d="M4.49994 7.434L2.10643 8.95154C2.0361 8.988 1.97082 9.00277 1.9106 8.99585C1.85081 8.98846 1.79257 8.96677 1.73586 8.93077C1.67872 8.89385 1.63564 8.84169 1.60663 8.77431C1.57762 8.70692 1.57498 8.63331 1.59872 8.55346L2.23567 5.70808L0.128979 3.79038C0.0696357 3.73962 0.0305131 3.67892 0.0116112 3.60831C-0.00729076 3.53769 -0.00311472 3.47008 0.0241392 3.40546C0.0513932 3.34085 0.0876586 3.28777 0.132935 3.24623C0.178652 3.20608 0.240193 3.17885 0.317559 3.16454L3.09746 2.90977L4.18147 0.215308C4.21136 0.139154 4.25444 0.0842307 4.31071 0.0505384C4.36697 0.0168461 4.43005 0 4.49994 0C4.56984 0 4.63314 0.0168461 4.68984 0.0505384C4.74655 0.0842307 4.78941 0.139154 4.81842 0.215308L5.90242 2.90977L8.68167 3.16454C8.75947 3.17839 8.82124 3.20585 8.86695 3.24692C8.91267 3.28754 8.94915 3.34038 8.97641 3.40546C9.00322 3.47008 9.00718 3.53769 8.98828 3.60831C8.96937 3.67892 8.93025 3.73962 8.87091 3.79038L6.76422 5.70808L7.40117 8.55346C7.42579 8.63238 7.42337 8.70577 7.39392 8.77362C7.36447 8.84146 7.32117 8.89362 7.26402 8.93008C7.20776 8.967 7.14951 8.98892 7.08929 8.99585C7.02951 9.00277 6.96445 8.988 6.89412 8.95154L4.49994 7.434Z"
-                                        fill="#D65656" />
-                                </svg>
-                            </div>
-                            <p>{{ __('admin.Write the campaign title so that the influences understand what you really want?') }}
-                            </p>
-                            <div class="campaign-title">
-                                <input type="text" placeholder="Campaign Title" name="title" />
-                            </div>
                             <div class="required mg-top-20">
                                 <h2>{{ __('admin.Platform') }}</h2> <svg xmlns="http://www.w3.org/2000/svg" width="9"
                                     height="9" viewBox="0 0 9 9" fill="none">
@@ -74,7 +49,7 @@
                             <div class="platform-btn">
                                 <div class="campaign-btn">
                                     <input type="radio" id='facebook' value="facebook" name="platforms"
-                                        class="radio-custom" checked />
+                                        class="radio-custom" required />
 
                                     <label for='facebook' class="radio-custom-label">{{ __('admin.Facebook') }}</label>
                                     <span><svg xmlns="http://www.w3.org/2000/svg" width="25" height="24"
@@ -82,7 +57,8 @@
                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                 d="M16.225 22V14.255H18.825L19.214 11.237H16.224V9.31C16.224 8.436 16.467 7.84 17.721 7.84H19.319V5.14C18.5452 5.05685 17.7673 5.01679 16.989 5.02C14.685 5.02 13.108 6.427 13.108 9.01V11.237H10.5V14.255H13.107V22H3.604C2.994 22 2.5 21.506 2.5 20.896V3.104C2.5 2.494 2.994 2 3.604 2H21.396C22.006 2 22.5 2.494 22.5 3.104V20.896C22.5 21.506 22.006 22 21.396 22H16.225Z"
                                                 fill="#5856D6" />
-                                        </svg></span>
+                                        </svg>
+                                    </span>
                                 </div>
                                 <div class="campaign-btn">
                                     <input type="radio" id='instagram' value="instagram" name="platforms"
@@ -117,7 +93,8 @@
                                                     <stop offset="1" stop-color="#6600FF" stop-opacity="0" />
                                                 </radialGradient>
                                             </defs>
-                                        </svg></span>
+                                        </svg>
+                                    </span>
                                 </div>
                                 <div class="campaign-btn">
                                     <input type="radio" id='youtube' value="youtube" name="platforms"
@@ -139,7 +116,8 @@
                                                         transform="translate(0.5 0.5625)" />
                                                 </clipPath>
                                             </defs>
-                                        </svg></span>
+                                        </svg>
+                                    </span>
                                 </div>
                                 <div class="campaign-btn">
                                     <input type="radio" id='snapchat' value="snapchat" name="platforms"
@@ -166,14 +144,143 @@
                                         <path fill-rule="evenodd" clip-rule="evenodd"
                                             d="M16 21.75C17.525 21.75 18.9875 21.1442 20.0659 20.0659C21.1442 18.9875 21.75 17.525 21.75 16V8C21.75 6.47501 21.1442 5.01247 20.0659 3.93414C18.9875 2.8558 17.525 2.25 16 2.25H8C6.47501 2.25 5.01247 2.8558 3.93414 3.93414C2.8558 5.01247 2.25 6.47501 2.25 8V16C2.25 17.525 2.8558 18.9875 3.93414 20.0659C5.01247 21.1442 6.47501 21.75 8 21.75H16ZM13.711 5.763C13.6544 5.59444 13.5398 5.45147 13.3876 5.35959C13.2353 5.26771 13.0554 5.2329 12.8799 5.26137C12.7044 5.28985 12.5447 5.37974 12.4293 5.51503C12.314 5.65032 12.2504 5.8222 12.25 6V15C12.25 15.445 12.118 15.88 11.8708 16.25C11.6236 16.62 11.2722 16.9084 10.861 17.0787C10.4499 17.249 9.9975 17.2936 9.56105 17.2068C9.12459 17.1199 8.72368 16.9057 8.40901 16.591C8.09434 16.2763 7.88005 15.8754 7.79323 15.439C7.70642 15.0025 7.75097 14.5501 7.92127 14.139C8.09157 13.7278 8.37996 13.3764 8.74997 13.1292C9.11998 12.882 9.55499 12.75 10 12.75C10.1989 12.75 10.3897 12.671 10.5303 12.5303C10.671 12.3897 10.75 12.1989 10.75 12C10.75 11.8011 10.671 11.6103 10.5303 11.4697C10.3897 11.329 10.1989 11.25 10 11.25C9.25832 11.25 8.5333 11.4699 7.91661 11.882C7.29993 12.294 6.81928 12.8797 6.53545 13.5649C6.25162 14.2502 6.17736 15.0042 6.32206 15.7316C6.46675 16.459 6.8239 17.1272 7.34835 17.6517C7.8728 18.1761 8.54098 18.5332 9.26841 18.6779C9.99584 18.8226 10.7498 18.7484 11.4351 18.4645C12.1203 18.1807 12.706 17.7001 13.118 17.0834C13.5301 16.4667 13.75 15.7417 13.75 15V8.458C14.517 9.17 15.597 9.75 17 9.75C17.1989 9.75 17.3897 9.67098 17.5303 9.53033C17.671 9.38968 17.75 9.19891 17.75 9C17.75 8.80109 17.671 8.61032 17.5303 8.46967C17.3897 8.32902 17.1989 8.25 17 8.25C16.028 8.25 15.289 7.85 14.741 7.331C14.181 6.799 13.843 6.158 13.711 5.763Z"
                                             fill="black" />
-                                    </svg></span>
+                                    </svg>
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='user-generated' value="user-generated" name="platforms"
+                                    <input type="radio" id='user-Generated-Content' value="user-Generated-Content"
+                                        name="platforms" class="radio-custom" />
+
+                                    <label for='user-Generated-Content'
+                                        class="radio-custom-label">{{ __('admin.User Generated Content (UGC)') }}</label>
+                                </div>
+                            </div>
+                            <div class="dropdown-social mg-top-20">
+                                <div class="dropdown">
+                                    <h2>{{ __('admin.Category') }}</h2>
+                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="selected-items"></div>
+                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <input type="text" class="hashtag-input"
+                                            placeholder="{{ __('admin.Type to add your own') }}"
+                                            onkeydown="addCustomHashtag(event)" />
+                                        <a data-value="Fashion"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Fashion') }}</a>
+                                        <a data-value="Family & Children"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Family & Children') }}</a>
+                                        <a data-value="Travel and tourism"
+                                            onclick="toggleMultipleSelection(event)">{{ __('Travel and tourism') }}</a>
+                                        <a data-value="Weight loss"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Weight loss') }}</a>
+                                        <a data-value="Health and beauty"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Health and beauty') }}</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <h2>{{ __('admin.Country') }}</h2>
+                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="selected-items"></div>
+                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <input type="text" class="hashtag-input"
+                                            placeholder="{{ __('admin.Type to add your own') }}"
+                                            onkeydown="addCustomHashtag(event)" />
+                                        <a data-value="USA"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.USA') }}</a>
+                                        <a data-value="Pakistan"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Pakistan') }}</a>
+                                        <a data-value="Canada"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Canada') }}</a>
+                                        <a data-value="Chinese"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Denmark') }}</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <h2 class="">{{ __('admin.Required number of Influencer') }}</h2>
+                            <div class="stepper mg-top-20">
+                                <div class="stepper-btn" id="decrement">-</div>
+                                <input type="text" class="stepper-input" name="no_of_influencer" id="stepper-value"
+                                    value="1" readonly>
+                                <div class="stepper-btn" id="increment">+</div>
+                            </div>
+                            <div class="navigation-btns">
+                                <div class="navigation-btns-item previous">{{ __('admin.Previous') }}</div>
+                                <div step_number="2" class="navigation-btns-item active">
+                                    <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M14.6922 6.69212L20 11.9999L14.6922 17.3076L13.9845 16.5999L18.0845 12.4999L4 12.4999V11.4999L18.0845 11.4999L13.9845 7.39987L14.6922 6.69212Z"
+                                            fill="black" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Section 1 Campaign Basic Ends  --}}
+                        {{-- Section 2 Campaign Content  --}}
+                        <div id="step-2" class="compaign-container form-step d-none">
+                            <div class="dropdown-social mg-top-20">
+                                <div class="dropdown">
+                                    <h2>{{ __('admin.Follower range') }}</h2>
+                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="selected-items"></div>
+                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <input type="text" class="hashtag-input"
+                                            placeholder="{{ __('admin.Type to add your own') }}"
+                                            onkeydown="addCustomHashtag(event)" />
+                                        <a data-value="1k-10k" onclick="toggleMultipleSelection(event)">1k-10k</a>
+                                        <a data-value="10k-20k" onclick="toggleMultipleSelection(event)">10k-20k</a>
+                                        <a data-value="20k-30k" onclick="toggleMultipleSelection(event)">20k-30k</a> <a
+                                            data-value="30k-40k" onclick="toggleMultipleSelection(event)">30k-40k</a> <a
+                                            data-value="40k-50k" onclick="toggleMultipleSelection(event)">40k-50k</a> <a
+                                            data-value="60k-70k" onclick="toggleMultipleSelection(event)">60k-70k</a>
+                                    </div>
+                                </div>
+                                <div class="dropdown">
+                                    <h2>{{ __('admin.Language') }}</h2>
+                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="selected-items"></div>
+                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <input type="text" class="hashtag-input"
+                                            placeholder="{{ __('admin.Type to add your own') }}"
+                                            onkeydown="addCustomHashtag(event)" />
+                                        <a data-value="English"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.English') }}</a>
+                                        <a data-value="Urdu"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Urdu') }}</a>
+                                        <a data-value="Arabic"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Arabic') }}</a>
+                                        <a data-value="Chinese"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Chinese') }}</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2>{{ __('admin.Influencer Gender') }}</h2>
+                            <div class="btns-group-radio">
+                                <div class="campaign-btn">
+                                    <input type="radio" id='male' value="male" name="gender"
+                                        class="radio-custom" checked />
+
+                                    <label for='male' class="radio-custom-label">{{ __('admin.Male') }}</label>
+                                </div>
+                                <div class="campaign-btn">
+                                    <input type="radio" id='female' value="female" name="gender"
                                         class="radio-custom" />
 
-                                    <label for='user-generated'
-                                        class="radio-custom-label">{{ __('admin.User Generated Content (UGC)') }}</label>
+                                    <label for='female' class="radio-custom-label">{{ __('admin.Female') }}</label>
+                                </div>
+                                <div class="campaign-btn">
+                                    <input type="radio" id='other' value="other" name="gender"
+                                        class="radio-custom" />
+
+                                    <label for='other' class="radio-custom-label">{{ __('admin.Other') }}</label>
                                 </div>
                             </div>
                             <h2 class="mg-top-20">{{ __('admin.Campaign Thumbail') }}</h2>
@@ -203,258 +310,19 @@
                                         accept="image/*">
                                     <p id="file-name" style="color: #555; font-size: 12px"></p>
                                 </div>
-
                             </div>
                             <div class="navigation-btns">
-                                <div class="navigation-btns-item previous">{{ __('admin.Previous') }}</div>
-                                <div step_number="2" class="navigation-btns-item active">
-                                    <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path
-                                            d="M14.6922 6.69212L20 11.9999L14.6922 17.3076L13.9845 16.5999L18.0845 12.4999L4 12.4999V11.4999L18.0845 11.4999L13.9845 7.39987L14.6922 6.69212Z"
-                                            fill="black" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- Section 1 Campaign Basic Ends  --}}
-                        {{-- Section 2 Campaign Content  --}}
-                        <div id="step-2" class="compaign-container form-step d-none">
-                            <div class="inner-content">
-                                <div class="platforms">
-                                    <div class="platforms-item">
-                                        <img src="{{ asset('/uploads/campaign-img/facebook.png') }}" alt="Facebook Logo"
-                                            class="logo">
-                                        <h1>{{ __('admin.Facebook') }}</h1>
-                                    </div>
-                                    <div class="platforms-item">
-                                        <img src="{{ asset('/uploads/campaign-img/tiktok.svg') }}" alt="Tiktok Logo"
-                                            class="logo">
-                                        <h1>{{ __('admin.Tiktok') }}</h1>
-                                    </div>
-                                    <div class="platforms-item">
-                                        <img src="{{ asset('/uploads/campaign-img/youtube.svg') }}" alt="youtube Logo"
-                                            class="logo">
-                                        <h1>{{ __('admin.Youtube') }}</h1>
-                                    </div>
-                                    <div class="platforms-item">
-                                        <img src="{{ asset('/uploads/campaign-img/snapchat.svg') }}" alt="snapchat Logo"
-                                            class="logo">
-                                        <h1>{{ __('admin.Snapchat') }}</h1>
-                                    </div>
-                                </div>
-                                <h2>{{ __('admin.Select your content type') }}</h2>
-                                <p>{{ __('admin.Select the ways in which your brand wil be promoted on Facebook') }}</p>
-                                <div class="btns-group-radio">
-                                    <div class="campaign-btn">
-                                        <input type="radio" id='photos'value="photos" name="content-type"
-                                            class="radio-custom" checked />
-
-                                        <label for='photos' class="radio-custom-label">{{ __('admin.Photos') }}</label>
-                                    </div>
-                                    <div class="campaign-btn">
-                                        <input type="radio" id='text' value="text" name="content-type"
-                                            class="radio-custom" />
-
-                                        <label for='text' class="radio-custom-label">{{ __('admin.Text') }}</label>
-                                    </div>
-                                    <div class="campaign-btn">
-                                        <input type="radio" id='videos' value="videos" name="content-type"
-                                            class="radio-custom" />
-
-                                        <label for='videos' class="radio-custom-label">{{ __('admin.Videos') }}</label>
-                                    </div>
-                                </div>
-                                <h2>{{ __('admin.Content Placement') }}</h2>
-                                <p>{{ __('admin.Select the content place where influencer will post content to promote your band') }}
-                                </p>
-                                <div class="btns-group-radio">
-                                    <div class="campaign-btn">
-                                        <input type="radio" id='photo' value="photo" name="placement"
-                                            class="radio-custom" checked />
-
-                                        <label for='photo' class="radio-custom-label">{{ __('admin.Photos') }}</label>
-                                    </div>
-                                    <div class="campaign-btn">
-                                        <input type="radio" id='reels' value="reels" name="placement"
-                                            class="radio-custom" />
-
-                                        <label for='reels' class="radio-custom-label">{{ __('admin.Reels') }}</label>
-                                    </div>
-                                    <div class="campaign-btn">
-                                        <input type="radio" id='stories' value="stories" name="placement"
-                                            class="radio-custom" />
-
-                                        <label for='stories'
-                                            class="radio-custom-label">{{ __('admin.Stories') }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2>{{ __('admin.Description') }}</h2>
-                            <p>{{ __('admin.Describe your campaign, your description will understand the influencer actually how you want to promote your brand') }}
-                            </p>
-                            <div class="box-con">
-                                <div id="editor">
-                                    <h2>{{ __('admin.Heading') }} 1</h2>
-                                    <p>{{ __('admin.Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. in, dolor.') }}
-                                    </p>
-                                </div>
-                                <div class="dropdown-social">
-                                    <div class="dropdown">
-                                        <h2>{{ __('admin.Campaign Tags') }}</h2>
-                                        <div class="dropdown-button" onclick="toggleDropdown(event)">
-                                            <div class="selected-items"></div>
-                                            <span
-                                                class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
-                                        </div>
-                                        <div class="dropdown-content">
-                                            <input type="text" class="hashtag-input"
-                                                placeholder="{{ __('admin.Type to add your own hashtag') }}"
-                                                onkeydown="addCustomHashtag(event)" />
-                                            <a data-value="Facebook"
-                                                onclick="toggleMultipleSelection(event)">{{ __('admin.Facebook') }}</a>
-                                            <a data-value="Instagram"
-                                                onclick="toggleMultipleSelection(event)">{{ __('admin.Instagram') }}</a>
-                                            <a data-value="LinkedIn"
-                                                onclick="toggleMultipleSelection(event)">{{ __('LinkedIn') }}</a>
-                                            <a data-value="TikTok"
-                                                onclick="toggleMultipleSelection(event)">{{ __('admin.Tiktok') }}</a>
-                                        </div>
-                                    </div>
-                                    <div class="dropdown">
-                                        <h2>{{ __('admin.Hash Tags') }}</h2>
-                                        <div class="dropdown-button" onclick="toggleDropdown(event)">
-                                            <div class="selected-items"></div>
-                                            <span
-                                                class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
-                                        </div>
-                                        <div class="dropdown-content">
-                                            <input type="text" class="hashtag-input"
-                                                placeholder="{{ __('admin.Type to add your own hashtag') }}"
-                                                onkeydown="addCustomHashtag(event)" />
-                                            <a data-value="Nature"
-                                                onclick="toggleMultipleSelection(event)">{{ __('admin.Nature') }}</a>
-                                            <a data-value="Travel"
-                                                onclick="toggleMultipleSelection(event)">{{ __('admin.Travel') }}</a>
-                                            <a data-value="Photography"
-                                                onclick="toggleMultipleSelection(event)">{{ __('admin.Photography') }}</a>
-                                            <a data-value="Foodie"
-                                                onclick="toggleMultipleSelection(event)">{{ __('admin.Foodie') }}</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="navigation-btns">
-                                <div step_number="1" class="navigation-btns-item active"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="29" height="24"
-                                        viewBox="0 0 29 24" fill="none">
-                                        <path
-                                            d="M11.0001 17.3079L4.85156 12.0001L11.0001 6.69238L11.82 7.40013L7.07051 11.5001H23.3862V12.5001H7.07051L11.82 16.6001L11.0001 17.3079Z"
-                                            fill="black" />
-                                    </svg><span>{{ __('admin.Previous') }}</span></div>
-                                <div step_number="3" class="navigation-btns-item active">
-                                    <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path
-                                            d="M14.6922 6.69212L20 11.9999L14.6922 17.3076L13.9845 16.5999L18.0845 12.4999L4 12.4999V11.4999L18.0845 11.4999L13.9845 7.39987L14.6922 6.69212Z"
-                                            fill="black" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- Section 2 Campaign Content  Ends --}}
-                        {{-- Section 3 Campaign Requirement  --}}
-                        <div id="step-3" class="compaign-container form-step d-none">
-                            <h2>{{ __('admin.Category') }}</h2>
-                            <div class="campaign-title">
-                                <input type="text" name="Category" placeholder="" />
-                            </div>
-
-                            <h2 class="">{{ __('admin.Required number of Influencer') }}</h2>
-                            <div class="stepper">
-                                <div class="stepper-btn" id="decrement">-</div>
-                                <input type="text" class="stepper-input" name="no_of_influencer" id="stepper-value"
-                                    value="1" readonly>
-                                <div class="stepper-btn" id="increment">+</div>
-                            </div>
-                            <h2>{{ __('admin.Influencer Gender') }}</h2>
-                            <div class="btns-group-radio">
-                                <div class="campaign-btn">
-                                    <input type="radio" id='male' value="male" name="gender"
-                                        class="radio-custom" checked />
-
-                                    <label for='male' class="radio-custom-label">{{ __('admin.Male') }}</label>
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='female' value="female" name="gender"
-                                        class="radio-custom" />
-
-                                    <label for='female' class="radio-custom-label">{{ __('admin.Female') }}</label>
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='other' value="other" name="gender"
-                                        class="radio-custom" />
-
-                                    <label for='other' class="radio-custom-label">{{ __('admin.Other') }}</label>
-                                </div>
-                            </div>
-                            <div class="platforms mg-top-40">
-                                <div class="platforms-item">
-                                    <img src="{{ asset('/uploads/campaign-img/facebook.png') }}" alt="Facebook Logo"
-                                        class="logo">
-                                    <h1>{{ __('admin.Facebook') }}</h1>
-                                </div>
-                                <div class="platforms-item">
-                                    <img src="{{ asset('/uploads/campaign-img/tiktok.svg') }}" alt="Tiktok Logo"
-                                        class="logo">
-                                    <h1>{{ __('admin.Tiktok') }}</h1>
-                                </div>
-                                <div class="platforms-item">
-                                    <img src="{{ asset('/uploads/campaign-img/youtube.svg') }}" alt="youtube Logo"
-                                        class="logo">
-                                    <h1>{{ __('admin.Youtube') }}</h1>
-                                </div>
-                                <div class="platforms-item">
-                                    <img src="{{ asset('/uploads/campaign-img/snapchat.svg') }}" alt="snapchat Logo"
-                                        class="logo">
-                                    <h1>{{ __('admin.Snapchat') }}</h1>
-                                </div>
-                                <h2 class="custom-margin">{{ __('admin.Follower range') }}</h2>
-                                <select id="follower-rang" name="range">
-
-                                    <option value="0-100">0-100</option>
-                                    <option value="100-200">100-200</option>
-                                    <option value="200-300">200-300</option>
-                                    <option value="300-400">300-400</option>
-                                    <option value="400-500">400-500</option>
-                                </select>
-                            </div>
-                            <h2 class="mg-top-20">{{ __('admin.Campaign Budget') }}</h2>
-                            <p>{{ __('admin.Campaign budget  represents how much remuneration influencers will get after succesfully completing this campaign') }}
-                            </p>
-                            <div class="input-container currency">
-                                <input type="text" class="text-input" name="price" placeholder="100">
-                                <div class="dropdown-budget">
-                                    <select name="symbol">
-                                        <option value="USD">USD</option>
-                                        <option value="EUR">EUR</option>
-                                        <option value="GBP">GBP</option>
-                                        <option value="INR">INR</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="navigation-btns">
-                                <div step_number="2" class="navigation-btns-item"><svg xmlns="http://www.w3.org/2000/svg"
+                                <div step_number="1" class="navigation-btns-item"><svg xmlns="http://www.w3.org/2000/svg"
                                         width="29" height="24" viewBox="0 0 29 24" fill="none">
                                         <path
                                             d="M11.0001 17.3079L4.85156 12.0001L11.0001 6.69238L11.82 7.40013L7.07051 11.5001H23.3862V12.5001H7.07051L11.82 16.6001L11.0001 17.3079Z"
                                             fill="black" />
                                     </svg><span>{{ __('admin.Previous') }}</span></div>
-                                <div class="navigation-btns-item active"><span>{{ __('admin.Submit') }}</span></div>
+                                <button type="submit"
+                                    class="navigation-btns-item active"><span>{{ __('admin.Submit') }}</span></button>
                             </div>
                         </div>
-                        {{-- Section 3 Campaign Requirement Ends --}}
+                        {{-- Section 2 Campaign Content  Ends --}}
                     </form>
                 </div>
             </div>
@@ -466,48 +334,106 @@
                 formStepElement.classList.add("d-none");
             });
             document
-                .querySelectorAll(".form-stepper-list")
-                .forEach((formStepHeader) => {
-                    formStepHeader.classList.add("form-stepper-unfinished");
-                    formStepHeader.classList.remove(
-                        "form-stepper-active",
-                        "form-stepper-completed"
-                    );
-                });
-            document
                 .querySelector("#step-" + stepNumber)
                 .classList.remove("d-none");
-            const formStepCircle = document.querySelector(
-                'li[step="' + stepNumber + '"]'
-            );
-            formStepCircle.classList.remove(
-                "form-stepper-unfinished",
-                "form-stepper-completed"
-            );
+
+            document.querySelectorAll(".form-stepper-list").forEach((formStepHeader) => {
+                formStepHeader.classList.add("form-stepper-unfinished");
+                formStepHeader.classList.remove("form-stepper-active", "form-stepper-completed");
+            });
+
+            const formStepCircle = document.querySelector('li[step="' + stepNumber + '"]');
+            formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-completed");
             formStepCircle.classList.add("form-stepper-active");
+
             for (let index = 0; index < stepNumber; index++) {
-                const formStepCircle = document.querySelector(
-                    'li[step="' + index + '"]'
-                );
-                if (formStepCircle) {
-                    formStepCircle.classList.remove(
-                        "form-stepper-unfinished",
-                        "form-stepper-active"
-                    );
-                    formStepCircle.classList.add("form-stepper-completed");
+                const completedStepCircle = document.querySelector('li[step="' + index + '"]');
+                if (completedStepCircle) {
+                    completedStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-active");
+                    completedStepCircle.classList.add("form-stepper-completed");
                 }
             }
         };
-        document
-            .querySelectorAll(".navigation-btns-item")
-            .forEach((formNavigationBtn) => {
-                formNavigationBtn.addEventListener("click", () => {
-                    const stepNumber = parseInt(
-                        formNavigationBtn.getAttribute("step_number")
-                    );
-                    navigateToFormStep(stepNumber);
-                });
+
+        const validateStepFields = (stepNumber) => {
+            const currentStep = document.querySelector("#step-" + stepNumber);
+            let isValid = true;
+
+            // Validate radio button groups
+            const requiredRadios = currentStep.querySelectorAll('input[type="radio"][required]');
+            requiredRadios.forEach((radio) => {
+                const radioGroup = currentStep.querySelectorAll(`input[name="${radio.name}"]`);
+                const isAnyChecked = Array.from(radioGroup).some((r) => r.checked);
+
+                if (!isAnyChecked) {
+                    isValid = false;
+                    // Highlight the radio button group container with an error class
+                    radio.closest(".platform-btn").classList.add("error");
+                } else {
+                    // Remove the error class if valid
+                    radio.closest(".platform-btn").classList.remove("error");
+                }
             });
+
+            return isValid;
+        };
+
+        document.querySelectorAll(".navigation-btns-item").forEach((formNavigationBtn) => {
+            formNavigationBtn.addEventListener("click", (e) => {
+                const stepNumber = parseInt(formNavigationBtn.getAttribute("step_number"));
+                const currentStep = stepNumber - 1;
+
+                // Validate fields only for steps > 1
+                if (stepNumber > 1 && !validateStepFields(currentStep)) {
+                    alert("Please select a platform before proceeding.");
+                    return;
+                }
+
+                navigateToFormStep(stepNumber);
+            });
+        });
+
+        const platformImages = {
+            facebook: "facebook.png",
+            instagram: "insta.svg",
+            youtube: "youtube.svg",
+            snapchat: "snapchat.svg",
+            tiktok: "tiktok.svg",
+            "user-Generated-Content": "user.svg",
+        };
+
+        document.querySelectorAll('input[name="platforms"]').forEach((radio) => {
+            radio.addEventListener("change", (e) => {
+                const selectedPlatform = e.target.value;
+
+                // Get the correct image file based on the platform
+                const platformImage = platformImages[selectedPlatform];
+
+                // Toggle platform-specific content
+                document.querySelectorAll(".platforms-content").forEach((content) => {
+                    content.classList.add("d-none");
+                });
+                const platformContent = document.querySelector(`#platform-${selectedPlatform}`);
+                if (platformContent) {
+                    platformContent.classList.remove("d-none");
+                }
+
+                // Update the platform image
+                const thirdSectionPlatform = document.querySelector("#third-section-platform");
+                if (platformImage) {
+                    const platformImageElement = `
+                <div class="platforms-item">
+                    
+                    <img src="{{ asset('/uploads/campaign-img/${platformImage}') }}" alt="${selectedPlatform} Logo" class="logo">
+                    <h1>${selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)}</h1>
+                </div>
+            `;
+                    thirdSectionPlatform.querySelector(".platforms-item")
+                        ?.remove(); // Remove existing image
+                    thirdSectionPlatform.insertAdjacentHTML("afterbegin", platformImageElement);
+                }
+            });
+        });
     </script>
     <script>
         // Display the selected file name
@@ -668,13 +594,6 @@
         });
     </script>
     <style>
-        .footer-cta,
-        .footer-area,
-        .inflanar-header.inflanar-header__v2,
-        {
-        display: none;
-        }
-
         .custom-font {
             margin: 0;
             padding: 20px 0px;
@@ -840,7 +759,7 @@
             display: flex;
             gap: 8px;
             align-items: center;
-            margin-bottom: 16px;
+            margin: 30px 0 16px 0;
         }
 
         .platforms .campaign-btn {
@@ -1152,7 +1071,7 @@
             display: flex;
             gap: 20px;
             justify-content: flex-end;
-            margin-top: 10%;
+            margin-top: 7%;
         }
 
         .navigation-btns-item {
@@ -1221,7 +1140,6 @@
         /* Basic styling */
         .dropdown-social {
             width: 100%;
-            margin-bottom: 10%;
         }
 
         .dropdown {
@@ -1250,8 +1168,9 @@
             display: flex;
             flex-wrap: wrap;
             gap: 4px;
-            border-radius: 12px;
+            border-radius: 6.5px;
             border: 1px solid #d9d9d9;
+            margin-top: 16px;
         }
 
         .dropdown-button-text {
@@ -1366,7 +1285,7 @@
             counter-reset: section;
             background: #fff;
             border-radius: 10px;
-            padding: 20px 7rem;
+            padding: 20px 20rem;
         }
 
         ul.form-stepper .form-stepper-circle {
@@ -1498,3 +1417,4 @@
             cursor: default;
         }
     </style>
+@endsection

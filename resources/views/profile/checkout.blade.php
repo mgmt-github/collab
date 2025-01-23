@@ -4,8 +4,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 @endsection
 @section('frontend-content')
-
-
     <div class="main-content">
         <section class="section custom-font">
             <div class="container">
@@ -133,12 +131,13 @@
                                             <div class="form-row">
                                                 <div class="form-group">
                                                     <label for="country-code">{{ __('admin.Phone') }}
-                                                        </label>
+                                                    </label>
                                                     <div class="phone-input">
                                                         <div>
                                                             <label>{{ __('admin.Country Code') }}<span
                                                                     class="">*</span></label>
-                                                            <select id="country-code" name="bcountry_code" class="country-code-input">
+                                                            <select id="country-code" name="bcountry_code"
+                                                                class="country-code-input">
                                                                 <option value="+1">+1</option>
                                                                 <option value="+44">+44</option>
                                                                 <!-- Add other country codes -->
@@ -146,8 +145,8 @@
                                                         </div>
                                                         <div>
                                                             <label>{{ __('admin.Number') }}</label>
-                                                            <input class="tel-input" type="tel" name="bphone" id="phone-number"
-                                                                placeholder="000 000 000" />
+                                                            <input class="tel-input" type="tel" name="bphone"
+                                                                id="phone-number" placeholder="000 000 000" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -555,6 +554,7 @@
             background: #fff;
             padding: 30px;
             min-width: 580px;
+            flex-grow: 1;
         }
 
         .order-aside {
@@ -563,7 +563,6 @@
             background: #fff;
             padding: 30px;
             min-width: 300px;
-            max-height: 800px;
         }
 
         .order-wrap h3 {
@@ -810,18 +809,6 @@
             transition: opacity 0.25s;
         }
 
-        /* .order-sidebar .inputs-group  .checkbox:hover,
-                                                                                                                                                                                                                                                                                                                                                                                                                                        .order-sidebar .inputs-group  .radio:hover {
-                                                                                                                                                                                                                                                                                                                                                                                                                                            background-color: #f1f1f178;
-                                                                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                        .order-sidebar .inputs-group  .checkbox:has(.checkbox__input:checked, .radio__input:checked),
-                                                                                                                                                                                                                                                                                                                                                                                                                                        .order-sidebar .inputs-group  .radio:has(.checkbox__input:checked, .radio__input:checked) {
-                                                                                                                                                                                                                                                                                                                                                                                                                                            background-color: #f1f1f1;
-                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                        } */
-
         .order-sidebar .inputs-group .checkbox:has(.checkbox__input:focus-visible,
             .radio__input:focus-visible):before,
         .order-sidebar .inputs-group .radio:has(.checkbox__input:focus-visible,
@@ -1004,3 +991,4 @@
             width: 98% !important;
         }
     </style>
+@endsection
