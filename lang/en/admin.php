@@ -989,7 +989,7 @@ return array(
 'Female' => 'Female',
 'Expiry Month' => 'Expiry Month',
 'Expiry Year' => 'Expiry Year',
-'Type to add your own hashtag' => 'Type to add your own hashtag',
+'Type to add your own' => 'Type to add your own',
 'Select or Add Your Own' => 'Select or Add Your Own',
 'Item ID' => 'Item ID',
 'Other' => 'Other',
