@@ -4,7 +4,9 @@
 @endsection
 @section('influencer-content')
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap') .main-content {
+        @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        .main-content {
             padding-top: 75px;
         }
 
@@ -31,12 +33,8 @@
             background: #6036AE;
         }
 
-        .campaign-page .inflanar-table__main .inflanar-table__body tr:nth-child(odd) {
-            background-color: rgba(96, 54, 174, 0.13);
-        }
-
-        .campaign-page .inflanar-table__desc {
-            color: #292D32;
+        .inflanar-table__main .inflanar-table__body tr:nth-child(odd) {
+            background-color: #f5f5f5;
         }
 
         table#inflanar-table__order thead th {
@@ -97,49 +95,6 @@
         .inflanar-pagination .inflanar-pagination__button a {
             color: #333 !important;
         }
-
-        .campaign-title {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .campaign-title a {
-            padding: 5px 10px;
-            background: #6036AE;
-            color: #FFF;
-            border-radius: 10px;
-            height: 40px;
-        }
-
-        .campaign-title a:hover {
-            color: #FFF
-        }
-
-        .campaign-page .inflanar-table__label {
-            border-radius: 100px;
-            border: 1px solid #47D455;
-            background: #CAFFCF;
-            color: #292D32;
-        }
-
-        .campaign-page .inflanar-table__action {
-            background: #fff;
-            border-radius: 50px;
-        }
-
-        .trash-icon {
-            background: none !important;
-        }
-
-        .campaign-page .inflanar-table__main .inflanar-table__body tr td {
-            padding: 14px 6px;
-        }
-
-        .campaign-page .inflanar-table__label--cancel {
-            border-radius: 100px;
-            border: 1px solid #EE7C7C;
-            background: #FFD5D5;
-        }
     </style>
     <!-- Breadcrumbs -->
     <div class="main-content">
@@ -147,9 +102,11 @@
 
             <div class="section-body">
 
-                <div class="table-order inflanar-personals__content campaign-page">
-                    <div class="inflanar-table p-0 mg-top-20">
-                        <table id="inflanar-table__order" class="inflanar-table__main inflanar-table__main--order ">
+                <div class="table-order inflanar-personals__content">
+                    <div class="inflanar-table p-0">
+                        {{-- id="inflanar-table__order" --}}
+                        <table id="dataTable"
+                            class="inflanar-table__main inflanar-table__main--order table table-striped report_table">
                             <!-- sherah Table Head -->
                             <thead class="inflanar-table__head">
                                 <tr>
@@ -187,7 +144,8 @@
                                         </td>
                                         <td class="inflanar-table__column-5 inflanar-table__data-5">
                                             <div class="inflanar-table__content">
-                                                <p class="inflanar-table__label">{{ __('admin.Active') }}</p>
+                                                <p class="inflanar-table__label badge badge-success">
+                                                    {{ __('admin.Active') }}</p>
                                             </div>
                                         </td>
                                         <td class="inflanar-table__column-6 inflanar-table__data-6">

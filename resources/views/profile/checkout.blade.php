@@ -25,7 +25,8 @@
                                     <div class="form-row">
                                         <div class="form-col">
                                             <label>{{ __('admin.First Name') }}</label>
-                                            <input type="text" name="name" id="" placeholder="Alexa" />
+                                            <input type="text" name="name" class="name" id=""
+                                                placeholder="Alexa" />
                                         </div>
 
                                         <div class="form-col">
@@ -38,13 +39,13 @@
                                         <div class="form-col">
 
                                             <label>{{ __('admin.Email') }}</label>
-                                            <input type="text" name="email" id=""
+                                            <input type="text" name="email" class="email" id=""
                                                 placeholder="abc@example.com" />
                                         </div>
 
                                         <div class="form-col">
                                             <label>{{ __('admin.Mobile Phone') }}</label>
-                                            <input type="number" name="phone" id=""
+                                            <input type="number" name="phone" class="phone" id=""
                                                 placeholder="+12 3456 7890" />
                                         </div>
                                     </div>
@@ -332,6 +333,10 @@
                             cvc: $(".card-cvc").val(),
                             exp_month: $(".card-expiry-month").val(),
                             exp_year: $(".card-expiry-year").val(),
+                            // name: $(".name").val(),
+                            // email: $(".email").val(),
+                            // phone: $(".phone").val(),
+                            // address: $(".address").val(),
                         },
                         stripeResponseHandler
                     );
