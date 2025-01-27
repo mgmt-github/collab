@@ -11,7 +11,7 @@
                 <div class="steps">
                     <a href="#" class="steps-item active"><span>1</span>{{ __('admin.Shopping cart') }}</a>
                     <a href="/checkout" class="steps-item active"><span>2</span>{{ __('admin.Checkout details') }}</a>
-                    <a href="#" class="steps-item"><span>3</span>{{ __('admin.Requirements') }}</a>
+                    {{-- <a href="#" class="steps-item"><span>3</span>{{ __('admin.Requirements') }}</a> --}}
                 </div>
                 {{-- top nav  --}}
                 <form action="{{ route('user.checkout.submit') }}" method="POST" id="payment-form"
@@ -25,8 +25,8 @@
                                     <div class="form-row">
                                         <div class="form-col">
                                             <label>{{ __('admin.First Name') }}</label>
-                                            <input type="text" name="name" id="name" class="required"
-                                                placeholder="Alexa" required />
+                                            <input type="text" name="name" id="name" class=""
+                                                placeholder="Alexa" />
                                         </div>
 
                                         <div class="form-col">
@@ -36,21 +36,16 @@
                                     </div>
 
                                     <div class="form-row">
-                                        {{-- <div class="form-col">
-
+                                        <div class="form-col">
                                             <label>{{ __('admin.Email') }}</label>
                                             <input type="text" name="email" class="email" id=""
                                                 placeholder="abc@example.com" />
-                                        </div> --}}
-                                        <div class="form-col">
-                                            <label>{{ __('admin.Address') }}</label>
-                                            <input type="text" name="address" id="" class="required"
-                                                placeholder="F 43, 41 Street Hamburg " required />
                                         </div>
+
                                         <div class="form-col">
                                             <label>{{ __('admin.Mobile Phone') }}</label>
-                                            <input type="text" name="phone" class="required" id="phone"
-                                                placeholder="+12 3456 7890" required />
+                                            <input type="text" name="phone" class="" id="phone"
+                                                placeholder="+12 3456 7890" />
                                         </div>
                                     </div>
                                 </div>
@@ -193,7 +188,7 @@
                                     <div class="inputs-group Stripe">
                                         <label class="checkbox">
                                             <input class="checkbox__input payment-method" type="checkbox"
-                                                name="payment-method" id="stripe-payment" />
+                                                name="stripe-payment" id="stripe-payment" />
                                             <span class="checkbox__label">{{ __('admin.Pay with Stripe') }}</span>
                                         </label>
 
@@ -249,6 +244,33 @@
                                                         <input type="text" id="cvv" class="card-cvc"
                                                             placeholder="123" maxlength="4" required />
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="form__label">{{ __('admin.Billing Information') }}</div>
+                                            <div class="form-row">
+                                                <div class="form-col">
+                                                    <label>{{ __('admin.First Name') }}</label>
+                                                    <input type="text" name="billing-name" id="billing-name"
+                                                        class="" placeholder="Alexa" required />
+                                                </div>
+
+                                                <div class="form-col">
+                                                    <label>{{ __('admin.Last Name') }}</label>
+                                                    <input type="text" name="lname" id=""
+                                                        placeholder="Adriana" />
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-col">
+                                                    <label>{{ __('admin.Address') }}</label>
+                                                    <input type="text" name="billing-address" id=""
+                                                        class="" placeholder="F 43, 41 Street Hamburg " required />
+                                                </div>
+
+                                                <div class="form-col">
+                                                    <label>{{ __('admin.Mobile Phone') }}</label>
+                                                    <input type="text" name="billing-phone" class=""
+                                                        id="billing-phone" placeholder="+12 3456 7890" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -352,6 +374,52 @@
         });
     </script>
     {{-- end stripe payment --}}
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent submission to validate
+
+            const cvv = document.getElementById('cvv');
+            const phone = document.getElementById('billing-phone');
+            const requiredFields = document.querySelectorAll('#payment-form input[required]');
+
+            let isValid = true;
+            // Check required fields
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('invalid'); // Highlight invalid field
+                    alert(`Field ${field.placeholder || field.name} is required.`);
+                } else {
+                    field.classList.remove('invalid'); // Remove highlight if valid
+                }
+            });
+
+            // CVV validation: Must be 3-4 digits
+            if (!/^\d{3,4}$/.test(cvv.value)) {
+                isValid = false;
+                alert('CVV must be 3 or 4 digits.');
+                cvv.classList.add('invalid');
+            } else {
+                cvv.classList.remove('invalid');
+            }
+
+            // Phone validation: Must start with "+" and include digits
+            if (!/^\+\d{1,3}\s?\d{4,14}$/.test(phone.value)) {
+                isValid = false;
+                alert('Phone number must be in the format +12 3456 7890.');
+                phone.classList.add('invalid');
+            } else {
+                phone.classList.remove('invalid');
+            }
+
+            // If all fields are valid, submit the form
+            if (isValid) {
+                alert('Form is valid and will be submitted.');
+                this.submit();
+            }
+        });
+    </script>
+
     <script>
         const paymentMethods = document.querySelectorAll(".payment-method");
 
@@ -568,6 +636,8 @@
             background: #fff;
             padding: 30px;
             width: 40%;
+            height: 800px;
+            overflow-y: auto;
         }
 
         .order-wrap h3 {
@@ -923,7 +993,7 @@
 
         .order-sidebar .inputs-group .expiry-date {
             display: flex;
-            gap: 10px;
+            /* gap: 10px; */
         }
 
         .order-sidebar .inputs-group select {
@@ -941,9 +1011,9 @@
         .order-sidebar .inputs-group .form-group input,
         .order-sidebar .inputs-group .form-group select {
             border-radius: 6.694px;
-            border: 0.837px solid #cfcfcf;
+            /* border: 0.837px solid #cfcfcf; */
             height: 40px;
-            background: #fff;
+            /* background: #fff; */
             padding-left: 5px;
             font-family: "Poppins";
         }
