@@ -15,7 +15,7 @@
         display: inline-block;
         width: 100%;
         text-align: left;
-        padding-left: 24px;
+        padding: 0 20px;
         line-height: 60px;
         font-size: 26px;
         font-family: 'Poppins';
@@ -205,8 +205,11 @@
 
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
-        <div class="sidebar-brand">
-            <a href="{{ route('influencer.dashboard') }}">{{ $setting->app_name }}</a>
+        <div class="sidebar-brand 33">
+            <a href="{{ route('influencer.dashboard') }}">
+                <img src="{{ asset('/uploads/client-dasborad/actro-logo.png') }}" alt="Actrology" />
+                {{-- {{ $setting->app_name }} --}}
+            </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('influencer.dashboard') }}">A</a>

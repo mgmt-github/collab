@@ -356,6 +356,22 @@
             z-index: 99;
             top: 3px;
         }
+
+        .light-heart {
+            display: block;
+        }
+
+        .dark-heart {
+            display: none;
+        }
+
+        .active .light-heart {
+            display: none;
+        }
+
+        .active .dark-heart {
+            display: block;
+        }
     </style>
 
 
@@ -468,7 +484,7 @@
                             <div class="influancer-body mg-top-20">
                                 <div class="in-item">
                                     <h5>{{ __('admin.Makeup Wih two Influencers') }}</h5>
-                                    <div class="heart">
+                                    <div class="heart" onclick="toggleHeart(this, event)">
                                         <svg class="light-heart" xmlns="http://www.w3.org/2000/svg" width="24"
                                             height="24" viewBox="0 0 24 24" fill="none">
                                             <path
@@ -497,7 +513,7 @@
                                 </div>
                                 <div class="in-item">
                                     <h5>{{ __('admin.Makeup Wih two Influencers') }}</h5>
-                                    <div class="heart">
+                                    <div class="heart" onclick="toggleHeart(this, event)">
                                         <svg class="light-heart" xmlns="http://www.w3.org/2000/svg" width="24"
                                             height="24" viewBox="0 0 24 24" fill="none">
                                             <path
@@ -534,6 +550,15 @@
             </div>
         </section>
     </div>
+    <script>
+        function toggleHeart(box, event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            // Toggle the "active" class
+            box.classList.toggle('active');
+        }
+    </script>
     <script>
         $(document).ready(function() {
             $('.quantity-input').on('change', function() {
