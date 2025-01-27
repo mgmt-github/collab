@@ -25,8 +25,8 @@
                                     <div class="form-row">
                                         <div class="form-col">
                                             <label>{{ __('admin.First Name') }}</label>
-                                            <input type="text" name="name" class="name" id=""
-                                                placeholder="Alexa" />
+                                            <input type="text" name="name" id="name" class="required"
+                                                placeholder="Alexa" required />
                                         </div>
 
                                         <div class="form-col">
@@ -36,17 +36,21 @@
                                     </div>
 
                                     <div class="form-row">
-                                        <div class="form-col">
+                                        {{-- <div class="form-col">
 
                                             <label>{{ __('admin.Email') }}</label>
                                             <input type="text" name="email" class="email" id=""
                                                 placeholder="abc@example.com" />
+                                        </div> --}}
+                                        <div class="form-col">
+                                            <label>{{ __('admin.Address') }}</label>
+                                            <input type="text" name="address" id="" class="required"
+                                                placeholder="F 43, 41 Street Hamburg " required />
                                         </div>
-
                                         <div class="form-col">
                                             <label>{{ __('admin.Mobile Phone') }}</label>
-                                            <input type="number" name="phone" class="phone" id=""
-                                                placeholder="+12 3456 7890" />
+                                            <input type="text" name="phone" class="required" id="phone"
+                                                placeholder="+12 3456 7890" required />
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +59,7 @@
 
                                 <div class="payment-fields">
                                     {{-- card payment  --}}
-                                    <div class="inputs-group">
+                                    <div class="inputs-group hidden">
                                         <label class="checkbox">
                                             <input class="checkbox__input payment-method" type="checkbox"
                                                 name="payment-method" id="card-payment" />
@@ -159,11 +163,11 @@
                                                 <input type="text" id="country" placeholder="United States" />
 
                                             </div>
-                                            <div class="form-input-single">
+                                            {{-- <div class="form-input-single">
                                                 <label>{{ __('admin.Address') }}</label>
                                                 <input type="text" name="address" id=""
                                                     placeholder="F 43, 41 Street Hamburg " />
-                                            </div>
+                                            </div> --}}
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.City') }}</label>
                                                 <input type="text" name="city" id=""
@@ -201,7 +205,7 @@
                                         <div id="stripe-billing-details" class="billing-details hidden">
                                             <div class="form-group">
                                                 <label for="name">Name on Card</label>
-                                                <input type="text" id="name" class="card-name"
+                                                <input type="text" id="card-name" class="card-name"
                                                     placeholder="John Doe" required />
                                             </div>
                                             <div class="form-group">
@@ -217,7 +221,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="form-row-expiry">
                                                     <div class="form-group">
                                                         <label for="expiry-month">{{ __('admin.Expiry Date') }}
@@ -298,67 +301,56 @@
     <script>
         "use strict";
         $(function() {
-            var $form = $("#payment-form");
-
-            $form.on("submit", function(e) {
-                var $inputs = $form.find(".required").find("input, textarea"),
-                    $errorMessage = $("#payment-errors"),
+            var $form = $(".require-validation");
+            $('form.require-validation').bind('submit', function(e) {
+                var $form = $(".require-validation"),
+                    inputSelector = ['input[type=email]', 'input[type=password]',
+                        'input[type=text]', 'input[type=file]',
+                        'textarea'
+                    ].join(', '),
+                    $inputs = $form.find('.required').find(inputSelector),
+                    $errorMessage = $form.find('div.error'),
                     valid = true;
+                $errorMessage.addClass('d-none');
 
-                $errorMessage.addClass("d-none").text(""); // Clear previous errors
-                $(".has-error").removeClass("has-error");
-
-                $inputs.each(function() {
-                    var $input = $(this);
-                    if ($input.val().trim() === "") {
-                        $input.parent().addClass("has-error");
-                        valid = false;
+                $('.has-error').removeClass('has-error');
+                $inputs.each(function(i, el) {
+                    var $input = $(el);
+                    if ($input.val() === '') {
+                        $input.parent().addClass('has-error');
+                        $errorMessage.removeClass('d-none');
+                        e.preventDefault();
                     }
                 });
 
-                if (!valid) {
-                    $errorMessage
-                        .removeClass("d-none")
-                        .text("Please fill out all required fields.");
+                if (!$form.data('cc-on-file')) {
                     e.preventDefault();
-                    return;
+                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                    Stripe.createToken({
+                        number: $('.card-number').val(),
+                        cvc: $('.card-cvc').val(),
+                        exp_month: $('.card-expiry-month').val(),
+                        exp_year: $('.card-expiry-year').val()
+                    }, stripeResponseHandler);
                 }
 
-                if (!$form.data("cc-on-file")) {
-                    e.preventDefault();
-                    Stripe.setPublishableKey($form.data(
-                        'stripe-publishable-key')); // Ensure the publishable key is set
-                    Stripe.createToken({
-                            number: $(".card-number").val(),
-                            cvc: $(".card-cvc").val(),
-                            exp_month: $(".card-expiry-month").val(),
-                            exp_year: $(".card-expiry-year").val(),
-                            // name: $(".name").val(),
-                            // email: $(".email").val(),
-                            // phone: $(".phone").val(),
-                            // address: $(".address").val(),
-                        },
-                        stripeResponseHandler
-                    );
-                }
             });
 
             function stripeResponseHandler(status, response) {
-                var $errorMessage = $("#payment-errors");
                 if (response.error) {
-                    $errorMessage
-                        .removeClass("d-none")
+                    $('.error')
+                        .removeClass('d-none')
+                        .find('.alert')
                         .text(response.error.message);
                 } else {
-                    var token = response.id;
-                    $form.find("input[type=text]").val(""); // Clear sensitive fields
+                    var token = response['id'];
+                    $form.find('input[type=text]').empty();
                     $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
                     $form.get(0).submit();
                 }
             }
         });
     </script>
-
     {{-- end stripe payment --}}
     <script>
         const paymentMethods = document.querySelectorAll(".payment-method");

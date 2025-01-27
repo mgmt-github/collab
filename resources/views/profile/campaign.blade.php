@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="dropdown-social mg-top-20">
-                                <div class="dropdown">
+                                <div class="dropdown" data-section="step-1" data-field="category">
                                     <h2>{{ __('admin.Category') }}</h2>
                                     <div class="dropdown-button" onclick="toggleDropdown(event)">
                                         <div class="selected-items"></div>
@@ -176,8 +176,9 @@
                                         <a data-value="Health and beauty"
                                             onclick="toggleMultipleSelection(event)">{{ __('admin.Health and beauty') }}</a>
                                     </div>
+                                    <input type="hidden" name="category" id="selected-category" />
                                 </div>
-                                <div class="dropdown">
+                                <div class="dropdown" data-section="step-1" data-field="country">
                                     <h2>{{ __('admin.Country') }}</h2>
                                     <div class="dropdown-button" onclick="toggleDropdown(event)">
                                         <div class="selected-items"></div>
@@ -196,6 +197,7 @@
                                         <a data-value="Chinese"
                                             onclick="toggleMultipleSelection(event)">{{ __('admin.Denmark') }}</a>
                                     </div>
+                                    <input type="hidden" name="country" id="selected-country" />
                                 </div>
 
                             </div>
@@ -222,7 +224,7 @@
                         {{-- Section 2 Campaign Content  --}}
                         <div id="step-2" class="compaign-container form-step d-none">
                             <div class="dropdown-social mg-top-20">
-                                <div class="dropdown">
+                                <div class="dropdown" data-section="step-2" data-field="range">
                                     <h2>{{ __('admin.Follower range') }}</h2>
                                     <div class="dropdown-button" onclick="toggleDropdown(event)">
                                         <div class="selected-items"></div>
@@ -239,8 +241,9 @@
                                             data-value="40k-50k" onclick="toggleMultipleSelection(event)">40k-50k</a> <a
                                             data-value="60k-70k" onclick="toggleMultipleSelection(event)">60k-70k</a>
                                     </div>
+                                    <input type="hidden" name="range" id="selected-range" />
                                 </div>
-                                <div class="dropdown">
+                                <div class="dropdown" data-section="step-2" data-field="language">
                                     <h2>{{ __('admin.Language') }}</h2>
                                     <div class="dropdown-button" onclick="toggleDropdown(event)">
                                         <div class="selected-items"></div>
@@ -259,6 +262,7 @@
                                         <a data-value="Chinese"
                                             onclick="toggleMultipleSelection(event)">{{ __('admin.Chinese') }}</a>
                                     </div>
+                                    <input type="hidden" name="language" id="selected-language" />
                                 </div>
                             </div>
 
@@ -468,23 +472,37 @@
         });
     </script>
     <script>
-        // Toggle dropdown visibility
+        document.getElementById('campaignForm').addEventListener('submit', function(event) {
+            // Process dropdowns across both sections
+            document.querySelectorAll('.form-step .dropdown').forEach((dropdown) => {
+                const field = dropdown.getAttribute('data-field'); // Field name
+                const section = dropdown.getAttribute('data-section'); // Section identifier
+                const selectedItems = dropdown.querySelectorAll('.selected-items .selected-item');
+                const selectedValues = Array.from(selectedItems).map(item => item.getAttribute(
+                    'data-value'));
+
+                // Find and update the hidden input within the same dropdown
+                dropdown.querySelector(`input[name="${field}"]`).value = selectedValues.join(',');
+
+                // Debugging (optional): Log section and selected values
+                console.log(`Section: ${section}, Field: ${field}, Selected: ${selectedValues.join(',')}`);
+            });
+        });
+
+        // Dropdown functions
         function toggleDropdown(event) {
             const button = event.target.closest('.dropdown-button');
             const dropdownContent = button.nextElementSibling;
 
-            // Close other open dropdowns
+            // Close other dropdowns
             document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
-                if (dropdown !== dropdownContent) {
-                    dropdown.style.display = 'none';
-                }
+                if (dropdown !== dropdownContent) dropdown.style.display = 'none';
             });
 
-            // Toggle the current dropdown
+            // Toggle visibility
             dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
         }
 
-        // Toggle multiple selection
         function toggleMultipleSelection(event) {
             event.preventDefault();
             const option = event.target;
@@ -493,52 +511,44 @@
             const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
             const selectedValue = option.getAttribute('data-value');
 
-            // Check if the value is already selected
+            // Check if value is already selected
             const existingItem = selectedItemsContainer.querySelector(`[data-value="${selectedValue}"]`);
             if (existingItem) {
-                // Remove the selected item
-                existingItem.remove();
+                existingItem.remove(); // Remove selected item
                 option.classList.remove('disabled');
             } else {
-                // Add the new selected item
                 createSelectedItem(selectedItemsContainer, selectedValue);
                 option.classList.add('disabled');
             }
 
-            // Update placeholder text
             updatePlaceholderText(dropdownButton, selectedItemsContainer);
         }
 
-        // Add custom hashtags
         function addCustomHashtag(event) {
             if (event.key === 'Enter' && event.target.value.trim() !== '') {
                 const input = event.target;
-                const customHashtag = input.value.trim();
+                const customValue = input.value.trim();
                 const dropdownContent = input.closest('.dropdown-content');
                 const dropdownButton = dropdownContent.previousElementSibling;
                 const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
 
-                // Check if the custom hashtag is already added
-                if (!selectedItemsContainer.querySelector(`[data-value="${customHashtag}"]`)) {
-                    createSelectedItem(selectedItemsContainer, customHashtag);
+                // Avoid duplicates
+                if (!selectedItemsContainer.querySelector(`[data-value="${customValue}"]`)) {
+                    createSelectedItem(selectedItemsContainer, customValue);
                 }
 
-                // Clear the input field
                 input.value = '';
-
-                // Update placeholder text
                 updatePlaceholderText(dropdownButton, selectedItemsContainer);
             }
         }
 
-        // Create a selected item
         function createSelectedItem(container, value) {
             const selectedItem = document.createElement('span');
             selectedItem.classList.add('selected-item');
             selectedItem.setAttribute('data-value', value);
             selectedItem.textContent = value;
 
-            // Add a remove button
+            // Add remove button
             const removeButton = document.createElement('span');
             removeButton.classList.add('remove');
             removeButton.textContent = '×';
@@ -550,21 +560,15 @@
                         option.classList.remove('disabled');
                     }
                 });
-                updatePlaceholderText(container.closest('.dropdown-button'), container);
             };
 
             selectedItem.appendChild(removeButton);
             container.appendChild(selectedItem);
         }
 
-        // Update placeholder text visibility
         function updatePlaceholderText(dropdownButton, selectedItemsContainer) {
             const buttonText = dropdownButton.querySelector('.dropdown-button-text');
-            if (selectedItemsContainer.children.length > 0) {
-                buttonText.style.display = 'none';
-            } else {
-                buttonText.style.display = 'block';
-            }
+            buttonText.style.display = selectedItemsContainer.children.length > 0 ? 'none' : 'block';
         }
 
         // Close dropdown when clicking outside

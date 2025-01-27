@@ -485,7 +485,7 @@ class ProfileController extends Controller
     }
     public function checkout_submit(Request $request)
     {
-
+dd($request->all());
         // Fetch cart data from the session
         $cart = Session::get('cart', []);
 
