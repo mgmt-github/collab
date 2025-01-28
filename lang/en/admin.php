@@ -404,6 +404,7 @@ return array(
   'Featured' => 'Featured',
   'Banned' => 'Banned',
   'Awaiting for approval' => 'Awaiting for approval',
+  'No pending approvals at this time!' => 'No pending approvals at this time!',
   'Edit' => 'Edit',
   'View' => 'View',
   'Extra' => 'Extra',

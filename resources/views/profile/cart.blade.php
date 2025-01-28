@@ -297,6 +297,7 @@
             font-style: normal;
             font-weight: 400;
             line-height: 157.118%;
+            margin-right: 6px;
             /* 26.011px */
         }
 

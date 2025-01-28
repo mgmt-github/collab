@@ -1,7 +1,24 @@
+<style>
+    .main-sidebar .sidebar-brand {
+        display: inline-block;
+        width: 100%;
+        text-align: left;
+        padding: 0 20px;
+        line-height: 60px;
+        font-size: 26px;
+        font-family: 'Poppins';
+        font-weight: 700;
+        margin-bottom: 24px;
+        margin-top: 35px;
+    }
+</style>
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{ route('influencer.dashboard') }}">{{ $setting->app_name }}</a>
+            <a href="{{ route('influencer.dashboard') }}">
+                <img src="{{ asset('/uploads/client-dasborad/actro-logo.png') }}" alt="Actrology" />
+                {{-- {{ $setting->app_name }} --}}
+            </a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('influencer.dashboard') }}">A</a>
@@ -129,7 +146,7 @@
             <li class="{{ Route::is('influencer.live-chat') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('influencer.live-chat') }}"><i class="far fa-newspaper"></i>
                     <span>{{ __('admin.Live Chat') }}</span></a></li>
-            <li class="{{ Route::is('influencer.campaign') ? 'active' : '' }}"><a class="nav-link"
+            <li class="{{ Route::is('influencer.campaigns') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('influencer.campaigns') }}"><i class="far fa-newspaper"></i>
                     <span>{{ __('admin.campaigns') }}</span></a></li>
 

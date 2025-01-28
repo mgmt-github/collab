@@ -198,14 +198,12 @@
 </style>
 @php
     $auth_user = Auth::guard('web')->user();
-    $unseen_ticket = App\Models\TicketMessage::where('user_id', $auth_user->id)
-        ->where('unseen_user', 0)
-        ->count();
+    $unseen_ticket = App\Models\TicketMessage::where('user_id', $auth_user->id)->where('unseen_user', 0)->count();
 @endphp
 
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
-        <div class="sidebar-brand 33">
+        <div class="sidebar-brand">
             <a href="{{ route('influencer.dashboard') }}">
                 <img src="{{ asset('/uploads/client-dasborad/actro-logo.png') }}" alt="Actrology" />
                 {{-- {{ $setting->app_name }} --}}
@@ -248,7 +246,7 @@
                     <span>{{ __('admin.Dashboard') }}</span></a>
             </li>
 
-            <li class="{{ Route::is('user.influencer') ? 'active' : '' }}">
+            <li class="{{ Route::is('user.influencers') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('user.influencers') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="13" viewBox="0 0 14 13"
                         fill="none">
