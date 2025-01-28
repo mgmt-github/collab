@@ -630,12 +630,13 @@
                                         <div class="form-col">
                                             <label>{{ __('admin.First Name') }}</label>
                                             <input type="text" name="name" id="name" class=""
-                                                placeholder="Alexa" />
+                                                value="{{ auth()->user()->name }}" placeholder="Alexa" />
                                         </div>
 
                                         <div class="form-col">
-                                            <label>{{ __('admin.Last Name') }}</label>
-                                            <input type="text" name="lname" id="" placeholder="Adriana" />
+                                            <label>{{ __('admin.user name') }}</label>
+                                            <input type="text" name="username" id="" placeholder="Adriana"
+                                                value="{{ auth()->user()->username }}" />
                                         </div>
                                     </div>
 
@@ -643,13 +644,13 @@
                                         <div class="form-col">
                                             <label>{{ __('admin.Email') }}</label>
                                             <input type="text" name="email" class="email" id=""
-                                                placeholder="abc@example.com" />
+                                                value="{{ auth()->user()->email }}" placeholder="abc@example.com" />
                                         </div>
 
                                         <div class="form-col">
                                             <label>{{ __('admin.Mobile Phone') }}</label>
                                             <input type="text" name="phone" class="" id="phone"
-                                                placeholder="+12 3456 7890" />
+                                                value="{{ auth()->user()->phone }}" placeholder="+12 3456 7890" />
                                         </div>
                                     </div>
                                 </div>

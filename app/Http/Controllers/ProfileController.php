@@ -24,7 +24,7 @@ use App\Models\Review;
 use App\Models\SeoSetting;
 use App\Models\SocialPlatform;
 use App\Rules\Captcha;
-use Hash, Image, File, Str, session,Stripe;
+use Hash, Image, File, Str, session, Stripe;
 use Modules\Service\Entities\Category;
 use App\Models\StripePayment;
 
@@ -485,7 +485,7 @@ class ProfileController extends Controller
     }
     public function checkout_submit(Request $request)
     {
-dd($request->all());
+        dd($request->all());
         // Fetch cart data from the session
         $cart = Session::get('cart', []);
 
@@ -681,8 +681,9 @@ dd($request->all());
     function campaign_create()
     {
 
+        $category  = Category::get();
 
-        return view('profile.campaign');
+        return view('profile.campaign', compact('category'));
     }
     function campaign2()
     {
