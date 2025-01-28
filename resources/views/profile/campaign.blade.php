@@ -4,521 +4,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 @endsection
 @section('frontend-content')
-    <div class="main-content">
-        <section class="section">
-            <div class="section-body">
-                <!-- Form Steps / Progress Bar -->
-                <div class="container">
-                    <ul class="form-stepper form-stepper-horizontal">
-                        <!-- Step 1 -->
-                        <li class="form-stepper-active text-center form-stepper-list" step="1">
-                            <a class="mx-2">
-                                <span class="form-stepper-circle">
-                                    <span>1</span>
-                                </span>
-                                <div class="label">Basic</div>
-                            </a>
-                        </li>
-                        <!-- Step 2 -->
-                        <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
-                            <a class="mx-2">
-                                <span class="form-stepper-circle text-muted">
-                                    <span>2</span>
-                                </span>
-                                <div class="label text-muted">Content</div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="container">
-                    <form id="campaignForm" method="POST" action="{{ route('user.campaign.submit') }}"
-                        enctype="multipart/form-data">
-                        @csrf
-                        {{-- Section 1 Campaign Basic  --}}
-                        <div id="step-1" class="campaign-main form-step">
-                            <div class="required mg-top-20">
-                                <h2>{{ __('admin.Platform') }}</h2> <span style="color: red;">*</span>
-                            </div>
-                            <p>{{ __('admin.Platform means you want to promote this brand') }}
-                            </p>
-                            <div class="platform-btn">
-                                <div class="campaign-btn">
-                                    <input type="radio" id='facebook' value="facebook" name="platforms"
-                                        class="radio-custom" required />
-
-                                    <label for='facebook' class="radio-custom-label">{{ __('admin.Facebook') }}</label>
-                                    <span><img src="{{ asset('/uploads/campaign-img/fb.svg') }}" alt="logo" />
-                                    </span>
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='instagram' value="instagram" name="platforms"
-                                        class="radio-custom" />
-
-                                    <label for='instagram' class="radio-custom-label">{{ __('admin.Instagram') }}</label>
-                                    <span>
-                                        <img src="{{ asset('/uploads/campaign-img/insta.svg') }}" alt="logo" />
-                                    </span>
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='youtube' value="youtube" name="platforms"
-                                        class="radio-custom" />
-
-                                    <label for='youtube' class="radio-custom-label">{{ __('admin.Youtube') }}</label>
-                                    <span>
-                                        <img src="{{ asset('/uploads/campaign-img/youtube.svg') }}" alt="logo" />
-                                    </span>
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='snapchat' value="snapchat" name="platforms"
-                                        class="radio-custom" />
-
-                                    <label for='snapchat' class="radio-custom-label">{{ __('admin.Snapchat') }}</label>
-                                    <img src="{{ asset('/uploads/campaign-img/snapchat.svg') }}" alt="logo" />
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='tiktok' value="tiktok" name="platforms"
-                                        class="radio-custom" />
-
-                                    <label for='tiktok' class="radio-custom-label">{{ __('admin.Tiktok') }}</label>
-                                    <img src="{{ asset('/uploads/campaign-img/tiktok.svg') }}" alt="logo" />
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='user-Generated-Content' value="user-Generated-Content"
-                                        name="platforms" class="radio-custom" />
-
-                                    <label for='user-Generated-Content'
-                                        class="radio-custom-label">{{ __('admin.User Generated Content (UGC)') }}</label>
-                                </div>
-                            </div>
-                            <div class="dropdown-social mg-top-20">
-                                <div class="dropdown" data-section="step-1" data-field="category">
-                                    <h2>{{ __('admin.Category') }}</h2>
-                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
-                                        <div class="selected-items"></div>
-                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
-                                    </div>
-                                    <div class="dropdown-content">
-                                        <input type="text" class="hashtag-input"
-                                            placeholder="{{ __('admin.Type to add your own') }}"
-                                            onkeydown="addCustomHashtag(event)" />
-                                        <a data-value="Fashion"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Fashion') }}</a>
-                                        <a data-value="Family & Children"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Family & Children') }}</a>
-                                        <a data-value="Travel and tourism"
-                                            onclick="toggleMultipleSelection(event)">{{ __('Travel and tourism') }}</a>
-                                        <a data-value="Weight loss"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Weight loss') }}</a>
-                                        <a data-value="Health and beauty"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Health and beauty') }}</a>
-                                    </div>
-                                    <input type="hidden" name="category" id="selected-category" />
-                                </div>
-                                <div class="dropdown" data-section="step-1" data-field="country">
-                                    <h2>{{ __('admin.Country') }}</h2>
-                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
-                                        <div class="selected-items"></div>
-                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
-                                    </div>
-                                    <div class="dropdown-content">
-                                        <input type="text" class="hashtag-input"
-                                            placeholder="{{ __('admin.Type to add your own') }}"
-                                            onkeydown="addCustomHashtag(event)" />
-                                        <a data-value="USA"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.USA') }}</a>
-                                        <a data-value="Pakistan"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Pakistan') }}</a>
-                                        <a data-value="Canada"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Canada') }}</a>
-                                        <a data-value="Chinese"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Denmark') }}</a>
-                                    </div>
-                                    <input type="hidden" name="country" id="selected-country" />
-                                </div>
-
-                            </div>
-                            <h2 class="">{{ __('admin.Required number of Influencer') }}</h2>
-                            <div class="stepper mg-top-20">
-                                <div class="stepper-btn" id="decrement">-</div>
-                                <input type="text" class="stepper-input" name="no_of_influencer" id="stepper-value"
-                                    value="1" readonly>
-                                <div class="stepper-btn" id="increment">+</div>
-                            </div>
-                            <div class="navigation-btns">
-                                <div class="navigation-btns-item previous">{{ __('admin.Previous') }}</div>
-                                <div step_number="2" class="navigation-btns-item active">
-                                    <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path
-                                            d="M14.6922 6.69212L20 11.9999L14.6922 17.3076L13.9845 16.5999L18.0845 12.4999L4 12.4999V11.4999L18.0845 11.4999L13.9845 7.39987L14.6922 6.69212Z"
-                                            fill="black" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- Section 1 Campaign Basic Ends  --}}
-                        {{-- Section 2 Campaign Content  --}}
-                        <div id="step-2" class="compaign-container form-step d-none">
-                            <div class="dropdown-social mg-top-20">
-                                <div class="dropdown" data-section="step-2" data-field="range">
-                                    <h2>{{ __('admin.Follower range') }}</h2>
-                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
-                                        <div class="selected-items"></div>
-                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
-                                    </div>
-                                    <div class="dropdown-content">
-                                        <input type="text" class="hashtag-input"
-                                            placeholder="{{ __('admin.Type to add your own') }}"
-                                            onkeydown="addCustomHashtag(event)" />
-                                        <a data-value="1k-10k" onclick="toggleMultipleSelection(event)">1k-10k</a>
-                                        <a data-value="10k-20k" onclick="toggleMultipleSelection(event)">10k-20k</a>
-                                        <a data-value="20k-30k" onclick="toggleMultipleSelection(event)">20k-30k</a> <a
-                                            data-value="30k-40k" onclick="toggleMultipleSelection(event)">30k-40k</a> <a
-                                            data-value="40k-50k" onclick="toggleMultipleSelection(event)">40k-50k</a> <a
-                                            data-value="60k-70k" onclick="toggleMultipleSelection(event)">60k-70k</a>
-                                    </div>
-                                    <input type="hidden" name="range" id="selected-range" />
-                                </div>
-                                <div class="dropdown" data-section="step-2" data-field="language">
-                                    <h2>{{ __('admin.Language') }}</h2>
-                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
-                                        <div class="selected-items"></div>
-                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
-                                    </div>
-                                    <div class="dropdown-content">
-                                        <input type="text" class="hashtag-input"
-                                            placeholder="{{ __('admin.Type to add your own') }}"
-                                            onkeydown="addCustomHashtag(event)" />
-                                        <a data-value="English"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.English') }}</a>
-                                        <a data-value="Urdu"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Urdu') }}</a>
-                                        <a data-value="Arabic"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Arabic') }}</a>
-                                        <a data-value="Chinese"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Chinese') }}</a>
-                                    </div>
-                                    <input type="hidden" name="language" id="selected-language" />
-                                </div>
-                            </div>
-
-                            <h2>{{ __('admin.Influencer Gender') }}</h2>
-                            <div class="btns-group-radio">
-                                <div class="campaign-btn">
-                                    <input type="radio" id='male' value="male" name="gender"
-                                        class="radio-custom" checked />
-
-                                    <label for='male' class="radio-custom-label">{{ __('admin.Male') }}</label>
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='female' value="female" name="gender"
-                                        class="radio-custom" />
-
-                                    <label for='female' class="radio-custom-label">{{ __('admin.Female') }}</label>
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='other' value="other" name="gender"
-                                        class="radio-custom" />
-
-                                    <label for='other' class="radio-custom-label">{{ __('admin.Other') }}</label>
-                                </div>
-                            </div>
-                            <h2 class="mg-top-20">{{ __('admin.Campaign Thumbail') }}</h2>
-                            <p>{{ __('admin.Upload the cmpaign thumbnail') }}
-                            </p>
-                            <div class="campaign-thumbnail">
-                                <img src="{{ asset('/uploads/campaign-img/cloud-add.svg') }}" alt="logo"/>
-                                <h1>{{ __('admin.Choose a file or drag & drop it here') }}</h1>
-                                <p>{{ __('admin.JPEG, PNG, PDG, and MP4 formats, up to 50MB') }}</p>
-                                <div class="file-input-wrapper">
-                                    <label class="browse-button" for="image-input">{{ __('admin.Browse File') }}</label>
-                                    <input type="file" name="file" id="image-input" class="file-input"
-                                        accept="image/*">
-                                    <p id="file-name" style="color: #555; font-size: 12px"></p>
-                                </div>
-                            </div>
-                            <div class="navigation-btns">
-                                <div step_number="1" class="navigation-btns-item"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="29" height="24" viewBox="0 0 29 24" fill="none">
-                                        <path
-                                            d="M11.0001 17.3079L4.85156 12.0001L11.0001 6.69238L11.82 7.40013L7.07051 11.5001H23.3862V12.5001H7.07051L11.82 16.6001L11.0001 17.3079Z"
-                                            fill="black" />
-                                    </svg><span>{{ __('admin.Previous') }}</span></div>
-                                <button type="submit"
-                                    class="navigation-btns-item active"><span>{{ __('admin.Submit') }}</span></button>
-                            </div>
-                        </div>
-                        {{-- Section 2 Campaign Content  Ends --}}
-                    </form>
-                </div>
-            </div>
-        </section>
-    </div>
-    <script>
-        const navigateToFormStep = (stepNumber) => {
-            document.querySelectorAll(".form-step").forEach((formStepElement) => {
-                formStepElement.classList.add("d-none");
-            });
-            document
-                .querySelector("#step-" + stepNumber)
-                .classList.remove("d-none");
-
-            document.querySelectorAll(".form-stepper-list").forEach((formStepHeader) => {
-                formStepHeader.classList.add("form-stepper-unfinished");
-                formStepHeader.classList.remove("form-stepper-active", "form-stepper-completed");
-            });
-
-            const formStepCircle = document.querySelector('li[step="' + stepNumber + '"]');
-            formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-completed");
-            formStepCircle.classList.add("form-stepper-active");
-
-            for (let index = 0; index < stepNumber; index++) {
-                const completedStepCircle = document.querySelector('li[step="' + index + '"]');
-                if (completedStepCircle) {
-                    completedStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-active");
-                    completedStepCircle.classList.add("form-stepper-completed");
-                }
-            }
-        };
-
-        const validateStepFields = (stepNumber) => {
-            const currentStep = document.querySelector("#step-" + stepNumber);
-            let isValid = true;
-
-            // Validate radio button groups
-            const requiredRadios = currentStep.querySelectorAll('input[type="radio"][required]');
-            requiredRadios.forEach((radio) => {
-                const radioGroup = currentStep.querySelectorAll(`input[name="${radio.name}"]`);
-                const isAnyChecked = Array.from(radioGroup).some((r) => r.checked);
-
-                if (!isAnyChecked) {
-                    isValid = false;
-                    // Highlight the radio button group container with an error class
-                    radio.closest(".platform-btn").classList.add("error");
-                } else {
-                    // Remove the error class if valid
-                    radio.closest(".platform-btn").classList.remove("error");
-                }
-            });
-
-            return isValid;
-        };
-
-        document.querySelectorAll(".navigation-btns-item").forEach((formNavigationBtn) => {
-            formNavigationBtn.addEventListener("click", (e) => {
-                const stepNumber = parseInt(formNavigationBtn.getAttribute("step_number"));
-                const currentStep = stepNumber - 1;
-
-                // Validate fields only for steps > 1
-                if (stepNumber > 1 && !validateStepFields(currentStep)) {
-                    alert("Please select a platform before proceeding.");
-                    return;
-                }
-
-                navigateToFormStep(stepNumber);
-            });
-        });
-
-        const platformImages = {
-            facebook: "facebook.png",
-            instagram: "insta.svg",
-            youtube: "youtube.svg",
-            snapchat: "snapchat.svg",
-            tiktok: "tiktok.svg",
-            "user-Generated-Content": "user.svg",
-        };
-
-        document.querySelectorAll('input[name="platforms"]').forEach((radio) => {
-            radio.addEventListener("change", (e) => {
-                const selectedPlatform = e.target.value;
-
-                // Get the correct image file based on the platform
-                const platformImage = platformImages[selectedPlatform];
-
-                // Toggle platform-specific content
-                document.querySelectorAll(".platforms-content").forEach((content) => {
-                    content.classList.add("d-none");
-                });
-                const platformContent = document.querySelector(`#platform-${selectedPlatform}`);
-                if (platformContent) {
-                    platformContent.classList.remove("d-none");
-                }
-
-                // Update the platform image
-                const thirdSectionPlatform = document.querySelector("#third-section-platform");
-                if (platformImage) {
-                    const platformImageElement = `
-                <div class="platforms-item">
-                    
-                    <img src="{{ asset('/uploads/campaign-img/${platformImage}') }}" alt="${selectedPlatform} Logo" class="logo">
-                    <h1>${selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)}</h1>
-                </div>
-            `;
-                    thirdSectionPlatform.querySelector(".platforms-item")
-                        ?.remove(); // Remove existing image
-                    thirdSectionPlatform.insertAdjacentHTML("afterbegin", platformImageElement);
-                }
-            });
-        });
-    </script>
-    <script>
-        // Display the selected file name
-        document.getElementById("image-input").addEventListener("change", function() {
-            const fileName = this.files[0] ? this.files[0].name : "No file selected";
-            document.getElementById("file-name").innerText = `Selected File: ${fileName}`;
-        });
-    </script>
-    <script>
-        const countDisplay = document.getElementById('count');
-        const decrementButton = document.getElementById('decrement');
-        const incrementButton = document.getElementById('increment');
-
-        let count = 1;
-
-        decrementButton.addEventListener('click', () => {
-            if (count > 0) {
-                count--;
-                countDisplay.textContent = count;
-            }
-        });
-
-        incrementButton.addEventListener('click', () => {
-            count++;
-            countDisplay.textContent = count;
-        });
-    </script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor.create(document.querySelector('#editor')).catch(error => {
-            console.error(error);
-        });
-    </script>
-    <script>
-        document.getElementById('campaignForm').addEventListener('submit', function(event) {
-            // Process dropdowns across both sections
-            document.querySelectorAll('.form-step .dropdown').forEach((dropdown) => {
-                const field = dropdown.getAttribute('data-field'); // Field name
-                const section = dropdown.getAttribute('data-section'); // Section identifier
-                const selectedItems = dropdown.querySelectorAll('.selected-items .selected-item');
-                const selectedValues = Array.from(selectedItems).map(item => item.getAttribute(
-                    'data-value'));
-
-                // Find and update the hidden input within the same dropdown
-                dropdown.querySelector(`input[name="${field}"]`).value = selectedValues.join(',');
-
-                // Debugging (optional): Log section and selected values
-                console.log(`Section: ${section}, Field: ${field}, Selected: ${selectedValues.join(',')}`);
-            });
-        });
-
-        // Dropdown functions
-        function toggleDropdown(event) {
-            const button = event.target.closest('.dropdown-button');
-            const dropdownContent = button.nextElementSibling;
-
-            // Close other dropdowns
-            document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
-                if (dropdown !== dropdownContent) dropdown.style.display = 'none';
-            });
-
-            // Toggle visibility
-            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function toggleMultipleSelection(event) {
-            event.preventDefault();
-            const option = event.target;
-            const dropdownContent = option.closest('.dropdown-content');
-            const dropdownButton = dropdownContent.previousElementSibling;
-            const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
-            const selectedValue = option.getAttribute('data-value');
-
-            // Check if value is already selected
-            const existingItem = selectedItemsContainer.querySelector(`[data-value="${selectedValue}"]`);
-            if (existingItem) {
-                existingItem.remove(); // Remove selected item
-                option.classList.remove('disabled');
-            } else {
-                createSelectedItem(selectedItemsContainer, selectedValue);
-                option.classList.add('disabled');
-            }
-
-            updatePlaceholderText(dropdownButton, selectedItemsContainer);
-        }
-
-        function addCustomHashtag(event) {
-            if (event.key === 'Enter' && event.target.value.trim() !== '') {
-                const input = event.target;
-                const customValue = input.value.trim();
-                const dropdownContent = input.closest('.dropdown-content');
-                const dropdownButton = dropdownContent.previousElementSibling;
-                const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
-
-                // Avoid duplicates
-                if (!selectedItemsContainer.querySelector(`[data-value="${customValue}"]`)) {
-                    createSelectedItem(selectedItemsContainer, customValue);
-                }
-
-                input.value = '';
-                updatePlaceholderText(dropdownButton, selectedItemsContainer);
-            }
-        }
-
-        function createSelectedItem(container, value) {
-            const selectedItem = document.createElement('span');
-            selectedItem.classList.add('selected-item');
-            selectedItem.setAttribute('data-value', value);
-            selectedItem.textContent = value;
-
-            // Add remove button
-            const removeButton = document.createElement('span');
-            removeButton.classList.add('remove');
-            removeButton.textContent = '×';
-            removeButton.onclick = () => {
-                selectedItem.remove();
-                const options = document.querySelectorAll('.dropdown-content a');
-                options.forEach((option) => {
-                    if (option.getAttribute('data-value') === value) {
-                        option.classList.remove('disabled');
-                    }
-                });
-            };
-
-            selectedItem.appendChild(removeButton);
-            container.appendChild(selectedItem);
-        }
-
-        function updatePlaceholderText(dropdownButton, selectedItemsContainer) {
-            const buttonText = dropdownButton.querySelector('.dropdown-button-text');
-            buttonText.style.display = selectedItemsContainer.children.length > 0 ? 'none' : 'block';
-        }
-
-        // Close dropdown when clicking outside
-        window.onclick = function(event) {
-            if (!event.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
-                    dropdown.style.display = 'none';
-                });
-            }
-        };
-    </script>
-    <script>
-        const decrementBtn = document.getElementById('decrement');
-        const incrementBtn = document.getElementById('increment');
-        const stepperValue = document.getElementById('stepper-value');
-
-        decrementBtn.addEventListener('click', () => {
-            let value = parseInt(stepperValue.value, 10);
-            if (value > 0) {
-                stepperValue.value = value - 1;
-            }
-        });
-
-        incrementBtn.addEventListener('click', () => {
-            let value = parseInt(stepperValue.value, 10);
-            stepperValue.value = value + 1;
-        });
-    </script>
     <style>
         .custom-font {
             margin: 0;
@@ -1342,5 +827,570 @@
         .form-stepper a {
             cursor: default;
         }
+
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .loader .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .d-none {
+            display: none;
+        }
     </style>
+    <div class="main-content">
+        <section class="section">
+            <div class="section-body">
+                <div id="loader" class="loader d-none">
+                    <div class="spinner"></div>
+                    <p>Submitting your form...</p>
+                </div>
+                <!-- Form Steps / Progress Bar -->
+                <div class="container">
+                    <ul class="form-stepper form-stepper-horizontal">
+                        <!-- Step 1 -->
+                        <li class="form-stepper-active text-center form-stepper-list" step="1">
+                            <a class="mx-2">
+                                <span class="form-stepper-circle">
+                                    <span>1</span>
+                                </span>
+                                <div class="label">Basic</div>
+                            </a>
+                        </li>
+                        <!-- Step 2 -->
+                        <li class="form-stepper-unfinished text-center form-stepper-list" step="2">
+                            <a class="mx-2">
+                                <span class="form-stepper-circle text-muted">
+                                    <span>2</span>
+                                </span>
+                                <div class="label text-muted">Content</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="container">
+                    <form id="campaignForm" method="POST" action="{{ route('user.campaign.submit') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        {{-- Section 1 Campaign Basic  --}}
+                        <div id="step-1" class="campaign-main form-step">
+                            <div class="required mg-top-20">
+                                <h2>{{ __('admin.Platform') }}</h2> <span style="color: red;">*</span>
+                            </div>
+                            <p>{{ __('admin.Platform means you want to promote this brand') }}
+                            </p>
+                            <div class="platform-btn">
+                                <div class="campaign-btn">
+                                    <input type="radio" id='facebook' value="facebook" name="platforms"
+                                        class="radio-custom" required />
+
+                                    <label for='facebook' class="radio-custom-label">{{ __('admin.Facebook') }}</label>
+                                    <span><img src="{{ asset('/uploads/campaign-img/fb.svg') }}" alt="logo" />
+                                    </span>
+                                </div>
+                                <div class="campaign-btn">
+                                    <input type="radio" id='instagram' value="instagram" name="platforms"
+                                        class="radio-custom" />
+
+                                    <label for='instagram' class="radio-custom-label">{{ __('admin.Instagram') }}</label>
+                                    <span>
+                                        <img src="{{ asset('/uploads/campaign-img/insta.svg') }}" alt="logo" />
+                                    </span>
+                                </div>
+                                <div class="campaign-btn">
+                                    <input type="radio" id='youtube' value="youtube" name="platforms"
+                                        class="radio-custom" />
+
+                                    <label for='youtube' class="radio-custom-label">{{ __('admin.Youtube') }}</label>
+                                    <span>
+                                        <img src="{{ asset('/uploads/campaign-img/youtube.svg') }}" alt="logo" />
+                                    </span>
+                                </div>
+                                <div class="campaign-btn">
+                                    <input type="radio" id='snapchat' value="snapchat" name="platforms"
+                                        class="radio-custom" />
+
+                                    <label for='snapchat' class="radio-custom-label">{{ __('admin.Snapchat') }}</label>
+                                    <img src="{{ asset('/uploads/campaign-img/snapchat.svg') }}" alt="logo" />
+                                </div>
+                                <div class="campaign-btn">
+                                    <input type="radio" id='tiktok' value="tiktok" name="platforms"
+                                        class="radio-custom" />
+
+                                    <label for='tiktok' class="radio-custom-label">{{ __('admin.Tiktok') }}</label>
+                                    <img src="{{ asset('/uploads/campaign-img/tiktok.svg') }}" alt="logo" />
+                                </div>
+                                <div class="campaign-btn">
+                                    <input type="radio" id='user-Generated-Content' value="user-Generated-Content"
+                                        name="platforms" class="radio-custom" />
+
+                                    <label for='user-Generated-Content'
+                                        class="radio-custom-label">{{ __('admin.User Generated Content (UGC)') }}</label>
+                                </div>
+                            </div>
+                            <div class="dropdown-social mg-top-20">
+                                <div class="dropdown" data-section="step-1" data-field="category">
+                                    <h2>{{ __('admin.Category') }}</h2>
+                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="selected-items"></div>
+                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <input type="text" class="hashtag-input"
+                                            placeholder="{{ __('admin.Type to add your own') }}"
+                                            onkeydown="addCustomHashtag(event)" />
+                                        <a data-value="Fashion"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Fashion') }}</a>
+                                        <a data-value="Family & Children"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Family & Children') }}</a>
+                                        <a data-value="Travel and tourism"
+                                            onclick="toggleMultipleSelection(event)">{{ __('Travel and tourism') }}</a>
+                                        <a data-value="Weight loss"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Weight loss') }}</a>
+                                        <a data-value="Health and beauty"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Health and beauty') }}</a>
+                                    </div>
+                                    <input type="hidden" name="category" id="selected-category" />
+                                </div>
+                                <div class="dropdown" data-section="step-1" data-field="country">
+                                    <h2>{{ __('admin.Country') }}</h2>
+                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="selected-items"></div>
+                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <input type="text" class="hashtag-input"
+                                            placeholder="{{ __('admin.Type to add your own') }}"
+                                            onkeydown="addCustomHashtag(event)" />
+                                        <a data-value="USA"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.USA') }}</a>
+                                        <a data-value="Pakistan"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Pakistan') }}</a>
+                                        <a data-value="Canada"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Canada') }}</a>
+                                        <a data-value="Chinese"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Denmark') }}</a>
+                                    </div>
+                                    <input type="hidden" name="country" id="selected-country" />
+                                </div>
+
+                            </div>
+                            <h2 class="">{{ __('admin.Required number of Influencer') }}</h2>
+                            <div class="stepper mg-top-20">
+                                <div class="stepper-btn" id="decrement">-</div>
+                                <input type="text" class="stepper-input" name="no_of_influencer" id="stepper-value"
+                                    value="1" readonly>
+                                <div class="stepper-btn" id="increment">+</div>
+                            </div>
+                            <div class="navigation-btns">
+                                <div class="navigation-btns-item previous">{{ __('admin.Previous') }}</div>
+                                <div step_number="2" class="navigation-btns-item active">
+                                    <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M14.6922 6.69212L20 11.9999L14.6922 17.3076L13.9845 16.5999L18.0845 12.4999L4 12.4999V11.4999L18.0845 11.4999L13.9845 7.39987L14.6922 6.69212Z"
+                                            fill="black" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- Section 1 Campaign Basic Ends  --}}
+                        {{-- Section 2 Campaign Content  --}}
+                        <div id="step-2" class="compaign-container form-step d-none">
+                            <div class="dropdown-social mg-top-20">
+                                <div class="dropdown" data-section="step-2" data-field="range">
+                                    <h2>{{ __('admin.Follower range') }}</h2>
+                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="selected-items"></div>
+                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <input type="text" class="hashtag-input"
+                                            placeholder="{{ __('admin.Type to add your own') }}"
+                                            onkeydown="addCustomHashtag(event)" />
+                                        <a data-value="1k-10k" onclick="toggleMultipleSelection(event)">1k-10k</a>
+                                        <a data-value="10k-20k" onclick="toggleMultipleSelection(event)">10k-20k</a>
+                                        <a data-value="20k-30k" onclick="toggleMultipleSelection(event)">20k-30k</a> <a
+                                            data-value="30k-40k" onclick="toggleMultipleSelection(event)">30k-40k</a> <a
+                                            data-value="40k-50k" onclick="toggleMultipleSelection(event)">40k-50k</a> <a
+                                            data-value="60k-70k" onclick="toggleMultipleSelection(event)">60k-70k</a>
+                                    </div>
+                                    <input type="hidden" name="range" id="selected-range" />
+                                </div>
+                                <div class="dropdown" data-section="step-2" data-field="language">
+                                    <h2>{{ __('admin.Language') }}</h2>
+                                    <div class="dropdown-button" onclick="toggleDropdown(event)">
+                                        <div class="selected-items"></div>
+                                        <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <input type="text" class="hashtag-input"
+                                            placeholder="{{ __('admin.Type to add your own') }}"
+                                            onkeydown="addCustomHashtag(event)" />
+                                        <a data-value="English"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.English') }}</a>
+                                        <a data-value="Urdu"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Urdu') }}</a>
+                                        <a data-value="Arabic"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Arabic') }}</a>
+                                        <a data-value="Chinese"
+                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Chinese') }}</a>
+                                    </div>
+                                    <input type="hidden" name="language" id="selected-language" />
+                                </div>
+                            </div>
+
+                            <h2>{{ __('admin.Influencer Gender') }}</h2>
+                            <div class="btns-group-radio">
+                                <div class="campaign-btn">
+                                    <input type="radio" id='male' value="male" name="gender"
+                                        class="radio-custom" checked />
+
+                                    <label for='male' class="radio-custom-label">{{ __('admin.Male') }}</label>
+                                </div>
+                                <div class="campaign-btn">
+                                    <input type="radio" id='female' value="female" name="gender"
+                                        class="radio-custom" />
+
+                                    <label for='female' class="radio-custom-label">{{ __('admin.Female') }}</label>
+                                </div>
+                                <div class="campaign-btn">
+                                    <input type="radio" id='other' value="other" name="gender"
+                                        class="radio-custom" />
+
+                                    <label for='other' class="radio-custom-label">{{ __('admin.Other') }}</label>
+                                </div>
+                            </div>
+                            <h2 class="mg-top-20">{{ __('admin.Campaign Thumbail') }}</h2>
+                            <p>{{ __('admin.Upload the cmpaign thumbnail') }}
+                            </p>
+                            <div class="campaign-thumbnail">
+                                <img src="{{ asset('/uploads/campaign-img/cloud-add.svg') }}" alt="logo" />
+                                <h1>{{ __('admin.Choose a file or drag & drop it here') }}</h1>
+                                <p>{{ __('admin.JPEG, PNG, PDG, and MP4 formats, up to 50MB') }}</p>
+                                <div class="file-input-wrapper">
+                                    <label class="browse-button" for="image-input">{{ __('admin.Browse File') }}</label>
+                                    <input type="file" name="file" id="image-input" class="file-input"
+                                        accept="image/*">
+                                    <p id="file-name" style="color: #555; font-size: 12px"></p>
+                                </div>
+                            </div>
+                            <div class="navigation-btns">
+                                <div step_number="1" class="navigation-btns-item"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="29" height="24" viewBox="0 0 29 24" fill="none">
+                                        <path
+                                            d="M11.0001 17.3079L4.85156 12.0001L11.0001 6.69238L11.82 7.40013L7.07051 11.5001H23.3862V12.5001H7.07051L11.82 16.6001L11.0001 17.3079Z"
+                                            fill="black" />
+                                    </svg><span>{{ __('admin.Previous') }}</span></div>
+                                <button type="submit"
+                                    class="navigation-btns-item active"><span>{{ __('admin.Submit') }}</span></button>
+                            </div>
+                        </div>
+                        {{-- Section 2 Campaign Content  Ends --}}
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        const campaignForm = document.getElementById('campaignForm');
+        const loader = document.getElementById('loader');
+
+        campaignForm.addEventListener('submit', (e) => {
+            // Show loader
+            loader.classList.remove('d-none');
+        });
+        const navigateToFormStep = (stepNumber) => {
+            document.querySelectorAll(".form-step").forEach((formStepElement) => {
+                formStepElement.classList.add("d-none");
+            });
+            document
+                .querySelector("#step-" + stepNumber)
+                .classList.remove("d-none");
+
+            document.querySelectorAll(".form-stepper-list").forEach((formStepHeader) => {
+                formStepHeader.classList.add("form-stepper-unfinished");
+                formStepHeader.classList.remove("form-stepper-active", "form-stepper-completed");
+            });
+
+            const formStepCircle = document.querySelector('li[step="' + stepNumber + '"]');
+            formStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-completed");
+            formStepCircle.classList.add("form-stepper-active");
+
+            for (let index = 0; index < stepNumber; index++) {
+                const completedStepCircle = document.querySelector('li[step="' + index + '"]');
+                if (completedStepCircle) {
+                    completedStepCircle.classList.remove("form-stepper-unfinished", "form-stepper-active");
+                    completedStepCircle.classList.add("form-stepper-completed");
+                }
+            }
+        };
+
+        const validateStepFields = (stepNumber) => {
+            const currentStep = document.querySelector("#step-" + stepNumber);
+            let isValid = true;
+
+            // Validate radio button groups
+            const requiredRadios = currentStep.querySelectorAll('input[type="radio"][required]');
+            requiredRadios.forEach((radio) => {
+                const radioGroup = currentStep.querySelectorAll(`input[name="${radio.name}"]`);
+                const isAnyChecked = Array.from(radioGroup).some((r) => r.checked);
+
+                if (!isAnyChecked) {
+                    isValid = false;
+                    // Highlight the radio button group container with an error class
+                    radio.closest(".platform-btn").classList.add("error");
+                } else {
+                    // Remove the error class if valid
+                    radio.closest(".platform-btn").classList.remove("error");
+                }
+            });
+
+            return isValid;
+        };
+
+        document.querySelectorAll(".navigation-btns-item").forEach((formNavigationBtn) => {
+            formNavigationBtn.addEventListener("click", (e) => {
+                const stepNumber = parseInt(formNavigationBtn.getAttribute("step_number"));
+                const currentStep = stepNumber - 1;
+
+                // Validate fields only for steps > 1
+                if (stepNumber > 1 && !validateStepFields(currentStep)) {
+                    alert("Please select a platform before proceeding.");
+                    return;
+                }
+
+                navigateToFormStep(stepNumber);
+            });
+        });
+
+        const platformImages = {
+            facebook: "facebook.png",
+            instagram: "insta.svg",
+            youtube: "youtube.svg",
+            snapchat: "snapchat.svg",
+            tiktok: "tiktok.svg",
+            "user-Generated-Content": "user.svg",
+        };
+
+        document.querySelectorAll('input[name="platforms"]').forEach((radio) => {
+            radio.addEventListener("change", (e) => {
+                const selectedPlatform = e.target.value;
+
+                // Get the correct image file based on the platform
+                const platformImage = platformImages[selectedPlatform];
+
+                // Toggle platform-specific content
+                document.querySelectorAll(".platforms-content").forEach((content) => {
+                    content.classList.add("d-none");
+                });
+                const platformContent = document.querySelector(`#platform-${selectedPlatform}`);
+                if (platformContent) {
+                    platformContent.classList.remove("d-none");
+                }
+
+                // Update the platform image
+                const thirdSectionPlatform = document.querySelector("#third-section-platform");
+                if (platformImage) {
+                    const platformImageElement = `
+                <div class="platforms-item">
+                    
+                    <img src="{{ asset('/uploads/campaign-img/${platformImage}') }}" alt="${selectedPlatform} Logo" class="logo">
+                    <h1>${selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)}</h1>
+                </div>
+            `;
+                    thirdSectionPlatform.querySelector(".platforms-item")
+                        ?.remove(); // Remove existing image
+                    thirdSectionPlatform.insertAdjacentHTML("afterbegin", platformImageElement);
+                }
+            });
+        });
+    </script>
+    <script>
+        // Display the selected file name
+        document.getElementById("image-input").addEventListener("change", function() {
+            const fileName = this.files[0] ? this.files[0].name : "No file selected";
+            document.getElementById("file-name").innerText = `Selected File: ${fileName}`;
+        });
+    </script>
+    <script>
+        const countDisplay = document.getElementById('count');
+        const decrementButton = document.getElementById('decrement');
+        const incrementButton = document.getElementById('increment');
+
+        let count = 1;
+
+        decrementButton.addEventListener('click', () => {
+            if (count > 0) {
+                count--;
+                countDisplay.textContent = count;
+            }
+        });
+
+        incrementButton.addEventListener('click', () => {
+            count++;
+            countDisplay.textContent = count;
+        });
+    </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector('#editor')).catch(error => {
+            console.error(error);
+        });
+    </script>
+    <script>
+        document.getElementById('campaignForm').addEventListener('submit', function(event) {
+            // Process dropdowns across both sections
+            document.querySelectorAll('.form-step .dropdown').forEach((dropdown) => {
+                const field = dropdown.getAttribute('data-field'); // Field name
+                const section = dropdown.getAttribute('data-section'); // Section identifier
+                const selectedItems = dropdown.querySelectorAll('.selected-items .selected-item');
+                const selectedValues = Array.from(selectedItems).map(item => item.getAttribute(
+                    'data-value'));
+
+                // Find and update the hidden input within the same dropdown
+                dropdown.querySelector(`input[name="${field}"]`).value = selectedValues.join(',');
+
+                // Debugging (optional): Log section and selected values
+                console.log(`Section: ${section}, Field: ${field}, Selected: ${selectedValues.join(',')}`);
+            });
+        });
+
+        // Dropdown functions
+        function toggleDropdown(event) {
+            const button = event.target.closest('.dropdown-button');
+            const dropdownContent = button.nextElementSibling;
+
+            // Close other dropdowns
+            document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
+                if (dropdown !== dropdownContent) dropdown.style.display = 'none';
+            });
+
+            // Toggle visibility
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleMultipleSelection(event) {
+            event.preventDefault();
+            const option = event.target;
+            const dropdownContent = option.closest('.dropdown-content');
+            const dropdownButton = dropdownContent.previousElementSibling;
+            const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
+            const selectedValue = option.getAttribute('data-value');
+
+            // Check if value is already selected
+            const existingItem = selectedItemsContainer.querySelector(`[data-value="${selectedValue}"]`);
+            if (existingItem) {
+                existingItem.remove(); // Remove selected item
+                option.classList.remove('disabled');
+            } else {
+                createSelectedItem(selectedItemsContainer, selectedValue);
+                option.classList.add('disabled');
+            }
+
+            updatePlaceholderText(dropdownButton, selectedItemsContainer);
+        }
+
+        function addCustomHashtag(event) {
+            if (event.key === 'Enter' && event.target.value.trim() !== '') {
+                const input = event.target;
+                const customValue = input.value.trim();
+                const dropdownContent = input.closest('.dropdown-content');
+                const dropdownButton = dropdownContent.previousElementSibling;
+                const selectedItemsContainer = dropdownButton.querySelector('.selected-items');
+
+                // Avoid duplicates
+                if (!selectedItemsContainer.querySelector(`[data-value="${customValue}"]`)) {
+                    createSelectedItem(selectedItemsContainer, customValue);
+                }
+
+                input.value = '';
+                updatePlaceholderText(dropdownButton, selectedItemsContainer);
+            }
+        }
+
+        function createSelectedItem(container, value) {
+            const selectedItem = document.createElement('span');
+            selectedItem.classList.add('selected-item');
+            selectedItem.setAttribute('data-value', value);
+            selectedItem.textContent = value;
+
+            // Add remove button
+            const removeButton = document.createElement('span');
+            removeButton.classList.add('remove');
+            removeButton.textContent = '×';
+            removeButton.onclick = () => {
+                selectedItem.remove();
+                const options = document.querySelectorAll('.dropdown-content a');
+                options.forEach((option) => {
+                    if (option.getAttribute('data-value') === value) {
+                        option.classList.remove('disabled');
+                    }
+                });
+            };
+
+            selectedItem.appendChild(removeButton);
+            container.appendChild(selectedItem);
+        }
+
+        function updatePlaceholderText(dropdownButton, selectedItemsContainer) {
+            const buttonText = dropdownButton.querySelector('.dropdown-button-text');
+            buttonText.style.display = selectedItemsContainer.children.length > 0 ? 'none' : 'block';
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-content').forEach((dropdown) => {
+                    dropdown.style.display = 'none';
+                });
+            }
+        };
+    </script>
+    <script>
+        const decrementBtn = document.getElementById('decrement');
+        const incrementBtn = document.getElementById('increment');
+        const stepperValue = document.getElementById('stepper-value');
+
+        decrementBtn.addEventListener('click', () => {
+            let value = parseInt(stepperValue.value, 10);
+            if (value > 0) {
+                stepperValue.value = value - 1;
+            }
+        });
+
+        incrementBtn.addEventListener('click', () => {
+            let value = parseInt(stepperValue.value, 10);
+            stepperValue.value = value + 1;
+        });
+    </script>
 @endsection
