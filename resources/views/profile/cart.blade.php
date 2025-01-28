@@ -297,7 +297,6 @@
             font-style: normal;
             font-weight: 400;
             line-height: 157.118%;
-            margin-right: 6px;
             /* 26.011px */
         }
 
@@ -344,35 +343,6 @@
             font-family: "Poppins", serif;
             padding: 0 5px 0;
         }
-
-        .heart {
-            cursor: pointer;
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            float: right;
-            margin: 3px 4px 0 0;
-            position: absolute;
-            right: 2px;
-            z-index: 99;
-            top: 3px;
-        }
-
-        .light-heart {
-            display: block;
-        }
-
-        .dark-heart {
-            display: none;
-        }
-
-        .active .light-heart {
-            display: none;
-        }
-
-        .active .dark-heart {
-            display: block;
-        }
     </style>
 
 
@@ -383,7 +353,6 @@
                 <div class="steps">
                     <a href="#" class="steps-item active"><span>1</span>{{ __('admin.Shopping cart') }}</a>
                     <a href="#" class="steps-item"><span>2</span>{{ __('admin.Checkout details') }}</a>
-                    <a href="#" class="steps-item"><span>3</span>{{ __('admin.Requirements') }}</a>
                 </div>
                 <!-- Tab Content -->
                 {{-- cart table  --}}
@@ -485,20 +454,6 @@
                             <div class="influancer-body mg-top-20">
                                 <div class="in-item">
                                     <h5>{{ __('admin.Makeup Wih two Influencers') }}</h5>
-                                    <div class="heart" onclick="toggleHeart(this, event)">
-                                        <svg class="light-heart" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M12.2994 20.9191C17.3662 17.4932 22.433 13.6808 22.433 8.614C22.433 7.3169 21.9386 6.02052 20.9491 5.03105C19.9596 4.0423 18.6633 3.5472 17.3662 3.5472C16.0698 3.5472 14.7727 4.0423 13.7839 5.03105L12.2994 6.51562L10.8155 5.03105C9.82604 4.0423 8.52967 3.5472 7.23257 3.5472C5.93619 3.5472 4.63909 4.0423 3.65034 5.03105C2.66087 6.02052 2.16577 7.3169 2.16577 8.614C2.16577 13.6808 7.23257 17.4932 12.2994 20.9191Z"
-                                                stroke="#010101" stroke-width="1.44766" />
-                                        </svg>
-                                        <svg class="dark-heart" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M12.2994 20.4845C17.3662 17.0586 22.433 13.2462 22.433 8.17944C22.433 6.88234 21.9386 5.58596 20.9491 4.59649C19.9596 3.60774 18.6633 3.11264 17.3662 3.11264C16.0698 3.11264 14.7727 3.60774 13.7839 4.59649L12.2994 6.08106L10.8155 4.59649C9.82604 3.60774 8.52967 3.11264 7.23257 3.11264C5.93619 3.11264 4.63909 3.60774 3.65034 4.59649C2.66087 5.58596 2.16577 6.88234 2.16577 8.17944C2.16577 13.2462 7.23257 17.0586 12.2994 20.4845Z"
-                                                fill="#FF0000" />
-                                        </svg>
-                                    </div>
                                     <div class="cart-item">
                                         <form method="POST">
                                             @csrf
@@ -514,20 +469,7 @@
                                 </div>
                                 <div class="in-item">
                                     <h5>{{ __('admin.Makeup Wih two Influencers') }}</h5>
-                                    <div class="heart" onclick="toggleHeart(this, event)">
-                                        <svg class="light-heart" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M12.2994 20.9191C17.3662 17.4932 22.433 13.6808 22.433 8.614C22.433 7.3169 21.9386 6.02052 20.9491 5.03105C19.9596 4.0423 18.6633 3.5472 17.3662 3.5472C16.0698 3.5472 14.7727 4.0423 13.7839 5.03105L12.2994 6.51562L10.8155 5.03105C9.82604 4.0423 8.52967 3.5472 7.23257 3.5472C5.93619 3.5472 4.63909 4.0423 3.65034 5.03105C2.66087 6.02052 2.16577 7.3169 2.16577 8.614C2.16577 13.6808 7.23257 17.4932 12.2994 20.9191Z"
-                                                stroke="#010101" stroke-width="1.44766" />
-                                        </svg>
-                                        <svg class="dark-heart" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M12.2994 20.4845C17.3662 17.0586 22.433 13.2462 22.433 8.17944C22.433 6.88234 21.9386 5.58596 20.9491 4.59649C19.9596 3.60774 18.6633 3.11264 17.3662 3.11264C16.0698 3.11264 14.7727 3.60774 13.7839 4.59649L12.2994 6.08106L10.8155 4.59649C9.82604 3.60774 8.52967 3.11264 7.23257 3.11264C5.93619 3.11264 4.63909 3.60774 3.65034 4.59649C2.66087 5.58596 2.16577 6.88234 2.16577 8.17944C2.16577 13.2462 7.23257 17.0586 12.2994 20.4845Z"
-                                                fill="#FF0000" />
-                                        </svg>
-                                    </div>
+
                                     <div class="cart-item">
                                         <form method="POST">
                                             @csrf
@@ -551,15 +493,7 @@
             </div>
         </section>
     </div>
-    <script>
-        function toggleHeart(box, event) {
-            event.preventDefault();
-            event.stopPropagation();
 
-            // Toggle the "active" class
-            box.classList.toggle('active');
-        }
-    </script>
     <script>
         $(document).ready(function() {
             $('.quantity-input').on('change', function() {
