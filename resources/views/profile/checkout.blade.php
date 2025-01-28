@@ -607,6 +607,15 @@
             z-index: 999;
             width: 98% !important;
         }
+
+        .error {
+            background-color: #ffe6e6;
+        }
+
+        .error::placeholder {
+            color: red;
+            font-style: italic;
+        }
     </style>
     <div class="main-content">
         <section class="section custom-font">
@@ -710,7 +719,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group 22">
+                                                <div class="form-group">
                                                     <label for="cvv">{{ __('admin.CVV') }}</label>
                                                     <input type="text" id="cvv" placeholder="XXX" />
                                                 </div>
@@ -719,19 +728,19 @@
                                             <div class="form-row">
                                                 <div class="form-col">
                                                     <label>{{ __('admin.First Name') }}</label>
-                                                    <input type="text" name="bfname" id=""
+                                                    <input type="text" name="cbfname" id=""
                                                         placeholder="John" />
                                                 </div>
 
                                                 <div class="form-col">
                                                     <label>{{ __('admin.Last Name') }}</label>
-                                                    <input type="text" name="blname" id=""
+                                                    <input type="text" name="cblname" id=""
                                                         placeholder="Doe" />
                                                 </div>
                                             </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.Email') }}</label>
-                                                <input type="email" name="bemail" id=""
+                                                <input type="email" name="cbemail" id=""
                                                     placeholder="abc@example.com" />
                                             </div>
                                             <div class="form-row">
@@ -751,7 +760,7 @@
                                                         </div>
                                                         <div>
                                                             <label>{{ __('admin.Number') }}</label>
-                                                            <input class="tel-input" type="tel" name="bphone"
+                                                            <input class="tel-input" type="tel" name="cbphone"
                                                                 id="phone-number" placeholder="000 000 000" />
                                                         </div>
                                                     </div>
@@ -763,11 +772,141 @@
                                                 <input type="text" id="country" placeholder="United States" />
 
                                             </div>
-                                            {{-- <div class="form-input-single">
+                                            <div class="form-input-single">
+                                                <label>{{ __('admin.Address') }}</label>
+                                                <input type="text" name="cbaddress" id=""
+                                                    placeholder="F 43, 41 Street Hamburg " />
+                                            </div>
+                                            <div class="form-input-single">
+                                                <label>{{ __('admin.City') }}</label>
+                                                <input type="text" name="cbcity" id=""
+                                                    placeholder="Berlin" />
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-col">
+                                                    <label>{{ __('admin.State') }}</label>
+                                                    <input type="text" name="cbstate" id=""
+                                                        placeholder="South Whales" />
+                                                </div>
+
+                                                <div class="form-col">
+                                                    <label>{{ __('admin.Postal Code') }}</label>
+                                                    <input type="text" name="cbpostal_code" id=""
+                                                        placeholder="47010" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- billing details Card ends -->
+                                    </div>
+                                    {{-- stripe payment  --}}
+                                    <div class="inputs-group Stripe">
+                                        <label class="checkbox">
+                                            <input class="checkbox__input payment-method" type="checkbox"
+                                                name="stripe-payment" id="stripe-payment" />
+                                            <span class="checkbox__label">{{ __('admin.Pay with Stripe') }}</span>
+                                        </label>
+                                        <div class="card-logos">
+                                            <img src="{{ asset('/uploads/checkout/stripe.png') }}" alt="stripe" />
+                                        </div>
+                                        <!-- billing details Stripe Starts -->
+                                        <div id="stripe-billing-details" class="billing-details hidden">
+                                            <div class="form-group">
+                                                <label for="card-name">Name on Card</label>
+                                                <input type="text" id="card-name" class="card-name" name="cardName"
+                                                    placeholder="John Doe" required />
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-input-single">
+                                                    <label for="card-number">{{ __('admin.Card Number') }}
+                                                    </label>
+                                                    <div class="card-number-input">
+                                                        <input type="text" id="card-number" class="card-number"
+                                                            name="cardNumber" placeholder="1234 1234 1234 1234"
+                                                            maxlength="19" required />
+                                                        <div class="card-icons">
+                                                            <img src="{{ asset('/uploads/checkout/stripe.png') }}"
+                                                                alt="stripe" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row-expiry">
+                                                <div class="form-group">
+                                                    <label for="expiry-month">{{ __('admin.Expiry Date') }}
+                                                    </label>
+                                                    <div class="expiry-date">
+                                                        <select id="expiry-month" name="expiry-month"
+                                                            class="card-expiry-month radius-right-expiry" required>
+                                                            <option value="month" disabled>{{ __('admin.Month') }}
+                                                            </option>
+                                                            <option value="01">01</option>
+                                                            <option value="02">02</option>
+                                                            <option value="03">03</option>
+                                                            <option value="04">04</option>
+                                                            <option value="05">05</option>
+                                                            <option value="06">06</option>
+                                                            <option value="07">07</option>
+                                                            <option value="08">08</option>
+                                                            <option value="09">09</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                        </select>
+                                                        <select id="expiry-year" name="expiry-year"
+                                                            class="radius-left-expiry card-expiry-year" required>
+                                                            <option value="2026">2026</option>
+                                                            <option value="2027">2027</option>
+                                                            <option value="2028">2028</option>
+                                                            <option value="2029">2029</option>
+                                                            <option value="2030">2030</option>
+                                                            <option value="2031">2031</option>
+                                                            <option value="2032">2032</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cvv">{{ __('admin.CVV') }}</label>
+                                                    <input type="text" id="cvv" class="card-cvc" name="cvc"
+                                                        placeholder="123" maxlength="4" required />
+                                                </div>
+                                            </div>
+
+                                            <div class="form__label">{{ __('admin.Billing Information') }}</div>
+                                            <div class="form-row">
+                                                <div class="form-col">
+                                                    <label>{{ __('admin.First Name') }}</label>
+                                                    <input type="text" name="bfname" id=""
+                                                        placeholder="John" />
+                                                </div>
+
+                                                <div class="form-col">
+                                                    <label>{{ __('admin.Last Name') }}</label>
+                                                    <input type="text" name="blname" id=""
+                                                        placeholder="Doe" />
+                                                </div>
+                                            </div>
+                                            <div class="form-input-single">
+                                                <label>{{ __('admin.Email') }}</label>
+                                                <input type="email" name="bemail" id=""
+                                                    placeholder="abc@example.com" />
+                                            </div>
+                                            <div class="form-input-single">
+                                                <label for="country-code">{{ __('admin.Phone') }}
+                                                </label>
+                                                <input class="tel-input" type="tel" name="bphone" id="phone-number"
+                                                    placeholder="000 000 000" />
+                                            </div>
+                                            <div class="form-input-single">
+                                                <label for="country">{{ __('admin.Country') }} </label>
+                                                <input type="text" id="country" name="country"
+                                                    placeholder="United States" />
+
+                                            </div>
+                                            <div class="form-input-single">
                                                 <label>{{ __('admin.Address') }}</label>
                                                 <input type="text" name="address" id=""
                                                     placeholder="F 43, 41 Street Hamburg " />
-                                            </div> --}}
+                                            </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.City') }}</label>
                                                 <input type="text" name="city" id=""
@@ -784,98 +923,6 @@
                                                     <label>{{ __('admin.Postal Code') }}</label>
                                                     <input type="text" name="postal_code" id=""
                                                         placeholder="47010" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- billing details Card ends -->
-                                    </div>
-                                    {{-- stripe payment  --}}
-                                    <div class="inputs-group Stripe">
-                                        <label class="checkbox">
-                                            <input class="checkbox__input payment-method" type="checkbox"
-                                                name="stripe-payment" id="stripe-payment" />
-                                            <span class="checkbox__label">{{ __('admin.Pay with Stripe') }}</span>
-                                        </label>
-
-                                        <div class="card-logos">
-                                            <img src="{{ asset('/uploads/checkout/stripe.png') }}" alt="stripe" />
-                                        </div>
-
-                                        <!-- billing details Stripe Starts -->
-                                        <div id="stripe-billing-details" class="billing-details hidden">
-                                            <div class="form-group">
-                                                <label for="name">Name on Card</label>
-                                                <input type="text" id="card-name" class="card-name"
-                                                    placeholder="John Doe" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-input-single">
-                                                    <label for="card-number">{{ __('admin.Card Number') }}
-                                                    </label>
-                                                    <div class="card-number-input">
-                                                        <input type="text" id="card-number" class="card-number"
-                                                            placeholder="1234 1234 1234 1234" maxlength="19" required />
-                                                        <div class="card-icons">
-                                                            <img src="{{ asset('/uploads/checkout/stripe.png') }}"
-                                                                alt="stripe" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row-expiry">
-                                                    <div class="form-group">
-                                                        <label for="expiry-month">{{ __('admin.Expiry Date') }}
-                                                        </label>
-                                                        <div class="expiry-date">
-                                                            <select id="expiry-month"
-                                                                class="card-expiry-month radius-right-expiry" required>
-                                                                <option value="month">{{ __('admin.Month') }}
-                                                                </option>
-                                                                <option value="01">01</option>
-                                                                <option value="02">02</option>
-                                                                <option value="03">03</option>
-                                                                <!-- Add remaining months -->
-                                                            </select>
-                                                            <select id="expiry-year"
-                                                                class="radius-left-expiry card-expiry-year" required>
-                                                                <option value="2024">2025</option>
-                                                                <option value="2025">2026</option>
-                                                                <!-- Add more years -->
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="cvv">{{ __('admin.CVV') }}</label>
-                                                        <input type="text" id="cvv" class="card-cvc"
-                                                            placeholder="123" maxlength="4" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form__label">{{ __('admin.Billing Information') }}</div>
-                                            <div class="form-row">
-                                                <div class="form-col">
-                                                    <label>{{ __('admin.First Name') }}</label>
-                                                    <input type="text" name="billing-name" id="billing-name"
-                                                        class="" placeholder="Alexa" required />
-                                                </div>
-
-                                                <div class="form-col">
-                                                    <label>{{ __('admin.Last Name') }}</label>
-                                                    <input type="text" name="lname" id=""
-                                                        placeholder="Adriana" />
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="form-col">
-                                                    <label>{{ __('admin.Address') }}</label>
-                                                    <input type="text" name="billing-address" id=""
-                                                        class="" placeholder="F 43, 41 Street Hamburg " required />
-                                                </div>
-
-                                                <div class="form-col">
-                                                    <label>{{ __('admin.Mobile Phone') }}</label>
-                                                    <input type="text" name="billing-phone" class=""
-                                                        id="billing-phone" placeholder="+12 3456 7890" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -980,52 +1027,6 @@
     </script>
     {{-- end stripe payment --}}
     <script>
-        document.getElementById('payment-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent submission to validate
-
-            const cvv = document.getElementById('cvv');
-            const phone = document.getElementById('billing-phone');
-            const requiredFields = document.querySelectorAll('#payment-form input[required]');
-
-            let isValid = true;
-            // Check required fields
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('invalid'); // Highlight invalid field
-                    alert(`Field ${field.placeholder || field.name} is required.`);
-                } else {
-                    field.classList.remove('invalid'); // Remove highlight if valid
-                }
-            });
-
-            // CVV validation: Must be 3-4 digits
-            if (!/^\d{3,4}$/.test(cvv.value)) {
-                isValid = false;
-                alert('CVV must be 3 or 4 digits.');
-                cvv.classList.add('invalid');
-            } else {
-                cvv.classList.remove('invalid');
-            }
-
-            // Phone validation: Must start with "+" and include digits
-            if (!/^\+\d{1,3}\s?\d{4,14}$/.test(phone.value)) {
-                isValid = false;
-                alert('Phone number must be in the format +12 3456 7890.');
-                phone.classList.add('invalid');
-            } else {
-                phone.classList.remove('invalid');
-            }
-
-            // If all fields are valid, submit the form
-            if (isValid) {
-                alert('Form is valid and will be submitted.');
-                this.submit();
-            }
-        });
-    </script>
-
-    <script>
         const paymentMethods = document.querySelectorAll(".payment-method");
 
         paymentMethods.forEach((method) => {
@@ -1068,6 +1069,98 @@
                     else alert("Error: " + data.message);
                 })
                 .catch((error) => console.error("Error:", error));
+        });
+    </script>
+    {{-- validations  --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("payment-form");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault(); // Prevent form submission
+                let allValid = true; // Track if all fields are valid
+                const errors = []; // Collect errors for alert
+                const requiredFields = form.querySelectorAll("[required]");
+
+                // Validate each required field
+                requiredFields.forEach((field) => {
+                    const isValid = validateField(field);
+                    if (!isValid) {
+                        allValid = false; // Set overall validity to false
+                        errors.push(`Invalid: ${getFieldName(field)}`);
+                        field.classList.add("error"); // Highlight invalid field
+                    } else {
+                        field.classList.remove("error"); // Remove error if valid
+                    }
+                });
+
+                // If there are errors, display them and prevent form submission
+                if (!allValid) {
+                    alert("Please fix the following errors:\n" + errors.join("\n"));
+                    return;
+                }
+
+                // If everything is valid, submit the form
+                alert("Form is valid and ready to be submitted!");
+                form.submit();
+            });
+
+            // Utility Function: Validate a Field
+            function validateField(field) {
+                const value = field.value.trim();
+
+                if (!value) return false; // Check for empty fields
+
+                // Custom validations based on field type
+                if (field.id === "card-name" && !/^[A-Za-z\s]+$/.test(value)) {
+                    return false; // Name: Only letters and spaces
+                }
+
+                if (field.id === "card-number" && !/^\d{16}$/.test(value.replace(/\s+/g, ""))) {
+                    return false; // Card number: 16 digits, no spaces
+                }
+
+                if (field.id === "cvv" && !/^\d{3,4}$/.test(value)) {
+                    return false; // CVV: 3 or 4 digits
+                }
+
+                if (field.id === "postal_code" && !/^\d{5,6}$/.test(value)) {
+                    return false; // Postal code: 5 or 6 digits
+                }
+
+                if (field.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    return false; // Email validation
+                }
+
+                if (field.type === "tel" && !/^\+?\d{10,15}$/.test(value)) {
+                    return false; // Phone number validation
+                }
+
+                return true; // Field is valid
+            }
+
+            // Utility Function: Get Field Name for Errors
+            function getFieldName(field) {
+                const label = field.closest(".form-group")?.querySelector("label");
+                return label ? label.textContent.trim() : field.name || "Field";
+            }
+
+            // Restrict non-numeric input for specific fields
+            document.querySelectorAll("#card-number, #cvv, [name='postal_code'], [name='bphone']").forEach((
+                field) => {
+                field.addEventListener("input", (e) => {
+                    field.value = field.value.replace(/\D/g, ""); // Remove non-digits
+                });
+            });
+
+            // Listen for input changes to remove errors dynamically
+            document.querySelectorAll("[required]").forEach((field) => {
+                field.addEventListener("input", () => {
+                    if (validateField(field)) {
+                        field.classList.remove("error");
+                    }
+                });
+            });
         });
     </script>
 @endsection
