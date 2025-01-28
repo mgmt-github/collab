@@ -4,7 +4,6 @@
         {{ __('admin.Favorite List') }}</title>
 @endsection
 @section('frontend-content')
-
     <style>
         .whishlist-layout {
             border-radius: 10px;
@@ -348,22 +347,6 @@
         div#rightDropdown {
             padding: 10px 10px;
         }
-
-        .light-heart {
-            display: none;
-        }
-
-        .dark-heart {
-            display: block;
-        }
-
-        .active .light-heart {
-            display: block;
-        }
-
-        .active .dark-heart {
-            display: none;
-        }
     </style>
     <div class="main-content">
         <section class="section">
@@ -376,13 +359,8 @@
                                 <div class="box" style="background:url(''); no-repeat">
                                     <!-- Multiple Heart Boxes -->
 
-                                    <div class="heart" onclick="toggleHeart(this, event)">
-                                        <svg class="light-heart" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M12.2994 20.9191C17.3662 17.4932 22.433 13.6808 22.433 8.614C22.433 7.3169 21.9386 6.02052 20.9491 5.03105C19.9596 4.0423 18.6633 3.5472 17.3662 3.5472C16.0698 3.5472 14.7727 4.0423 13.7839 5.03105L12.2994 6.51562L10.8155 5.03105C9.82604 4.0423 8.52967 3.5472 7.23257 3.5472C5.93619 3.5472 4.63909 4.0423 3.65034 5.03105C2.66087 6.02052 2.16577 7.3169 2.16577 8.614C2.16577 13.6808 7.23257 17.4932 12.2994 20.9191Z"
-                                                stroke="#010101" stroke-width="1.44766" />
-                                        </svg>
+                                    <div class="heart">
+
                                         <svg class="dark-heart" xmlns="http://www.w3.org/2000/svg" width="24"
                                             height="24" viewBox="0 0 24 24" fill="none">
                                             <path
@@ -413,131 +391,6 @@
 
 
                 </div>
-                <!-- Favourite Services -->
-                <div class="whishlist-layout  inflanar-personals__content ">
-                    <div class="inflanar-table inflanar-table__favorite p-0">
-                        <table id="inflanar-table__order" class="inflanar-table__main inflanar-table__main-service">
-                            <!-- sherah Table Head -->
-                            <thead class="inflanar-table__head">
-                                <tr>
-                                    <th class="inflanar-table__column-1 inflanar-table__h1">{{ __('admin.Service Info') }}
-                                    </th>
-                                    <th class="inflanar-table__column-2 inflanar-table__h2">{{ __('admin.Influencer') }}
-                                    </th>
-                                    <th class="inflanar-table__column-4 inflanar-table__h4">{{ __('admin.Amount') }}</th>
-                                    <th class="inflanar-table__column-7 inflanar-table__h6">{{ __('admin.Action') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody class="inflanar-table__body">
-                                @forelse ($services as $index => $service)
-                                    <tr>
-                                        <td class="inflanar-table__column-1 inflanar-table__data-1">
-                                            <div class="inflanar-table__service">
-                                                <div class="inflanar-table__sthumb">
-                                                    <img src="{{ asset($service->thumbnail_image) }}">
-                                                    <div class="inflanar-table__scontent">
-                                                        <h4 class="inflanar-table__stitle">
-                                                            <a
-                                                                href="{{ route('service', $service->slug) }}">{{ $service->title }}</a>
-                                                        </h4>
-
-                                                        <div class="inflanar-service__author--rating">
-                                                            @php
-                                                                if ($service->total_review > 0) {
-                                                                    $average = $service->average_rating;
-
-                                                                    $int_average = intval($average);
-
-                                                                    $next_value = $int_average + 1;
-                                                                    $review_point = $int_average;
-                                                                    $half_review = false;
-                                                                    if (
-                                                                        $int_average < $average &&
-                                                                        $average < $next_value
-                                                                    ) {
-                                                                        $review_point = $int_average + 0.5;
-                                                                        $half_review = true;
-                                                                    }
-                                                                }
-                                                            @endphp
-                                                            <div class="inflanar-service__author--star">
-                                                                @if ($service->total_review > 0)
-                                                                    @for ($i = 1; $i <= 5; $i++)
-                                                                        @if ($i <= $review_point)
-                                                                            <span><i class="fa-solid fa-star"></i></span>
-                                                                        @elseif ($i > $review_point)
-                                                                            @if ($half_review == true)
-                                                                                <span><i
-                                                                                        class="fa-solid fa-star-half-stroke"></i></span>
-                                                                                @php
-                                                                                    $half_review = false;
-                                                                                @endphp
-                                                                            @else
-                                                                                <span><i
-                                                                                        class="fa-regular fa-star"></i></span>
-                                                                            @endif
-                                                                        @endif
-                                                                    @endfor
-                                                                @else
-                                                                    <span><i class="fa-regular fa-star"></i></span>
-                                                                    <span><i class="fa-regular fa-star"></i></span>
-                                                                    <span><i class="fa-regular fa-star"></i></span>
-                                                                    <span><i class="fa-regular fa-star"></i></span>
-                                                                    <span><i class="fa-regular fa-star"></i></span>
-                                                                @endif
-
-                                                            </div>
-                                                            <div class="inflanar-service__author--label">
-                                                                ({{ $service->total_review }})
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="inflanar-table__column-2 inflanar-table__data-2">
-                                            <div class="inflanar-table__content">
-                                                <p class="inflanar-table__desc">
-                                                    @if ($service->influencer)
-                                                        {{ $service->influencer->name }}
-                                                    @endif
-                                                </p>
-                                            </div>
-                                        </td>
-                                        <td class="inflanar-table__column-3 inflanar-table__data-4">
-                                            <div class="inflanar-table__content">
-                                                <p class="inflanar-table__desc">
-                                                    {{ currency($service->price) }}
-                                                </p>
-                                            </div>
-                                        </td>
-
-                                        <td class="inflanar-table__column-5 inflanar-table__data-5">
-                                            <div class="inflanar-table__status__group">
-                                                <a href="{{ route('service', $service->slug) }}"
-                                                    class="inflanar-table__action inflanar-table__action--blue"><img
-                                                        src="{{ asset('frontend/img/in-table-eye-icon.svg') }}"></a>
-                                                <a href="javascript:;" onclick="deleteDocument({{ $service->id }})"
-                                                    class="inflanar-table__action inflanar-table__action--remove"><img
-                                                        src="{{ asset('frontend/img/in-table-delete-icon.svg') }}"></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <form class="d-none" action="{{ route('user.remove-wishlist', $service->id) }}"
-                                        method="POST" id="remove_wishlist-{{ $service->id }}">
-                                        @csrf
-                                        @method('DELETE')
-
-                                    </form>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- End Favourite Services -->
             </div>
         </section>
     </div>
@@ -559,15 +412,6 @@
                 }
 
             })
-        }
-    </script>
-    <script>
-        function toggleHeart(box, event) {
-            event.preventDefault();
-            event.stopPropagation();
-
-            // Toggle the "active" class
-            box.classList.toggle('active');
         }
     </script>
 @endsection

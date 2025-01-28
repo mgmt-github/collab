@@ -639,7 +639,7 @@
                                         <div class="form-col">
                                             <label>{{ __('admin.First Name') }}</label>
                                             <input type="text" name="name" id="name" class=""
-                                                value="{{ auth()->user()->name }}" placeholder="Alexa" />
+                                                value="{{ auth()->user()->name }}" placeholder="Alexa" required />
                                         </div>
 
                                         <div class="form-col">
@@ -653,13 +653,14 @@
                                         <div class="form-col">
                                             <label>{{ __('admin.Email') }}</label>
                                             <input type="text" name="email" class="email" id=""
-                                                value="{{ auth()->user()->email }}" placeholder="abc@example.com" />
+                                                value="{{ auth()->user()->email }}" placeholder="abc@example.com"
+                                                required />
                                         </div>
 
                                         <div class="form-col">
                                             <label>{{ __('admin.Mobile Phone') }}</label>
                                             <input type="text" name="phone" class="" id="phone"
-                                                value="{{ auth()->user()->phone }}" placeholder="+12 3456 7890" />
+                                                value="{{ auth()->user()->phone }}" placeholder="+12 3456 7890" required />
                                         </div>
                                     </div>
                                 </div>
@@ -876,7 +877,7 @@
                                                 <div class="form-col">
                                                     <label>{{ __('admin.First Name') }}</label>
                                                     <input type="text" name="bfname" id=""
-                                                        placeholder="John" />
+                                                        placeholder="John" required />
                                                 </div>
 
                                                 <div class="form-col">
@@ -888,13 +889,13 @@
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.Email') }}</label>
                                                 <input type="email" name="bemail" id=""
-                                                    placeholder="abc@example.com" />
+                                                    placeholder="abc@example.com" required />
                                             </div>
                                             <div class="form-input-single">
                                                 <label for="country-code">{{ __('admin.Phone') }}
                                                 </label>
                                                 <input class="tel-input" type="tel" name="bphone" id="phone-number"
-                                                    placeholder="000 000 000" />
+                                                    placeholder="000 000 000" required />
                                             </div>
                                             <div class="form-input-single">
                                                 <label for="country">{{ __('admin.Country') }} </label>
@@ -905,7 +906,7 @@
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.Address') }}</label>
                                                 <input type="text" name="address" id=""
-                                                    placeholder="F 43, 41 Street Hamburg " />
+                                                    placeholder="F 43, 41 Street Hamburg " required />
                                             </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.City') }}</label>
@@ -1025,6 +1026,7 @@
             }
         });
     </script>
+
     {{-- end stripe payment --}}
     <script>
         const paymentMethods = document.querySelectorAll(".payment-method");
