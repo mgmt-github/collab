@@ -347,6 +347,11 @@
         div#rightDropdown {
             padding: 10px 10px;
         }
+
+        .dark-heart {
+            display: block;
+        }
+
     </style>
     <div class="main-content">
         <section class="section">
