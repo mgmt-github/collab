@@ -409,16 +409,20 @@
                                             <td class="item-total">
                                                 ${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
                                             <td>
-                                                <form method="POST" action="{{ route('user.cart.remove', $id) }}" class="remove-btn-form">
+                                                <form method="POST" action="{{ route('user.cart.remove', $id) }}"
+                                                    class="remove-btn-form">
                                                     @csrf
                                                     <button type="submit" class="remove-btn">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
-                                                            <path d="M16.8856 6.22109L16.1148 17.0124C16.0483 17.9426 15.2744 18.6633 14.3418 18.6633H6.98716C6.05464 18.6633 5.28066 17.9426 5.21422 17.0124L4.44341 6.22109M8.88704 9.77599V15.1083M12.4419 9.77599V15.1083M13.3307 6.22109V3.55491C13.3307 3.06408 12.9328 2.66618 12.4419 2.66618H8.88704C8.39621 2.66618 7.99832 3.06408 7.99832 3.55491V6.22109M3.55469 6.22109H17.7743"
-                                                                  stroke="#C16A6A" stroke-width="1.77745" stroke-linecap="round" stroke-linejoin="round" />
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="22"
+                                                            height="22" viewBox="0 0 22 22" fill="none">
+                                                            <path
+                                                                d="M16.8856 6.22109L16.1148 17.0124C16.0483 17.9426 15.2744 18.6633 14.3418 18.6633H6.98716C6.05464 18.6633 5.28066 17.9426 5.21422 17.0124L4.44341 6.22109M8.88704 9.77599V15.1083M12.4419 9.77599V15.1083M13.3307 6.22109V3.55491C13.3307 3.06408 12.9328 2.66618 12.4419 2.66618H8.88704C8.39621 2.66618 7.99832 3.06408 7.99832 3.55491V6.22109M3.55469 6.22109H17.7743"
+                                                                stroke="#C16A6A" stroke-width="1.77745"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
                                                         </svg>
                                                     </button>
                                                 </form>
-                                                
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -485,13 +489,14 @@
                 let itemId = $(this).data('item-id');
                 let newQuantity = $(this).val();
                 let row = $(this).closest('tr');
+                let route = "{{ route('user.cart.update', ['id' => '__ID__']) }}"; // Placeholder for ID
+                let finalRoute = route.replace("__ID__", itemId);
 
-                // Send AJAX request
                 $.ajax({
-                    url: `/cart/update/${itemId}`,
+                    url: finalRoute,
                     method: 'POST',
                     data: {
-                        _token: $('meta[name="csrf-token"]').attr('content'),
+                        _token: "{{ csrf_token() }}",
                         quantity: newQuantity,
                     },
                     success: function(response) {
