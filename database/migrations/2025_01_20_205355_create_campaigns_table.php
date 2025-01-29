@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('language');
             $table->string('gender');
             $table->string('image')->nullable();
+            $table->enum('status', ['active', 'pending', 'block'])->default('pending');
             $table->timestamps();
         });
     }

@@ -909,53 +909,20 @@
                             <p>{{ __('admin.Platform means you want to promote this brand') }}
                             </p>
                             <div class="platform-btn">
+                                @foreach ($platforms as $item)
                                 <div class="campaign-btn">
-                                    <input type="radio" id='facebook' value="facebook" name="platform_id"
-                                        class="radio-custom" required />
+                                    <input type="radio" id='{{ $item->name }}' value="{{ $item->name }}"
+                                        name="platform_id" class="radio-custom" required />
 
-                                    <label for='facebook' class="radio-custom-label">{{ __('admin.Facebook') }}</label>
-                                    <span><img src="{{ asset('/uploads/campaign-img/fb.svg') }}" alt="logo" />
-                                    </span>
+                                    <label for='{{ $item->name }}' class="radio-custom-label">{{ $item->name }}</label>
+                                  @if ($item->image)
+                                  <span><img src="{{ asset( $item->image) }}" alt="logo" />
+                                    
+                                  </span>
+                                  @endif  
                                 </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='instagram' value="1" name="platform_id"
-                                        class="radio-custom" />
-
-                                    <label for='instagram' class="radio-custom-label">{{ __('admin.Instagram') }}</label>
-                                    <span>
-                                        <img src="{{ asset('/uploads/campaign-img/insta.svg') }}" alt="logo" />
-                                    </span>
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='youtube' value="2" name="platform_id"
-                                        class="radio-custom" />
-
-                                    <label for='youtube' class="radio-custom-label">{{ __('admin.Youtube') }}</label>
-                                    <span>
-                                        <img src="{{ asset('/uploads/campaign-img/youtube.svg') }}" alt="logo" />
-                                    </span>
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='snapchat' value="3" name="platform_id"
-                                        class="radio-custom" />
-
-                                    <label for='snapchat' class="radio-custom-label">{{ __('admin.Snapchat') }}</label>
-                                    <img src="{{ asset('/uploads/campaign-img/snapchat.svg') }}" alt="logo" />
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='tiktok' value="4" name="platform_id"
-                                        class="radio-custom" />
-
-                                    <label for='tiktok' class="radio-custom-label">{{ __('admin.Tiktok') }}</label>
-                                    <img src="{{ asset('/uploads/campaign-img/tiktok.svg') }}" alt="logo" />
-                                </div>
-                                <div class="campaign-btn">
-                                    <input type="radio" id='user-Generated-Content' value="5"
-                                        name="platform_id" class="radio-custom" />
-
-                                    <label for='user-Generated-Content'
-                                        class="radio-custom-label">{{ __('admin.User Generated Content (UGC)') }}</label>
-                                </div>
+                                @endforeach
+                           
                             </div>
                             <div class="dropdown-social mg-top-20">
                                 <div class="dropdown" data-section="step-1" data-field="category">
@@ -982,9 +949,9 @@
                                     </div>
                                     <div class="dropdown-content">
                                         @foreach ($countries as $item)
-                                        <a data-value="{{ $item->name }}"
-                                            onclick="toggleMultipleSelection(event)">{{ $item->name }}</a>
-                                    @endforeach
+                                            <a data-value="{{ $item->name }}"
+                                                onclick="toggleMultipleSelection(event)">{{ $item->name }}</a>
+                                        @endforeach
                                     </div>
                                     <input type="hidden" name="country" id="selected-country" />
                                 </div>
