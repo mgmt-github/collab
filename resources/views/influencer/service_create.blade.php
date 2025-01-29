@@ -3,196 +3,167 @@
     <title>{{ __('admin.Create Service') }}</title>
 @endsection
 @section('influencer-content')
-<!-- Main Content -->
-<div class="main-content">
-    <section class="section">
-     
-      <form action="{{ route('influencer.service.store') }}" method="POST" enctype="multipart/form-data" id="serviceForm">
-        @csrf
-      <div class="section-body">
-      <div class=" head-title">
-      <h1>{{__('admin.Create Service')}}</h1>
-</div>
-        <div class="row mt-sm-4">
-          <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>{{__('admin.Basic Information')}}</h4>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="form-group col-12">
-                            <label>{{__('admin.Image')}} <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control-file" name="image">
-                        </div>
-
-
-                        <div class="form-group col-12">
-                            <label>{{__('admin.Service Name')}} <span class="text-danger">*</span></label>
-                            <input id="name" type="text" class="form-control" name="name">
-                        </div>
-
-                        <div class="form-group col-12">
-                            <label>{{__('admin.Slug')}} <span class="text-danger">*</span></label>
-                            <input id="slug" type="text" class="form-control" name="slug">
-                        </div>
-
-                        <div class="form-group col-12">
-                            <label>{{__('admin.Price')}} <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="price">
-                        </div>
-
-                        <div class="form-group col-12">
-                            <label>{{__('admin.Category')}} <span class="text-danger">*</span></label>
-                            <select name="category_id" id="" class="form-control select2">
-                                <option value="">{{__('admin.Select')}}</option>
-                                @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->translate->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group col-12">
-                            <label>{{__('admin.Description')}} <span class="text-danger">*</span></label>
-                            <textarea name="description" id="" class="summernote" cols="30" rows="10"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="section">
 
             <form action="{{ route('influencer.service.store') }}" method="POST" enctype="multipart/form-data"
                 id="serviceForm">
                 @csrf
                 <div class="section-body">
-                    <div class="row mt-sm-4">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>{{ __('admin.Basic Information') }}</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.Image') }} <span class="text-danger">*</span></label>
-                                            <input type="file" class="form-control-file" name="image">
-                                        </div>
-
-
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.Service Name') }} <span class="text-danger">*</span></label>
-                                            <input id="name" type="text" class="form-control" name="name">
-                                        </div>
-
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.Slug') }} <span class="text-danger">*</span></label>
-                                            <input id="slug" type="text" class="form-control" name="slug">
-                                        </div>
-
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.Price') }} <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" name="price">
-                                        </div>
-
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.platform') }} <span class="text-danger">*</span></label>
-                                            <select name="platform[]" class="select2" multiple>
-                                                @foreach ($platforms as $item)
-                                                    <option value="{{ $item->id }}">
-                                                        {{ $item->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.Category') }} <span class="text-danger">*</span></label>
-                                            <select name="category_id" id="" class="form-control select2">
-                                                <option value="">{{ __('admin.Select') }}</option>
-                                                @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->translate->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.Description') }} <span class="text-danger">*</span></label>
-                                            <textarea name="description" id="" class="summernote" cols="30" rows="10"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class=" head-title">
+                        <h1>{{ __('admin.Create Service') }}</h1>
                     </div>
-                </div>
-
-                <div class="section-body">
                     <div class="row mt-sm-4">
                         <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>{{ __('admin.Package Features') }}</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row" id="package_feature_box">
+
+                            <form action="{{ route('influencer.service.store') }}" method="POST"
+                                enctype="multipart/form-data" id="serviceForm">
+                                @csrf
+                                <div class="section-body">
+                                    <div class="row mt-sm-4">
                                         <div class="col-12">
-                                            <div class="row">
-                                                <div class="form-group col-md-10">
-                                                    <label>{{ __('admin.Feature') }}</label>
-                                                    <input type="text" class="form-control" name="package_features[]"
-                                                        autocomplete="off">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>{{ __('admin.Basic Information') }}</h4>
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <button type="button" type="button" id="addNewPackageFeature"
-                                                        class="btn btn-success btn_mt_33"><i class="fa fa-plus"
-                                                            aria-hidden="true"></i> {{ __('admin.Add New') }}</button>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('admin.Image') }} <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input type="file" class="form-control-file" name="image">
+                                                        </div>
+
+
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('admin.Service Name') }} <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input id="name" type="text" class="form-control"
+                                                                name="name">
+                                                        </div>
+
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('admin.Slug') }} <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input id="slug" type="text" class="form-control"
+                                                                name="slug">
+                                                        </div>
+
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('Price') }} <span
+                                                                    class="text-danger">*</span></label>
+                                                            <input type="text" class="form-control" name="price">
+                                                        </div>
+
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('admin.platform') }} <span
+                                                                    class="text-danger">*</span></label>
+                                                            <select name="platform[]" class="select2" multiple>
+                                                                @foreach ($platforms as $item)
+                                                                    <option value="{{ $item->id }}">
+                                                                        {{ $item->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('admin.Category') }} <span
+                                                                    class="text-danger">*</span></label>
+                                                            <select name="category_id" id=""
+                                                                class="form-control select2">
+                                                                <option value="">{{ __('admin.Select') }}</option>
+                                                                @foreach ($categories as $category)
+                                                                    <option value="{{ $category->id }}">
+                                                                        {{ $category->translate->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('admin.Description') }} <span
+                                                                    class="text-danger">*</span></label>
+                                                            <textarea name="description" id="" class="summernote" cols="30" rows="10"></textarea>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="section-body">
-                    <div class="row mt-sm-4">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>{{ __('admin.Seo Information & Others') }}</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.Tags') }}</label>
-                                            <input type="text" class="form-control tags" name="tags"
-                                                autocomplete="off">
+                                <div class="section-body">
+                                    <div class="row mt-sm-4">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>{{ __('admin.Package Features') }}</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row" id="package_feature_box">
+                                                        <div class="col-12">
+                                                            <div class="row">
+                                                                <div class="form-group col-md-10">
+                                                                    <label>{{ __('admin.Feature') }}</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="package_features[]" autocomplete="off">
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <button type="button" type="button"
+                                                                        id="addNewPackageFeature"
+                                                                        class="btn btn-success btn_mt_33"><i
+                                                                            class="fa fa-plus" aria-hidden="true"></i>
+                                                                        {{ __('admin.Add New') }}</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.Seo Title') }}</label>
-                                            <input type="text" class="form-control" name="seo_title" autocomplete="off">
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label>{{ __('admin.Seo Description') }}</label>
-                                            <textarea name="seo_description" class="form-control text-area-5" id="" cols="30" rows="10"></textarea>
-                                        </div>
-
                                     </div>
-
-                                    <button class="btn btn-primary"
-                                        type="submit">{{ __('admin.Save Service') }}</button>
                                 </div>
 
+                                <div class="section-body">
+                                    <div class="row mt-sm-4">
+                                        <div class="col-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>{{ __('admin.Seo Information & Others') }}</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('admin.Tags') }}</label>
+                                                            <input type="text" class="form-control tags" name="tags"
+                                                                autocomplete="off">
+                                                        </div>
 
-            </form>
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('admin.Seo Title') }}</label>
+                                                            <input type="text" class="form-control" name="seo_title"
+                                                                autocomplete="off">
+                                                        </div>
+                                                        <div class="form-group col-12">
+                                                            <label>{{ __('admin.Seo Description') }}</label>
+                                                            <textarea name="seo_description" class="form-control text-area-5" id="" cols="30" rows="10"></textarea>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <button class="btn btn-primary"
+                                                        type="submit">{{ __('admin.Save Service') }}</button>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
 
         </section>
     </div>
