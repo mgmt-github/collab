@@ -741,8 +741,8 @@ class ProfileController extends Controller
 
         $campaigns = Campaign::where('id', $slug)->get();
 
-       
-      
+
+
         return view('profile.campaign_show')->with([
             'campaigns' => $campaigns,
 
@@ -788,8 +788,11 @@ class ProfileController extends Controller
         $categories  = Category::get();
         $countries  = Country::get();
 
+        $platforms = SocialPlatform::where('status', 1)->get();
 
-        return view('profile.campaign', compact('categories', 'countries'));
+
+
+        return view('profile.campaign', compact('categories', 'countries', 'platforms'));
     }
     function campaign2()
     {
