@@ -406,6 +406,7 @@ return array(
   'Awaiting for approval' => 'Awaiting for approval',
   'No pending approvals at this time!' => 'No pending approvals at this time!',
   'Edit' => 'Edit',
+  'Place Order Date' => 'Place Order Date',
   'View' => 'View',
   'Extra' => 'Extra',
   'Service not found!' => 'Service not found!',

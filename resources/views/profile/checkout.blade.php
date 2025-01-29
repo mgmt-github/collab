@@ -245,6 +245,7 @@
         .image-box {
             display: flex;
             gap: 20px;
+            align-items: center;
         }
 
         .image-box img {
@@ -946,7 +947,8 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <h6>{{$item['quantity']}} x ${{ number_format($item['price'] * $item['quantity'], 2) }}</h6>
+                                            <h6>{{ $item['quantity'] }} x
+                                                ${{ number_format($item['price'] * $item['quantity'], 2) }}</h6>
                                         </div>
                                     </div>
 
@@ -1059,10 +1061,10 @@
             // Prevent non-numeric input for specific fields
             document.querySelectorAll("#card-number, #cvv, [name='postal_code'], [name='bphone']").forEach((
                 field) => {
-                    field.addEventListener("input", () => {
-                        field.value = field.value.replace(/\D/g, "");
-                    });
+                field.addEventListener("input", () => {
+                    field.value = field.value.replace(/\D/g, "");
                 });
+            });
 
             // Remove error dynamically when user corrects input
             document.querySelectorAll("[required]").forEach((field) => {
