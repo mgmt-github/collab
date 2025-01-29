@@ -458,29 +458,34 @@ class ProfileController extends Controller
     }
     public function toggle(Request $request)
     {
-        $validated = $request->validate([
-            'influencer_id' => 'required|integer|exists:influencers,id',
-            'action' => 'required|in:add,remove',
-        ]);
+        $userId = auth()->id();
+        $influencerId = $request->influencer_id;
 
-        $userId = auth()->id(); // Assuming the user is authenticated
-        $influencerId = $validated['influencer_id'];
-
-        if ($validated['action'] === 'add') {
+        // Check if already in wishlist
+        $wishlist = Wishlist::where([
+            'user_id' => $userId,
+            'influencer_id' => $influencerId,
+        ])->first();
+        if ($wishlist) {
+            // Remove from wishlist
+            $wishlist->delete();
+            $isWishlist = false;
+        } else {
             // Add to wishlist
-            Wishlist::firstOrCreate([
+           $wishlists =  Wishlist::create([
                 'user_id' => $userId,
                 'influencer_id' => $influencerId,
             ]);
-        } else {
-            // Remove from wishlist
-            Wishlist::where('user_id', $userId)
-                ->where('influencer_id', $influencerId)
-                ->delete();
+            $isWishlist = true;
         }
 
-        return response()->json(['success' => true]);
+
+        return response()->json([
+            'success' => true,
+            'isWishlist' => $isWishlist
+        ]);
     }
+
     function cart()
     {
         return view('profile.cart');
@@ -495,18 +500,32 @@ class ProfileController extends Controller
         }, 0);
         return view('profile.checkout', compact('cartItems', 'subtotal'));
     }
-    public function checkout_submit(CartRequest $request)
+    public function checkout_submit(Request $request)
     {
-        // Dump request data for debugging (remove after testing)
-        // dd($request->all());
-
         // Fetch cart data from the session
         $cart = Session::get('cart', []);
 
         if (empty($cart)) {
-            return redirect()->back()->with('error', __('admin_validation.Cart is empty'));
+            $notification = array(
+                'messege' => trans('admin_validation.Cart is empty'),
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
         }
 
+        // Validation rules
+        $rules = [
+            'address' => 'required',
+            'name' => 'required',
+            'phone' => 'required',
+        ];
+        $customMessages = [
+            'address.required' => trans('admin_validation.Address is required'),
+            'name.required' => trans('admin_validation.Name is required'),
+            'phone.required' => trans('admin_validation.Phone is required'),
+        ];
+
+        $this->validate($request, $rules, $customMessages);
 
         // Prepare booking info
         $booking_info = (object) array(
@@ -523,7 +542,6 @@ class ProfileController extends Controller
             'order_note' => $request->order_note,
         );
 
-
         $user = Auth::guard('web')->user();
         $service_ids = array_keys($cart);
 
@@ -533,7 +551,11 @@ class ProfileController extends Controller
             ->get();
 
         if ($services->isEmpty()) {
-            return redirect()->back()->with('error', __('admin_validation.Invalid service selected'));
+            $notification = array(
+                'messege' => trans('admin_validation.Invalid service selected'),
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
         }
 
         // Process coupon discount
@@ -578,12 +600,24 @@ class ProfileController extends Controller
             // Clear the cart
             session()->forget('cart');
 
-            return redirect()->route('user.orders')->with('success', __('admin_validation.Your order has been placed. Thanks for your new order'));
-        } catch (\Exception $e) {
+            // Success Notification
+            $notification = array(
+                'messege' => trans('admin_validation.Your order has been placed. Thanks for your new order'),
+                'alert-type' => 'success'
+            );
 
-            return redirect()->back()->with('error', __('admin_validation.Payment failed. Please try again'));
+            return redirect()->route('user.orders')->with($notification);
+        } catch (\Exception $e) {
+            // Payment Failure Notification
+            $notification = array(
+                'messege' => trans('admin_validation.Payment failed. Please try again'),
+                'alert-type' => 'error'
+            );
+
+            return redirect()->back()->with($notification);
         }
     }
+
 
 
     public function create_order($user, $service, $booking_info, $influencer_id, $client_id, $payment_method, $payment_status, $tnx_info)

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
@@ -72,5 +73,12 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     {
         return [];
     }
+    public function is_wishlist($influencer_id)
+    {
+        $user = Auth::guard('web')->user();
+        $is_exist = Wishlist::where(['user_id' => $user->id, 'influencer_id' => $influencer_id])->count();
+        if ($is_exist == 0) return false;
 
+        return true;
+    }
 }
