@@ -403,7 +403,7 @@
             </div>
             <div class="influancer-body">
                 @foreach ($services as $service)
-                    <div class="in-item" data-category="{{ strtolower($service->platform->name) }}">
+                    <div class="in-item" data-category="{{ strtolower($service->platform?->name) }}">
                         <h5>{{ $service->translate->title }}</h5>
 
                         <div class="cart-item">
