@@ -24,7 +24,7 @@ use App\Models\Review;
 use App\Models\SeoSetting;
 use App\Models\SocialPlatform;
 use App\Rules\Captcha;
-use Hash, Image, File, Str, session, Stripe;
+use Hash, Image, File, Str, Session, Stripe;
 use Modules\Service\Entities\Category;
 use App\Models\StripePayment;
 
@@ -449,26 +449,26 @@ class ProfileController extends Controller
     }
     public function toggle(Request $request)
     {
-        // $validated = $request->validate([
-        //     'influencer_id' => 'required|integer|exists:influencers,id',
-        //     'action' => 'required|in:add,remove',
-        // ]);
+        $validated = $request->validate([
+            'influencer_id' => 'required|integer|exists:influencers,id',
+            'action' => 'required|in:add,remove',
+        ]);
 
-        // $userId = auth()->id(); // Assuming the user is authenticated
-        // $influencerId = $validated['influencer_id'];
+        $userId = auth()->id(); // Assuming the user is authenticated
+        $influencerId = $validated['influencer_id'];
 
-        // if ($validated['action'] === 'add') {
-        //     // Add to wishlist
-        //     Wishlist::firstOrCreate([
-        //         'user_id' => $userId,
-        //         'influencer_id' => $influencerId,
-        //     ]);
-        // } else {
-        //     // Remove from wishlist
-        //     Wishlist::where('user_id', $userId)
-        //         ->where('influencer_id', $influencerId)
-        //         ->delete();
-        // }
+        if ($validated['action'] === 'add') {
+            // Add to wishlist
+            Wishlist::firstOrCreate([
+                'user_id' => $userId,
+                'influencer_id' => $influencerId,
+            ]);
+        } else {
+            // Remove from wishlist
+            Wishlist::where('user_id', $userId)
+                ->where('influencer_id', $influencerId)
+                ->delete();
+        }
 
         return response()->json(['success' => true]);
     }
@@ -485,17 +485,16 @@ class ProfileController extends Controller
     }
     public function checkout_submit(Request $request)
     {
-        dd($request->all());
+        // Dump request data for debugging (remove after testing)
+        // dd($request->all());
+    
         // Fetch cart data from the session
         $cart = Session::get('cart', []);
-
+    
         if (empty($cart)) {
-            return response()->json([
-                'status' => 'error',
-                'message' => trans('admin_validation.Cart is empty'),
-            ], 400);
+            return redirect()->back()->with('error', trans('admin_validation.Cart is empty'));
         }
-
+    
         // Validation rules
         $rules = [
             'address' => 'required',
@@ -507,9 +506,9 @@ class ProfileController extends Controller
             'name.required' => trans('admin_validation.Name is required'),
             'phone.required' => trans('admin_validation.Phone is required'),
         ];
-
+    
         $this->validate($request, $rules, $customMessages);
-
+    
         // Prepare booking info
         $booking_info = (object) array(
             'ids' => $request->ids,
@@ -524,35 +523,32 @@ class ProfileController extends Controller
             'address' => $request->address,
             'order_note' => $request->order_note,
         );
-
+    
         $user = Auth::guard('web')->user();
         $service_ids = array_keys($cart);
-
+    
         // Ensure the services exist and are valid
         $services = Service::whereIn('id', $service_ids)
             ->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable'])
             ->get();
-
+    
         if ($services->isEmpty()) {
-            return response()->json([
-                'status' => 'error',
-                'message' => trans('admin_validation.Invalid service selected'),
-            ], 400);
+            return redirect()->back()->with('error', trans('admin_validation.Invalid service selected'));
         }
-
+    
         // Process coupon discount
         $coupon_discount = 0.00;
         if (Session::get('coupon_code') && Session::get('offer_percentage')) {
             $offer_percentage = Session::get('offer_percentage');
             $coupon_discount = ($offer_percentage / 100) * $booking_info->total;
         }
-
+    
         // Calculate payable amount
         $stripe = StripePayment::first();
         $payable_amount = round(($booking_info->total - $coupon_discount) * $stripe->currency->currency_rate, 2);
-
+    
         Stripe\Stripe::setApiKey($stripe->stripe_secret);
-
+    
         try {
             $result = Stripe\Charge::create([
                 "amount" => $payable_amount * 100,
@@ -560,11 +556,11 @@ class ProfileController extends Controller
                 "source" => $request->stripeToken,
                 "description" => env('APP_NAME')
             ]);
-
+    
             // Create orders for all items in the cart
             foreach ($cart as $service_id => $cart_item) {
                 $service = $services->where('id', $service_id)->first();
-
+    
                 if ($service) {
                     $this->create_order(
                         $user,
@@ -578,22 +574,17 @@ class ProfileController extends Controller
                     );
                 }
             }
-
+    
             // Clear the cart
             session()->forget('cart');
-
-            return response()->json([
-                'status' => 'success',
-                'message' => trans('admin_validation.Your order has been placed. Thanks for your new order'),
-            ], 200);
+    
+            return redirect()->route('user.orders')->with('success', trans('admin_validation.Your order has been placed. Thanks for your new order'));
+    
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => trans('admin_validation.Payment failed. Please try again'),
-                'error' => $e->getMessage(),
-            ], 500);
+            return redirect()->back()->with('error', trans('admin_validation.Payment failed. Please try again'));
         }
     }
+    
 
 
     function requirement()
