@@ -351,48 +351,57 @@
         .dark-heart {
             display: block;
         }
-
     </style>
     <div class="main-content">
         <section class="section">
             <div class="section-body">
                 <div class="content-holder">
-                    @foreach ($services as $index => $service)
+                    @foreach ($wishlists as $wishlist)
+                        @php
+                            $influencer = $wishlist->influencer;
+                        @endphp
                         <div class="cards">
-                            <a href="{{ route('service', $service->slug) }}" class="card-link">
+                            <a href="{{ route('user.influencer', html_decode($influencer->username)) }}" class="card-link">
 
                                 <div class="box" style="background:url(''); no-repeat">
                                     <!-- Multiple Heart Boxes -->
 
-                                    <div class="heart">
 
-                                        <svg class="dark-heart" xmlns="http://www.w3.org/2000/svg" width="24"
-                                            height="24" viewBox="0 0 24 24" fill="none">
+                                    <div class="heart" onclick="toggleHeart(this, {{ $influencer->id }}, event)">
+                                        <svg class="light-heart" xmlns="http://www.w3.org/2000/svg"
+                                            style="display: {{ $influencer->is_wishlist($influencer->id) == 1 ? 'none' : 'block' }}"
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path
+                                                d="M12.2994 20.9191C17.3662 17.4932 22.433 13.6808 22.433 8.614C22.433 7.3169 21.9386 6.02052 20.9491 5.03105C19.9596 4.0423 18.6633 3.5472 17.3662 3.5472C16.0698 3.5472 14.7727 4.0423 13.7839 5.03105L12.2994 6.51562L10.8155 5.03105C9.82604 4.0423 8.52967 3.5472 7.23257 3.5472C5.93619 3.5472 4.63909 4.0423 3.65034 5.03105C2.66087 6.02052 2.16577 7.3169 2.16577 8.614C2.16577 13.6808 7.23257 17.4932 12.2994 20.9191Z"
+                                                stroke="#010101" stroke-width="1.44766" />
+                                        </svg>
+                                        <svg class="dark-heart" xmlns="http://www.w3.org/2000/svg"
+                                            style="display: {{ $influencer->is_wishlist($influencer->id) == 1 ? 'block' : 'none' }}"
+                                            width="24" height="24" viewBox="0 0 24 24" fill="none">
                                             <path
                                                 d="M12.2994 20.4845C17.3662 17.0586 22.433 13.2462 22.433 8.17944C22.433 6.88234 21.9386 5.58596 20.9491 4.59649C19.9596 3.60774 18.6633 3.11264 17.3662 3.11264C16.0698 3.11264 14.7727 3.60774 13.7839 4.59649L12.2994 6.08106L10.8155 4.59649C9.82604 3.60774 8.52967 3.11264 7.23257 3.11264C5.93619 3.11264 4.63909 3.60774 3.65034 4.59649C2.66087 5.58596 2.16577 6.88234 2.16577 8.17944C2.16577 13.2462 7.23257 17.0586 12.2994 20.4845Z"
                                                 fill="#FF0000" />
                                         </svg>
+
                                     </div>
-                                    <img src="{{ asset($service->thumbnail_image) }}" class="img-box" />
+                                    <img src="{{ asset($influencer->image) }}" class="img-box" />
                                     <div class="img-title">
                                         <div>
-                                            <h5>
-                                                @if ($service->influencer)
-                                                    {{ $service->influencer->name }}
-                                                @endif
-                                            </h5>
-                                            {{-- <address>{{ $influencer->address }}</address> --}}
+                                            <h5>{{ $influencer->address }}</h5>
+                                            <address>{{ $influencer->address }}</address>
                                         </div>
-                                        <span>Top creator</span>
+                                        <span>Top creator
+                                        </span>
                                     </div>
                                 </div>
-                                <h4> <a href="{{ route('service', $service->slug) }}">{{ $service->title }}</a>
-                                    <strong>{{ currency($service->price) }}</strong>
+                                <h4> {{ __('admin.Followers') }}
+                                    <strong>{{ $influencer->total_follower }}</strong>
                                 </h4>
-
+                                <p>{{ $influencer->designation }}</p>
                             </a>
                         </div>
                     @endforeach
+
 
 
                 </div>

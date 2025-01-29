@@ -253,7 +253,12 @@ class ProfileController extends Controller
 
         $services = Service::with('category', 'influencer')->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable'])->whereIn('id', $wishlist_arr)->get();
 
-        return view('profile.wishlists', ['services' => $services]);
+        $wishlists = Wishlist::with('influencer')
+            ->where('user_id', $user->id)
+            ->where('influencer_id', '!=', 0)
+            ->get();
+
+        return view('profile.wishlists', ['services' => $services, 'wishlists' => $wishlists]);
     }
 
     public function remove_wishlist($id)

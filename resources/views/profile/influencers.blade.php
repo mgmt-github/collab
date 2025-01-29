@@ -7,8 +7,8 @@
                 <div class="main-content">
                     <section class="section">
                         <!-- <div class="section-header">
-                                                                                                                    <h1>{{ __('admin.Dashboard') }}</h1>
-                                                                                                                  </div> -->
+                                                                                                                        <h1>{{ __('admin.Dashboard') }}</h1>
+                                                                                                                      </div> -->
 
                         <div class="section-body">
                             <div class="dropdown-container">
@@ -85,7 +85,7 @@
                                                         <address>{{ $influencer->address }}</address>
                                                     </div>
                                                     <span>Top creator
-                                                       </span>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <h4> {{ __('admin.Followers') }}
