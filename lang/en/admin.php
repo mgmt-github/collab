@@ -951,6 +951,7 @@ return array(
   'Platform List' => 'Platform List',
   'campaigns' => 'Campaigns',
   'Campaign' => 'Campaign',
+  'Campaign Details' => 'Campaign Details',
   'Campaign Type' => 'Campaign Type',
   'General Campaigns are offer to all influencers, while invite campaigns require brand invitations for participation.' => 'General Campaigns are offer to all influencers, while invite campaigns require brand invitations for participation.',
 'General Campaign' => 'General Campaign',

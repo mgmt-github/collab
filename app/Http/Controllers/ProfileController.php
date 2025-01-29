@@ -739,12 +739,11 @@ class ProfileController extends Controller
     public function campaign_show($slug)
     {
 
-        $campaigns = Campaign::where('id', $slug)->get();
-       
-      
-        return view('profile.campaign_detail_show')->with([
-            'campaigns' => $campaigns,
+        $campaign = Campaign::with('platform')->where('id', $slug)->first();
+        if (!$campaign) abort(404);
 
+        return view('profile.campaign_show')->with([
+            'campaign' => $campaign,
         ]);
     }
     function campaign_store(Request $request)
