@@ -105,6 +105,84 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
     Route::group(['middleware' => ['HtmlSpecialchars']], function () {
 
+        Route::controller(HomeController::class)->group(function () {
+            Route::get('/', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('home');
+        
+            Route::get('/about-us', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('about-us');
+        
+            Route::get('/faq', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('faq');
+        
+            Route::get('/terms-conditions', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('terms-conditions');
+        
+            Route::get('/privacy-policy', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('privacy-policy');
+        
+            Route::get('/page/{slug}', function ($slug) {
+                return redirect()->to("https://actrology.com}");
+            })->name('custom-page');
+        
+            Route::get('/contact-us', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('contact-us');
+        
+            Route::post('/store-contact-message', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('store-contact-message');
+        
+            Route::get('/services', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('services');
+        
+            Route::get('/service/{slug}', function ($slug) {
+                return redirect()->to("https://actrology.com");
+            })->name('service');
+        
+            Route::get('/blogs', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('blogs');
+        
+            Route::get('/blog/{slug}', function ($slug) {
+                return redirect()->to("https://actrology.com");
+            })->name('blog');
+        
+            Route::post('/store-comment', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('store-comment');
+        
+            Route::get('/influencers', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('influencers');
+        
+            Route::get('/influencers/{slug}', function ($slug) {
+                return redirect()->to("https://actrology.com/");
+            })->name('influencer');
+        
+            Route::get('/influencer-joining', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('influencer-joining');
+        
+            Route::get('/download-file/{file}', function ($file) {
+                return redirect()->to("https://actrology.com");
+            })->name('download-file');
+        
+            Route::get('/language-switcher', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('language-switcher');
+        
+            Route::get('/currency-switcher', function () {
+                return redirect()->to('https://actrology.com');
+            })->name('currency-switcher');
+        });
+        
         // Route::controller(HomeController::class)->group(function () {
         //     Route::get('/', 'index')->name('home');
         //     Route::get('/about-us', 'about_us')->name('about-us');
