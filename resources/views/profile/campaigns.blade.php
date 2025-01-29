@@ -161,11 +161,12 @@
                             <!-- sherah Table Head -->
                             <thead class="inflanar-table__head">
                                 <tr>
-                                    <th class="inflanar-table__column-1 inflanar-table__h1">{{ __('admin.Order Id') }}</th>
-                                    <th class="inflanar-table__column-2 inflanar-table__h2">{{ __('admin.category') }}
+                                    <th class="inflanar-table__column-1 inflanar-table__h1">{{ __('Campaign Id') }}</th>
+                                    <th class="inflanar-table__column-2 inflanar-table__h2">{{ __('admin.Category') }}
                                     </th>
-                                    <th class="inflanar-table__column-3 inflanar-table__h3">{{ __('No of influencer') }}</th>
-                                    <th class="inflanar-table__column-4 inflanar-table__h4">{{ __('admin.gender') }}</th>
+                                    <th class="inflanar-table__column-3 inflanar-table__h3">{{ __('No of influencer') }}
+                                    </th>
+                                    <th class="inflanar-table__column-4 inflanar-table__h4">{{ __('Gender') }}</th>
                                     <th class="inflanar-table__column-5 inflanar-table__h5">{{ __('admin.Status') }}</th>
                                     <th class="inflanar-table__column-7 inflanar-table__h6">{{ __('admin.Action') }}</th>
                                 </tr>

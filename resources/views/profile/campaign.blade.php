@@ -839,7 +839,7 @@
             align-items: center;
             background: rgba(0, 0, 0, 0.5);
             z-index: 9999;
-            color: white;
+            color: #000;
             font-size: 1.2rem;
         }
 
@@ -910,19 +910,20 @@
                             </p>
                             <div class="platform-btn">
                                 @foreach ($platforms as $item)
-                                <div class="campaign-btn">
-                                    <input type="radio" id='{{ $item->name }}' value="{{ $item->name }}"
-                                        name="platform_id" class="radio-custom" required />
+                                    <div class="campaign-btn">
+                                        <input type="radio" id='{{ $item->name }}' value="{{ $item->name }}"
+                                            name="platform_id" class="radio-custom" required />
 
-                                    <label for='{{ $item->name }}' class="radio-custom-label">{{ $item->name }}</label>
-                                  @if ($item->image)
-                                  <span><img src="{{ asset( $item->image) }}" alt="logo" />
-                                    
-                                  </span>
-                                  @endif  
-                                </div>
+                                        <label for='{{ $item->name }}'
+                                            class="radio-custom-label">{{ $item->name }}</label>
+                                        @if ($item->image)
+                                            <span><img src="{{ asset($item->image) }}" alt="logo" />
+
+                                            </span>
+                                        @endif
+                                    </div>
                                 @endforeach
-                           
+
                             </div>
                             <div class="dropdown-social mg-top-20">
                                 <div class="dropdown" data-section="step-1" data-field="category">
