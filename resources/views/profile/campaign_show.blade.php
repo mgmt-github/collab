@@ -15,8 +15,9 @@
                         <div class="col-12">
                             <div class="inflanar-supports__head">
                                 <div class="inflanar-supports__buttons">
-                                    <a href="#" class="inflanar-btn"><i class="fa-solid fa-left-long"></i>
-                                        {{ __('admin.Go Back') }}</a>
+                                    <a href="javascript:history.back()" class="inflanar-btn">
+                                        <i class="fa-solid fa-left-long"></i> {{ __('admin.Go Back') }}
+                                    </a>
                                 </div>
                             </div>
                             <div class="row order-details">
