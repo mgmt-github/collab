@@ -70,22 +70,55 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        // Profile update rules
         $rules = [
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
             'address' => 'required|max:220',
         ];
+
         $customMessages = [
             'name.required' => trans('admin_validation.Name is required'),
             'email.required' => trans('admin_validation.Email is required'),
             'phone.required' => trans('admin_validation.Phone is required'),
             'address.required' => trans('admin_validation.Address is required')
         ];
+
+        // Validate profile fields
         $this->validate($request, $rules, $customMessages);
 
+        // Password change logic if provided
+        if ($request->current_password && $request->password) {
+            $passwordRules = [
+                'current_password' => 'required',
+                'password' => 'required|min:4|confirmed',
+            ];
+
+            $passwordMessages = [
+                'current_password.required' => trans('admin_validation.Current password is required'),
+                'password.required' => trans('admin_validation.Password is required'),
+                'password.min' => trans('admin_validation.Password minimum 4 character'),
+                'password.confirmed' => trans('admin_validation.Confirm password does not match'),
+            ];
+
+            $this->validate($request, $passwordRules, $passwordMessages);
+
+            $user = Auth::guard('web')->user();
+            if (Hash::check($request->current_password, $user->password)) {
+                $user->password = Hash::make($request->password);
+                $user->save();
+            } else {
+                $notification = trans('admin_validation.Current password does not match');
+                $notification = array('messege' => $notification, 'alert-type' => 'error');
+                return redirect()->back()->with($notification);
+            }
+        }
+
+        // Update other user fields
         $user = Auth::guard('web')->user();
         $user->name = $request->name;
+        $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
         $user->designation = $request->designation;
@@ -95,6 +128,7 @@ class ProfileController extends Controller
         $notification = array('messege' => $notification, 'alert-type' => 'success');
         return redirect()->back()->with($notification);
     }
+
 
     public function change_password(Request $request)
     {
