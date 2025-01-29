@@ -181,7 +181,8 @@
                                         </td>
                                         <td class="inflanar-table__column-1 inflanar-table__data-1">
                                             <div class="inflanar-table__content">
-                                                <p class="inflanar-table__desc">{{ $campaign->category }}</p>
+                                                <p class="inflanar-table__desc">
+                                                    {{ html_entity_decode($campaign->category) }}</p>
                                             </div>
                                         </td>
                                         <td class="inflanar-table__column-1 inflanar-table__data-1">

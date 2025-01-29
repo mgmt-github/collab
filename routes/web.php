@@ -254,7 +254,8 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
             });
             Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add-to-cart');
             Route::get('/cart', [CartController::class, 'index'])->name('cart');
-            Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+            Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+
 
             Route::get('live-chat', [UserMessageController::class, 'index'])->name('live-chat');
             Route::get('load-chat-box/{id}', [UserMessageController::class, 'load_chat_box'])->name('load-chat-box');

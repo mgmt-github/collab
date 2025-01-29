@@ -87,17 +87,30 @@ class CartController extends Controller
     }
 
     // Remove item from cart
-    public function remove(Request $request)
+    public function remove(Request $request, $id)
     {
-        $id = $request->input('id');
-
+        // Cart session get karo
         $cart = Session::get('cart', []);
-        unset($cart[$id]);
 
-        Session::put('cart', $cart); // Save updated cart to session
+        // Check karo agar ID exist karti hai tabhi remove karo
+        if (isset($cart[$id])) {
+            unset($cart[$id]);
+            Session::put('cart', $cart); // Save updated cart to session
 
-        return redirect()->route('user.cart')->with('success', 'Item removed from cart!');
+            // Success notification
+            $notification = trans('admin_validation.Item removed from cart successfully');
+            $notification = array('messege' => $notification, 'alert-type' => 'success');
+
+            return redirect()->route('user.cart')->with($notification);
+        }
+
+        // Error notification agar item nahi mila
+        $notification = trans('admin_validation.Item not found in cart');
+        $notification = array('messege' => $notification, 'alert-type' => 'error');
+
+        return redirect()->route('user.cart')->with($notification);
     }
+
 
     public function placeOrder(Request $request)
     {
