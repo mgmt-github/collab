@@ -789,7 +789,7 @@ class ProfileController extends Controller
     {
 
         $request->validate([
-            'platforms' => 'required',
+            'platform_id' => 'required',
             'category' => 'nullable',
             'country' => 'nullable',
             'no_of_influencer' => 'nullable|integer',
@@ -805,17 +805,19 @@ class ProfileController extends Controller
         }
 
         Campaign::create([
-            'platforms' => $request->platforms,
+            'platform_id' => $request->platform_id,
             'category' => $request->category,
             'country' => $request->country,
             'no_of_influencer' => $request->no_of_influencer,
             'range' => $request->range,
             'language' => $request->language,
             'gender' => $request->gender,
-            'image' => $filePath
+            'image' => $filePath,
+            'user_id' => auth()->user()->id
+
         ]);
 
-        return redirect()->route('profile.campaign.index')->with('success', 'Influencer added successfully');
+        return redirect()->route('user.campaigns')->with('success', 'Influencer added successfully');
     }
     function campaign_create()
     {

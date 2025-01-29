@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
             $table->integer('platform_id');
+            $table->integer('user_id');
             $table->string('category');
             $table->string('country');
             $table->integer('no_of_influencer');

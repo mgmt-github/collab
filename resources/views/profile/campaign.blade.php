@@ -910,7 +910,7 @@
                             </p>
                             <div class="platform-btn">
                                 <div class="campaign-btn">
-                                    <input type="radio" id='facebook' value="facebook" name="platforms"
+                                    <input type="radio" id='facebook' value="facebook" name="platform_id"
                                         class="radio-custom" required />
 
                                     <label for='facebook' class="radio-custom-label">{{ __('admin.Facebook') }}</label>
@@ -918,7 +918,7 @@
                                     </span>
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='instagram' value="1" name="platforms"
+                                    <input type="radio" id='instagram' value="1" name="platform_id"
                                         class="radio-custom" />
 
                                     <label for='instagram' class="radio-custom-label">{{ __('admin.Instagram') }}</label>
@@ -927,7 +927,7 @@
                                     </span>
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='youtube' value="2" name="platforms"
+                                    <input type="radio" id='youtube' value="2" name="platform_id"
                                         class="radio-custom" />
 
                                     <label for='youtube' class="radio-custom-label">{{ __('admin.Youtube') }}</label>
@@ -936,14 +936,14 @@
                                     </span>
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='snapchat' value="3" name="platforms"
+                                    <input type="radio" id='snapchat' value="3" name="platform_id"
                                         class="radio-custom" />
 
                                     <label for='snapchat' class="radio-custom-label">{{ __('admin.Snapchat') }}</label>
                                     <img src="{{ asset('/uploads/campaign-img/snapchat.svg') }}" alt="logo" />
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='tiktok' value="4" name="platforms"
+                                    <input type="radio" id='tiktok' value="4" name="platform_id"
                                         class="radio-custom" />
 
                                     <label for='tiktok' class="radio-custom-label">{{ __('admin.Tiktok') }}</label>
@@ -951,7 +951,7 @@
                                 </div>
                                 <div class="campaign-btn">
                                     <input type="radio" id='user-Generated-Content' value="5"
-                                        name="platforms" class="radio-custom" />
+                                        name="platform_id" class="radio-custom" />
 
                                     <label for='user-Generated-Content'
                                         class="radio-custom-label">{{ __('admin.User Generated Content (UGC)') }}</label>
@@ -1188,7 +1188,7 @@
             "user-Generated-Content": "user.svg",
         };
 
-        document.querySelectorAll('input[name="platforms"]').forEach((radio) => {
+        document.querySelectorAll('input[name="platform_id"]').forEach((radio) => {
             radio.addEventListener("change", (e) => {
                 const selectedPlatform = e.target.value;
 
