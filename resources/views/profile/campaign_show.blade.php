@@ -37,7 +37,8 @@
                                             <li class="inflanar-dflex">
                                                 <h4 class="inflanar-profile-info__title">{{ __('admin.Category') }}:
                                                 </h4>
-                                                <p class="inflanar-profile-info__text">{{ $campaign->category }}</p>
+                                                <p class="inflanar-profile-info__text">
+                                                    {{ html_entity_decode($campaign->category) }}</p>
                                             </li>
                                             <li class="inflanar-dflex">
                                                 <h4 class="inflanar-profile-info__title">{{ __('admin.Country') }}:</h4>
