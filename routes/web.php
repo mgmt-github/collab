@@ -249,8 +249,8 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
                 Route::get('/campaigns', 'campaigns')->name('campaigns');
                 Route::post('/campaign/submit', 'campaign_store')->name('campaign.submit');
+                Route::get('/campaign/detail/{id}', 'campaign_show')->name('campaign.show');
                 Route::get('/campaign/create', 'campaign_create')->name('campaign.store');
-                Route::get('/campaign/{id}', 'campaign_show')->name('campaign.show');
             });
             Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add-to-cart');
             Route::get('/cart', [CartController::class, 'index'])->name('cart');

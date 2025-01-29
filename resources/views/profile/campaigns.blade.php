@@ -162,10 +162,10 @@
                             <thead class="inflanar-table__head">
                                 <tr>
                                     <th class="inflanar-table__column-1 inflanar-table__h1">{{ __('admin.Order Id') }}</th>
-                                    <th class="inflanar-table__column-2 inflanar-table__h2">{{ __('admin.Influencer') }}
+                                    <th class="inflanar-table__column-2 inflanar-table__h2">{{ __('admin.category') }}
                                     </th>
-                                    <th class="inflanar-table__column-3 inflanar-table__h3">{{ __('Platform') }}</th>
-                                    <th class="inflanar-table__column-4 inflanar-table__h4">{{ __('admin.Amount') }}</th>
+                                    <th class="inflanar-table__column-3 inflanar-table__h3">{{ __('No of influencer') }}</th>
+                                    <th class="inflanar-table__column-4 inflanar-table__h4">{{ __('admin.gender') }}</th>
                                     <th class="inflanar-table__column-5 inflanar-table__h5">{{ __('admin.Status') }}</th>
                                     <th class="inflanar-table__column-7 inflanar-table__h6">{{ __('admin.Action') }}</th>
                                 </tr>
@@ -180,17 +180,17 @@
                                         </td>
                                         <td class="inflanar-table__column-1 inflanar-table__data-1">
                                             <div class="inflanar-table__content">
-                                                <p class="inflanar-table__desc">{{ $campaign->user?->name }}</p>
+                                                <p class="inflanar-table__desc">{{ $campaign->category }}</p>
                                             </div>
                                         </td>
                                         <td class="inflanar-table__column-1 inflanar-table__data-1">
                                             <div class="inflanar-table__content">
-                                                <p class="inflanar-table__desc">{{ $campaign->platform?->name }}</p>
+                                                <p class="inflanar-table__desc">{{ $campaign->no_of_influencer }}</p>
                                             </div>
                                         </td>
                                         <td class="inflanar-table__column-1 inflanar-table__data-1">
                                             <div class="inflanar-table__content">
-                                                <p class="inflanar-table__desc">{{ $campaign->price }}</p>
+                                                <p class="inflanar-table__desc">{{ $campaign->gender }}</p>
                                             </div>
                                         </td>
 

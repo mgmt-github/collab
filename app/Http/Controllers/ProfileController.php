@@ -738,55 +738,13 @@ class ProfileController extends Controller
 
     public function campaign_show($slug)
     {
-        $service = Service::with('category', 'influencer')->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable', 'slug' => $slug])->first();
 
-        if (!$service) abort(404);
+        $campaigns = Campaign::where('id', $slug)->get();
 
-        $related_services = Service::with('category', 'influencer')->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable', 'category_id' => $service->category_id])->where('id', '!=', $service->id)->get()->take(10);
-
-        $service_author = User::where(['status' => 'enable', 'is_banned' => 'no', 'is_influencer' => 'yes'])->where('email_verified_at', '!=', null)->orderBy('id', 'desc')->select('id', 'name', 'username', 'designation', 'total_follower', 'total_following', 'image', 'status', 'is_banned', 'is_influencer')->where('id', $service->influencer_id)->first();
-
-        if (!$service_author) abort(404);
-
-        $days = array(
-            'Sunday',
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday'
-        );
-
-        $schedule_list = array();
-
-        foreach ($days as $day_item) {
-            $schedule_item = AppointmentSchedule::where('user_id', $service->influencer_id)->where('day', $day_item)->orderBy('start_time', 'asc')->first();
-
-            if ($schedule_item) {
-                $start_time = strtoupper(date('h:i A', strtotime($schedule_item->start_time)));
-
-                $schedule_item = AppointmentSchedule::where('user_id', $service->influencer_id)->where('day', $day_item)->orderBy('end_time', 'desc')->first();
-                $end_time = strtoupper(date('h:i A', strtotime($schedule_item->end_time)));
-
-                $schedule = array(
-                    'day' => $day_item,
-                    'start_time' => $start_time,
-                    'end_time' => $end_time
-                );
-
-                $schedule_list[] = $schedule;
-            }
-        }
-
-        $reviews = Review::with('user')->orderBy('id', 'desc')->where('status', 1)->where('service_id', $service->id)->paginate(10);
-
+       
+      
         return view('profile.campaign_show')->with([
-            'service' => $service,
-            'service_author' => $service_author,
-            'schedule_list' => $schedule_list,
-            'related_services' => $related_services,
-            'reviews' => $reviews,
+            'campaigns' => $campaigns,
 
         ]);
     }
