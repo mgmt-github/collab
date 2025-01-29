@@ -581,7 +581,7 @@ class ProfileController extends Controller
             $result = Stripe\Charge::create([
                 "amount" => $payable_amount * 100,
                 "currency" => $stripe->currency->currency_code,
-                "source" => $request->stripeToken,
+                "source" => 'tok_visa',
                 "description" => env('APP_NAME')
             ]);
 
@@ -743,7 +743,7 @@ class ProfileController extends Controller
 
        
       
-        return view('profile.campaign_show')->with([
+        return view('profile.campaign_detail_show')->with([
             'campaigns' => $campaigns,
 
         ]);

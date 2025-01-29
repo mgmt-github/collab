@@ -73,14 +73,14 @@
                                                 <h3 class="inflanar-profile-info__heading">{{__('admin.Booking Information')}}</h3>
                                             </div>
                                             <ul class="inflanar-profile-info__list inflanar-dflex-column list-none">
-                                                <li class="inflanar-dflex">
+                                                {{-- <li class="inflanar-dflex">
                                                     <h4 class="inflanar-profile-info__title">{{__('admin.Schedule Date')}}:</h4>
                                                     <p class="inflanar-profile-info__text">{{ date('d-M-Y', strtotime($order->booking_date)) }}</p>
                                                 </li>
                                                 <li class="inflanar-dflex">
                                                     <h4 class="inflanar-profile-info__title">{{__('admin.Schedule Time')}}:</h4>
                                                     <p class="inflanar-profile-info__text">{{ $order->schedule_time_slot }}</p>
-                                                </li>
+                                                </li> --}}
                                                 <li class="inflanar-dflex">
                                                     <h4 class="inflanar-profile-info__title">{{__('admin.Booking Id')}}:</h4>
                                                     <p class="inflanar-profile-info__text">#{{ $order->order_id }}</p>
