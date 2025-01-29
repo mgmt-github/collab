@@ -449,15 +449,14 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
         Route::controller(PortfolioController::class)->group(function () {
             Route::get('portfolio-list', 'index')->name('portfolio-list');
             Route::get('campaigns', 'campaigns')->name('campaigns');
-            Route::get('campaigns/view/{id}', 'campaigns')->name('campaign.view');
+            Route::get('campaigns/view/{id}', 'campaign_show')->name('campaign.show');
             Route::post('portfolio-store', 'store')->name('portfolio-store');
             Route::get('portfolio-edit/{id}', 'edit')->name('portfolio-edit');
             Route::get('portfolio-edit/{id}', 'edit')->name('portfolio-edit');
             Route::put('portfolio-update/{id}', 'update')->name('portfolio-update');
             Route::delete('portfolio-destory/{id}', 'destroy')->name('portfolio-destory');
         });
-        Route::get('campaigns', [ProfileController::class,'campaigns'])->name('campaigns');
-        Route::get('campaigns/view/{id}', [ProfileController::class,'campaigns'])->name('campaign.show');
+      
 
         Route::get('live-chat', [InfluencerMessageController::class, 'index'])->name('live-chat');
         Route::get('load-chat-box/{id}', [InfluencerMessageController::class, 'load_chat_box'])->name('load-chat-box');

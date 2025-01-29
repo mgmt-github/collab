@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use Illuminate\Http\Request;
 use App\Models\Portfolio;
+use App\Models\SeoSetting;
+use App\Models\SocialPlatform;
 use Illuminate\Pagination\Paginator;
 use Auth, Image, File;
 
@@ -74,11 +76,32 @@ class PortfolioController extends Controller
 
         return view('influencer.portfolio_edit', compact('portfolio'));
     }
-    public function campaigns()
+    public function campaigns(Request $request)
     {
-        $campaigns = Campaign::get();
 
-        return view('influencer.campaigns', compact('campaigns'));
+        $seo_setting = SeoSetting::where('id', 10)->first();
+        $platforms = SocialPlatform::where('status', 1)->get();
+        $campaigns = Campaign::where('user_id', Auth()->id())->get();
+
+
+        return view('profile.campaigns')->with([
+            'seo_setting' => $seo_setting,
+            'platforms' => $platforms,
+            'campaigns' => $campaigns,
+        ]);
+    }
+
+
+    public function campaign_show($slug)
+    {
+        $seo_setting = SeoSetting::where('id', 10)->first();
+
+        $campaign = Campaign::with('platform')->where('id', $slug)->first();
+        if (!$campaign) abort(404);
+
+        return view('profile.campaign_show')->with([
+            'campaign' => $campaign,
+        ]);
     }
 
     public function update(Request $request, $id)
