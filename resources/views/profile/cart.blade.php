@@ -445,46 +445,34 @@
                                 </div>
                                 <a href="{{ route('user.checkout') }}" class="checkout-btn">{{ __('admin.Checkout') }}</a>
                             </div>
-                        </div>
 
-                        {{-- table content ends --}}
-                        {{-- images part start  --}}
-                        <div class="mg-top-40">
-                            <span class="image-title">{{ __('admin.Similar Creators With these Package') }}</span>
-                            <div class="influancer-body mg-top-20">
-                                <div class="in-item">
-                                    <h5>{{ __('admin.Makeup Wih two Influencers') }}</h5>
-                                    <div class="cart-item">
-                                        <form method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id">
-                                            <input type="hidden" name="image">
-                                            <input type="hidden" name="name">
-                                            <input type="hidden" name="price">
-                                            <input type="hidden" name="quantity" value="1">
-                                            <button type="submit">Add to Cart</button>
-                                        </form>
-                                        <span>$1200</span>
-                                    </div>
-                                </div>
-                                <div class="in-item">
-                                    <h5>{{ __('admin.Makeup Wih two Influencers') }}</h5>
 
-                                    <div class="cart-item">
-                                        <form method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id">
-                                            <input type="hidden" name="image">
-                                            <input type="hidden" name="name">
-                                            <input type="hidden" name="price">
-                                            <input type="hidden" name="quantity" value="1">
-                                            <button type="submit">Add to Cart</button>
-                                        </form>
-                                        <span>$1200</span>
+                            <div class="cart-title  my-5 ">{{ __('Some Random Service') }}</div>
+                            <div class="influancer-body ">
+
+                                @foreach ($services as $service)
+                                    <div class="in-item" data-category="{{ strtolower($service->platform?->name) }}">
+                                        <h5>{{ $service->translate->title }}</h5>
+
+                                        <div class="cart-item">
+                                            <form method="POST" action="{{ route('user.cart.add-to-cart') }}">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $service->id }}">
+                                                <input type="hidden" name="image"
+                                                    value="{{ $service->thumbnail_image }}">
+                                                <input type="hidden" name="name"
+                                                    value="{{ $service->translate->title }}">
+                                                <input type="hidden" name="price" value="{{ $service->price }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button type="submit">Add to Cart</button>
+                                            </form>
+                                            <span>${{ $service->price }}</span>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
+
                         {{-- images part end  --}}
                     </div>
                 </div>

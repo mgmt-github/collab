@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\MailHelper;
+use App\Http\Requests\CartRequest;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Mail\OrderSuccessfully;
+use App\Models\AppointmentSchedule;
 use App\Models\CustomPagination;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,15 +22,20 @@ use App\Models\MessageDocument;
 use App\Models\Message;
 use App\Models\Order;
 use App\Models\Campaign;
+use App\Models\CouponHistory;
+use App\Models\EmailTemplate;
 use App\Models\Portfolio;
 use App\Models\RefundRequest;
 use App\Models\Review;
 use App\Models\SeoSetting;
+use App\Models\Setting;
 use App\Models\SocialPlatform;
 use App\Rules\Captcha;
 use Hash, Image, File, Str, Session, Stripe;
 use Modules\Service\Entities\Category;
 use App\Models\StripePayment;
+use Illuminate\Support\Facades\Mail;
+use Modules\Service\Entities\AdditionalService;
 
 class ProfileController extends Controller
 {
@@ -478,37 +487,27 @@ class ProfileController extends Controller
     }
     public function checkout()
     {
-        $cartItems = session()->get('cart', []); // Retrieve cart items from the session
-        $totalPrice = collect($cartItems)->sum('price'); // Calculate total price
+        $cartItems = Session::get('cart', []);
 
-        return view('profile.checkout', compact('cartItems', 'totalPrice'));
+        // Calculate the subtotal
+        $subtotal = array_reduce($cartItems, function ($total, $item) {
+            return $total + ($item['price'] * $item['quantity']);
+        }, 0);
+        return view('profile.checkout', compact('cartItems', 'subtotal'));
     }
-    public function checkout_submit(Request $request)
+    public function checkout_submit(CartRequest $request)
     {
         // Dump request data for debugging (remove after testing)
         // dd($request->all());
-    
+
         // Fetch cart data from the session
         $cart = Session::get('cart', []);
-    
+
         if (empty($cart)) {
             return redirect()->back()->with('error', __('admin_validation.Cart is empty'));
         }
-    
-        // Validation rules
-        $rules = [
-            'address' => 'required',
-            'name' => 'required',
-            'phone' => 'required',
-        ];
-        $customMessages = [
-            'address.required' => trans('admin_validation.Address is required'),
-            'name.required' => trans('admin_validation.Name is required'),
-            'phone.required' => trans('admin_validation.Phone is required'),
-        ];
-    
-        $this->validate($request, $rules, $customMessages);
-    
+
+
         // Prepare booking info
         $booking_info = (object) array(
             'ids' => $request->ids,
@@ -523,32 +522,33 @@ class ProfileController extends Controller
             'address' => $request->address,
             'order_note' => $request->order_note,
         );
-    
+
+
         $user = Auth::guard('web')->user();
         $service_ids = array_keys($cart);
-    
+
         // Ensure the services exist and are valid
         $services = Service::whereIn('id', $service_ids)
             ->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable'])
             ->get();
-    
+
         if ($services->isEmpty()) {
             return redirect()->back()->with('error', __('admin_validation.Invalid service selected'));
         }
-    
+
         // Process coupon discount
         $coupon_discount = 0.00;
         if (Session::get('coupon_code') && Session::get('offer_percentage')) {
             $offer_percentage = Session::get('offer_percentage');
             $coupon_discount = ($offer_percentage / 100) * $booking_info->total;
         }
-    
+
         // Calculate payable amount
         $stripe = StripePayment::first();
         $payable_amount = round(($booking_info->total - $coupon_discount) * $stripe->currency->currency_rate, 2);
-    
+
         Stripe\Stripe::setApiKey($stripe->stripe_secret);
-    
+
         try {
             $result = Stripe\Charge::create([
                 "amount" => $payable_amount * 100,
@@ -556,11 +556,11 @@ class ProfileController extends Controller
                 "source" => $request->stripeToken,
                 "description" => env('APP_NAME')
             ]);
-    
+
             // Create orders for all items in the cart
             foreach ($cart as $service_id => $cart_item) {
                 $service = $services->where('id', $service_id)->first();
-    
+
                 if ($service) {
                     $this->create_order(
                         $user,
@@ -574,19 +574,108 @@ class ProfileController extends Controller
                     );
                 }
             }
-    
+
             // Clear the cart
             session()->forget('cart');
-    
+
             return redirect()->route('user.orders')->with('success', __('admin_validation.Your order has been placed. Thanks for your new order'));
-    
         } catch (\Exception $e) {
+
             return redirect()->back()->with('error', __('admin_validation.Payment failed. Please try again'));
         }
     }
-    
 
 
+    public function create_order($user, $service, $booking_info, $influencer_id, $client_id, $payment_method, $payment_status, $tnx_info)
+    {
+
+        $additional_services = array();
+
+        if ($booking_info->ids) {
+            foreach ($booking_info->ids as $extra_index => $extra_id) {
+                $addition = AdditionalService::find($booking_info->ids[$extra_index]);
+                if ($addition) {
+                    $single_extra_service = array(
+                        'id' => $addition->id,
+                        'title' => $addition->title,
+                        'price' => $addition->price,
+                        'features' => json_decode($addition->features),
+                    );
+                    $additional_services[] = $single_extra_service;
+                }
+            }
+        }
+
+
+        $coupon_discount = 0.00;
+        if (Session::get('coupon_code') && Session::get('offer_percentage')) {
+
+            $coupon = Coupon::where(['coupon_code' => Session::get('coupon_code')])->first();
+
+            if ($coupon) {
+                $offer_percentage = Session::get('offer_percentage');
+                $coupon_discount = ($offer_percentage / 100) * ($booking_info->total);
+
+                $history = new CouponHistory();
+                $history->user_id = $client_id;
+                $history->influencer_id = $coupon->influencer_id;
+                $history->coupon_code = $coupon->coupon_code;
+                $history->coupon_id = $coupon->id;
+                $history->discount_amount = $coupon_discount;
+                $history->save();
+            }
+        }
+
+        $order = new Order();
+        $order->order_id = substr(rand(0, time()), 0, 10);
+        $order->client_id = $client_id;
+        $order->influencer_id = $influencer_id;
+        $order->service_id = $service->id;
+        $order->package_amount = $service->price;
+        $order->additional_amount = $booking_info->extra_total ?? 0;
+        $order->coupon_discount  = $coupon_discount;
+        $order->total_amount = $booking_info->total;
+        $order->payment_method = $payment_method;
+        $order->transection_id = $tnx_info;
+        $order->payment_status = $payment_status;
+        $order->order_status = 'awaiting_for_influencer_approval';
+        $order->package_features = $service->features;
+        $order->additional_services = json_encode($additional_services);
+        $order->order_note = $booking_info->order_note;
+        $order->client_name = $booking_info->name;
+        $order->client_phone = $booking_info->phone;
+        $order->client_email = $booking_info->email;
+        $order->client_address = $booking_info->address;
+        $order->save();
+
+        // MailHelper::setMailConfig();
+
+        // $setting = Setting::first();
+
+        // $template = EmailTemplate::where('id', 8)->first();
+        // $subject = $template->subject;
+        // $message = $template->description;
+        // $message = str_replace('{{name}}', $user->name, $message);
+        // $message = str_replace('{{amount}}', $setting->currency_icon . $order->total_amount, $message);
+        // $message = str_replace('{{order_id}}', $order->order_id, $message);
+        // Mail::to($user->email)->send(new OrderSuccessfully($message, $subject));
+
+        // $influencer = User::find($influencer_id);
+
+        // $template = EmailTemplate::where('id', 9)->first();
+        // $subject = $template->subject;
+        // $message = $template->description;
+        // $message = str_replace('{{name}}', $influencer->name, $message);
+        // $message = str_replace('{{amount}}', $setting->currency_icon . $order->total_amount, $message);
+        // $message = str_replace('{{order_id}}', $order->order_id, $message);
+        // Mail::to($influencer->email)->send(new OrderSuccessfully($message, $subject));
+
+        Session::forget('coupon_code');
+        Session::forget('offer_percentage');
+        Session::forget('booking_info');
+
+        return $order;
+    }
     function requirement()
     {
         return view('requirement');

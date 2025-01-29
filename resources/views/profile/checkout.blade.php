@@ -946,7 +946,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <h6>${{ number_format($item['price'], 2) }}</h6>
+                                            <h6>{{$item['quantity']}} x ${{ number_format($item['price'] * $item['quantity'], 2) }}</h6>
                                         </div>
                                     </div>
 
@@ -955,7 +955,8 @@
 
                                 <div class="total-amount">
                                     <h5>{{ __('admin.Subtotal') }}</h5>
-                                    <h4>${{ number_format($totalPrice, 2) }}</h4>
+                                    <h4>${{ number_format($subtotal, 2) }}</h4>
+                                    <input type="hidden" name="total" value="{{ number_format($subtotal, 2) }}">
                                 </div>
 
                                 <div class="place-btn">

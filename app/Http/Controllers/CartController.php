@@ -20,8 +20,10 @@ class CartController extends Controller
         $subtotal = array_reduce($cart, function ($total, $item) {
             return $total + ($item['price'] * $item['quantity']);
         }, 0);
-
-        return view('profile.cart', compact('cart', 'subtotal'));
+        $services = Service::with('category', 'influencer')
+            ->where(['status' => 'active', 'approve_by_admin' => 'enable', 'is_banned' => 'disable'])
+            ->get();
+        return view('profile.cart', compact('cart', 'subtotal', 'services'));
     }
 
     // Add item to cart
@@ -100,7 +102,7 @@ class CartController extends Controller
     public function placeOrder(Request $request)
     {
         $cart = Session::get('cart', []);
-        dd(  $cart );
+        dd($cart);
         $rules = [
             'address' => 'required',
             'date' => 'required',
