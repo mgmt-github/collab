@@ -81,10 +81,10 @@ class PortfolioController extends Controller
 
         $seo_setting = SeoSetting::where('id', 10)->first();
         $platforms = SocialPlatform::where('status', 1)->get();
-        $campaigns = Campaign::where('user_id', Auth()->id())->get();
+        $campaigns = Campaign::get();
 
 
-        return view('profile.campaigns')->with([
+        return view('influencer.campaigns')->with([
             'seo_setting' => $seo_setting,
             'platforms' => $platforms,
             'campaigns' => $campaigns,
