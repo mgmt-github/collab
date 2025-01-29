@@ -253,6 +253,7 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
                 Route::get('/campaign/create', 'campaign_create')->name('campaign.store');
             });
             Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add-to-cart');
+            Route::post('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
             Route::get('/cart', [CartController::class, 'index'])->name('cart');
             Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
@@ -455,7 +456,8 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
             Route::put('portfolio-update/{id}', 'update')->name('portfolio-update');
             Route::delete('portfolio-destory/{id}', 'destroy')->name('portfolio-destory');
         });
-
+        Route::get('campaigns', [ProfileController::class,'campaigns'])->name('campaigns');
+        Route::get('campaigns/view/{id}', [ProfileController::class,'campaigns'])->name('campaign.show');
 
         Route::get('live-chat', [InfluencerMessageController::class, 'index'])->name('live-chat');
         Route::get('load-chat-box/{id}', [InfluencerMessageController::class, 'load_chat_box'])->name('load-chat-box');
