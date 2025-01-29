@@ -105,37 +105,37 @@ Route::group(['middleware' => ['XSS', 'DEMO']], function () {
 
     Route::group(['middleware' => ['HtmlSpecialchars']], function () {
 
-        Route::controller(HomeController::class)->group(function () {
-            Route::get('/', 'index')->name('home');
-            Route::get('/about-us', 'about_us')->name('about-us');
-            Route::get('/faq', 'faq')->name('faq');
-            Route::get('/terms-conditions', 'terms_conditions')->name('terms-conditions');
-            Route::get('/privacy-policy', 'privacy_policy')->name('privacy-policy');
-            Route::get('/page/{slug}', 'custom_page')->name('custom-page');
+        // Route::controller(HomeController::class)->group(function () {
+        //     Route::get('/', 'index')->name('home');
+        //     Route::get('/about-us', 'about_us')->name('about-us');
+        //     Route::get('/faq', 'faq')->name('faq');
+        //     Route::get('/terms-conditions', 'terms_conditions')->name('terms-conditions');
+        //     Route::get('/privacy-policy', 'privacy_policy')->name('privacy-policy');
+        //     Route::get('/page/{slug}', 'custom_page')->name('custom-page');
 
-            Route::get('/contact-us', 'contact_us')->name('contact-us');
-            Route::post('/store-contact-message', 'store_contact_message')->name('store-contact-message');
+        //     Route::get('/contact-us', 'contact_us')->name('contact-us');
+        //     Route::post('/store-contact-message', 'store_contact_message')->name('store-contact-message');
 
-            Route::get('/services', 'services')->name('services');
-            Route::get('/service/{slug}', 'service_show')->name('service');
-
-
-            Route::get('/blogs', 'blogs')->name('blogs');
-            Route::get('/blog/{slug}', 'blog_show')->name('blog');
-            Route::post('/store-comment', 'store_comment')->name('store-comment');
+        //     Route::get('/services', 'services')->name('services');
+        //     Route::get('/service/{slug}', 'service_show')->name('service');
 
 
-            Route::get('/influencers', 'influencers')->name('influencers');
-            Route::get('/influencers/{slug}', 'influencer')->name('influencer');
+        //     Route::get('/blogs', 'blogs')->name('blogs');
+        //     Route::get('/blog/{slug}', 'blog_show')->name('blog');
+        //     Route::post('/store-comment', 'store_comment')->name('store-comment');
 
-            Route::get('/influencer-joining', 'influencer_joining')->name('influencer-joining');
 
-            Route::get('/download-file/{file}', [HomeController::class, 'download_file'])->name('download-file');
+        //     Route::get('/influencers', 'influencers')->name('influencers');
+        //     Route::get('/influencers/{slug}', 'influencer')->name('influencer');
 
-            Route::get('/language-switcher', 'language_switcher')->name('language-switcher');
+        //     Route::get('/influencer-joining', 'influencer_joining')->name('influencer-joining');
 
-            Route::get('/currency-switcher', 'currency_switcher')->name('currency-switcher');
-        });
+        //     Route::get('/download-file/{file}', [HomeController::class, 'download_file'])->name('download-file');
+
+        //     Route::get('/language-switcher', 'language_switcher')->name('language-switcher');
+
+        //     Route::get('/currency-switcher', 'currency_switcher')->name('currency-switcher');
+        // });
 
         Route::controller(PaymentController::class)->group(function () {
             Route::get('/booking-service/{slug}', 'service_booking')->name('booking-service');
