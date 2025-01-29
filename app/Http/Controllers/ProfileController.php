@@ -725,7 +725,7 @@ class ProfileController extends Controller
 
         $seo_setting = SeoSetting::where('id', 10)->first();
         $platforms = SocialPlatform::where('status', 1)->get();
-        $campaigns = Campaign::get();
+        $campaigns = Campaign::where('user_id', Auth()->id())->get();
 
 
         return view('profile.campaigns')->with([
