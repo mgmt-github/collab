@@ -22,6 +22,7 @@ use App\Models\MessageDocument;
 use App\Models\Message;
 use App\Models\Order;
 use App\Models\Campaign;
+use App\Models\Country;
 use App\Models\CouponHistory;
 use App\Models\EmailTemplate;
 use App\Models\Portfolio;
@@ -472,7 +473,7 @@ class ProfileController extends Controller
             $isWishlist = false;
         } else {
             // Add to wishlist
-           $wishlists =  Wishlist::create([
+            $wishlists =  Wishlist::create([
                 'user_id' => $userId,
                 'influencer_id' => $influencerId,
             ]);
@@ -722,8 +723,6 @@ class ProfileController extends Controller
         $campaigns = Campaign::where('user_id', Auth()->id())->get();
 
 
-
-
         return view('profile.campaigns')->with([
             'seo_setting' => $seo_setting,
             'platforms' => $platforms,
@@ -789,15 +788,45 @@ class ProfileController extends Controller
     function campaign_store(Request $request)
     {
 
-        dd($request->all());
-        return view('profile.campaign');
+        $request->validate([
+            'platform_id' => 'required',
+            'category' => 'nullable',
+            'country' => 'nullable',
+            'no_of_influencer' => 'nullable|integer',
+            'range' => 'nullable',
+            'language' => 'nullable',
+            'gender' => 'nullable',
+            'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $filePath = null;
+        if ($request->hasFile('file')) {
+            $filePath = $request->file('file')->store('uploads', 'public');
+        }
+
+        Campaign::create([
+            'platform_id' => $request->platform_id,
+            'category' => $request->category,
+            'country' => $request->country,
+            'no_of_influencer' => $request->no_of_influencer,
+            'range' => $request->range,
+            'language' => $request->language,
+            'gender' => $request->gender,
+            'image' => $filePath,
+            'user_id' => auth()->user()->id
+
+        ]);
+
+        return redirect()->route('user.campaigns')->with('success', 'Influencer added successfully');
     }
     function campaign_create()
     {
 
-        $category  = Category::get();
+        $categories  = Category::get();
+        $countries  = Country::get();
 
-        return view('profile.campaign', compact('category'));
+
+        return view('profile.campaign', compact('categories', 'countries'));
     }
     function campaign2()
     {

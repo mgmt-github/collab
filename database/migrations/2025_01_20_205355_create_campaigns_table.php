@@ -13,20 +13,15 @@ return new class extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->integer('platform_id');
-            $table->string('image');
-            $table->string('content_type');
-            $table->string('content_placement');
-            $table->text('description');
-            $table->text('tags');
-            $table->text('hash_tags');
+            $table->integer('user_id');
             $table->string('category');
+            $table->string('country');
             $table->integer('no_of_influencer');
             $table->string('range');
-            $table->string('budget');
-            $table->integer('currency');
-            $table->integer('user_id');
+            $table->string('language');
+            $table->string('gender');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
