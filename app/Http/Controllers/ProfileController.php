@@ -492,7 +492,7 @@ class ProfileController extends Controller
         $cart = Session::get('cart', []);
     
         if (empty($cart)) {
-            return redirect()->back()->with('error', trans('admin_validation.Cart is empty'));
+            return redirect()->back()->with('error', __('admin_validation.Cart is empty'));
         }
     
         // Validation rules
@@ -533,7 +533,7 @@ class ProfileController extends Controller
             ->get();
     
         if ($services->isEmpty()) {
-            return redirect()->back()->with('error', trans('admin_validation.Invalid service selected'));
+            return redirect()->back()->with('error', __('admin_validation.Invalid service selected'));
         }
     
         // Process coupon discount
@@ -578,10 +578,10 @@ class ProfileController extends Controller
             // Clear the cart
             session()->forget('cart');
     
-            return redirect()->route('user.orders')->with('success', trans('admin_validation.Your order has been placed. Thanks for your new order'));
+            return redirect()->route('user.orders')->with('success', __('admin_validation.Your order has been placed. Thanks for your new order'));
     
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', trans('admin_validation.Payment failed. Please try again'));
+            return redirect()->back()->with('error', __('admin_validation.Payment failed. Please try again'));
         }
     }
     

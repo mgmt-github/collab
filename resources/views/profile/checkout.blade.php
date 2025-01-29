@@ -900,7 +900,7 @@
                                             <div class="form-input-single">
                                                 <label for="country">{{ __('admin.Country') }} </label>
                                                 <input type="text" id="country" name="country"
-                                                    placeholder="United States" />
+                                                    placeholder="United States" required />
 
                                             </div>
                                             <div class="form-input-single">
@@ -910,20 +910,20 @@
                                             </div>
                                             <div class="form-input-single">
                                                 <label>{{ __('admin.City') }}</label>
-                                                <input type="text" name="city" id=""
-                                                    placeholder="Berlin" />
+                                                <input type="text" name="city" id="" placeholder="Berlin"
+                                                    required />
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-col">
                                                     <label>{{ __('admin.State') }}</label>
                                                     <input type="text" name="state" id=""
-                                                        placeholder="South Whales" />
+                                                        placeholder="South Whales" required />
                                                 </div>
 
                                                 <div class="form-col">
                                                     <label>{{ __('admin.Postal Code') }}</label>
                                                     <input type="text" name="postal_code" id=""
-                                                        placeholder="47010" />
+                                                        placeholder="47010" required />
                                                 </div>
                                             </div>
                                         </div>
@@ -972,58 +972,105 @@
         </section>
     </div>
     {{-- start stripe payment --}}
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="https://js.stripe.com/v2/"></script>
     <script>
-        "use strict";
-        $(function() {
-            var $form = $(".require-validation");
-            $('form.require-validation').bind('submit', function(e) {
-                var $form = $(".require-validation"),
-                    inputSelector = ['input[type=email]', 'input[type=password]',
-                        'input[type=text]', 'input[type=file]',
-                        'textarea'
-                    ].join(', '),
-                    $inputs = $form.find('.required').find(inputSelector),
-                    $errorMessage = $form.find('div.error'),
-                    valid = true;
-                $errorMessage.addClass('d-none');
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("payment-form");
+            const publishableKey = form.getAttribute("data-stripe-publishable-key");
+            Stripe.setPublishableKey(publishableKey);
 
-                $('.has-error').removeClass('has-error');
-                $inputs.each(function(i, el) {
-                    var $input = $(el);
-                    if ($input.val() === '') {
-                        $input.parent().addClass('has-error');
-                        $errorMessage.removeClass('d-none');
-                        e.preventDefault();
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault(); // Prevent default submission
+
+                let allValid = true;
+                const errors = [];
+                const requiredFields = form.querySelectorAll("[required]");
+
+                // Validate required fields
+                requiredFields.forEach((field) => {
+                    if (!validateField(field)) {
+                        allValid = false;
+                        errors.push(`Invalid: ${getFieldName(field)}`);
+                        field.classList.add("error");
+                    } else {
+                        field.classList.remove("error");
                     }
                 });
 
-                if (!$form.data('cc-on-file')) {
-                    e.preventDefault();
-                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                    Stripe.createToken({
-                        number: $('.card-number').val(),
-                        cvc: $('.card-cvc').val(),
-                        exp_month: $('.card-expiry-month').val(),
-                        exp_year: $('.card-expiry-year').val()
-                    }, stripeResponseHandler);
+                // If validation fails, show alert and stop submission
+                if (!allValid) {
+                    alert("Please fix the following errors:\n" + errors.join("\n"));
+                    return;
                 }
 
+                // If a Stripe token is already present, submit the form
+                if (form.querySelector("input[name='stripeToken']")) {
+                    form.submit();
+                    return;
+                }
+
+                // If no token yet, generate one
+                Stripe.createToken({
+                    number: document.querySelector(".card-number").value,
+                    cvc: document.querySelector(".card-cvc").value,
+                    exp_month: document.querySelector(".card-expiry-month").value,
+                    exp_year: document.querySelector(".card-expiry-year").value
+                }, stripeResponseHandler);
             });
 
+            // Stripe Response Handler
             function stripeResponseHandler(status, response) {
                 if (response.error) {
-                    $('.error')
-                        .removeClass('d-none')
-                        .find('.alert')
-                        .text(response.error.message);
+                    alert(response.error.message);
                 } else {
-                    var token = response['id'];
-                    $form.find('input[type=text]').empty();
-                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                    $form.get(0).submit();
+                    let token = response.id;
+                    let input = document.createElement("input");
+                    input.type = "hidden";
+                    input.name = "stripeToken";
+                    input.value = token;
+                    form.appendChild(input);
+                    form.submit(); // Submit form after adding Stripe token
                 }
             }
+
+            // Validate Input Fields
+            function validateField(field) {
+                const value = field.value.trim();
+                if (!value) return false;
+
+                // Specific validations
+                if (field.id === "card-name" && !/^[A-Za-z\s]+$/.test(value)) return false;
+                if (field.id === "card-number" && !/^\d{16}$/.test(value.replace(/\s+/g, ""))) return false;
+                if (field.id === "cvv" && !/^\d{3,4}$/.test(value)) return false;
+                if (field.id === "postal_code" && !/^\d{5,6}$/.test(value)) return false;
+                if (field.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return false;
+                if (field.type === "tel" && !/^\+?\d{10,15}$/.test(value)) return false;
+
+                return true;
+            }
+
+            // Get Field Name for Error Display
+            function getFieldName(field) {
+                const label = field.closest(".form-group")?.querySelector("label");
+                return label ? label.textContent.trim() : field.name || "Field";
+            }
+
+            // Prevent non-numeric input for specific fields
+            document.querySelectorAll("#card-number, #cvv, [name='postal_code'], [name='bphone']").forEach((
+                field) => {
+                    field.addEventListener("input", () => {
+                        field.value = field.value.replace(/\D/g, "");
+                    });
+                });
+
+            // Remove error dynamically when user corrects input
+            document.querySelectorAll("[required]").forEach((field) => {
+                field.addEventListener("input", () => {
+                    if (validateField(field)) {
+                        field.classList.remove("error");
+                    }
+                });
+            });
         });
     </script>
 
@@ -1071,98 +1118,6 @@
                     else alert("Error: " + data.message);
                 })
                 .catch((error) => console.error("Error:", error));
-        });
-    </script>
-    {{-- validations  --}}
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const form = document.getElementById("payment-form");
-
-            form.addEventListener("submit", (e) => {
-                e.preventDefault(); // Prevent form submission
-                let allValid = true; // Track if all fields are valid
-                const errors = []; // Collect errors for alert
-                const requiredFields = form.querySelectorAll("[required]");
-
-                // Validate each required field
-                requiredFields.forEach((field) => {
-                    const isValid = validateField(field);
-                    if (!isValid) {
-                        allValid = false; // Set overall validity to false
-                        errors.push(`Invalid: ${getFieldName(field)}`);
-                        field.classList.add("error"); // Highlight invalid field
-                    } else {
-                        field.classList.remove("error"); // Remove error if valid
-                    }
-                });
-
-                // If there are errors, display them and prevent form submission
-                if (!allValid) {
-                    alert("Please fix the following errors:\n" + errors.join("\n"));
-                    return;
-                }
-
-                // If everything is valid, submit the form
-                alert("Form is valid and ready to be submitted!");
-                form.submit();
-            });
-
-            // Utility Function: Validate a Field
-            function validateField(field) {
-                const value = field.value.trim();
-
-                if (!value) return false; // Check for empty fields
-
-                // Custom validations based on field type
-                if (field.id === "card-name" && !/^[A-Za-z\s]+$/.test(value)) {
-                    return false; // Name: Only letters and spaces
-                }
-
-                if (field.id === "card-number" && !/^\d{16}$/.test(value.replace(/\s+/g, ""))) {
-                    return false; // Card number: 16 digits, no spaces
-                }
-
-                if (field.id === "cvv" && !/^\d{3,4}$/.test(value)) {
-                    return false; // CVV: 3 or 4 digits
-                }
-
-                if (field.id === "postal_code" && !/^\d{5,6}$/.test(value)) {
-                    return false; // Postal code: 5 or 6 digits
-                }
-
-                if (field.type === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                    return false; // Email validation
-                }
-
-                if (field.type === "tel" && !/^\+?\d{10,15}$/.test(value)) {
-                    return false; // Phone number validation
-                }
-
-                return true; // Field is valid
-            }
-
-            // Utility Function: Get Field Name for Errors
-            function getFieldName(field) {
-                const label = field.closest(".form-group")?.querySelector("label");
-                return label ? label.textContent.trim() : field.name || "Field";
-            }
-
-            // Restrict non-numeric input for specific fields
-            document.querySelectorAll("#card-number, #cvv, [name='postal_code'], [name='bphone']").forEach((
-                field) => {
-                field.addEventListener("input", (e) => {
-                    field.value = field.value.replace(/\D/g, ""); // Remove non-digits
-                });
-            });
-
-            // Listen for input changes to remove errors dynamically
-            document.querySelectorAll("[required]").forEach((field) => {
-                field.addEventListener("input", () => {
-                    if (validateField(field)) {
-                        field.classList.remove("error");
-                    }
-                });
-            });
         });
     </script>
 @endsection
