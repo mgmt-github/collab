@@ -180,12 +180,12 @@
                                         </td>
                                         <td class="inflanar-table__column-1 inflanar-table__data-1">
                                             <div class="inflanar-table__content">
-                                                <p class="inflanar-table__desc">{{ $campaign->user->name }}</p>
+                                                <p class="inflanar-table__desc">{{ $campaign->user?->name }}</p>
                                             </div>
                                         </td>
                                         <td class="inflanar-table__column-1 inflanar-table__data-1">
                                             <div class="inflanar-table__content">
-                                                <p class="inflanar-table__desc">{{ $campaign->platform->name }}</p>
+                                                <p class="inflanar-table__desc">{{ $campaign->platform?->name }}</p>
                                             </div>
                                         </td>
                                         <td class="inflanar-table__column-1 inflanar-table__data-1">
