@@ -1,18 +1,8 @@
 @extends('profile.master_layout')
 @section('title')
-    <title>{{ $service->seo_title }}</title>
-    @php
-        $tags = '';
-        if ($service->tags) {
-            foreach (json_decode($service->tags) as $service_tag) {
-                $tags .= $service_tag->value . ', ';
-            }
-        }
-    @endphp
+  
 
-    <meta name="keywords" content="{{ $tags }}">
-    <meta name="title" content="{{ $service->seo_title }}">
-    <meta name="description" content="{{ $service->seo_description }}">
+ 
 @endsection
 @section('frontend-content')
     <!-- Breadcrumbs -->
