@@ -409,6 +409,50 @@
         </section>
     </div>
     <script>
+        function toggleHeart(box, influencerId, event) {
+            event.preventDefault(); // Prevent default behavior
+            event.stopPropagation(); // Stop event bubbling
+
+            const lightHeart = box.querySelector('.light-heart');
+            const darkHeart = box.querySelector('.dark-heart');
+            const csrfToken = '{{ csrf_token() }}';
+            const route = "{{ route('user.wishlist.toggle') }}";
+
+            // Optimistically update UI
+            const isWishlist = darkHeart.style.display === "block";
+            lightHeart.style.display = isWishlist ? "block" : "none";
+            darkHeart.style.display = isWishlist ? "none" : "block";
+
+            // Send AJAX request
+            fetch(route, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                    },
+                    body: JSON.stringify({
+                        influencer_id: influencerId
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        // Revert UI if request fails
+                        lightHeart.style.display = isWishlist ? "none" : "block";
+                        darkHeart.style.display = isWishlist ? "block" : "none";
+                        alert('Failed to update wishlist');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to update wishlist');
+                    // Revert UI on failure
+                    lightHeart.style.display = isWishlist ? "none" : "block";
+                    darkHeart.style.display = isWishlist ? "block" : "none";
+                });
+        }
+    </script>
+    <script>
         "use strict";
 
         function deleteDocument(id) {
