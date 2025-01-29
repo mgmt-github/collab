@@ -918,7 +918,7 @@
                                     </span>
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='instagram' value="instagram" name="platforms"
+                                    <input type="radio" id='instagram' value="1" name="platforms"
                                         class="radio-custom" />
 
                                     <label for='instagram' class="radio-custom-label">{{ __('admin.Instagram') }}</label>
@@ -927,7 +927,7 @@
                                     </span>
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='youtube' value="youtube" name="platforms"
+                                    <input type="radio" id='youtube' value="2" name="platforms"
                                         class="radio-custom" />
 
                                     <label for='youtube' class="radio-custom-label">{{ __('admin.Youtube') }}</label>
@@ -936,21 +936,21 @@
                                     </span>
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='snapchat' value="snapchat" name="platforms"
+                                    <input type="radio" id='snapchat' value="3" name="platforms"
                                         class="radio-custom" />
 
                                     <label for='snapchat' class="radio-custom-label">{{ __('admin.Snapchat') }}</label>
                                     <img src="{{ asset('/uploads/campaign-img/snapchat.svg') }}" alt="logo" />
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='tiktok' value="tiktok" name="platforms"
+                                    <input type="radio" id='tiktok' value="4" name="platforms"
                                         class="radio-custom" />
 
                                     <label for='tiktok' class="radio-custom-label">{{ __('admin.Tiktok') }}</label>
                                     <img src="{{ asset('/uploads/campaign-img/tiktok.svg') }}" alt="logo" />
                                 </div>
                                 <div class="campaign-btn">
-                                    <input type="radio" id='user-Generated-Content' value="user-Generated-Content"
+                                    <input type="radio" id='user-Generated-Content' value="5"
                                         name="platforms" class="radio-custom" />
 
                                     <label for='user-Generated-Content'
@@ -965,19 +965,12 @@
                                         <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
                                     </div>
                                     <div class="dropdown-content">
-                                        <input type="text" class="hashtag-input"
-                                            placeholder="{{ __('admin.Type to add your own') }}"
-                                            onkeydown="addCustomHashtag(event)" />
-                                        <a data-value="Fashion"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Fashion') }}</a>
-                                        <a data-value="Family & Children"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Family & Children') }}</a>
-                                        <a data-value="Travel and tourism"
-                                            onclick="toggleMultipleSelection(event)">{{ __('Travel and tourism') }}</a>
-                                        <a data-value="Weight loss"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Weight loss') }}</a>
-                                        <a data-value="Health and beauty"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Health and beauty') }}</a>
+
+                                        @foreach ($categories as $item)
+                                            <a data-value="{{ $item->name }}"
+                                                onclick="toggleMultipleSelection(event)">{{ $item->name }}</a>
+                                        @endforeach
+
                                     </div>
                                     <input type="hidden" name="category" id="selected-category" />
                                 </div>
@@ -988,17 +981,10 @@
                                         <span class="dropdown-button-text">{{ __('admin.Select or Add Your Own') }}</span>
                                     </div>
                                     <div class="dropdown-content">
-                                        <input type="text" class="hashtag-input"
-                                            placeholder="{{ __('admin.Type to add your own') }}"
-                                            onkeydown="addCustomHashtag(event)" />
-                                        <a data-value="USA"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.USA') }}</a>
-                                        <a data-value="Pakistan"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Pakistan') }}</a>
-                                        <a data-value="Canada"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Canada') }}</a>
-                                        <a data-value="Chinese"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Denmark') }}</a>
+                                        @foreach ($countries as $item)
+                                        <a data-value="{{ $item->name }}"
+                                            onclick="toggleMultipleSelection(event)">{{ $item->name }}</a>
+                                    @endforeach
                                     </div>
                                     <input type="hidden" name="country" id="selected-country" />
                                 </div>
