@@ -946,7 +946,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <h6>${{ number_format($item['price'] * $item['quantity'], 2) }}</h6>
+                                            <h6>{{$item['quantity']}} x ${{ number_format($item['price'] * $item['quantity'], 2) }}</h6>
                                         </div>
                                     </div>
 
