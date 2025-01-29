@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('wishlists', function (Blueprint $table) {
+            $table->integer('influencer_id')->after('service_id');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::table('wishlists', function (Blueprint $table) {
+            $table->removeColumn('influencer_id');
+        });
     }
 };
