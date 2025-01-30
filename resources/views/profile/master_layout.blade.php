@@ -247,6 +247,11 @@
             </footer>
 
         </div>
+        <button class="wsus__message__button inflanar-btn inflanar-btn--header">
+            <span><img src="{{ asset('uploads/website-images/chat_icon.png') }}" alt="chat"
+                    class="img-fluid w-100"></span>
+            {{ __('admin.Live Chat') }}
+        </button>
     </div>
 
     <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal" data-keyboard="false"

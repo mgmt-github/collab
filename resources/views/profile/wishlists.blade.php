@@ -355,7 +355,8 @@
     <div class="main-content">
         <section class="section">
             <div class="section-body">
-                <div class="content-holder">
+                <h4>{{ __('Favourite Influencers') }}</h4>
+                <div class="content-holder mg-top-40">
                     @foreach ($wishlists as $wishlist)
                         @php
                             $influencer = $wishlist->influencer;

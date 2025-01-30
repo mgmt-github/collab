@@ -197,9 +197,9 @@
                         <span>{{ __('admin.My Withdraw') }}</span></a></li>
             @endif
 
-            <li class="{{ Route::is('influencer.portfolio-list') ? 'active' : '' }}"><a class="nav-link"
+            {{-- <li class="{{ Route::is('influencer.portfolio-list') ? 'active' : '' }}"><a class="nav-link"
                     href="{{ route('influencer.portfolio-list') }}"><i class="fas fa-th-large"></i>
-                    <span>{{ __('admin.My Portfolio') }}</span></a></li>
+                    <span>{{ __('admin.My Portfolio') }}</span></a></li> --}}
 
         </ul>
 
