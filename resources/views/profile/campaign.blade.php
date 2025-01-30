@@ -104,15 +104,13 @@
             align-items: center;
             gap: 10px;
             width: 270px;
+            cursor: pointer;
         }
 
         .campaign-btn:hover {
             background: #F1F1F1;
         }
 
-        .campaign-btn label {
-            margin: 0px;
-        }
 
         .campaign-btn.custom-width {
             width: 195px;
@@ -275,6 +273,7 @@
         }
 
 
+
         .checkbox-custom+.checkbox-custom-label:before,
         .radio-custom+.radio-custom-label:before {
             border-radius: 50%;
@@ -283,9 +282,9 @@
             align-items: center;
             justify-content: center;
             padding: 2px;
-            font-size: 8px;
-            height: 12px;
-            width: 12px;
+            font-size: 14px;
+            height: 20px;
+            width: 20px;
             outline: none;
             background: #DEDDF7;
             border: none;
@@ -910,21 +909,17 @@
                             </p>
                             <div class="platform-btn">
                                 @foreach ($platforms as $item)
-                                    <div class="campaign-btn">
-                                        <input type="radio" id='{{ $item->name }}' value="{{ $item->name }}"
+                                    <label for="{{ $item->name }}" class="campaign-btn">
+                                        <input type="radio" id="{{ $item->name }}" value="{{ $item->name }}"
                                             name="platform_id" class="radio-custom" required />
-
-                                        <label for='{{ $item->name }}'
-                                            class="radio-custom-label">{{ $item->name }}</label>
+                                        <span class="radio-custom-label">{{ $item->name }}</span>
                                         @if ($item->image)
-                                            <span><img src="{{ asset($item->image) }}" alt="logo" />
-
-                                            </span>
+                                            <span><img src="{{ asset($item->image) }}" alt="logo" /></span>
                                         @endif
-                                    </div>
+                                    </label>
                                 @endforeach
-
                             </div>
+
                             <div class="dropdown-social mg-top-20">
                                 <div class="dropdown" data-section="step-1" data-field="category">
                                     <h2>{{ __('admin.Category') }}</h2>
@@ -966,7 +961,7 @@
                                 <div class="stepper-btn" id="increment">+</div>
                             </div>
                             <div class="navigation-btns">
-                                <div class="navigation-btns-item previous">{{ __('admin.Previous') }}</div>
+                                {{-- <div class="navigation-btns-item previous">{{ __('admin.Previous') }}</div> --}}
                                 <div step_number="2" class="navigation-btns-item active">
                                     <span>{{ __('admin.Next') }}</span><svg xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -1011,13 +1006,13 @@
                                             placeholder="{{ __('admin.Type to add your own') }}"
                                             onkeydown="addCustomHashtag(event)" />
                                         <a data-value="English"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.English') }}</a>
+                                            onclick="toggleMultipleSelection(event)">{{ __('English') }}</a>
                                         <a data-value="Urdu"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Urdu') }}</a>
+                                            onclick="toggleMultipleSelection(event)">{{ __('Urdu') }}</a>
                                         <a data-value="Arabic"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Arabic') }}</a>
+                                            onclick="toggleMultipleSelection(event)">{{ __('Arabic') }}</a>
                                         <a data-value="Chinese"
-                                            onclick="toggleMultipleSelection(event)">{{ __('admin.Chinese') }}</a>
+                                            onclick="toggleMultipleSelection(event)">{{ __('Chinese') }}</a>
                                     </div>
                                     <input type="hidden" name="language" id="selected-language" />
                                 </div>
@@ -1025,29 +1020,30 @@
 
                             <h2>{{ __('admin.Influencer Gender') }}</h2>
                             <div class="btns-group-radio">
-                                <div class="campaign-btn">
+                                <label for='male' class="campaign-btn">
                                     <input type="radio" id='male' value="male" name="gender"
                                         class="radio-custom" checked />
 
-                                    <label for='male' class="radio-custom-label">{{ __('admin.Male') }}</label>
-                                </div>
-                                <div class="campaign-btn">
+                                    <span class="radio-custom-label">{{ __('admin.Male') }}
+                                    </span>
+                                </label>
+                                <label for='female' class="campaign-btn">
                                     <input type="radio" id='female' value="female" name="gender"
                                         class="radio-custom" />
 
-                                    <label for='female' class="radio-custom-label">{{ __('admin.Female') }}</label>
-                                </div>
-                                <div class="campaign-btn">
+                                    <span class="radio-custom-label">{{ __('admin.Female') }}</span>
+                                </label>
+                                <label for='other' class="campaign-btn">
                                     <input type="radio" id='other' value="other" name="gender"
                                         class="radio-custom" />
 
-                                    <label for='other' class="radio-custom-label">{{ __('admin.Other') }}</label>
-                                </div>
+                                    <span class="radio-custom-label">{{ __('admin.Other') }}</span>
+                                </label>
                             </div>
-                            <h2 class="mg-top-20">{{ __('admin.Campaign Thumbail') }}</h2>
+                            {{-- <h2 class="mg-top-20">{{ __('admin.Campaign Thumbail') }}</h2>
                             <p>{{ __('admin.Upload the cmpaign thumbnail') }}
                             </p>
-                            <div class="campaign-thumbnail">
+                             <div class="campaign-thumbnail">
                                 <img src="{{ asset('/uploads/campaign-img/cloud-add.svg') }}" alt="logo" />
                                 <h1>{{ __('admin.Choose a file or drag & drop it here') }}</h1>
                                 <p>{{ __('admin.JPEG, PNG, PDG, and MP4 formats, up to 50MB') }}</p>
@@ -1057,7 +1053,7 @@
                                         accept="image/*">
                                     <p id="file-name" style="color: #555; font-size: 12px"></p>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="navigation-btns">
                                 <div step_number="1" class="navigation-btns-item"><svg xmlns="http://www.w3.org/2000/svg"
                                         width="29" height="24" viewBox="0 0 29 24" fill="none">
@@ -1144,48 +1140,6 @@
                 }
 
                 navigateToFormStep(stepNumber);
-            });
-        });
-
-        const platformImages = {
-            facebook: "facebook.png",
-            instagram: "insta.svg",
-            youtube: "youtube.svg",
-            snapchat: "snapchat.svg",
-            tiktok: "tiktok.svg",
-            "user-Generated-Content": "user.svg",
-        };
-
-        document.querySelectorAll('input[name="platform_id"]').forEach((radio) => {
-            radio.addEventListener("change", (e) => {
-                const selectedPlatform = e.target.value;
-
-                // Get the correct image file based on the platform
-                const platformImage = platformImages[selectedPlatform];
-
-                // Toggle platform-specific content
-                document.querySelectorAll(".platforms-content").forEach((content) => {
-                    content.classList.add("d-none");
-                });
-                const platformContent = document.querySelector(`#platform-${selectedPlatform}`);
-                if (platformContent) {
-                    platformContent.classList.remove("d-none");
-                }
-
-                // Update the platform image
-                const thirdSectionPlatform = document.querySelector("#third-section-platform");
-                if (platformImage) {
-                    const platformImageElement = `
-                <div class="platforms-item">
-                    
-                    <img src="{{ asset('/uploads/campaign-img/${platformImage}') }}" alt="${selectedPlatform} Logo" class="logo">
-                    <h1>${selectedPlatform.charAt(0).toUpperCase() + selectedPlatform.slice(1)}</h1>
-                </div>
-            `;
-                    thirdSectionPlatform.querySelector(".platforms-item")
-                        ?.remove(); // Remove existing image
-                    thirdSectionPlatform.insertAdjacentHTML("afterbegin", platformImageElement);
-                }
             });
         });
     </script>
@@ -1276,6 +1230,8 @@
 
         function addCustomHashtag(event) {
             if (event.key === 'Enter' && event.target.value.trim() !== '') {
+                event.preventDefault(); // Prevent form submission
+
                 const input = event.target;
                 const customValue = input.value.trim();
                 const dropdownContent = input.closest('.dropdown-content');
@@ -1291,6 +1247,7 @@
                 updatePlaceholderText(dropdownButton, selectedItemsContainer);
             }
         }
+
 
         function createSelectedItem(container, value) {
             const selectedItem = document.createElement('span');

@@ -416,6 +416,7 @@
 
                     #leftDropdownButton {
                         border-right: 1px solid #C8C8C8;
+                        outline: none;
                     }
 
                     div#rightDropdown a {
