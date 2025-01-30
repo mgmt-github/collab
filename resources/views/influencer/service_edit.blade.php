@@ -121,7 +121,7 @@
                                                 <select name="platform[]" class="select2" multiple>
                                                     @foreach ($platforms as $item)
                                                         <option value="{{ $item->id }}"
-                                                            @if (in_array($item->platform, json_decode($service->platform ?? '[]', true))) selected @endif>
+                                                            @if ($item->platform == $service->platform ) selected @endif >
                                                             {{ $item->name }}
                                                         </option>
                                                     @endforeach
