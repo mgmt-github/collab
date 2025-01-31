@@ -65,22 +65,6 @@
             color: #000
         }
 
-        .login-page .list-group .list-group-item {
-            flex: 1;
-            text-align: center;
-            border: 1px solid #D4D4D4 !important;
-            border-bottom: none !important;
-            background-color: inherit;
-            color: #333;
-            padding: 20px;
-            transition: all 0.3s ease;
-            font-family: 'Poppins';
-            font-size: 26px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-
         /* for client tab  */
         .login-page .list-group .list-group-item:nth-child(1).active {
             border: 0px !important;
@@ -108,13 +92,6 @@
         }
 
         /* both tab ends */
-
-        .login-page .inflanar-signin__body {
-            padding: 20px 80px 50px 80px;
-            box-shadow: none;
-            border-radius: 0px;
-        }
-
         .login-page .at-center {
             text-align: center;
             margin-top: 16px !important;
@@ -163,30 +140,129 @@
             background: #F4F4F4;
         }
 
-        .login-page .inflanar-signin__title {
-            color: #000;
-            font-family: 'Poppins';
-            font-size: 30px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
+        /* Medium devices (landscape tablets, 768px and up) */
+        @media only screen and (min-width: 768px) {
+            .login-page {
+                background: #F4F4F4;
+                min-height: 100vh;
+                padding: 50px 110px;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .inflanar-back {
+                position: absolute;
+                left: 50px;
+                top: 57px;
+                cursor: pointer;
+            }
         }
 
-        .custom-style {
-            background: #F4F4F4;
-            min-height: 100vh;
-            padding: 81px 110px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        @media only screen and (min-width: 600px) {
+            .login-page {
+                background: #F4F4F4;
+                min-height: 100vh;
+                padding: 50px 20px;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .login-page .inflanar-signin__body {
+                padding: 20px 80px 50px 80px;
+                box-shadow: none;
+                border-radius: 0px;
+            }
+
+            .login-page .list-group .list-group-item {
+                flex: 1;
+                text-align: center;
+                border: 1px solid #D4D4D4 !important;
+                border-bottom: none !important;
+                background-color: inherit;
+                color: #333;
+                padding: 20px;
+                transition: all 0.3s ease;
+                font-family: 'Poppins';
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .inflanar-back {
+                display: none;
+            }
+
+            .login-page .inflanar-signin__title {
+                color: #000;
+                font-family: 'Poppins';
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+
+            .login-page .inflanar-signin__check-inline {
+                flex-direction: row;
+                align-items: center;
+            }
         }
 
-        .inflanar-back {
-            position: absolute;
-            left: 50px;
-            top: 57px;
-            cursor: pointer;
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            .login-page {
+                background: #F4F4F4;
+                min-height: 100vh;
+                padding: 10px 0;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .login-page .inflanar-signin__body {
+                padding: 10px;
+                box-shadow: none;
+                border-radius: 0px;
+            }
+
+            .login-page .list-group .list-group-item {
+                flex: 1;
+                text-align: center;
+                border: 1px solid #D4D4D4 !important;
+                border-bottom: none !important;
+                background-color: inherit;
+                color: #333;
+                padding: 10px;
+                transition: all 0.3s ease;
+                font-family: 'Poppins';
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .inflanar-back {
+                display: none;
+            }
+
+            .login-page .inflanar-signin__title {
+                color: #000;
+                font-family: 'Poppins';
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+
+            .login-page .inflanar-signin__check-inline {
+                flex-direction: row;
+                align-items: center;
+            }
         }
+
 
         .login-page input[type=text]:focus {
             border: #DBBC25;
@@ -200,7 +276,7 @@
             background: #2266CB !important;
         }
     </style>
-    <section class="login-page inflanar-signin custom-style">
+    <section class="login-page inflanar-signin">
         <a href="javascript:history.back()" class='inflanar-back'>
             <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
                 <path

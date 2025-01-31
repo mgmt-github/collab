@@ -173,6 +173,13 @@
         .dropdown-divider {
             border-top-color: #E7E7E7;
         }
+
+        .live-chat-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
     </style>
 </head>
 
@@ -234,7 +241,6 @@
             </nav>
 
             @include('profile.client_sidebar')
-
             @yield('frontend-content')
 
             <footer class="main-footer">
@@ -245,13 +251,12 @@
                     {{ $setting->app_version }}
                 </div>
             </footer>
-
+            <button class="wsus__message__button inflanar-btn inflanar-btn--header live-chat-btn">
+                <span><img src="{{ asset('uploads/website-images/chat_icon.png') }}" alt="chat"
+                        class="img-fluid w-100"></span>
+                {{ __('admin.Live Chat') }}
+            </button>
         </div>
-        <button class="wsus__message__button inflanar-btn inflanar-btn--header">
-            <span><img src="{{ asset('uploads/website-images/chat_icon.png') }}" alt="chat"
-                    class="img-fluid w-100"></span>
-            {{ __('admin.Live Chat') }}
-        </button>
     </div>
 
     <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal" data-keyboard="false"

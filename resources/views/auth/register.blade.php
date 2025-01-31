@@ -18,15 +18,104 @@
             color: #2266CB;
         }
 
-        .signup-page {
-            background: #F4F4F4;
-            min-height: 100vh;
-            padding: 81px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            font-family: 'Poppins';
+        /* Medium devices (landscape tablets, 768px and up) */
+        @media only screen and (min-width: 768px) {
+            .signup-page {
+                background: #F4F4F4;
+                min-height: 100vh;
+                padding: 81px;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                font-family: 'Poppins';
+            }
         }
+
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        @media only screen and (min-width: 600px) {
+            .signup-page {
+                background: #F4F4F4;
+                min-height: 100vh;
+                padding: 50px 20px;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .signup-page .inflanar-signin__body {
+                padding: 20px 80px 50px 80px;
+                box-shadow: none;
+                border-radius: 0px;
+            }
+
+            .signup-page .list-group .list-group-item {
+                flex: 1;
+                text-align: center;
+                border: 1px solid #D4D4D4 !important;
+                border-bottom: none !important;
+                background-color: inherit;
+                color: #333;
+                padding: 20px;
+                transition: all 0.3s ease;
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .signup-page .inflanar-signin__title {
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+
+        }
+
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            .signup-page {
+                background: #F4F4F4;
+                min-height: 100vh;
+                padding: 10px 0;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .signup-page .inflanar-signin__body {
+                padding: 10px;
+                box-shadow: none;
+                border-radius: 0px;
+            }
+
+            .signup-page .list-group .list-group-item {
+                flex: 1;
+                text-align: center;
+                border: 1px solid #D4D4D4 !important;
+                border-bottom: none !important;
+                background-color: inherit;
+                color: #333;
+                padding: 10px;
+                transition: all 0.3s ease;
+                font-family: 'Poppins';
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .signup-page .inflanar-signin__title {
+                color: #000;
+                font-family: 'Poppins';
+                font-size: 26px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+
+        }
+
 
         .signup-page .inflanar-signin__options a {
             border-radius: 0px;
@@ -42,21 +131,6 @@
 
         .signup-page .list-group {
             border-radius: 0px
-        }
-
-        .signup-page .list-group .list-group-item {
-            flex: 1;
-            text-align: center;
-            border: 1px solid #D4D4D4 !important;
-            border-bottom: none !important;
-            background-color: inherit;
-            color: #333;
-            padding: 20px;
-            transition: all 0.3s ease;
-            font-size: 26px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
         }
 
         /* for client tab  */
@@ -85,22 +159,11 @@
             color: #5856D6 !important;
         }
 
-        .signup-page .inflanar-signin__body {
-            padding: 20px 80px 50px 80px;
-            box-shadow: none;
-            border-radius: 0px;
-        }
 
         .signup-page .inflanar-signin {
             background: #F4F4F4;
         }
 
-        .signup-page .inflanar-signin__title {
-            font-size: 30px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-        }
 
         .signup-page .inflanar-form-input input {
             border-radius: 8px;

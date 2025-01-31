@@ -70,7 +70,7 @@
                                                 <p class="inflanar-profile-info__text">{{ ucfirst($campaign->status) }}
                                                 </p>
                                             </li>
-                                            @if ($campaign->image)
+                                            {{-- @if ($campaign->image)
                                                 <li class="inflanar-dflex">
                                                     <h4 class="inflanar-profile-info__title">{{ __('admin.Image') }}:
                                                     </h4>
@@ -79,7 +79,7 @@
                                                             alt="Campaign Image" width="100">
                                                     </p>
                                                 </li>
-                                            @endif
+                                            @endif --}}
                                         </ul>
                                     </div>
                                 </div>

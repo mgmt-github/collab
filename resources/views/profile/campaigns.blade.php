@@ -12,9 +12,18 @@
         }
 
         .table-order.inflanar-personals__content {
-            padding: 17px;
+            /* padding: 17px; */
             border-radius: 10px;
             background: #FFF;
+        }
+
+        thead.inflanar-table__head th {
+            color: #292D32;
+            font-family: "Poppins", serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
         }
 
         .table-order.inflanar-personals__content thead.inflanar-table__head {
@@ -49,7 +58,7 @@
             font-style: normal;
             font-weight: 500;
             line-height: normal;
-            padding: 14px 6px;
+            padding: 20px;
         }
 
         table#inflanar-table__order td {
@@ -104,6 +113,7 @@
         .campaign-title {
             display: flex;
             justify-content: space-between;
+            padding: 20px;
         }
 
         .campaign-title a {
@@ -135,7 +145,7 @@
         }
 
         .campaign-page .inflanar-table__main .inflanar-table__body tr td {
-            padding: 14px 6px;
+            padding: 20px;
         }
 
         .campaign-page .inflanar-table__label--cancel {
@@ -154,10 +164,10 @@
                 <div class="table-order inflanar-personals__content campaign-page">
                     <div class="campaign-title">
                         <h3>Campaign</h3>
-                        <a class="inflanar-btn" href="{{ route('user.campaign.store') }}"> Add campaign</a>
+                        <a class="inflanar-btn" href="{{ route('user.campaign.store') }}"> {{ 'Add campaign' }}</a>
                     </div>
-                    <div class="inflanar-table p-0 mg-top-20">
-                        <table id="inflanar-table__order" class="inflanar-table__main inflanar-table__main--order ">
+                    <div class="inflanar-table p-0">
+                        <table id="inflanar-table__order" class="inflanar-table__main inflanar-table__main-v2">
                             <!-- sherah Table Head -->
                             <thead class="inflanar-table__head">
                                 <tr>
