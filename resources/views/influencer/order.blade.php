@@ -42,7 +42,7 @@
                                         <div class="edit-btns">
                                             @if ($order->order_status == 'awaiting_for_influencer_approval')
                                                 <span
-                                                    class="badge badge-danger">{{ __('admin.awaiting for approval') }}</span>
+                                                    class="badge badge-danger">{{ __('admin.Awaiting for approval') }}</span>
                                             @elseif ($order->order_status == 'approved_by_influencer')
                                                 <span class="badge badge-success">{{ __('admin.Approved') }}</span>
                                             @elseif ($order->order_status == 'order_decliened_by_influencer')
@@ -82,11 +82,6 @@
                                         {{ currency($order->total_amount - $order->coupon_discount) }}</strong>
 
                                 </h4>
-                                <!-- <p>Makeup Wih two Influencers</p>
-          <div class="service_detail">
-
-                        
-                      </div> -->
                             </div>
                         @endforeach
                     @else
@@ -94,33 +89,33 @@
                             <h4>{{ __('admin.Booking not found!') }}</h4>
                         </div>
                     @endif
-                    <div class="col-12">
-                        {{ $orders->links() }}
-                    </div>
+                </div>
+                <div class="col-12">
+                    {{ $orders->links() }}
                 </div>
                 <!-- <div class="row">
-                        @if ($orders->count() > 0)
+                                        @if ($orders->count() > 0)
     @foreach ($orders as $order)
     <div class="col-12">
-                                    <div class="card service_card order_card 1">
-                                        <div class="card-body d-flex flex-wrap justify-content-between align-items-center">
-                                            <img class="service_image" src="{{ asset($order->service->thumbnail_image) }}" alt="">
-                                            <div class="service_detail">
-                                                <h4>{{ $order->service->title }}</h4>
-                                                <h6>{{ __('admin.Price') }} :
+                                                    <div class="card service_card order_card 1">
+                                                        <div class="card-body d-flex flex-wrap justify-content-between align-items-center">
+                                                            <img class="service_image" src="{{ asset($order->service->thumbnail_image) }}" alt="">
+                                                            <div class="service_detail">
+                                                                <h4>{{ $order->service->title }}</h4>
+                                                                <h6>{{ __('admin.Price') }} :
 
-                                                    {{ currency($order->total_amount - $order->coupon_discount) }}
+                                                                    {{ currency($order->total_amount - $order->coupon_discount) }}
 
-                                                </h6>
-                                                <p>{{ __('admin.Booking Id') }} : {{ $order->order_id }}</p>
-                                                <p>{{ __('admin.Booking Created') }} : {{ $order->created_at->format('h:i A, d-m-Y') }}</p>
-                                                <p>{{ __('admin.Schedule Date') }} : {{ $order->schedule_time_slot }}, {{ date('d-M-Y', strtotime($order->booking_date)) }}</p>
-                                                <p>{{ __('admin.Client') }} : {{ $order->client->name }}</p>
-                                                <p>{{ __('admin.Phone') }} : {{ $order->client->phone }}</p>
-                                                <p>{{ __('admin.Status') }} :
+                                                                </h6>
+                                                                <p>{{ __('admin.Booking Id') }} : {{ $order->order_id }}</p>
+                                                                <p>{{ __('admin.Booking Created') }} : {{ $order->created_at->format('h:i A, d-m-Y') }}</p>
+                                                                <p>{{ __('admin.Schedule Date') }} : {{ $order->schedule_time_slot }}, {{ date('d-M-Y', strtotime($order->booking_date)) }}</p>
+                                                                <p>{{ __('admin.Client') }} : {{ $order->client->name }}</p>
+                                                                <p>{{ __('admin.Phone') }} : {{ $order->client->phone }}</p>
+                                                                <p>{{ __('admin.Status') }} :
 
-                                                    @if ($order->order_status == 'awaiting_for_influencer_approval')
-    <span class="badge badge-danger">{{ __('admin.awaiting for approval') }}</span>
+                                                                    @if ($order->order_status == 'awaiting_for_influencer_approval')
+    <span class="badge badge-danger">{{ __('admin.Awaiting for approval') }}</span>
 @elseif ($order->order_status == 'approved_by_influencer')
     <span class="badge badge-success">{{ __('admin.Approved') }}</span>
 @elseif ($order->order_status == 'order_decliened_by_influencer')
@@ -130,30 +125,30 @@
 @elseif ($order->order_status == 'complete')
     <span class="badge badge-success">{{ __('admin.Complete') }}</span>
     @endif
-                                                </p>
+                                                                </p>
 
-                                                @if ($order->order_status == 'awaiting_for_influencer_approval')
+                                                                @if ($order->order_status == 'awaiting_for_influencer_approval')
     <a href="javascript:;"  data-toggle="modal" data-target="#approvedOrder-{{ $order->id }}" class="btn btn-primary btn-sm"><i class="fas fa-check"></i> {{ __('admin.Approved') }}</a>
 
-                                                    <a href="javascript:;" data-toggle="modal" data-target="#declinedOrder-{{ $order->id }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> {{ __('admin.Declined') }}</a>
+                                                                    <a href="javascript:;" data-toggle="modal" data-target="#declinedOrder-{{ $order->id }}" class="btn btn-danger btn-sm"><i class="fas fa-times"></i> {{ __('admin.Declined') }}</a>
     @endif
 
-                                                <a href="{{ route('influencer.booking-show', $order->order_id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> {{ __('admin.View') }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                                <a href="{{ route('influencer.booking-show', $order->order_id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> {{ __('admin.View') }}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
     @endforeach
 @else
     <div class="col-12 text-center text-danger">
-                                <h4>{{ __('admin.Booking not found!') }}</h4>
-                            </div>
+                                                <h4>{{ __('admin.Booking not found!') }}</h4>
+                                            </div>
     @endif
 
-                        <div class="col-12">
-                            {{ $orders->links() }}
-                        </div>
-                    </div> -->
+                                        <div class="col-12">
+                                            {{ $orders->links() }}
+                                        </div>
+                                    </div> -->
             </div>
         </section>
     </div>
@@ -230,6 +225,29 @@
         gap: 19px;
     }
 
+    @media only screen and (max-width: 1400px) {
+        .content-holder {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 900px) {
+        .content-holder {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        .content-holder {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+        }
+    }
 
     .cards {
 

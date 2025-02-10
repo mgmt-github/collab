@@ -18,21 +18,46 @@
             color: #2266CB;
         }
 
-        /* Medium devices (landscape tablets, 768px and up) */
-        @media only screen and (min-width: 768px) {
-            .signup-page {
-                background: #F4F4F4;
-                min-height: 100vh;
-                padding: 81px;
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                font-family: 'Poppins';
-            }
+        .signup-page {
+            background: #F4F4F4;
+            min-height: 100vh;
+            padding: 81px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            font-family: 'Poppins';
+        }
+
+        .signup-page .inflanar-signin__body {
+            padding: 20px 80px 50px 80px;
+            box-shadow: none;
+            border-radius: 0px;
+        }
+
+        .signup-page .list-group .list-group-item {
+            flex: 1;
+            text-align: center;
+            border: 1px solid #D4D4D4 !important;
+            border-bottom: none !important;
+            background-color: inherit;
+            color: #333;
+            padding: 20px;
+            transition: all 0.3s ease;
+            font-size: 26px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .signup-page .inflanar-signin__title {
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
         }
 
         /* Small devices (portrait tablets and large phones, 600px and up) */
-        @media only screen and (min-width: 600px) {
+        @media only screen and (max-width: 1200px) {
             .signup-page {
                 background: #F4F4F4;
                 min-height: 100vh;

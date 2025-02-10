@@ -124,6 +124,22 @@
             padding: 0;
         }
 
+        @media only screen and (max-width: 1200px) {
+            .btns-group-radio {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+        @media only screen and (max-width: 800px) {
+            .btns-group-radio {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 12px;
+            }
+        }
+
         .dropdown-budget select {
             width: 43px;
             margin: 0 auto;
@@ -155,6 +171,26 @@
             gap: 12px;
             padding: 24px 0 0 0;
             width: 50%;
+        }
+
+        @media only screen and (max-width: 1200px) {
+            .platform-btn {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 24px 0 0 0;
+                width: 50%;
+            }
+        }
+
+        @media only screen and (max-width: 800px) {
+            .platform-btn {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 12px;
+                padding: 24px 0 0 0;
+                width: 50%;
+            }
         }
 
         /* campaign page 2 styling  */
@@ -698,6 +734,34 @@
             padding: 20px 20rem;
         }
 
+        @media only screen and (max-width: 1400px) {
+            ul.form-stepper {
+                counter-reset: section;
+                background: #fff;
+                border-radius: 10px;
+                padding: 20px 15rem;
+            }
+        }
+
+        @media only screen and (max-width: 900px) {
+            ul.form-stepper {
+                counter-reset: section;
+                background: #fff;
+                border-radius: 10px;
+                padding: 20px 10rem;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            ul.form-stepper {
+                counter-reset: section;
+                background: #fff;
+                border-radius: 10px;
+                padding: 20px;
+            }
+        }
+
+
         ul.form-stepper .form-stepper-circle {
             position: relative;
         }
@@ -874,7 +938,7 @@
                     <p>Submitting your form...</p>
                 </div>
                 <!-- Form Steps / Progress Bar -->
-                <div class="container">
+                <div class="">
                     <ul class="form-stepper form-stepper-horizontal">
                         <!-- Step 1 -->
                         <li class="form-stepper-active text-center form-stepper-list" step="1">
@@ -896,7 +960,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="container">
+                <div class="">
                     <form id="campaignForm" method="POST" action="{{ route('user.campaign.submit') }}"
                         enctype="multipart/form-data">
                         @csrf

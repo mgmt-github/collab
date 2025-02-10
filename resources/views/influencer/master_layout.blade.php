@@ -60,7 +60,7 @@
             background-color: #E0CFFF;
             box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
             padding: 10px 20px 7px;
-            color: #292D32;
+            /* color: #292D32; */
             font-family: Poppins;
             font-size: 14px;
             font-style: normal;
@@ -94,6 +94,22 @@
             padding-bottom: 70px;
             background: #F4F6F9;
             padding-top: 100px;
+        }
+
+        /* Small devices (portrait tablets and large phones, 600px and up) */
+        @media only screen and (max-width: 1000px) {
+            .main-content {
+                padding-left: 80px;
+                padding-bottom: 70px;
+            }
+        }
+
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 800px) {
+            .main-content {
+                padding-left: 50px;
+                padding-bottom: 70px;
+            }
         }
 
         .main-sidebar {

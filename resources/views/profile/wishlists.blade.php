@@ -27,6 +27,30 @@
             gap: 20px;
         }
 
+        @media only screen and (max-width: 1400px) {
+            .content-holder {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 900px) {
+            .content-holder {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .content-holder {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 20px;
+            }
+        }
+
         /* Cards Styles */
         .cards {
             /* display: flex; */
