@@ -50,6 +50,18 @@
             font-size: 18px;
         }
 
+        .steps a span {
+            width: 52px;
+            height: 52px;
+            background: #B1B5C3;
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            border-radius: 100%;
+        }
+
         .steps a.active,
         .steps a:hover {
             color: #5856D6 !important;
@@ -66,17 +78,6 @@
             background: #5856D6;
         }
 
-        .steps a span {
-            width: 52px;
-            height: 52px;
-            background: #B1B5C3;
-            display: inline-block;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            border-radius: 100%;
-        }
 
         .table-main {
             border-radius: 12px;
@@ -156,6 +157,23 @@
             padding-left: 50px;
         }
 
+        .btn-with-icon {
+            border-radius: 90px;
+            border: 2px solid #E6E8EC;
+            display: inline-flex;
+            padding: 0 10px;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .influancer-body {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            row-gap: 15px;
+        }
+
         .subtotal {
             color: #000;
             text-align: center;
@@ -168,12 +186,6 @@
             display: flex;
             justify-content: center;
             border-bottom: 2px solid #DFDFDF;
-        }
-
-        .subtotal-btn {
-            display: flex;
-            width: 100%;
-            justify-content: flex-end
         }
 
         .checkout-btn {
@@ -191,20 +203,143 @@
             width: 35%;
         }
 
+        @media only screen and (max-width: 1200px) {
+
+            .influancer-body {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                row-gap: 15px;
+            }
+
+        }
+
+        @media only screen and (max-width: 900px) {
+            .btn-with-icon {
+                border-radius: 90px;
+                border: 2px solid #E6E8EC;
+                display: inline-flex;
+                padding: 10px;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                margin-top: 20px;
+
+            }
+
+            .checkout-btn {
+                display: block;
+                background-color: #6036AE;
+                color: #fff;
+                text-align: center;
+                padding: 12px;
+                border-radius: 5px;
+                justify-content: center;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                width: auto;
+            }
+
+            .bottom-btns {
+                display: flex;
+                flex-direction: column-reverse;
+                justify-content: space-between;
+                padding: 10px;
+            }
+
+            .influancer-body {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                row-gap: 15px;
+            }
+
+        }
+
+        @media only screen and (max-width: 600px) {
+            .influancer-body {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 10px;
+                row-gap: 15px;
+            }
+
+            .steps {
+                display: inline-flex;
+                flex-direction: column;
+                border: none;
+                border-radius: 0px;
+                gap: 35px;
+            }
+
+            .subtotal {
+                color: #000;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 500;
+                padding-bottom: 20px;
+                margin-bottom: 56px;
+                margin-right: 8%;
+                gap: 80px;
+                display: flex;
+                justify-content: center;
+                border-bottom: 2px solid #DFDFDF;
+            }
+
+            .btn-with-icon {
+                border-radius: 90px;
+                border: 2px solid #E6E8EC;
+                display: inline-flex;
+                padding: 10px;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .checkout-btn {
+                display: block;
+                background-color: #6036AE;
+                color: #fff;
+                text-align: center;
+                padding: 12px;
+                border-radius: 5px;
+                justify-content: center;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                width: auto;
+            }
+
+            .bottom-btns {
+                display: flex;
+                flex-direction: column-reverse;
+                justify-content: space-between;
+                padding: 10px;
+            }
+        }
+
+        .inflanar-table__main {
+            border-radius: 0px !important;
+            overflow: hidden;
+            width: 100%;
+        }
+
+
+        .subtotal-btn {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end
+        }
+
+
         .checkout-btn:hover {
             background-color: #5a4cc4;
             color: #fff;
         }
 
-        .btn-with-icon {
-            border-radius: 90px;
-            border: 2px solid #E6E8EC;
-            display: inline-flex;
-            padding: 0 10px;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-        }
 
         .span-class {
             display: flex;
@@ -217,6 +352,7 @@
             flex-direction: row;
             gap: 20px;
             align-items: center;
+            width: 500px;
         }
 
         .image-title {
@@ -274,12 +410,6 @@
             margin: 0 !important;
         }
 
-        .influancer-body {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            row-gap: 15px;
-        }
 
         .in-item {
             border-radius: 6.374px;
@@ -348,7 +478,7 @@
 
     <div class="main-content">
         <section class="section custom-font">
-            <div class="container">
+            <div class="section-body">
                 <!--Tab Nav -->
                 <div class="steps">
                     <a href="#" class="steps-item active"><span>1</span>{{ __('admin.Shopping cart') }}</a>
@@ -368,72 +498,77 @@
                                     </p>
                                 </div>
                             </div>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        {{-- <th>{{ __('admin.Price') }}</th> --}}
-                                        <th>Price</th>
-                                        <th>{{ __('admin.Quantity') }}</th>
-                                        <th>{{ __('admin.Total') }}</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($cart as $id => $item)
-                                        <tr data-item-id="{{ $id }}">
-                                            <td class="img-story">
-
-                                                @if (isset($item['image']))
-                                                    <img src="{{ asset($item['image']) }}" alt="Item">
-                                                @endif
-                                                <span class="span-class">
-                                                    {{ $item['name'] }}
-                                                    <br>
-                                                    <small>{{ __('admin.Item ID') }}: {{ $id }}</small>
-                                                </span>
-                                            </td>
-                                            <td>${{ number_format($item['price'], 2) }}</td>
-                                            <td>
-                                                <div class="quantity-control">
-                                                    <button class="decrease-quantity"
-                                                        onclick="changeQuantity(this, -1)">-</button>
-                                                    <input type="number" class="quantity-input"
-                                                        data-item-id="{{ $id }}" value="{{ $item['quantity'] }}"
-                                                        min="1" readonly>
-                                                    <button class="increase-quantity"
-                                                        onclick="changeQuantity(this, 1)">+</button>
-                                                </div>
-
-                                            </td>
-                                            <td class="item-total">
-                                                ${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
-                                            <td>
-                                                <form method="POST" action="{{ route('user.cart.remove', $id) }}"
-                                                    class="remove-btn-form">
-                                                    @csrf
-                                                    <button type="submit" class="remove-btn">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="22"
-                                                            height="22" viewBox="0 0 22 22" fill="none">
-                                                            <path
-                                                                d="M16.8856 6.22109L16.1148 17.0124C16.0483 17.9426 15.2744 18.6633 14.3418 18.6633H6.98716C6.05464 18.6633 5.28066 17.9426 5.21422 17.0124L4.44341 6.22109M8.88704 9.77599V15.1083M12.4419 9.77599V15.1083M13.3307 6.22109V3.55491C13.3307 3.06408 12.9328 2.66618 12.4419 2.66618H8.88704C8.39621 2.66618 7.99832 3.06408 7.99832 3.55491V6.22109M3.55469 6.22109H17.7743"
-                                                                stroke="#C16A6A" stroke-width="1.77745"
-                                                                stroke-linecap="round" stroke-linejoin="round" />
-                                                        </svg>
-                                                    </button>
-                                                </form>
-
-                                            </td>
+                            <div style="overflow-x:auto;">
+                                <table id="inflanar-table__order" class="inflanar-table__main inflanar-table__main-v2"
+                                    style="overflow-x:auto;">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            {{-- <th>{{ __('admin.Price') }}</th> --}}
+                                            <th>{{ __('Price') }}</th>
+                                            <th>{{ __('admin.Quantity') }}</th>
+                                            <th>{{ __('admin.Total') }}</th>
+                                            <th></th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($cart as $id => $item)
+                                            <tr data-item-id="{{ $id }}">
+                                                <td class="img-story">
 
-                                </tbody>
-                            </table>
+                                                    @if (isset($item['image']))
+                                                        <img src="{{ asset($item['image']) }}" alt="Item">
+                                                    @endif
+                                                    <span class="span-class">
+                                                        {{ $item['name'] }}
+                                                        <br>
+                                                        <small>{{ __('admin.Item ID') }}: {{ $id }}</small>
+                                                    </span>
+                                                </td>
+                                                <td>${{ number_format($item['price'], 2) }}</td>
+                                                <td>
+                                                    <div class="quantity-control">
+                                                        <button class="decrease-quantity"
+                                                            onclick="changeQuantity(this, -1)">-</button>
+                                                        <input type="number" class="quantity-input"
+                                                            data-item-id="{{ $id }}"
+                                                            value="{{ $item['quantity'] }}" min="1" readonly>
+                                                        <button class="increase-quantity"
+                                                            onclick="changeQuantity(this, 1)">+</button>
+                                                    </div>
+
+                                                </td>
+                                                <td class="item-total">
+                                                    ${{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+                                                <td>
+                                                    <form method="POST" action="{{ route('user.cart.remove', $id) }}"
+                                                        class="remove-btn-form">
+                                                        @csrf
+                                                        <button type="submit" class="remove-btn">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="22"
+                                                                height="22" viewBox="0 0 22 22" fill="none">
+                                                                <path
+                                                                    d="M16.8856 6.22109L16.1148 17.0124C16.0483 17.9426 15.2744 18.6633 14.3418 18.6633H6.98716C6.05464 18.6633 5.28066 17.9426 5.21422 17.0124L4.44341 6.22109M8.88704 9.77599V15.1083M12.4419 9.77599V15.1083M13.3307 6.22109V3.55491C13.3307 3.06408 12.9328 2.66618 12.4419 2.66618H8.88704C8.39621 2.66618 7.99832 3.06408 7.99832 3.55491V6.22109M3.55469 6.22109H17.7743"
+                                                                    stroke="#C16A6A" stroke-width="1.77745"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+
+                            </div>
                             <div class="subtotal-btn">
                                 <div class="subtotal">{{ __('admin.Subtotal') }}:
                                     <span>${{ number_format($subtotal, 2) }}</span>
                                 </div>
                             </div>
+
                             <div class="bottom-btns">
                                 <div class="btn-with-icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"

@@ -7,8 +7,8 @@
                 <div class="main-content">
                     <section class="section">
                         <!-- <div class="section-header">
-                                                                                                                        <h1>{{ __('admin.Dashboard') }}</h1>
-                                                                                                                      </div> -->
+                                                                                                                                                                                        <h1>{{ __('admin.Dashboard') }}</h1>
+                                                                                                                                                                                      </div> -->
 
                         <div class="section-body">
                             <div class="dropdown-container">
@@ -111,6 +111,30 @@
                         display: grid;
                         grid-template-columns: repeat(4, 1fr);
                         gap: 20px;
+                    }
+
+                    @media only screen and (max-width: 1400px) {
+                        .content-holder {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            gap: 20px;
+                        }
+                    }
+
+                    @media only screen and (max-width: 900px) {
+                        .content-holder {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            gap: 20px;
+                        }
+                    }
+
+                    @media only screen and (max-width: 600px) {
+                        .content-holder {
+                            display: grid;
+                            grid-template-columns: repeat(1, 1fr);
+                            gap: 20px;
+                        }
                     }
 
                     /* Cards Styles */
@@ -321,6 +345,22 @@
                         box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.08);
                         margin: 0 auto 76px;
                     }
+
+                    @media only screen and (max-width: 1400px) {
+                        .dropdown-container {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 9px;
+                            width: auto;
+                            height: 56px;
+                            border-radius: 100px;
+                            background: var(--inflanar-mamunuiux-com-white, #FFF);
+                            box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.08);
+                            margin: 0 auto 76px;
+                        }
+                    }
+
 
                     .dropdown {
                         position: relative;

@@ -102,12 +102,181 @@
             margin-bottom: 20px;
         }
 
+        .order-sidebar {
+            border-radius: 14px;
+            border: 1px solid #e6e6e6;
+            background: #fff;
+            padding: 30px;
+            width: 60%;
+            flex-grow: 1;
+        }
+
+        .order-aside {
+            border-radius: 14px;
+            border: 1px solid #e6e6e6;
+            background: #fff;
+            padding: 30px;
+            width: 40%;
+            max-height: 800px;
+            overflow-y: auto;
+        }
+
         .form-row-expiry {
             width: 100%;
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
         }
+
+        .card-logos {
+            position: absolute;
+            right: 11px;
+            top: 19px;
+        }
+
+        .order-sidebar .inputs-group .card-icons {
+            right: 8px;
+            display: flex;
+            gap: 5px;
+            margin-right: 15px;
+            align-items: center;
+        }
+
+        .place-btn button {
+            border-radius: 5.874px;
+            background: #6036ae;
+            width: 265.615px;
+            height: 57.807px;
+            color: white;
+            margin: 0 auto;
+            display: block;
+            margin-top: 20px;
+            font-weight: 500;
+            border: none;
+            color: #fff;
+            font-family: "Poppins", serif;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .aside-inner-sec {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+        }
+
+        @media only screen and (max-width: 1300px) {
+            .form-row {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media only screen and (max-width: 900px) {
+            .order-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 30px;
+            }
+
+            .order-sidebar {
+                border-radius: 14px;
+                border: 1px solid #e6e6e6;
+                background: #fff;
+                padding: 30px;
+                width: 100%;
+                flex-grow: 1;
+            }
+
+            .order-aside {
+                border-radius: 14px;
+                border: 1px solid #e6e6e6;
+                background: #fff;
+                padding: 30px;
+                width: 100%;
+                max-height: 800px;
+                overflow-y: auto;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .steps {
+                display: inline-flex;
+                flex-direction: column;
+                border: none;
+                border-radius: 0px;
+                gap: 35px;
+            }
+
+            .form-row-expiry {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+
+            .card-logos {
+                display: none;
+            }
+
+            .card-icons {
+                display: none !important;
+            }
+
+            .order-sidebar {
+                border-radius: 14px;
+                border: 1px solid #e6e6e6;
+                background: #fff;
+                padding: 8px;
+                width: 100%;
+                flex-grow: 1;
+            }
+
+            .order-aside {
+                border-radius: 14px;
+                border: 1px solid #e6e6e6;
+                background: #fff;
+                padding: 10px;
+                width: 100%;
+                max-height: 800px;
+                overflow-y: auto;
+            }
+
+            .billing-details {
+                padding: 10px;
+            }
+
+            .place-btn button {
+                border-radius: 5.874px;
+                background: #6036ae;
+                width: 200px;
+                height: 57.807px;
+                color: white;
+                margin: 0 auto;
+                display: block;
+                margin-top: 20px;
+                font-weight: 500;
+                border: none;
+                color: #fff;
+                font-family: "Poppins", serif;
+                font-size: 18px;
+                cursor: pointer;
+            }
+
+            .aside-inner-sec {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 0;
+            }
+        }
+
 
         .form-col label {
             display: block;
@@ -158,25 +327,6 @@
             height: 40px;
             background: #fff;
             padding-left: 10px;
-        }
-
-        .order-sidebar {
-            border-radius: 14px;
-            border: 1px solid #e6e6e6;
-            background: #fff;
-            padding: 30px;
-            width: 60%;
-            flex-grow: 1;
-        }
-
-        .order-aside {
-            border-radius: 14px;
-            border: 1px solid #e6e6e6;
-            background: #fff;
-            padding: 30px;
-            width: 40%;
-            max-height: 800px;
-            overflow-y: auto;
         }
 
         .order-wrap h3 {
@@ -254,13 +404,6 @@
             border-radius: 6px;
         }
 
-        .aside-inner-sec {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0;
-        }
-
         .aside-inner-sec h4 {
             color: #000;
             font-family: "Poppins", serif;
@@ -306,23 +449,6 @@
             line-height: 24px;
         }
 
-        .place-btn button {
-            border-radius: 5.874px;
-            background: #6036ae;
-            width: 265.615px;
-            height: 57.807px;
-            color: white;
-            margin: 0 auto;
-            display: block;
-            margin-top: 20px;
-            font-weight: 500;
-            border: none;
-            color: #fff;
-            font-family: "Poppins", serif;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
         .inputs-group:nth-last-child(1) {
             border-bottom: 0px;
         }
@@ -352,12 +478,6 @@
             /* gap: 0.75em; */
             position: relative;
             border-bottom: 1px solid #cdcdcd;
-        }
-
-        .card-logos {
-            position: absolute;
-            right: 11px;
-            top: 19px;
         }
 
         .order-sidebar .inputs-group .checkbox,
@@ -540,14 +660,6 @@
             width: 110px;
         }
 
-        .order-sidebar .inputs-group .card-icons {
-            right: 8px;
-            display: flex;
-            gap: 5px;
-            margin-right: 15px;
-            align-items: center;
-        }
-
         .order-sidebar .inputs-group .form-group input,
         .order-sidebar .inputs-group .form-group select {
             border-radius: 6.694px;
@@ -591,10 +703,6 @@
             margin: 0;
         }
 
-        .billing-details {
-            padding: 20px;
-        }
-
         .select2-container .select2-selection--single {
             width: 98% !important;
             min-height: 40px !important;
@@ -620,7 +728,7 @@
     </style>
     <div class="main-content">
         <section class="section custom-font">
-            <div class="container">
+            <div class="section-body">
                 {{-- top nav  --}}
                 <div class="steps">
                     <a href="#" class="steps-item active"><span>1</span>{{ __('admin.Shopping cart') }}</a>
