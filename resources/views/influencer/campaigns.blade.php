@@ -103,7 +103,7 @@
             <div class="section-body">
 
                 <div class="table-order inflanar-personals__content">
-                    <div class="inflanar-table p-0">
+                    <div class="inflanar-table p-0" style="overflow-x:auto;">
                         {{-- id="inflanar-table__order" --}}
                         <table id="dataTable"
                             class="inflanar-table__main inflanar-table__main--order table table-striped report_table">

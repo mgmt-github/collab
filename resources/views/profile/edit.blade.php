@@ -13,7 +13,7 @@
 
         .inflanar-support {
             margin-top: 29px;
-            width: 507px;
+            width: 100%;
         }
 
         .cus-edit-profile .inflanar-supports label {
@@ -40,6 +40,31 @@
             line-height: normal;
             margin: 0;
         }
+
+        @media only screen and (max-width: 600px) {
+            .cus-edit-profile {
+                border-radius: 10px;
+                background: #FFF;
+                padding: 10px;
+            }
+
+            .cus-edit-profile h3 {
+                color: #000;
+                font-family: "Poppins", serif;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+                margin: 0;
+            }
+
+            .inflanar-support {
+                margin-top: 20px;
+                width: 100%;
+                padding: 5px;
+            }
+        }
+
 
         .cus-edit-profile .inflanar-support h4 {
             color: #000;

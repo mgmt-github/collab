@@ -129,7 +129,9 @@ class ServiceController extends Controller
         $service->price = $request->price;
         $service->status = 'active';
         $service->tags = $request->tags;
+
         $service->platform = implode(',',$request->platform);
+
         $service->approve_by_admin = 'disable';
         $service->save();
 
@@ -148,7 +150,7 @@ class ServiceController extends Controller
 
         $notification = trans('admin_validation.Created Successfully');
         $notification = array('messege' => $notification, 'alert-type' => 'success');
-        return redirect()->route('influencer.service.edit', ['service' => $service->id, 'lang_code' => front_lang()])->with($notification);
+        return redirect()->route('influencer.service.index')->with($notification);
     }
 
     public function edit(Request $request, $id)
@@ -231,7 +233,7 @@ class ServiceController extends Controller
 
         $notification = trans('admin_validation.Updated Successfully');
         $notification = array('messege' => $notification, 'alert-type' => 'success');
-        return redirect()->back()->with($notification);
+        return redirect()->route('influencer.service.index')->with($notification);
     }
 
     public function destroy($id)

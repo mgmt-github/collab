@@ -18,6 +18,7 @@
             color: #B69A0E;
         }
 
+
         .forgetpass-page {
             background: #F4F4F4;
             min-height: 100vh;
@@ -34,15 +35,42 @@
             border-radius: 0px;
         }
 
-        .forgetpass-page .inflanar-signin__welcome {
-            padding: 40px 70px
-        }
-
         .forgetpass-page .inflanar-signin__title {
             font-size: 30px;
             font-style: normal;
             font-weight: 600;
             line-height: normal;
+        }
+
+        /* Extra small devices (phones, 600px and down) */
+        @media only screen and (max-width: 600px) {
+            .forgetpass-page {
+                background: #F4F4F4;
+                min-height: 100vh;
+                padding: 10px 0;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                font-family: 'Poppins';
+            }
+
+            .forgetpass-page .inflanar-signin__body {
+                padding: 10px;
+                box-shadow: none;
+                border-radius: 0px;
+            }
+
+            .forgetpass-page .inflanar-signin__title {
+                font-size: 24px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+            }
+
+        }
+
+        .forgetpass-page .inflanar-signin__welcome {
+            padding: 40px 70px
         }
 
         .forgetpass-page .inflanar-form-input input {

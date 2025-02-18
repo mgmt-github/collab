@@ -27,7 +27,22 @@
     .main-content {
         padding-left: 311px;
         padding-bottom: 70px;
+    }
 
+    /* Small devices (portrait tablets and large phones, 600px and up) */
+    @media only screen and (max-width: 1000px) {
+        .main-content {
+            padding-left: 80px;
+            padding-bottom: 70px;
+        }
+    }
+
+    /* Extra small devices (phones, 600px and down) */
+    @media only screen and (max-width: 800px) {
+        .main-content {
+            padding-left: 50px;
+            padding-bottom: 70px;
+        }
     }
 
     .navbar {

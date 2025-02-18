@@ -463,6 +463,30 @@
                 gap: 20px;
             }
 
+            @media only screen and (max-width: 1400px) {
+                .content-holder {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 20px;
+                }
+            }
+
+            @media only screen and (max-width: 900px) {
+                .content-holder {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 20px;
+                }
+            }
+
+            @media only screen and (max-width: 600px) {
+                .content-holder {
+                    display: grid;
+                    grid-template-columns: repeat(1, 1fr);
+                    gap: 20px;
+                }
+            }
+
             .col-12.mg-top-30.profile-section {
                 display: none;
             }
@@ -647,6 +671,33 @@
                 grid-template-columns: repeat(4, 1fr);
                 gap: 10px;
                 row-gap: 15px;
+            }
+
+            @media only screen and (max-width: 1400px) {
+                .influancer-body {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 10px;
+                    row-gap: 15px;
+                }
+            }
+
+            @media only screen and (max-width: 900px) {
+                .influancer-body {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 10px;
+                    row-gap: 15px;
+                }
+            }
+
+            @media only screen and (max-width: 600px) {
+                .influancer-body {
+                    display: grid;
+                    grid-template-columns: repeat(1, 1fr);
+                    gap: 10px;
+                    row-gap: 15px;
+                }
             }
 
             .influancer-item button {
