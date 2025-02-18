@@ -129,7 +129,9 @@ class ServiceController extends Controller
         $service->price = $request->price;
         $service->status = 'active';
         $service->tags = $request->tags;
-        $service->platform =  implode(',',$request->platform);
+
+        $service->platform = implode(',',$request->platform);
+
         $service->approve_by_admin = 'disable';
         $service->save();
 
