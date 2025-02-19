@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="">{{__('admin.Price')}}</label>
+                                <label for="price">{{__('admin.Price')}}</label>
                                 <input type="text" name="price" class="form-control">
                             </div>
 

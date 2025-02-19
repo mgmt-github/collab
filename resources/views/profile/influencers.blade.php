@@ -81,7 +81,7 @@
                                                 <img src="{{ asset($influencer->image) }}" class="img-box" />
                                                 <div class="img-title">
                                                     <div>
-                                                        <h5>{{ $influencer->address }}</h5>
+                                                        <h5>{{ $influencer->name }}</h5>
                                                         <address>{{ $influencer->address }}</address>
                                                     </div>
                                                     <span>Top creator

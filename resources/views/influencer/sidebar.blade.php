@@ -16,7 +16,8 @@
                         fill="#868686"></path>
                 </svg>
                 <!-- Search input field -->
-                <input type="text" class="search-input" placeholder="Search...">
+                <input type="text" class="search-input" id="searchMenu" placeholder="Search...">
+
             </div>
             <form class="form-inline ">
                 <ul class="navbar-nav mr-3 toggle-btn">
@@ -205,3 +206,14 @@
 
     </aside>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#searchMenu").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $(".sidebar-menu li").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+    });
+</script>
