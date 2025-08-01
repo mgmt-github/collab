@@ -166,12 +166,20 @@
             margin-bottom: 0;
         }
 
+        .billing-details {
+            padding: 20px;
+        }
+
         @media only screen and (max-width: 1300px) {
             .form-row {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 margin-bottom: 20px;
+            }
+
+            .billing-details {
+                padding: 15px;
             }
         }
 
@@ -200,6 +208,10 @@
                 width: 100%;
                 max-height: 800px;
                 overflow-y: auto;
+            }
+
+            .billing-details {
+                padding: 15px;
             }
         }
 
@@ -752,7 +764,7 @@
                                         </div>
 
                                         <div class="form-col">
-                                            <label>{{ __('admin.user name') }}</label>
+                                            <label>{{ __('admin.Username') }}</label>
                                             <input type="text" name="username" id="" placeholder="Adriana"
                                                 value="{{ auth()->user()->username }}" />
                                         </div>

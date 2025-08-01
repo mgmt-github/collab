@@ -6,8 +6,8 @@
     <div class="main-content">
         <section class="section">
             <!-- <div class="section-header">
-                        <h1>{{ __('admin.Dashboard') }}</h1>
-                      </div> -->
+                                                <h1>{{ __('admin.Dashboard') }}</h1>
+                                              </div> -->
 
             <div class="section-body">
                 <div class="inflanar-order-detail">
@@ -68,6 +68,13 @@
                                             <li class="inflanar-dflex">
                                                 <h4 class="inflanar-profile-info__title">{{ __('admin.Status') }}:</h4>
                                                 <p class="inflanar-profile-info__text">{{ ucfirst($campaign->status) }}
+                                                </p>
+                                            </li>
+                                            <li class="inflanar-dflex">
+                                                <h4 class="inflanar-profile-info__title">{{ __('admin.Request') }}:</h4>
+                                                <p class="inflanar-profile-info__text">
+                                                    <a href="#" class="inflanar-btn"> {{ __('admin.Request') }}
+                                                    </a>
                                                 </p>
                                             </li>
                                             {{-- @if ($campaign->image)
